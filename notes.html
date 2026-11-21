@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142522">
+  <title>Reading notes · Riemann proof atlas</title>
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body { max-width: 48rem; margin: 0 auto; padding: 1.75rem clamp(1.1rem, 5vw, 3.5rem) 4rem; background: #f7f7ef; color: #1c302c; font: 1.04rem/1.6 system-ui,sans-serif; }
+    :any-link { color: #1b6352; text-underline-offset: .16em; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    nav { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; }
+    h1, h2 { font-family: Georgia,serif; font-weight: 500; line-height: 1.16; }
+    h1 { font-size: clamp(2.25rem, 7vw, 3.6rem); margin: 1.75rem 0 .7rem; }
+    h2 { font-size: 1.65rem; margin: 2.5rem 0 .6rem; }
+    section { scroll-margin-top: 1rem; }
+    p { margin: .7rem 0; }
+    code { overflow-wrap: anywhere; }
+    @media (prefers-color-scheme: dark) { body { background: #142522; color: #e6eee5; } :any-link { color: #a5dfbf; } }
+  </style>
+</head>
+<body>
+  <header><a href="./">← Explore the atlas</a><h1>Reading the proof map</h1>
+    <nav aria-label="Reading notes"><a href="#findings">Mathematical findings</a><a href="#method">Placement method</a><a href="#copies">Repeated names</a><a href="#data">Data and sources</a></nav>
+  </header>
+  <main>
+    <section id="findings"><h2>Where the RH proof goes</h2>
+      <p>Following references from proof and definition values in <code>riemannHypothesis</code> reaches 647,905 individually identified written declarations. The overlay places 426,138 of these across 16 arXiv subjects. The remaining 221,767 have source links in the unplaced index. The three largest assigned subjects are commutative algebra (122,551), number theory (105,391) and rings and algebras (74,777).</p>
+      <p>One arithmetic construction supplies a local–global Galois parameter. On the analytic side, a Landau argument constrains poles using a window estimate. Another lemma passes from that estimate to a zero-free region. Each link opens a specific theorem where you can inspect the printed Lean statement and its proof dependencies.</p>
+      <nav aria-label="Worked examples"><a href="./#theorem=435423&amp;scope=1&amp;evidence=valueMask">Galois parameter</a><a href="./#theorem=424699&amp;scope=1&amp;evidence=valueMask">Landau argument</a><a href="./#theorem=424690&amp;scope=1&amp;evidence=valueMask">Zero-free criterion</a><a href="evidence/subjects.json">All subject counts and source examples</a></nav>
+    </section>
+    <section id="method"><h2>Why a dot sits here</h2>
+      <p>Each paper retains its published map position and color. The Lean layer compares declarations with reviewed proof passages, mathematical terms in their names and statements, and evidence from nearby code. A match places a declaration in a named arXiv neighborhood. Small deterministic offsets distinguish bundles and their members. The inspector shows the evidence and confidence of each assignment.</p>
+      <p>Eleven of twelve classification controls agreed with the review assignment. One finite-group character identity inherited the number-theory label of an Artin-conductor file. The controls record the source signature, expected category, assigned topic and matched terms for each case.</p>
+      <p>Bundles use direct proof and type references, shared files and imports. The size of a bundle reflects how the argument was formalized. Follow a named witness on a connection between bundles to see which declaration actually refers to the other.</p>
+      <nav aria-label="Classification"><a href="evidence/classification-controls.json">Twelve controls and the exception</a><a href="data/lean/topics.json">Topics and original map anchors</a></nav>
+    </section>
+    <section id="copies"><h2>When two files use the same Lean name</h2>
+      <p>The archive contains 268 written occurrences in 133 repeated-name groups. Counting distinct names once gives 648,016 in the classical RH value closure. Comparing the original compiled objects with the export identifies 61 sole compatible physical proofs, excludes 63 alternatives, and finds 100 occurrences whose compatible terms agree up to bound-variable renaming. The other 44 occurrences have names absent from the export.</p>
+      <p>Choose <strong>Count repeated names</strong> in the explorer to compare two source files side by side through their pinned links.</p>
+      <nav aria-label="Source copies"><a href="./">Open the explorer</a><a href="data/shared-sources.json.gz">Download all source-copy comparisons</a></nav>
+    </section>
+    <section id="data"><h2>Data and sources</h2>
+      <p>The edition covers 818,755 written statements in 1,448 proof bundles on Leland McInnes’s map of 2,477,303 arXiv papers. Five endpoint filters follow references in the checked Lean export. The underlying files were built on Helios. The inventory lists the SHA-256 of each file in this edition.</p>
+      <nav aria-label="Edition data"><a href="evidence/coverage.json">Overlay verification</a><a href="data/base/manifest.json">Paper-map manifest</a><a href="data/native/verification.json">Compiled theorem checks</a><a href="SHA256SUMS">File checksums</a></nav>
+      <p>Open the original map to explore the paper embedding, the pinned source tree to read the Lean project, or the public reading guide for the argument from beginning to end.</p>
+      <nav aria-label="Original sources"><a href="https://lmcinnes.github.io/datamapplot_examples/arXiv/">Original arXiv map by Leland McInnes</a><a href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src">Pinned Lean source</a><a href="https://nasqret.github.io/riemann-rev/">Public reading guide</a><a href="https://math.mit.edu/~drew/grh/">Independent verification</a></nav>
+    </section>
+  </main>
+</body>
+</html>

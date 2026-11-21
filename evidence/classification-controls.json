@@ -1,0 +1,266 @@
+{
+  "validated": 818755,
+  "placed": 530302,
+  "unplaced": 288453,
+  "bundles": 1448,
+  "distinctDisplayedCoordinates": 530302,
+  "nativeEndpointTables": 15,
+  "checkedRhValueExamples": 40,
+  "negativeControls": [
+    "theorem h (x : ℝ) : x = x",
+    "theorem h (n : Nat) : n = n",
+    "theorem h : P → P"
+  ],
+  "sourceControls": [
+    {
+      "id": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.AdeleRingCocompactDiscreteNumberField:11:9",
+      "source": "lean/src/CompanionTheory/SpectralGeometry/LocalGlobalProofs/AdelicAnalysis/AdeleRingCocompactDiscreteNumberField.lean",
+      "line": 11,
+      "name": "discrete_cocompact",
+      "signature": "theorem discrete_cocompact : ∀ (F : Type) [Field F] [NumberField F],\n    (∃ C : Set (AdeleRing (𝓞 F) F), IsCompact C ∧\n      ∀ y, ∃ l : F, y - algebraMap F (AdeleRing (𝓞 F) F) l ∈ C) ∧\n    (∀ C : Set (AdeleRing (𝓞 F) F), IsCompact C →\n      {l : F | algebraMap F (AdeleRing (𝓞 F) F) l ∈ C}.Finite) ∧\n    NoncompactSpace (AdeleRing (𝓞 F) F)",
+      "expected": [
+        "math.NT",
+        "math.GN"
+      ],
+      "reason": "The number field embeds discretely and cocompactly in its adèle ring.",
+      "category": "math.NT",
+      "topic": "number-fields",
+      "basis": "declaration",
+      "confidence": "medium",
+      "outcome": "agreement",
+      "terms": [
+        "signature · number field",
+        "signature · adele",
+        "module · adelic"
+      ]
+    },
+    {
+      "id": "Development.EtaleCohomology.CohomologicalPurity.FinLeafAW:4:9",
+      "source": "lean/src/Development/EtaleCohomology/CohomologicalPurity/FinLeafAW.lean",
+      "line": 4,
+      "name": "etale_purity_aw",
+      "signature": "theorem etale_purity_aw : LateralTheory.CohomologicalPurity.LeafAW",
+      "expected": [
+        "math.AG"
+      ],
+      "reason": "This is the project's étale cohomological purity statement for the AW case.",
+      "category": "math.AG",
+      "topic": "etale",
+      "basis": "declaration",
+      "confidence": "medium",
+      "outcome": "agreement",
+      "terms": [
+        "name · etale",
+        "module · etale cohomology"
+      ]
+    },
+    {
+      "id": "Development.ResolutionOfSingularities.HasSimpleNormalCrossingsOfInStrictNormalCrossing:15:9",
+      "source": "lean/src/Development/ResolutionOfSingularities/HasSimpleNormalCrossingsOfInStrictNormalCrossing.lean",
+      "line": 15,
+      "name": "functorialResolutionCharZero",
+      "signature": "theorem functorialResolutionCharZero : FunctorialResolutionCharZero.{u}",
+      "expected": [
+        "math.AG"
+      ],
+      "reason": "A functorial resolution in characteristic zero is obtained from embedded resolution data.",
+      "category": "math.AG",
+      "topic": "singularities",
+      "basis": "module",
+      "confidence": "low",
+      "outcome": "agreement",
+      "terms": [
+        "module · normal crossings",
+        "module · normal crossing",
+        "module · resolution of singularities"
+      ]
+    },
+    {
+      "id": "Development.ResolutionOfSingularities.Statements:66:9",
+      "source": "lean/src/Development/ResolutionOfSingularities/Statements.lean",
+      "line": 66,
+      "name": "structMap_down",
+      "signature": "theorem structMap_down (s : BlowupSequence X) {i i' : ℕ} (h : i ≤ i') :\n    s.down h ≫ s.structMap i = s.structMap i'",
+      "expected": [
+        "math.AG",
+        "math.CT"
+      ],
+      "reason": "Composition with a transition map in a sequence of blowups gives the structural map.",
+      "category": "math.AG",
+      "topic": "singularities",
+      "basis": "declaration",
+      "confidence": "low",
+      "outcome": "agreement",
+      "terms": [
+        "signature · blowup",
+        "module · resolution of singularities"
+      ]
+    },
+    {
+      "id": "Formalism.BehrendSets.BehrendVariance.CoeffPowEqZeroOfLt:19:9",
+      "source": "lean/src/Formalism/BehrendSets/BehrendVariance/CoeffPowEqZeroOfLt.lean",
+      "line": 19,
+      "name": "exists_D",
+      "signature": "theorem exists_D (Q : ℕ) : ∃ D : ℤ⟦X⟧, D + X * D ^ Q = 1",
+      "expected": [
+        "math.AC",
+        "math.RA"
+      ],
+      "reason": "A formal power series satisfies D + X D^Q = 1. The ambient Behrend folder concerns an application.",
+      "category": "math.AC",
+      "topic": "polynomials",
+      "basis": "declaration",
+      "confidence": "medium",
+      "outcome": "agreement",
+      "terms": [
+        "signature · ⟦X⟧ (formal power series)"
+      ]
+    },
+    {
+      "id": "Formalism.BehrendSets.BehrendVariance.MemWindowIff:16:7",
+      "source": "lean/src/Formalism/BehrendSets/BehrendVariance/MemWindowIff.lean",
+      "line": 16,
+      "name": "residue",
+      "signature": "lemma residue (o j i : ℕ) (hj : j < o) (hd : o ∣ j + i) : (o - i % o) % o = j",
+      "expected": [
+        "math.NT"
+      ],
+      "reason": "Cyclic congruence arithmetic identifies a residue modulo the order.",
+      "category": "math.NT",
+      "topic": "elementary-nt",
+      "basis": "declaration",
+      "confidence": "medium",
+      "outcome": "agreement",
+      "terms": [
+        "signature · integer remainder and divisibility (% and ∣)"
+      ]
+    },
+    {
+      "id": "GroundTheory.AutomorphicForms.AdelicGLn:33:9",
+      "source": "lean/src/GroundTheory/AutomorphicForms/AdelicGLn.lean",
+      "line": 33,
+      "name": "isTopologicalGroup",
+      "signature": "theorem isTopologicalGroup : IsTopologicalGroup (AdelicGL K n)",
+      "expected": [
+        "math.GN",
+        "math.GR",
+        "math.NT"
+      ],
+      "reason": "The adelic general linear group carries a topological group structure.",
+      "category": "math.NT",
+      "topic": "number-fields",
+      "basis": "declaration",
+      "confidence": "low",
+      "outcome": "agreement",
+      "terms": [
+        "signature · adelic"
+      ]
+    },
+    {
+      "id": "GroundTheory.GlobalFields.AnalyticClassNumber.ClassNumberFormula:12:9",
+      "source": "lean/src/GroundTheory/GlobalFields/AnalyticClassNumber/ClassNumberFormula.lean",
+      "line": 12,
+      "name": "Gammaℂ_residue_zero",
+      "signature": "theorem Gammaℂ_residue_zero : Tendsto (fun s ↦ s * Gammaℂ s) (𝓝[≠] 0) (𝓝 2)",
+      "expected": [
+        "math.CV",
+        "math.CA"
+      ],
+      "reason": "The product of the complex gamma factor with its argument has limit two at zero.",
+      "category": "math.CA",
+      "topic": "estimates",
+      "basis": "declaration",
+      "confidence": "low",
+      "outcome": "agreement",
+      "terms": [
+        "signature · tendsto"
+      ]
+    },
+    {
+      "id": "GroundTheory.GlobalFields.FirstInequality:23:9",
+      "source": "lean/src/GroundTheory/GlobalFields/FirstInequality.lean",
+      "line": 23,
+      "name": "ideleClassToCycTateZero_apply",
+      "signature": "theorem ideleClassToCycTateZero_apply (σ : Gal(L/K)) (c : Additive (IdeleClassGroup K)) :\n    ideleClassToCycTateZero K L σ c = QuotientAddGroup.mk ⟨Additive.ofMul (ideleClassMap K L c.toMul),\n      by\n        rw [AddMonoidHom.mem_ker, cycSubOne_apply, Representation.ofMulDistribMulAction_apply_apply,\n          sub_eq_zero]\n        exact congrArg Additive.ofMul (smul_ideleClassMap σ _)⟩",
+      "expected": [
+        "math.NT"
+      ],
+      "reason": "The application formula identifies an idèle class in the cyclic Tate construction.",
+      "category": "math.NT",
+      "topic": "number-fields",
+      "basis": "declaration",
+      "confidence": "high",
+      "outcome": "agreement",
+      "terms": [
+        "name · idele class",
+        "signature · class group"
+      ]
+    },
+    {
+      "id": "GroundTheory.LocalFields.ArtinConductor:14:9",
+      "source": "lean/src/GroundTheory/LocalFields/ArtinConductor.lean",
+      "line": 14,
+      "name": "codim_invariants_eq",
+      "signature": "theorem codim_invariants_eq (ρ : Representation ℂ H V) :\n    ((finrank ℂ V - finrank ℂ (invariants ρ) : ℕ) : ℂ) =\n      (Nat.card H : ℂ)⁻¹ * ∑ h : H, (ρ.character 1 - ρ.character h)",
+      "expected": [
+        "math.RT"
+      ],
+      "reason": "The codimension of the invariants of a finite group is expressed as an average of character values.",
+      "category": "math.NT",
+      "topic": "local-fields",
+      "basis": "module",
+      "confidence": "low",
+      "outcome": "other subject",
+      "terms": [
+        "module · artin conductor",
+        "namespace · local field"
+      ]
+    },
+    {
+      "id": "GroundTheory.PAdicHodge.ACrisBdR:25:9",
+      "source": "lean/src/GroundTheory/PAdicHodge/ACrisBdR.lean",
+      "line": 25,
+      "name": "dpow_mem_dpowSpan",
+      "signature": "theorem dpow_mem_dpowSpan (ξ : AInf K p) (n : ℕ) : dpow n ξ ∈ dpowSpan ξ",
+      "expected": [
+        "math.NT",
+        "math.AC"
+      ],
+      "reason": "Divided powers in the crystalline period-ring construction lie in their generating span.",
+      "category": "math.AC",
+      "topic": "rings",
+      "basis": "module-neighbours",
+      "confidence": "low",
+      "outcome": "agreement",
+      "terms": [
+        "same source file · GroundTheory.PAdicHodge.ACris.mem_dpowSpan",
+        "11/11 directly classified neighbouring statements"
+      ]
+    },
+    {
+      "id": "GroundTheory.TateCohomology.Characters:15:9",
+      "source": "lean/src/GroundTheory/TateCohomology/Characters.lean",
+      "line": 15,
+      "name": "shortComplex_exact_of_forall",
+      "signature": "theorem shortComplex_exact_of_forall {S : ShortComplex (Rep.{u} k G)}\n    (h : ∀ x : S.X₂, S.g.hom x = 0 → ∃ y : S.X₁, S.f.hom y = x) : S.Exact",
+      "expected": [
+        "math.KT",
+        "math.RT"
+      ],
+      "reason": "An objectwise exactness test is applied to a short complex of representations.",
+      "category": "math.KT",
+      "topic": "homological",
+      "basis": "module-neighbours",
+      "confidence": "low",
+      "outcome": "agreement",
+      "terms": [
+        "same source file · GroundTheory.GroupCoh.ratSES_shortExact",
+        "3/3 directly classified neighbouring statements"
+      ]
+    }
+  ],
+  "sourceControlOutcomes": {
+    "agreement": 11,
+    "other subject": 1
+  }
+}

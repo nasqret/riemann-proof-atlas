@@ -1,0 +1,34 @@
+{
+  "utc": "2026-11-21T12:05:53.819028+00:00",
+  "slurm": "26709779",
+  "sourceDeclarations": 818755,
+  "sourceFilesWithTheorems": 165801,
+  "placed": 530302,
+  "unplaced": 288453,
+  "matched": 818487,
+  "roots": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "maskCounts": {
+    "31": 647902,
+    "0": 170567,
+    "255": 268,
+    "8": 8,
+    "16": 4,
+    "3": 3,
+    "1": 1,
+    "2": 1,
+    "4": 1
+  },
+  "directTheoremEdges": 1341229,
+  "bundleRelations": 89213,
+  "endpointWitnessHops": 7391084,
+  "endpointWitnessMemberships": 7391089,
+  "verifiedStaticFiles": 2019,
+  "staticManifestSha256": "8a5dd649f7f3898c6182ba4642f0c4c43b04c892086b9b63943907c956008a25",
+  "staticBytes": 118070287
+}
