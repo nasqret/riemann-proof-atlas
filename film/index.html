@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="../"><title>A tour of the Riemann proof atlas</title>
+  <style>
+    :root { color-scheme: dark; font: 16px/1.45 system-ui,sans-serif; background: #10191b; color: #ecf1e4; }
+    * { box-sizing: border-box; } body { margin: 0; min-height: 100dvh; display: grid; place-content: center; }
+    main { width: min(100vw,1280px); } #film { display: block; width: 100%; height: auto; background: #10191b; }
+    nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .65rem 1.25rem; padding: 1rem; }
+    a { color: #bdefc9; } button { font: inherit; border-radius: .4rem; padding: .44rem 1rem; background: #daecd6; color: #17372f; border: 0; cursor: pointer; }
+    button:disabled { opacity: .6; } [hidden] { display: none !important; } #status { font-size: .85rem; }
+    #viewport { position: fixed; left: -16000px; top: 0; width: 1280px; height: 720px; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <canvas id="film" width="1280" height="720" aria-label="Animated tour from the arXiv paper map to the source of the classical Riemann hypothesis theorem"></canvas>
+    <nav aria-label="Film controls"><button id="play" disabled>Play tour</button><a href="./">Explore the atlas</a><a href="media/riemann-proof-atlas.mp4" download>Download MP4</a><button id="encode" hidden>Render video</button><a id="stream" download="atlas-tour.h264" hidden>Save rendered stream</a><span id="status" role="status">Preparing the map…</span></nav>
+  </main>
+  <div id="viewport" aria-hidden="true"><canvas id="map"></canvas></div><span id="scale" hidden></span><span id="scene" hidden></span><span id="tip" hidden></span>
+  <script type="module" src="film/tour.js"></script>
+</body>
+</html>
