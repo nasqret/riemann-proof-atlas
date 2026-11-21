@@ -2,11 +2,14 @@ import { Catalog, json, fmt, scopePass, merc } from "./data.js";
 import { AtlasMap } from "./map.js";
 import { NativeLayer } from "./native-layer.js";
 import { nativeDetail, openNative } from "./native.js";
+import { mountScreen } from "./screen.js";
+import { readingLinks } from "./links.js";
 const $ = (s) => document.querySelector(s),
   pane = $("#content"),
   panel = $("#panel"),
   search = $("#search");
 const paperURL = "https://lmcinnes.github.io/datamapplot_examples/arXiv/";
+const screenMode = mountScreen($("#fullScreen"), $("#inspectToggle"), panel);
 const shortRoots = [
   "Classical RH",
   "Explicit zeta",
@@ -94,7 +97,10 @@ function back(label = "Explorer overview") {
   return button(label, () => reset(), "back");
 }
 function jumpPanel() {
-  if (matchMedia("(max-width:720px)").matches)
+  if (screenMode.active) {
+    screenMode.openInspector();
+    panel.scrollTop = 0;
+  } else if (getComputedStyle(panel).overflowY === "visible")
     panel.scrollIntoView({ block: "start" });
   else panel.scrollTop = 0;
 }
@@ -175,7 +181,7 @@ async function sharedCounts() {
     }),
     link(
       "Read the source-copy evidence",
-      "notes.html#copies",
+      readingLinks.copies,
     ),
   );
 }
@@ -1237,8 +1243,10 @@ async function enableNative() {
 async function locateNative(d) {
   if (d.written !== null && d.written !== undefined)
     return navigatePoint(d.written, true);
+  const ticket = renderToken;
   $("#generated").checked = true;
   await enableNative();
+  if (ticket !== renderToken || !map.show.generated) return;
   const i = nativeLayer.indexOf(d.id);
   if (i < 0) return;
   const n = nativeLayer.data;
@@ -1323,7 +1331,7 @@ function method() {
     ),
     link(
       "Read the controls and the counterexample",
-      "notes.html#method",
+      readingLinks.controls,
     ),
     sub("Reading bundles"),
     para(
@@ -1335,7 +1343,7 @@ function method() {
     ),
     link(
       "Data, classification rules and verification",
-      "notes.html#data",
+      readingLinks.data,
     ),
   );
 }
@@ -1361,16 +1369,16 @@ function sources() {
     ),
     sub("Project reading materials"),
     actions(
-      link("Reading dashboard", "https://nasqret.github.io/riemann-rev/"),
+      link("Reading dashboard", readingLinks.dashboard),
       link(
         "Theorem blueprint",
-        "https://nasqret.github.io/riemann-rev/blueprint/atlas-blueprint.pdf",
+        readingLinks.blueprint,
       ),
       link(
         "Mathematical findings",
-        "notes.html#findings",
+        readingLinks.findings,
       ),
-      link("Coverage and build receipts", "notes.html#data"),
+      link("Coverage and build receipts", readingLinks.data),
     ),
   );
 }
@@ -1487,15 +1495,29 @@ $("#generated").onchange = () => enableNative().catch(showError);
 $("#scope").onchange = () => changeFilter();
 $("#subject").onchange = () => changeFilter();
 $("#evidence").onchange = () => changeFilter();
-$("#home").onclick = () => {
+function returnToOrigin() {
   if (!ready) return;
+  clearTimeout(timer);
   $("#evidence").value = "mask";
   $("#scope").value = "all";
   $("#subject").value = "";
+  for (const id of ["papers", "lean", "labels", "relations", "generated"]) {
+    const enabled = id !== "generated";
+    $("#" + id).checked = enabled;
+    map.show[id] = enabled;
+  }
+  $("#layersPanel").hidden = true;
+  $("#layersBtn").setAttribute("aria-expanded", "false");
+  $("#tip").hidden = true;
+  screenMode.home();
+  map.size();
   syncFilters();
   reset({ fit: true });
-  jumpPanel();
-};
+  panel.scrollTop = 0;
+  window.scrollTo(0, 0);
+}
+$("#origin").onclick = returnToOrigin;
+$("#home").onclick = returnToOrigin;
 $("#method").onclick = method;
 $("#sources").onclick = sources;
 $("#closeDialog").onclick = () => $("#dialog").close();
@@ -1507,16 +1529,27 @@ search.oninput = () => {
   timer = setTimeout(doSearch, 150);
 };
 document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+  const editing = e.target.matches("input,textarea,select,[contenteditable=true]");
+  if (e.key.toLowerCase() === "f" && !editing && !e.repeat && !$("#dialog").open) {
+    e.preventDefault();
+    screenMode.toggle();
+  }
   if (
     e.key === "/" &&
     !$("#dialog").open &&
     e.target !== search &&
-    !e.target.matches("input,textarea,select")
+    !editing
   ) {
     e.preventDefault();
+    screenMode.openInspector();
     search.focus();
   }
   if (e.key === "Escape") {
+    if (screenMode.active && $("#layersPanel").hidden && !$("#dialog").open) {
+      e.preventDefault();
+      screenMode.toggle();
+    }
     $("#layersPanel").hidden = true;
     $("#layersBtn").setAttribute("aria-expanded", "false");
   }
@@ -1534,6 +1567,7 @@ window.addEventListener("popstate", () => restore().catch(showError));
     }
     map.setCatalog(cat);
     ready = true;
+    $("#origin").disabled = false;
     $("#scope").disabled = false;
     $("#subject").disabled = false;
     $("#nativeLayer").hidden = false;

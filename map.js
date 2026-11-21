@@ -1,6 +1,19 @@
 import { bytes, json, merc, fmt, scopePass } from "./data.js";
 const BASE = "data/base/";
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const fineScale = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+const coarseScale = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+
+function labelLines(text) {
+  const lines = [""];
+  for (const word of text.split(/\s+/)) {
+    const last = lines.length - 1;
+    if (lines[last] && lines[last].length + word.length + 1 > 27) lines.push(word);
+    else lines[last] = lines[last] ? lines[last] + " " + word : word;
+  }
+  if (lines.length <= 3) return lines;
+  return [...lines.slice(0, 2), lines.slice(2).join(" ").slice(0, 25) + "…"];
+}
 export class AtlasMap {
   constructor(select, warn) {
     this.select = select;
@@ -51,12 +64,16 @@ export class AtlasMap {
     this.size();
     this.fit();
     this.drawSoon();
-    this.labelRows = await json(
+    const labels = await json(
       BASE + (this.base.labels_gzip || this.base.labels),
     );
-    this.labelById = new Map(this.labelRows.map((l) => [l.id, l]));
-    this.labelRows = this.labelRows.filter((l) => l.named !== false && l.label);
-    for (const l of this.labelRows) l.my = merc(l.y);
+    this.labelById = new Map(labels.map((l) => [l.id, l]));
+    this.levels = [];
+    for (const l of labels) {
+      if (l.named === false || !l.label) continue;
+      l.my = merc(l.y);
+      (this.levels[l.depth] ??= []).push(l);
+    }
     this.drawSoon();
   }
   setCatalog(cat) {
@@ -66,12 +83,15 @@ export class AtlasMap {
   }
   size() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    this.width = this.view.clientWidth || 1;
-    this.height = this.view.clientHeight || 1;
+    const width = this.view.clientWidth || 1, height = this.view.clientHeight || 1;
+    if (width === this.width && height === this.height && dpr === this.dpr) return;
+    this.width = width;
+    this.height = height;
     this.canvas.width = Math.round(this.width * dpr);
     this.canvas.height = Math.round(this.height * dpr);
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.dpr = dpr;
+    this.labelSize = width < 480 ? 12 : width > 1300 ? 14 : 13;
     this.transform();
   }
   transform() {
@@ -130,7 +150,8 @@ export class AtlasMap {
     this.filterBundle = null;
     this.edges = [];
     this.setScene(subject === "unresolved");
-    if (this.cat) {
+    const key = scope + "|" + subject + "|" + this.evidence;
+    if (this.cat && key !== this.countKey) {
       const c = this.cat,
         counts = new Uint32Array(c.bundles.length);
       let matched = 0;
@@ -145,6 +166,7 @@ export class AtlasMap {
       }
       this.counts = counts;
       this.matched = matched;
+      this.countKey = key;
     }
     this.drawSoon();
   }
@@ -391,7 +413,7 @@ export class AtlasMap {
     ];
   }
   landmarks() {
-    if (!this.labelRows) return;
+    if (!this.levels) return;
     const ctx = this.ctx,
       depth =
         this.zoom < 1.8
@@ -408,29 +430,22 @@ export class AtlasMap {
                     ? 6
                     : 7;
     const placed = [];
-    ctx.font = '13px "DM Sans",Arial,sans-serif';
+    const size = this.labelSize;
+    ctx.font = size + 'px "DM Sans",Arial,sans-serif';
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    const candidates = this.labelRows.filter((l) => l.depth === depth);
+    const candidates = this.levels[depth] || [];
     for (const l of candidates) {
       const sx = this.px(l.x),
         sy = this.py(l.my);
       if (sx < 18 || sy < 68 || sx > this.width - 18 || sy > this.height - 42)
         continue;
-      let words = l.label.split(/\s+/),
-        lines = [""];
-      for (const w of words) {
-        let p = lines.length - 1;
-        if (lines[p] && (lines[p] + " " + w).length > 27) lines.push(w);
-        else lines[p] = (lines[p] + " " + w).trim();
+      const lines = l.lines ??= labelLines(l.label);
+      if (l.measuredSize !== size) {
+        l.measuredSize = size;
+        l.textWidth = Math.max(...lines.map((s) => ctx.measureText(s).width)) + 10;
       }
-      if (lines.length > 3)
-        lines = lines
-          .slice(0, 2)
-          .concat([lines.slice(2).join(" ").slice(0, 25) + "…"]);
-      const width =
-          Math.max(...lines.map((s) => ctx.measureText(s).width)) + 10,
-        height = 14 * lines.length + 4;
+      const width = l.textWidth, lineHeight = size + 1, height = lineHeight * lines.length + 4;
       const rect = {
         x: sx - width / 2,
         y: sy - height / 2,
@@ -438,6 +453,8 @@ export class AtlasMap {
         h: height,
         l,
       };
+      if (rect.x < 3 || rect.x + width > this.width - 3 ||
+          rect.y < 2 || rect.y + height > this.height - 2) continue;
       if (
         placed.some(
           (o) =>
@@ -453,7 +470,7 @@ export class AtlasMap {
       ctx.strokeStyle = "#102023e8";
       ctx.fillStyle = this.zoom < 4 ? "#e2ebe4" : "#cbdcd5";
       lines.forEach((line, k) => {
-        const py = sy + (k - (lines.length - 1) / 2) * 14;
+        const py = sy + (k - (lines.length - 1) / 2) * lineHeight;
         ctx.strokeText(line, sx, py);
         ctx.fillText(line, sx, py);
       });
@@ -495,10 +512,11 @@ export class AtlasMap {
       ctx.lineWidth = 1;
       ctx.stroke();
     }
-    document.querySelector("#scale").textContent =
-      Intl.NumberFormat("en-US", {
-        maximumFractionDigits: this.zoom > 15 ? 0 : 1,
-      }).format(this.zoom) + "×";
+    if (this.lastScale !== this.zoom) {
+      document.querySelector("#scale").textContent =
+        (this.zoom > 15 ? coarseScale : fineScale).format(this.zoom) + "×";
+      this.lastScale = this.zoom;
+    }
   }
   proofLines() {
     const c = this.cat,

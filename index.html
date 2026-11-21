@@ -17,17 +17,21 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23182020'/%3E%3Ctext x='15' y='49' font-size='53' font-family='Georgia' font-style='italic' fill='%23bdedc1'%3Eζ%3C/text%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="atlas.css" />
+    <link rel="modulepreload" href="app.js" />
+    <link rel="modulepreload" href="map.js" />
+    <link rel="modulepreload" href="data.js" />
   </head>
   <body>
     <header class="mast">
       <div class="identity">
-        <span class="sigil" aria-hidden="true">ζ</span>
+        <button type="button" id="origin" class="sigil" title="Return to the original map" aria-label="Return to the original map" disabled><span aria-hidden="true">ζ</span></button>
         <div>
           <h1>Riemann proof atlas</h1>
-          <p>Lean formalization on the arXiv map</p>
+          <p>Lean on the arXiv map</p>
         </div>
       </div>
       <nav aria-label="Atlas navigation">
+        <button type="button" id="inspectToggle" aria-controls="panel" aria-expanded="false" hidden>Inspector</button>
         <button id="home" class="active">Explorer</button
         ><button id="method">Method</button
         ><button id="sources">Sources</button>
@@ -64,7 +68,7 @@
             </select></label
           >
           <div class="layerwrap">
-            <button class="layers" aria-expanded="false" id="layersBtn">
+            <button class="layers" aria-expanded="false" aria-controls="layersPanel" id="layersBtn">
               Layers
             </button>
             <div class="layerbox" id="layersPanel" hidden>
@@ -94,14 +98,11 @@
         </div>
         <div id="tip" role="tooltip" hidden></div>
         <div class="maptools" aria-label="Map controls">
-          <button id="zoomIn" title="Zoom in" aria-label="Zoom in">+</button
-          ><button id="zoomOut" title="Zoom out" aria-label="Zoom out">−</button
-          ><button
-            id="fit"
-            title="Fit the original arXiv map"
-            aria-label="Fit the original arXiv map"
-          >
-            ⌗
+          <button id="zoomIn" title="Zoom in (+)" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button id="zoomOut" title="Zoom out (−)" aria-label="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+          <button id="fit" title="Fit the map (Home)" aria-label="Fit the map"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/></svg></button>
+          <button id="fullScreen" title="Enter fullscreen (F)" aria-label="Enter fullscreen" aria-pressed="false" aria-keyshortcuts="F">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="expand" d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/><path class="contract" d="M4 9h5V4m6 0v5h5M9 20v-5H4m16 0h-5v5"/></svg>
           </button>
         </div>
         <div id="mapbarBottom">
@@ -115,7 +116,7 @@
         <div class="searchbox">
           <label for="search">Find a Lean theorem</label>
           <div class="searchfield">
-            <span aria-hidden="true">⌕</span
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.7"/><path d="m16 16 4.8 4.8"/></svg
             ><input
               type="search"
               id="search"
