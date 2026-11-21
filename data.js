@@ -1,34 +1,9 @@
-const memo = new Map();
+import { attributionWitness, refinement, refinedPoints } from "./attribution.js";
+import { bytes, json } from "./io.js";
+export { bytes, json } from "./io.js";
 export const fmt = (value) => Number(value || 0).toLocaleString("en-US");
 export const merc = (lat) =>
   (180 / Math.PI) * Math.asinh(Math.tan((lat * Math.PI) / 180));
-export async function bytes(url) {
-  const response = await fetch(url);
-  if (!response.ok)
-    throw new Error("Could not read " + url + " (" + response.status + ")");
-  const data = await response.arrayBuffer();
-  const head = new Uint8Array(data, 0, Math.min(2, data.byteLength));
-  if (head[0] === 31 && head[1] === 139) {
-    const stream = new Blob([data])
-      .stream()
-      .pipeThrough(new DecompressionStream("gzip"));
-    return new Response(stream).arrayBuffer();
-  }
-  return data;
-}
-export function json(url) {
-  if (!memo.has(url))
-    memo.set(
-      url,
-      bytes(url)
-        .then((b) => JSON.parse(new TextDecoder().decode(b)))
-        .catch((e) => {
-          memo.delete(url);
-          throw e;
-        }),
-    );
-  return memo.get(url);
-}
 export function scopePass(mask, scope) {
   switch (scope) {
     case "all":
@@ -46,13 +21,27 @@ export function scopePass(mask, scope) {
 export class Catalog {
   async load() {
     const base = "data/lean/";
-    const [index, bundles, topics] = await Promise.all([
+    const [index, original, topics, meta, groups] = await Promise.all([
       json(base + "index.json"),
       json(base + "bundles.json.gz"),
       json(base + "topics.json"),
+      json(refinement + "index.json"), json(refinement + "groups.json.gz"),
     ]);
-    Object.assign(this, { index, bundles, topics, base });
-    this.categories = new Map(index.categories.map((c) => [c.id, c]));
+    if (meta.sourcePin !== index.sourcePin || meta.oldBundles !== original.length) throw Error("Incompatible attribution edition");
+    const bundles = [...original.map(b => b.id === "unplaced" ? { ...b, count: 0 } : b), ...groups];
+    const basisOffset = index.bases.length;
+    const tier = meta.tiers.map(v => index.confidences.indexOf(v));
+    this.index = { ...index, bundles: meta.bundles, categoryCounts: meta.categories,
+      bases: [...index.bases, ...meta.methods], bundleEdges: meta.bundleEdges,
+      boundsCounts: { ...index.boundsCounts, placed: meta.placed, unplaced: meta.sourceIndex } };
+    const direct = new Set(["blueprint", "declaration", "corpus-symbol", "proof-reference",
+      "kernel-type", "kernel-value", "source-identifier"]);
+    this.placementClass = this.index.bases.map(method => direct.has(method) ? "direct"
+      : ["unresolved", "source-family"].includes(method) ? "source" : "context");
+    this.basisOffset = basisOffset;
+    Object.assign(this, { bundles, topics, base, meta });
+    this.index.categories = index.categories.map(c => c.id === "unresolved" ? {...c, label: "Source-section index"} : c);
+    this.categories = new Map(this.index.categories.map(c => [c.id, c]));
     this.topic = new Map(topics.map((t) => [t.id, t]));
     this.bundleMap = new Map(bundles.map((b, i) => [b.id, i]));
     this.x = new Float32Array(index.count);
@@ -66,7 +55,6 @@ export class Catalog {
     this.valueMask = new Uint8Array(index.count);
     this.members = bundles.map(() => []);
     this.unplaced = new Uint8Array(index.count);
-    this.spatial = new Map();
     const shardInfo = await Promise.all(
       index.pointFiles.map(async (path, shard) => {
         const bin = new DataView(await bytes(base + path));
@@ -80,7 +68,7 @@ export class Catalog {
         return [bin, n];
       }),
     );
-    let unplacedCount = 0;
+
     for (let shard = 0; shard < shardInfo.length; shard++) {
       const [bin, n] = shardInfo[shard];
       for (let k = 0; k < n; k++) {
@@ -96,50 +84,21 @@ export class Catalog {
         this.kind[i] = bin.getUint8(o + 15);
         if (!Number.isFinite(this.x[i])) {
           this.unplaced[i] = 1;
-          unplacedCount++;
+
         }
         this.termMask[i] = bin.getUint8(o + 16);
         this.valueMask[i] = bin.getUint8(o + 17);
-        this.members[b].push(i);
+
       }
     }
-    let u = 0;
-    for (let i = 0; i < index.count; i++) {
-      if (this.unplaced[i]) {
-        // A separately labelled index-space view. These are never arXiv coordinates.
-        const r = 10 * Math.sqrt((u + 0.5) / Math.max(1, unplacedCount)),
-          a = u * 2.399963229728653;
-        this.x[i] = r * Math.cos(a);
-        this.y[i] = r * Math.sin(a);
-        u++;
-      }
-      const key = this.cell(this.x[i], this.y[i], Boolean(this.unplaced[i]));
-      let members = this.spatial.get(key);
-      if (!members) {
-        members = [];
-        this.spatial.set(key, members);
-      }
-      members.push(i);
-    }
+    await refinedPoints("points.bin.gz", meta.oldUnplaced, (id, x, y, b, method) => {
+      if (id >= index.count || !this.unplaced[id] || !groups[b - original.length]) throw Error("Invalid refined source identity");
+      this.x[id] = x; this.y[id] = y; this.bundle[id] = b;
+      this.unplaced[id] = Number(bundles[b].topic === "unresolved");
+      this.conf[id] = tier[method]; this.basis[id] = basisOffset + method;
+    });
+    for (let i = 0; i < index.count; i++) this.members[this.bundle[i]].push(i);
     return this;
-  }
-  cell(x, y, unplaced) {
-    return (unplaced ? "u" : "g") + Math.floor(x) + "," + Math.floor(y);
-  }
-  visible(bounds, unplaced, visit) {
-    const [l, b, r, t] = bounds;
-    const nx = Math.floor(r) - Math.floor(l) + 1,
-      ny = Math.floor(t) - Math.floor(b) + 1;
-    if (nx * ny > 2800) {
-      for (let i = 0; i < this.index.count; i++)
-        if (Boolean(this.unplaced[i]) === unplaced) visit(i);
-      return;
-    }
-    for (let x = Math.floor(l); x <= r; x++)
-      for (let y = Math.floor(b); y <= t; y++) {
-        const members = this.spatial.get(this.cell(x, y, unplaced));
-        if (members) for (const i of members) visit(i);
-      }
   }
   async witness(kernel, endpoint) {
     const cfg = this.index.paths;
@@ -201,9 +160,10 @@ export class Catalog {
   }
   async record(i) {
     const stride = this.index.recordStride;
-    return (
-      await json(this.base + "records/" + Math.floor(i / stride) + ".json.gz")
-    )[i % stride];
+    const r = (await json(this.base + "records/" + Math.floor(i / stride) + ".json.gz"))[i % stride];
+    if (this.basis[i] < this.basisOffset) return r;
+    const b = this.bundles[this.bundle[i]], witness = await attributionWitness("written", i, this.meta);
+    return { ...r, topic: b.topic, anchor: b.anchor, terms: [witness], family: b.family };
   }
   async neighbors(i) {
     const stride = this.index.recordStride;
@@ -212,7 +172,7 @@ export class Catalog {
     )[i % stride];
   }
   proofLinks() {
-    return json(this.base + "bundle-links.json.gz");
+    return json(refinement + "bundle-links.json.gz");
   }
   reading() {
     return json(this.base + "reading.json");

@@ -1,6 +1,6 @@
 # Riemann proof atlas film
 
-The 52-second film moves through the same arXiv coordinates, proof bundles and theorem records as the interactive atlas. Its displayed proof chain is checked against the exported value references before playback. The reading-project scene uses a screenshot of the atlas and the title page of the project's PDF guide.
+The 52-second film moves through the same arXiv coordinates, proof bundles and theorem records as the interactive atlas. The remastered sequence follows the point for `lie_add` through a continuous zoom and shows the `Matrix.add` reference in its exported type. Its displayed proof chain is checked against the exported value references before playback. The reading-project scene uses a screenshot of the atlas and the title page of the project's PDF guide.
 
 Play the [animated tour](./index.html) or [download the finished MP4](../media/riemann-proof-atlas.mp4). The MP4 includes an original instrumental score and on-screen text.
 

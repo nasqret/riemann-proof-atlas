@@ -16,9 +16,9 @@
 <body>
   <main>
     <canvas id="film" width="1280" height="720" aria-label="Animated tour from the arXiv paper map to the source of the classical Riemann hypothesis theorem"></canvas>
-    <nav aria-label="Film controls"><button id="play" disabled>Play tour</button><a href="./">Explore the atlas</a><a href="media/riemann-proof-atlas.mp4" download>Download MP4</a><button id="encode" hidden>Render video</button><a id="stream" download="atlas-tour.h264" hidden>Save rendered stream</a><span id="status" role="status">Preparing the map…</span></nav>
+    <nav aria-label="Film controls"><button id="play" disabled>Play tour</button><a href="./">Explore the atlas</a><a href="media/riemann-proof-atlas.mp4" download>Download MP4</a><input id="scrub" type="range" min="0" max="52" step=".033333" value="0" aria-label="Preview film time" hidden><button id="encode" hidden>Render video</button><a id="stream" download="atlas-tour.h264" hidden>Save rendered stream</a><span id="status" role="status">Preparing the map…</span></nav>
   </main>
   <div id="viewport" aria-hidden="true"><canvas id="map"></canvas></div><span id="scale" hidden></span><span id="scene" hidden></span><span id="tip" hidden></span>
-  <script type="module" src="film/tour.js"></script>
+  <script type="module" src="film/tour.js?v=attribution2"></script>
 </body>
 </html>

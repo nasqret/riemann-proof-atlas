@@ -8,7 +8,8 @@ const serif = 'Georgia, "Times New Roman", serif', sans = 'Arial, sans-serif', m
 const canvas = document.querySelector("#film"), c = canvas.getContext("2d", { alpha: false });
 const play = document.querySelector("#play"), status = document.querySelector("#status");
 const cat = new Catalog(), map = new AtlasMap(() => {}, (s) => { status.textContent = s; });
-const ids = { rh: 788322, assembly: 818752, all: 818751, galois: 435423, landau: 424699, zero: 424690 };
+map.vectorLimit = Infinity;
+const ids = { matrix: 10, rh: 788322, assembly: 818752, all: 818751, galois: 435423, landau: 424699, zero: 424690 };
 const records = {}, pictures = {};
 let home, camera, metrics, current = 0, running = false, startTime = 0, encoding = false;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -48,7 +49,7 @@ function background(t, scene) {
   if (map.scope !== scope || map.evidence !== field) {
     map.evidence = field; map.setFilters(scope, "");
   }
-  map.show.lean = t >= 4.6; map.selected = scene === 2 || scene === 3 ? ids.rh :
+  map.show.lean = t >= 4.6; map.selected = scene === 2 ? ids.matrix : scene === 3 ? ids.rh :
     scene === 4 ? (t < 33.8 ? ids.galois : ids.landau) : null;
   map.go(x - (W * .21)/(baseUnit*z), y, z); map.draw();
   c.drawImage(map.canvas, 0, 0, W, H);
@@ -99,15 +100,24 @@ function contents(i,t,u) {
   } else if (i===1) {
     tag("THE PAPER MAP"); heading(["From papers","to proof bundles"],221,57);
     metric(fmt(map.base.paper_count),"papers in the original arXiv map",386);
-    metric(fmt(cat.index.count),"written Lean theorems and lemmas",481,mint);
-    text(fmt(cat.bundles.length)+" proof bundles",68,572,24,amber);
+    metric(fmt(cat.meta.placed),"Lean declarations at arXiv neighborhoods",481,mint);
+    text(fmt(cat.meta.recovered)+" newly attributed declarations",68,572,23,amber);
   } else if (i===2) {
-    tag("THE CLASSICAL RH FILTER"); heading(["Which statements","does the proof use?"],219,54);
-    metric(fmt(metrics.total),"source declarations reached through proof values",383,mint);
-    copy([fmt(metrics.placed)+" have a supported subject placement.",fmt(metrics.total-metrics.placed)+" remain searchable in the index."],473);
+    tag("EVIDENCE FROM LEAN"); heading(["Why this dot","is here"],219,62);
+    text("Matrix addition",67,397,33,amber,serif);
+    copy(["If X and Y satisfy the Lie condition,","so does their sum. The exported type","names the matrix addition operation."],447);
+    const px=W*.71, py=H*.50, reveal=ease((u-.10)/.20);
+    c.save(); c.globalAlpha*=reveal;
+    line(px+11,py+9,px+36,py+46,mint,1.5);
+    box(px-108,py+46,297,88,8,"#122b2af2","#719e8c");
+    text("lie_add",px-90,py+78,25,cream,mono);
+    text("Type uses "+records.matrix.terms[0],px-90,py+112,17,mint,mono);
+    c.restore();
   } else if (i===3) {
     tag("A PINNED DECLARATION"); heading(["Follow one","proof term"],229,62);
-    copy(["The final statement uses rhOfAll.","Its proof also refers to allChi.","Each step opens its original Lean line."],405);
+    copy(["The final statement uses rhOfAll.","Its proof refers to allChi."],399);
+    text(fmt(metrics.placed)+" / "+fmt(metrics.total),67,518,35,mint,serif);
+    text("reached declarations with a map location",68,552,20,soft);
     sourceCard(u);
   } else if (i===4) {
     tag("TWO PLACES IN THE ARGUMENT"); heading(["From arithmetic","to zeros"],231,59);
@@ -155,11 +165,13 @@ play.onclick=()=>{
   running=true;startTime=performance.now()-current*1000;play.textContent="Pause";requestAnimationFrame(playback);
 };
 async function warm() {
-  for(let t=0;t<DURATION;t+=.7) {
+  for(let t=0;t<DURATION;t+=.28) {
     const [x,y,z]=cameraAt(t),unit=.97*Math.min(W/(map.bounds[2]-map.bounds[0]),H/(map.bounds[3]-map.bounds[1]));
     map.go(x-(W*.21)/(unit*z),y,z);map.draw();
   }
   await Promise.all([...map.images.values()].map(i=>i.decode()));
+  await Promise.all([...map.vectorLoads]);
+  if ([...map.vectors.values()].some(v => v.failed)) throw Error("Could not load all original paper coordinates for the film");
 }
 async function encode() {
   if(encoding)return;
@@ -190,16 +202,22 @@ async function encode() {
   finally{encoding=false;play.disabled=false;play.textContent="Replay";document.querySelector("#encode").disabled=false;}
 }
 async function init() {
-  const [, ,guide,edition,table]=await Promise.all([map.baseLoad(),cat.load(),image("film/assets/guide.webp"),image("film/assets/edition.webp"),json("evidence/subjects.json")]);
+  const [, ,guide,edition,table]=await Promise.all([map.baseLoad(),cat.load(),image("film/assets/guide.webp"),image("film/assets/edition.webp?v=c6cdac34f3a3"),json("data/refinement/subjects.json")]);
   Object.assign(pictures,{guide,edition});metrics=table.endpoints[0].counts.value;map.setCatalog(cat);
   for(const [k,i] of Object.entries(ids))records[k]=await cat.record(i);
   for(const [a,b] of [[ids.rh,ids.assembly],[ids.assembly,ids.all]]) {
     const [out]=await cat.neighbors(a);if(!out.some(([target,kind])=>target===b && (kind&2)))throw Error("Source witness changed");
   }
-  home=[map.cx,map.cy,map.zoom]; const rh=nodeCamera(ids.rh,8);
-  camera=[[0,home],[5.8,[home[0],home[1],home[2]*1.14]],[13.5,nodeCamera(ids.rh,3.8)],[21.5,rh],[27,nodeCamera(ids.rh,10)],[30.7,nodeCamera(ids.galois,6.8)],[32.9,nodeCamera(ids.galois,7.6)],[35.2,nodeCamera(ids.landau,7.3)],[38,nodeCamera(ids.landau,8.2)],[44,home],[52,[home[0],home[1],home[2]*1.15]]];
+  if(records.matrix.name.split(".").pop()!=="lie_add" || !records.matrix.terms.includes("Matrix.add")
+    || !cat.valueMask[ids.matrix] || cat.unplaced[ids.matrix]) throw Error("Expected matrix attribution changed");
+  home=[map.cx,map.cy,map.zoom];
+  camera=[[0,home],[5.8,[home[0],home[1],home[2]*1.14]],[13.5,nodeCamera(ids.matrix,4.2)],[19.9,nodeCamera(ids.matrix,96)],[21.5,nodeCamera(ids.matrix,96)],[23.8,nodeCamera(ids.rh,8)],[27,nodeCamera(ids.rh,10)],[30.7,nodeCamera(ids.galois,6.8)],[32.9,nodeCamera(ids.galois,7.6)],[35.2,nodeCamera(ids.landau,7.3)],[38,nodeCamera(ids.landau,8.2)],[44,home],[52,[home[0],home[1],home[2]*1.15]]];
   await warm();render(.75);current=0;play.disabled=false;status.textContent="52 seconds";
-  if(new URLSearchParams(location.search).has("studio"))document.querySelector("#encode").hidden=false;
+  if(new URLSearchParams(location.search).has("studio")){
+    document.querySelector("#encode").hidden=false;
+    const scrub=document.querySelector("#scrub");scrub.hidden=false;
+    scrub.oninput=()=>{running=false;play.textContent="Resume";render(Number(scrub.value));};
+  }
   document.querySelector("#encode").onclick=encode;document.body.dataset.ready="true";
 }
 init().catch(e=>{status.textContent=e.message;document.body.dataset.error=e.message;});

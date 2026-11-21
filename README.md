@@ -6,9 +6,9 @@ Explore the written Lean theorems and lemmas of the Riemann hypothesis project o
 
 [![The interactive atlas showing the classical RH proof filter](film/assets/edition.webp)](https://nasqret.github.io/riemann-proof-atlas/)
 
-The atlas covers 818,755 written declarations, 1,448 proof bundles and 2,477,303 papers. The standalone edition includes the search indexes, map tiles, paper coordinates and theorem records.
+The atlas covers 818,755 written declarations, 4,983 proof bundles and 2,477,303 papers. Of the 818,755 declarations, 802,362 have a subject or contextual placement. Another 16,393 appear in 168 named source sections. Choose **Layers → Placement evidence** to isolate declarations and proofs or their surrounding mathematical context. [Inspect matrix addition](https://nasqret.github.io/riemann-proof-atlas/#theorem=10) · [Browse source sections](https://nasqret.github.io/riemann-proof-atlas/#subject=unresolved) · [Attribution evidence](https://nasqret.github.io/riemann-proof-atlas/data/refinement/index.json)
 
-Select **ζ** to return to the original map. Use the four-corner icon or **F** for fullscreen. **Inspector** opens the theorem panel while the map stays in fullscreen. Use **/** to search, the arrow keys to pan, and **+** or **−** to zoom.
+Select **ζ** to return to the original map. Zooming reveals more declarations while each existing marker keeps its geographic anchor. Use the four-corner icon or **F** for fullscreen. **Inspector** opens the theorem panel while the map stays in fullscreen. Use **/** to search, the arrow keys to pan, and **+** or **−** to zoom.
 
 Serve this directory locally with Python and open [the local map](http://127.0.0.1:8000/).
 

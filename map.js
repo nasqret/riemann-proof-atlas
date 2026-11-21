@@ -1,3 +1,4 @@
+import { PointTree } from "./point-tree.js";
 import { bytes, json, merc, fmt, scopePass } from "./data.js";
 const BASE = "data/base/";
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -26,10 +27,13 @@ export class AtlasMap {
     this.paperHits = [];
     this.images = new Map();
     this.vectors = new Map();
+    this.vectorLoads = new Set();
+    this.vectorLimit = 32;
     this.pointers = new Map();
     this.scope = "all";
     this.subject = "";
     this.evidence = "mask";
+    this.placement = "all";
     this.filterBundle = null;
     this.selected = null;
     this.cx = 0;
@@ -141,7 +145,7 @@ export class AtlasMap {
       this.fit();
     }
     document.querySelector("#scene").textContent = unplaced
-      ? "Unplaced theorem index"
+      ? "Source-section index"
       : "arXiv paper map";
   }
   setFilters(scope, subject) {
@@ -150,14 +154,14 @@ export class AtlasMap {
     this.filterBundle = null;
     this.edges = [];
     this.setScene(subject === "unresolved");
-    const key = scope + "|" + subject + "|" + this.evidence;
+    const key = [scope, subject, this.evidence, this.placement].join("|");
     if (this.cat && key !== this.countKey) {
       const c = this.cat,
         counts = new Uint32Array(c.bundles.length);
       let matched = 0;
       for (let i = 0; i < c.index.count; i++) {
         if (
-          (!subject || c.bundles[c.bundle[i]].category === subject) &&
+          (!subject || c.bundles[c.bundle[i]].category === subject) && this.placementPass(i) &&
           scopePass(c[this.evidence][i], scope)
         ) {
           counts[c.bundle[i]]++;
@@ -170,13 +174,16 @@ export class AtlasMap {
     }
     this.drawSoon();
   }
+  placementPass(i) {
+    return this.placement === "all" || this.cat.placementClass[this.cat.basis[i]] === this.placement;
+  }
   pass(i) {
     return (
       (!this.subject ||
         this.cat.bundles[this.cat.bundle[i]].category === this.subject) &&
       (this.filterBundle === null ||
         this.cat.bundle[i] === this.filterBundle) &&
-      scopePass(this.cat[this.evidence][i], this.scope)
+      this.placementPass(i) && scopePass(this.cat[this.evidence][i], this.scope)
     );
   }
   go(x, y, zoom) {
@@ -218,11 +225,11 @@ export class AtlasMap {
     this.setScene(Boolean(this.cat.unplaced[i]));
     this.go(this.cat.x[i], this.cat.y[i], Math.max(115, this.zoom));
   }
-  zoomAt(factor, sx, sy) {
+  zoomAt(factor, sx, sy, targetX = sx, targetY = sy) {
     const before = this.project(sx, sy);
     this.zoom = clamp(this.zoom * factor, 0.55, 200000);
     this.transform();
-    const after = this.project(sx, sy);
+    const after = this.project(targetX, targetY);
     this.cx += before[0] - after[0];
     this.cy += before[1] - after[1];
     this.transform();
@@ -338,7 +345,7 @@ export class AtlasMap {
   getVector(sh) {
     if (this.vectors.has(sh.path)) return;
     this.vectors.set(sh.path, { pending: true });
-    bytes(BASE + sh.path)
+    const loading = bytes(BASE + sh.path)
       .then((buf) => {
         const d = new DataView(buf),
           n = sh.count,
@@ -363,7 +370,7 @@ export class AtlasMap {
         }
         this.vectors.set(sh.path, v);
         this.drawSoon();
-        if (this.vectors.size > 14)
+        if (this.vectors.size > this.vectorLimit)
           for (const k of this.vectors.keys()) {
             if (k !== sh.path && this.vectors.get(k).x) {
               this.vectors.delete(k);
@@ -374,7 +381,8 @@ export class AtlasMap {
       .catch((e) => {
         this.vectors.set(sh.path, { failed: true });
         this.warn(e.message);
-      });
+      }).finally(() => this.vectorLoads.delete(loading));
+    this.vectorLoads.add(loading);
   }
   paperPoints(v, box) {
     const ctx = this.ctx,
@@ -529,6 +537,7 @@ export class AtlasMap {
       )
         continue;
       if (
+        !this.placementPass(from) || !this.placementPass(to) ||
         !scopePass(c[this.evidence][from], this.scope) ||
         !scopePass(c[this.evidence][to], this.scope)
       )
@@ -593,82 +602,58 @@ export class AtlasMap {
     }
   }
   leanMarks() {
-    const c = this.cat,
-      coarse = !this.unplaced && this.zoom < 8 && this.filterBundle === null,
-      pix = coarse ? 19 : this.zoom < 45 ? 11 : 8;
-    const cells = new Map(),
-      w = this.width,
-      h = this.height,
-      cols = Math.ceil((w + 48) / pix) + 2;
-    const add = (id, x, y, n, b) => {
-      const sx = this.px(x),
-        sy = this.py(y);
-      if (sx < -16 || sy < -16 || sx > w + 16 || sy > h + 16) return;
-      const k =
-        Math.floor((sx + 24) / pix) + Math.floor((sy + 24) / pix) * cols;
-      let hit = cells.get(k);
-      if (!hit) {
-        hit = {
-          type: coarse ? "bundles" : "dots",
-          ids: [],
-          count: 0,
-          sx: 0,
-          sy: 0,
-          max: 0,
-          category: null,
-        };
-        cells.set(k, hit);
-      }
-      hit.ids.push(id);
-      hit.sx += sx * n;
-      hit.sy += sy * n;
-      hit.count += n;
-      if (n > hit.max) {
-        hit.max = n;
-        hit.category = c.bundles[b].category;
-      }
-    };
-    if (coarse) {
-      for (let b = 0; b < c.bundles.length; b++) {
-        const v = c.bundles[b],
-          n = this.counts[b];
-        if (n && Number.isFinite(v.x) && Number.isFinite(v.y))
-          add(b, v.x, merc(v.y), n, b);
-      }
-    } else {
-      const visit = (i) => {
-        if (this.pass(i)) add(i, c.x[i], c.y[i], 1, c.bundle[i]);
-      };
-      if (this.filterBundle !== null) {
-        for (const i of c.members[this.filterBundle]) visit(i);
-      } else c.visible(this.box(), this.unplaced, visit);
+    const c = this.cat, ctx = this.ctx;
+    const key = [this.scope, this.subject, this.evidence, this.placement, this.filterBundle, this.unplaced].join("|");
+    if (key !== this.treeKey) {
+      const subset = this.filterBundle === null ? null : c.members[this.filterBundle];
+      this.tree = new PointTree(c.x, c.y, i => Boolean(c.unplaced[i]) === this.unplaced && this.pass(i), subset);
+      this.treeKey = key;
     }
-    const ctx = this.ctx;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    for (const h of cells.values()) {
-      h.sx /= h.count;
-      h.sy /= h.count;
-      h.rad = coarse
-        ? clamp(4.7 + 1.25 * Math.log10(h.count + 1), 5, 12)
-        : h.count === 1
-          ? 3.9
-          : clamp(4 + Math.log2(h.count) * 0.68, 5, 10.5);
-      const color = c.categories.get(h.category)?.color || "#a0a6ab";
-      ctx.fillStyle = color;
-      ctx.strokeStyle = coarse ? "#f4f4e3" : "#e4ece4";
-      ctx.lineWidth = coarse ? 1.35 : 0.8;
-      ctx.beginPath();
-      ctx.arc(h.sx, h.sy, h.rad, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.stroke();
-      if (coarse || h.count > 1) {
-        ctx.beginPath();
-        ctx.fillStyle = "#20302c";
-        ctx.arc(h.sx, h.sy, coarse ? 2.2 : 1.45, 0, 2 * Math.PI);
-        ctx.fill();
+    const coarse = this.zoom < 8 && this.filterBundle === null;
+    const captions = [];
+    this.tree.visible(this.box(), this.unit, coarse ? 25 : 12, (node, members) => {
+      const id = node.anchor, sx = this.px(c.x[id]), sy = this.py(c.y[id]);
+      if (sx < -12 || sy < -12 || sx > this.width + 12 || sy > this.height + 12) return;
+      const b = c.bundles[c.bundle[id]], n = members.length;
+      const bundles = coarse && n > 1;
+      const h = {
+        type: bundles ? "bundles" : "dots", category: b.category,
+        count: n, anchor: id, sx, sy, rad: n === 1 ? 3.9 : clamp(4.5 + Math.log2(n) * .47, 5, 11),
+        get ids() {
+          if (!bundles) return members;
+          if (!node.bundles) node.bundles = [...new Set(Array.from(members, i => c.bundle[i]))];
+          return node.bundles;
+        },
+      };
+      const color = c.categories.get(b.category)?.color || "#a0a6ab";
+      ctx.beginPath(); ctx.arc(sx, sy, h.rad, 0, 2 * Math.PI);
+      ctx.fillStyle = color; ctx.fill();
+      ctx.strokeStyle = coarse ? "#f4f4e3" : "#e4ece4"; ctx.lineWidth = coarse ? 1.35 : .8; ctx.stroke();
+      if (n > 1) {
+        ctx.beginPath(); ctx.arc(sx, sy, coarse ? 2.2 : 1.45, 0, 2 * Math.PI);
+        ctx.fillStyle = "#20302c"; ctx.fill();
       }
       this.screen.push(h);
+      if (coarse && n >= 15 && this.show.labels) captions.push([h, b]);
+    });
+    this.leanCaptions(captions);
+  }
+  leanCaptions(candidates) {
+    const ctx = this.ctx, occupied = this.textHits.slice();
+    const seen = new Set(), limit = this.width < 560 ? 3 : 7;
+    ctx.font = '600 12px "DM Sans",Arial,sans-serif';
+    ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    for (const [h, b] of candidates.sort((a, b) => b[0].count - a[0].count || a[0].anchor - b[0].anchor)) {
+      const name = this.unplaced ? b.label : this.cat.categories.get(b.category)?.label;
+      if (!name || seen.has(name)) continue;
+      const x = h.sx + h.rad + 4, y = h.sy, w = ctx.measureText(name).width + 8;
+      const rect = { x, y: y - 8, w, h: 16 };
+      if (x < 4 || y < 60 || x + w > this.width - 4 || y > this.height - 34 ||
+          occupied.some(r => x < r.x + r.w + 4 && x + w > r.x - 4 && rect.y < r.y + r.h + 3 && rect.y + 16 > r.y - 3)) continue;
+      occupied.push(rect); seen.add(name);
+      ctx.fillStyle = "#132422e8"; ctx.fillRect(x, y - 8, w, 16);
+      ctx.fillStyle = "#e5eddd"; ctx.fillText(name, x + 4, y);
+      if (seen.size >= limit) break;
     }
   }
   hit(sx, sy) {
@@ -753,6 +738,12 @@ export class AtlasMap {
                   : h.count === 1
                     ? "Inspect Lean declaration"
                     : fmt(h.count) + " nearby declarations";
+        if (h.category) {
+          const bundle = h.anchor == null ? null : this.cat.bundles[this.cat.bundle[h.anchor]];
+          const subject = this.cat.categories.get(h.category)?.label;
+          const label = this.unplaced && bundle ? bundle.label : subject;
+          if (label) tip.textContent += " · " + label;
+        }
         tip.hidden = false;
         tip.style.left =
           clamp(p[0] + 12, 4, v.clientWidth - tip.offsetWidth - 6) + "px";
@@ -767,7 +758,8 @@ export class AtlasMap {
         const pre = distance(old),
           next = distance(p);
         if (pre > 1 && next > 1)
-          this.zoomAt(next / pre, (p[0] + other[0]) / 2, (p[1] + other[1]) / 2);
+          this.zoomAt(next / pre, (old[0] + other[0]) / 2, (old[1] + other[1]) / 2,
+                      (p[0] + other[0]) / 2, (p[1] + other[1]) / 2);
         this.dragged = true;
       } else {
         if (Math.hypot(p[0] - cur.start[0], p[1] - cur.start[1]) > 3)

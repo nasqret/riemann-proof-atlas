@@ -1,3 +1,4 @@
+import { attributionWitness, methodText, refinement, refinedPoints } from "./attribution.js";
 import { bytes, json } from "./data.js";
 
 const BASE = "data/native/";
@@ -80,6 +81,13 @@ export async function nativeDetail(id) {
     r.module,
     m,
   );
+  const meta = await json(refinement + "index.json");
+  let refined = null;
+  if (r.x === null && (r.written !== null || r.selection.length || r.owner)) {
+    const [topic, method, term] = await attributionWitness("native", id, meta);
+    refined = { topic: m.topics[topic], placement: meta.methods[method], terms: [term],
+      hasPlacement: m.topics[topic].id !== "unresolved" };
+  }
   const moduleId = r.module;
   r.module = module;
   return {
@@ -95,6 +103,8 @@ export async function nativeDetail(id) {
     form: m.forms[r.form],
     topic: m.topics[r.topic],
     placement: m.methods[r.placement],
+    hasPlacement: r.x !== null,
+    ...refined,
     source: sourceUrl(m.sourceBase, module, r.anchor),
     moduleSource: sourceUrl(m.sourceBase, module, []),
     commandSource: r.command.length
@@ -158,6 +168,7 @@ async function fetchGeometry() {
     mask: new Uint8Array(count),
     termMask: new Uint8Array(count),
     valueMask: new Uint8Array(count),
+    unplaced: new Uint8Array(count),
   };
   let offset = 0;
   for (const [path, n] of m.pointFiles) {
@@ -181,6 +192,15 @@ async function fetchGeometry() {
     offset += n;
   }
   if (offset !== count) throw Error("Incomplete native overlay");
+  const meta = await json(refinement + "index.json");
+  let j = 0;
+  await refinedPoints("native-points.bin.gz", meta.oldNativeUnplaced, (id, x, y, topic, method) => {
+    while (j < count && data.id[j] < id) j++;
+    if (data.id[j] !== id || Number.isFinite(data.x[j])) throw Error("Invalid refined native identity");
+    data.x[j] = x; data.y[j] = y; data.topic[j] = topic;
+    data.method[j] = m.methods.length + method;
+    data.unplaced[j] = Number(m.topics[topic].id === "unresolved");
+  });
   return data;
 }
 
@@ -340,9 +360,9 @@ export async function openNative(container, context = {}) {
         "small",
       ),
       node("h3", "Map placement"),
-      node("p", methodLabel[r.placement] || r.placement, "small"),
+      node("p", methodText[r.placement] || methodLabel[r.placement] || r.placement, "small"),
     );
-    if (r.x !== null) {
+    if (r.hasPlacement) {
       box.append(node("p", r.topic.label + " · " + r.topic.category, "small"));
       if (context.locate)
         box.append(action("Center on native point", () => context.locate(r)));
@@ -352,7 +372,7 @@ export async function openNative(container, context = {}) {
       (r.selection.length || r.owner)
     ) {
       box.append(
-        action("Show in unplaced theorem index", () => context.locate(r)),
+        action("Show in source-section index", () => context.locate(r)),
       );
     }
     if (r.terms.length) box.append(node("p", r.terms.join(" · "), "small"));

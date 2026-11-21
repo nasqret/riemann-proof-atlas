@@ -1,3 +1,4 @@
+import { methodText } from "./attribution.js";
 import { Catalog, json, fmt, scopePass, merc } from "./data.js";
 import { AtlasMap } from "./map.js";
 import { NativeLayer } from "./native-layer.js";
@@ -232,6 +233,7 @@ function writeHash(mode, id) {
   if (scope !== "all") h.set("scope", scope);
   if (map.evidence !== "mask") h.set("evidence", map.evidence);
   if (subject) h.set("subject", subject);
+  if (map.placement !== "all") h.set("placement", map.placement);
   const s = h.toString();
   const next = location.pathname + location.search + (s ? "#" + s : "");
   if (next !== location.pathname + location.search + location.hash)
@@ -241,6 +243,7 @@ function syncFilters() {
   scope = $("#scope").value;
   subject = $("#subject").value;
   map.evidence = $("#evidence").value;
+  map.placement = $("#placement").value;
   map.setFilters(scope, subject);
 }
 function reset({ hash = true, fit = false } = {}) {
@@ -307,7 +310,7 @@ function overview() {
     para(
       selected
         ? subject === "unresolved"
-          ? "These declarations have no reliable subject anchor. Their dots occupy a separate index."
+          ? "Each group is an exact section of the Lean source tree. Select a section to inspect declarations whose mathematical subject is still open."
           : "Explore this subject’s proof bundles and their positions among arXiv papers."
         : "Follow a theorem from its mathematical neighborhood to the Lean code and the endpoints that depend on it.",
       "intro",
@@ -328,12 +331,14 @@ function overview() {
       frame,
       para(
         fmt(map.matched - unplaced) +
-          " geographically placed · " +
+          " at an arXiv subject or context · " +
           fmt(unplaced) +
-          " unplaced.",
+          " indexed by source section.",
         "small",
       ),
     );
+  if (map.placement !== "all")
+    add(frame, para("Placement evidence · " + $("#placement").selectedOptions[0].textContent, "small"));
   if (scope !== "all")
     add(
       frame,
@@ -400,8 +405,8 @@ function overview() {
       add(
         frame,
         item(
-          "Unplaced declarations",
-          fmt(un[1]) + " available in a separate index",
+          "Browse source sections",
+          fmt(un[1]) + " declarations indexed by their Lean source section",
           () => changeFilter("unresolved"),
         ),
       );
@@ -695,7 +700,7 @@ function explainGeo(b) {
     add(
       block,
       para(
-        "No anchor met the placement rule. This declaration is available in the unplaced index.",
+        "Its source section is known. The available evidence leaves the arXiv subject open.",
         "note",
       ),
     );
@@ -747,7 +752,7 @@ function aboutConfidence(code) {
   );
 }
 function basisName(s) {
-  return String(s || "")
+  return methodText[s] || String(s || "")
     .replaceAll("-", " ")
     .replaceAll("_", " ");
 }
@@ -762,6 +767,7 @@ function includePoint(i) {
     $("#scope").value = "all";
     changed = true;
   }
+  if (!map.placementPass(i)) { $("#placement").value = "all"; changed = true; }
   if (changed) syncFilters();
   if (map.filterBundle !== null && map.filterBundle !== cat.bundle[i])
     map.filterBundle = null;
@@ -998,6 +1004,7 @@ async function navigatePoint(i, frame = true, write = true) {
       "small",
     ),
   );
+  if (r.family) add(out, para("Source section · " + r.family, "small"));
   if (r.terms?.length)
     add(
       out,
@@ -1053,6 +1060,7 @@ async function navigateBundle(i, write = true) {
       copyLink(),
     ),
   );
+  if (b.family) add(out, para("Source section · " + b.family, "small"));
   if (b.basis)
     add(out, para("Grouping evidence · " + basisName(b.basis), "note"));
   add(out, sub("Member theorems"));
@@ -1160,7 +1168,7 @@ async function handleHit(h, e) {
     async function show(off) {
       const ids = h.ids.slice(off, off + perPage),
         rows = await Promise.all(
-          ids.map((i) => nativeDetail(nativeLayer.data.id[i])),
+          Array.from(ids, (i) => nativeDetail(nativeLayer.data.id[i])),
         );
       if (ticket !== renderToken) return;
       list.replaceChildren();
@@ -1253,6 +1261,7 @@ async function locateNative(d) {
   if (subject && subject !== n.index.topics[n.topic[i]].category)
     $("#subject").value = "";
   if (!scopePass(n[map.evidence][i], scope)) $("#scope").value = "all";
+  if (!nativeLayer.placementPass(i, map)) $("#placement").value = "all";
   syncFilters();
   nativeLayer.locate(map, d.id);
 }
@@ -1319,7 +1328,7 @@ function method() {
     ),
     sub("Where a Lean dot belongs"),
     para(
-      "Source names, signatures, mathematical vocabulary and reviewed blueprint passages match Lean declarations to published topics. Each inspector shows the assignment basis and the matched terms. Small offsets separate declarations near a topic. Proximity describes a reading assignment. Logical dependencies have separate evidence from the export.",
+      "Original Lean types, proof references, written identifiers and reviewed blueprint passages supply subject evidence. An attribution marked as namespace or module context describes the surrounding mathematics. Source sections without a supported paper-map anchor open in their own index. Each inspector shows the assignment basis and the matched terms. Small offsets separate declarations near a topic. Proximity describes a reading assignment. Logical dependencies have separate evidence from the export.",
     ),
     sub("Which theorems the proof uses"),
     para(
@@ -1442,6 +1451,7 @@ async function restore() {
     ? sc
     : "all";
   $("#subject").value = cat.categories.has(su) ? su : "";
+  $("#placement").value = ["direct", "context"].includes(h.get("placement")) ? h.get("placement") : "all";
   syncFilters();
   if (h.has("theorem"))
     await navigatePoint(Number(h.get("theorem")), true, false);
@@ -1451,6 +1461,7 @@ async function restore() {
       false,
       false,
     );
+  else if (h.get("bundle") === "unplaced") changeFilter("unresolved");
   else if (h.has("bundle"))
     await navigateBundle(cat.bundleMap.get(h.get("bundle")), false);
   else if (h.has("label") && map.labelById.has(h.get("label"))) {
@@ -1495,10 +1506,12 @@ $("#generated").onchange = () => enableNative().catch(showError);
 $("#scope").onchange = () => changeFilter();
 $("#subject").onchange = () => changeFilter();
 $("#evidence").onchange = () => changeFilter();
+$("#placement").onchange = () => changeFilter();
 function returnToOrigin() {
   if (!ready) return;
   clearTimeout(timer);
   $("#evidence").value = "mask";
+  $("#placement").value = "all";
   $("#scope").value = "all";
   $("#subject").value = "";
   for (const id of ["papers", "lean", "labels", "relations", "generated"]) {

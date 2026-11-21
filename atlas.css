@@ -839,3 +839,5 @@ dialog a {
   width: 100%;
   font-size: 13px;
 }
+
+.layerbox { max-height: min(66dvh, 26rem); overflow-y: auto; overscroll-behavior: contain; }
