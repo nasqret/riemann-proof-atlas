@@ -68,7 +68,6 @@ export class Catalog {
         return [bin, n];
       }),
     );
-
     for (let shard = 0; shard < shardInfo.length; shard++) {
       const [bin, n] = shardInfo[shard];
       for (let k = 0; k < n; k++) {
@@ -82,13 +81,9 @@ export class Catalog {
         this.conf[i] = bin.getUint8(o + 13);
         this.basis[i] = bin.getUint8(o + 14);
         this.kind[i] = bin.getUint8(o + 15);
-        if (!Number.isFinite(this.x[i])) {
-          this.unplaced[i] = 1;
-
-        }
+        this.unplaced[i] = Number(!Number.isFinite(this.x[i]));
         this.termMask[i] = bin.getUint8(o + 16);
         this.valueMask[i] = bin.getUint8(o + 17);
-
       }
     }
     await refinedPoints("points.bin.gz", meta.oldUnplaced, (id, x, y, b, method) => {

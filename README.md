@@ -16,6 +16,12 @@ Serve this directory locally with Python and open [the local map](http://127.0.0
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
+With the explorer open, run the wheel, pinch and attribution checks in the browser console. The check opens three source declarations, zooms through both Lean layers and restores the opening view.
+
+```js
+await (await import("./qa/refinement-check.mjs")).checkRefinement()
+```
+
 The [file inventory](./SHA256SUMS) records the SHA-256 of every published payload file. The [Lean archive](https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src) and [arXiv map revision](https://github.com/lmcinnes/datamapplot_examples/tree/551adb0d3c54a11eaec0d64874370f435b8cc195/arXiv) identify the original sources.
 
 [Download the video walkthrough (MP4)](https://nasqret.github.io/riemann-proof-atlas/media/riemann-proof-atlas.mp4)

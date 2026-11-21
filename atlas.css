@@ -341,6 +341,7 @@ canvas {
   border: 0;
 }
 .panel {
+  overflow-wrap: anywhere;
   min-width: 0;
   min-height: 0;
   overflow: auto;
@@ -590,6 +591,7 @@ dialog p {
   gap: 5px;
 }
 .pills span {
+  max-width: 100%;
   background: #e8eee2;
   font-size: 12px;
   padding: 3px 7px;
