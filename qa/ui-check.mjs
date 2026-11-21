@@ -22,6 +22,7 @@ export async function checkLayout() {
     const field = el(".mapbar").getBoundingClientRect();
     const viewport = el("#viewport").getBoundingClientRect();
     const toolbar = el(".maptools").getBoundingClientRect();
+    expect(viewport.width > 0 && viewport.height > 0, "The map must keep a visible drawing area");
     expect(field.left >= viewport.left && field.right <= viewport.right + 1, "Filter overflow");
     expect(toolbar.top >= field.bottom - 1 && toolbar.bottom <= viewport.bottom + 1, "Map controls overlap filters");
     expect(full.getBoundingClientRect().width >= 44 && reset.getBoundingClientRect().width >= 44, "Small touch target");
