@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+  "tip": "18465af7c60d1e75e8ddb3e1f71a4dc4044890da",
   "changes": [
     {
       "id": "merge-65",
@@ -20,6 +20,15 @@
       "commit": "09201d6a839516534e62aa598ff5ed82724105ac",
       "description": "182 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 68
+    },
+    {
+      "id": "merge-66",
+      "title": "Bump to Lean and Mathlib v4.36.0",
+      "status": "merged",
+      "date": "2026-11-23",
+      "commit": "14f383e5edeae10b9991d9b8aec26b58aabc57eb",
+      "description": "164,462 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 66
     }
   ]
 }
