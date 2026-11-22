@@ -1,0 +1,51 @@
+name: Watch source editions
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [source-editions/registry.json, source-editions/discover.py, .github/workflows/atlas-edition-watch.yml]
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: atlas-edition-watch
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'nasqret/riemann-proof-atlas'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout: source-editions
+          persist-credentials: false
+      - name: Read first-parent source changes
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          registry=source-editions/registry.json
+          upstream="$RUNNER_TEMP/upstream.git"
+          git init --bare "$upstream"
+          git -C "$upstream" remote add origin https://github.com/leanprover-community/riemann-hypothesis.git
+          git -C "$upstream" config remote.origin.promisor true
+          git -C "$upstream" config remote.origin.partialclonefilter tree:0
+          git -C "$upstream" fetch --no-tags --filter=tree:0 origin main
+          python3 -B source-editions/discover.py --git "$upstream" --registry "$registry" --output "$RUNNER_TEMP/intake.json"
+          branch=atlas-edition-intake
+          if ! gh api "repos/$GH_REPO/git/ref/heads/$branch" --silent; then
+            gh api --method POST "repos/$GH_REPO/git/refs" -f ref="refs/heads/$branch" -f sha="$GITHUB_SHA" --silent
+          fi
+          path="repos/$GH_REPO/contents/source-editions/intake.json"
+          if ! lookup=$(gh api "$path?ref=$branch" --jq .sha 2>/dev/null); then lookup=""; fi
+          desired=$(git hash-object "$RUNNER_TEMP/intake.json")
+          if [[ "$lookup" != "$desired" ]]; then
+            args=()
+            if [[ -n "$lookup" ]]; then args+=(-f "sha=$lookup"); fi
+            gh api --method PUT "$path" -f branch="$branch" -f message="Record upstream source editions through $(jq -r .tip "$RUNNER_TEMP/intake.json")" \
+              -f content="$(base64 -w0 "$RUNNER_TEMP/intake.json")" "${args[@]}" --silent
+          fi
+          jq -r '"Upstream tip: " + .tip, ("Source changes since the published edition: " + (.changes|length|tostring))' "$RUNNER_TEMP/intake.json" >> "$GITHUB_STEP_SUMMARY"

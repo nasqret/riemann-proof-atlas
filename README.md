@@ -6,7 +6,7 @@ Explore the written Lean theorems and lemmas of the Riemann hypothesis project o
 
 [Compare the source editions](https://nasqret.github.io/riemann-proof-atlas/editions.html) · [Read the structured proofs](https://nasqret.github.io/riemann-proof-atlas/structured.html) · [Download the proof reader (PDF)](https://nasqret.github.io/riemann-proof-atlas/structured-proofs.pdf)
 
-The edition map preserves the original coordinates for confidently matched declarations and links to the Lean source in each revision. The selector records the submission, merged simplifications and separately pinned proposals. The proof reader opens the corresponding tactic fragment for each numbered step. [Compare the two Frobenius proofs](https://nasqret.github.io/riemann-proof-atlas/structured.html#frobenius) · [Snapshot catalogue](https://nasqret.github.io/riemann-proof-atlas/data/editions/index.json)
+The edition map preserves the original coordinates for confidently matched declarations and links to the Lean source in each revision. The selector records the submission, merged simplifications and separately pinned proposals. The proof reader opens the corresponding tactic fragment for each numbered step. [Compare the two Frobenius proofs](https://nasqret.github.io/riemann-proof-atlas/structured.html#frobenius) · [Snapshot catalogue](https://nasqret.github.io/riemann-proof-atlas/data/editions/index.json) · [Upstream intake](https://github.com/nasqret/riemann-proof-atlas/blob/atlas-edition-intake/source-editions/intake.json)
 
 [![The interactive atlas showing the classical RH proof filter](film/assets/edition.webp)](https://nasqret.github.io/riemann-proof-atlas/)
 

@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "repository": "leanprover-community/riemann-hypothesis",
+  "observedAt": "2026-11-22 02:35:32 UTC",
+  "observedMain": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
+  "baseline": "40e56bab026552e089d7afcfeff08d2defb9c005",
+  "editions": [
+    {
+      "id": "submission",
+      "title": "Original submission",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "status": "submission",
+      "date": "2026-11-20",
+      "description": "The submitted source, with the previously checked proof graph and the refined subject map."
+    },
+    {
+      "id": "merge-8",
+      "pr": 8,
+      "title": "Entry-point imports",
+      "commit": "8f558a8848a80dac6851a00a95ca477ff403e922",
+      "status": "merged",
+      "date": "2026-11-21",
+      "description": "Main imports the theorem assembly directly. Six modules disappear from the submitted source."
+    },
+    {
+      "id": "merge-45",
+      "pr": 45,
+      "title": "Unused import subtrees",
+      "commit": "7da4577eb40dd74b09218d111114ca43bc2ad226",
+      "status": "merged",
+      "date": "2026-11-21",
+      "description": "The merged tree removes another 10,718 modules and revises the imports in eleven files."
+    },
+    {
+      "id": "merge-57",
+      "pr": 57,
+      "title": "Capelli proof cleanup",
+      "commit": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+      "status": "merged",
+      "date": "2026-11-22",
+      "description": "Five files use ordinary Lean elaboration in place of explicit typeclass expressions. One declaration drops two implied instance binders."
+    },
+    {
+      "id": "merge-60",
+      "pr": 60,
+      "title": "Local instances in mem_UC",
+      "commit": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
+      "status": "merged",
+      "date": "2026-11-22",
+      "description": "A rewrite of FixPiIff removes 8,004 lines and adds 20 in a single Lean module."
+    },
+    {
+      "id": "proposal-44",
+      "pr": 44,
+      "title": "Shared five-theorem reduction",
+      "commit": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "status": "proposal",
+      "date": "2026-11-21",
+      "description": "An alternative construction shared by the five endpoints."
+    },
+    {
+      "id": "proposal-54",
+      "pr": 54,
+      "title": "Shorter individual proofs",
+      "commit": "7a36b6406c49cf49843cb42a4ebdac73bd937a36",
+      "status": "proposal",
+      "date": "2026-11-22",
+      "description": "Tactic and argument rewrites across individual modules."
+    },
+    {
+      "id": "proposal-55",
+      "pr": 55,
+      "title": "Unused declarations",
+      "commit": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "status": "proposal",
+      "date": "2026-11-21",
+      "description": "A pruning pass that retains declarations needed for elaboration."
+    },
+    {
+      "id": "proposal-58",
+      "pr": 58,
+      "title": "Thin wrappers, first pass",
+      "commit": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "status": "proposal",
+      "date": "2026-11-22",
+      "description": "A wrapper-collapse branch based on the unused-declaration proposal."
+    },
+    {
+      "id": "proposal-61",
+      "pr": 61,
+      "title": "Thin wrappers, second pass",
+      "commit": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "status": "proposal",
+      "date": "2026-11-22",
+      "description": "A further wrapper-collapse pass in the pruning series."
+    },
+    {
+      "id": "proposal-63",
+      "pr": 63,
+      "title": "Sibling module consolidation",
+      "commit": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "status": "proposal",
+      "date": "2026-11-22",
+      "description": "Groups sibling modules into larger compilation units. File and declaration counts measure different changes."
+    }
+  ],
+  "otherProposals": [
+    {
+      "pr": 4,
+      "title": "chore: minimize imports",
+      "status": "open",
+      "commit": "50100c586985687aa29344fc0e792c008036ff8b"
+    },
+    {
+      "pr": 9,
+      "title": "remove redundant imports and heartbeat overrides",
+      "status": "open",
+      "commit": "19f9953825ab6067920222496db369128daae890"
+    },
+    {
+      "pr": 10,
+      "title": "simplify generated proof fallbacks",
+      "status": "open",
+      "commit": "1ccff6869721e3608761372313714f64e59aba57"
+    },
+    {
+      "pr": 12,
+      "title": "A conductor-one RH reduction and a signal bound found through Principia's collaborative project",
+      "status": "closed",
+      "commit": "470147f4e139604173834f2329b16be081ba2139"
+    },
+    {
+      "pr": 33,
+      "title": "replace deprecated proof lemmas",
+      "status": "open",
+      "commit": "ede9888a861a06898e0d6c8632a396a763e496db"
+    },
+    {
+      "pr": 38,
+      "title": "Specialize ordinary RH to the principal character",
+      "status": "closed",
+      "commit": "d7857c26d332c8ebcd30d98e96acaee67b61715d"
+    },
+    {
+      "pr": 62,
+      "title": "Shorten machine-dumped terms and replace custom proof tactics in 96 modules",
+      "status": "open",
+      "commit": "1131b363dd8911b0607ee846925d58f82ff58d00"
+    },
+    {
+      "pr": 65,
+      "title": "Simplify explicit typeclass dumps in 4 kernel-used CapelliIdentities files",
+      "status": "open",
+      "commit": "c085a228b55cbc0e7346df734cab4ac15914c556"
+    }
+  ]
+}
