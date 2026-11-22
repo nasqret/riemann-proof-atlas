@@ -1,0 +1,43 @@
+.atlas-shell,
+.site-colophon {
+  box-sizing: border-box;
+  flex: none;
+  font-family: var(--font-ui);
+  color: var(--ink);
+  background: var(--paper);
+}
+.atlas-shell { position: relative; display:block; width:100%; padding:0; z-index: var(--layer-header); border-block-end: 1px solid var(--rule); }
+.atlas-shell-inner { min-height: 3.75rem; padding: var(--space-2) clamp(var(--space-3), 2vw, var(--space-7)); display:flex; align-items:center; gap:var(--space-4); justify-content:space-between; }
+.atlas-shell .site-brand { display:inline-flex; align-items:center; gap:var(--space-2); color:var(--ink); text-decoration:none; white-space:nowrap; font: 600 var(--text-lg)/1.15 var(--font-reading); letter-spacing:-.025em; }
+.site-mark { width:2.1rem; height:2.1rem; display:inline-grid; place-items:center; border-radius:var(--radius-md); font:italic var(--text-xl)/1 var(--font-reading); color:var(--mint); background:var(--deep); padding-inline-end:.09em; }
+.site-nav { display:block; position:relative; font: 500 var(--text-sm)/1.25 var(--font-ui); }
+.site-destinations { display:flex; gap:var(--space-1); align-items:center; }
+.site-destinations[hidden], .site-menu[hidden] { display:none !important; }
+.site-nav a, .site-nav .site-menu { box-sizing:border-box; display:inline-flex; align-items:center; min-height:2.625rem; padding:var(--space-2) var(--space-3); border:1px solid var(--transparent); border-radius:var(--radius-sm); font:inherit; color:var(--sub); text-decoration:none; white-space:nowrap; }
+.site-nav a:hover, .site-nav .site-menu:hover { background:var(--surface-subtle); color:var(--ink); }
+.site-nav a[aria-current="page"] { background:var(--surface-selected); color:var(--deep); font-weight:650; }
+.site-nav .site-menu { gap:var(--space-2); border-color:var(--rule); background:var(--surface); color:var(--ink); cursor:pointer; }
+.atlas-shell :focus-visible, .site-skip:focus-visible, .site-colophon a:focus-visible, .map-help button:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
+.site-skip { position:fixed; z-index:var(--layer-skip); top:var(--space-2); left:var(--space-2); transform:translateY(-180%); background:var(--surface); color:var(--deep); padding:var(--space-2) var(--space-3); border-radius:var(--radius-sm); }
+.site-skip:focus { transform:translateY(0); }
+.reader-page-title { margin:0 0 var(--space-2); color:var(--ink); font:600 var(--text-xl)/1.1 var(--font-reading); }
+:where(pre,code,kbd,samp) { font-family:var(--font-code); }
+.atlas-shell .site-nav a::before { content:none; }
+.site-colophon { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:var(--space-2) var(--space-4); margin:0; padding:var(--space-1) var(--space-3); border-top:1px solid var(--rule); font-size:var(--text-xs); line-height:1.5; color:var(--sub); }
+.site-colophon a { color:var(--deep); text-decoration:underline; text-underline-offset:.2em; }
+.map-help { display:inline-flex; align-items:center; gap:var(--space-2); }
+.map-help button { padding:0; min-height:0; background:none; border:none; color:inherit; font:inherit; text-decoration:underline; cursor:pointer; }
+body.immersive > .atlas-shell, body.immersive > .site-colophon { display:none; }
+.maptools #inspectToggle:not([hidden]) { width:auto; padding-inline:var(--space-2); font:500 var(--text-sm)/1.35 var(--font-ui); }
+@media (max-width:1040px) {
+  .atlas-shell-inner { min-height:3.25rem; }
+  .site-nav .site-destinations { position:absolute; inset-block-start:calc(100% + var(--space-1)); inset-inline-end:0; z-index:var(--layer-menu); width:max-content; max-width:calc(100vw - 2rem); display:grid; padding:var(--space-2); background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius-md); box-shadow:var(--shadow-panel); }
+  .site-nav a { display:flex; }
+  .site-nav:has(.site-menu[hidden]) .site-destinations { position:static; display:flex; flex-wrap:wrap; width:auto; }
+}
+@media (max-width:620px) {
+  .atlas-shell-inner { gap:var(--space-2); padding-inline:var(--space-3); }
+  .atlas-shell .site-brand { font-size:var(--text-base); }
+  .site-colophon { gap:var(--space-1) var(--space-3); }
+}
+@media print { .atlas-shell, .site-skip, .map-help { display:none; } }

@@ -1,0 +1,315 @@
+.reader {
+  display: block;
+  height: auto;
+}
+
+.proof-head .sigil {
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+}
+
+.proof-head nav {
+  display: flex;
+  gap: var(--space-proof-nav);
+}
+
+.proof-head nav a {
+  font-weight: 600;
+}
+
+.reader-body {
+  display: block;
+  height: auto;
+  overflow: visible;
+  width: min(100%,56rem);
+  margin: 0 auto;
+  padding: var(--space-reading);
+}
+
+.introduction {
+  padding: var(--space-3) 0 var(--space-7);
+}
+
+.introduction h1,.proof h2 {
+  font: 500 var(--text-display)/1.04 var(--font-reading);
+  letter-spacing: -.03em;
+  margin: var(--space-inline-2) 0;
+}
+
+.introduction p,.proof p {
+  line-height: 1.58;
+}
+
+.introduction ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: var(--space-3) var(--space-5);
+  list-style: none;
+}
+
+.introduction nav {
+  border-top: 1px solid var(--rule);
+  margin-top: var(--space-6);
+}
+
+.proof {
+  border-top: 2px solid var(--deep);
+  padding: var(--space-7) 0 var(--space-8);
+  scroll-margin-top: var(--space-5);
+}
+
+.proof h2 {
+  font-size: var(--text-2xl);
+}
+
+.proof .subject,.proof .scope,.proof footer,.proof .path,.booklinks,.source-links,.uses,.passage {
+  color: var(--sub);
+  font-size: var(--text-sm);
+}
+
+.proof .subject {
+  margin: var(--space-1) 0;
+  font-weight: 650;
+}
+
+.proof .declaration {
+  overflow-wrap: anywhere;
+  margin: var(--space-3) 0;
+}
+
+.proof .declaration code {
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+}
+
+.proof .scope {
+  margin: 0 0 var(--space-5);
+}
+
+.given {
+  background: var(--code-gutter);
+  border-left: .22rem solid var(--accent-outline);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-5) 0;
+}
+
+.given h3 {
+  font-size: var(--text-sm);
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  margin: var(--space-inline-3) 0;
+}
+
+.given p {
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+}
+
+.steps li {
+  margin: var(--space-6) 0;
+  scroll-margin-top: var(--space-5);
+}
+
+.steps .steps {
+  margin-left: var(--space-step-indent);
+  padding-left: var(--space-step-inset);
+  border-left: 1px solid var(--rule);
+}
+
+.claim {
+  font-weight: 680;
+  margin: 0 0 var(--space-2);
+}
+
+.claim>a {
+  margin-right: var(--space-2);
+  text-decoration: none;
+  color: var(--deep);
+  white-space: nowrap;
+}
+
+.reason p {
+  margin: var(--space-inline-2) 0;
+}
+
+.reason b {
+  color: var(--deep);
+}
+
+.passages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-2) var(--space-4);
+}
+
+.passage {
+  min-width: 0;
+}
+
+.passage summary {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.passage[open] {
+  width: 100%;
+}
+
+.passage>div {
+  padding: var(--space-4) var(--space-4);
+  background: var(--surface-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.passage pre {
+  max-height: 18rem;
+  overflow: auto;
+  white-space: pre;
+  font: var(--text-xs)/1.5 var(--font-code);
+  margin: var(--space-3) 0 0;
+}
+
+.proof footer {
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-4);
+}
+
+.print-refs {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .proof-head nav {
+    font-size: var(--text-sm);
+  }
+
+  .proof-head .identity {
+    min-width: auto;
+  }
+
+  .reader-body {
+    padding: var(--space-5);
+  }
+
+  .introduction ul {
+    gap: var(--space-3) var(--space-4);
+  }
+}
+
+@page {
+  size: A4;
+  margin: 17mm 18mm 18mm;
+}
+
+@media print {
+  .reader {
+    font: var(--text-base)/1.35 var(--font-reading);
+    background: var(--surface);
+    color: var(--print-ink);
+  }
+
+  .reader-body {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    display: block;
+  }
+
+  .proof-head,.passages,.booklinks,.introduction nav,.proof footer a[href="#contents"] {
+    display: none;
+  }
+
+  .introduction {
+    padding: 0 0 1em;
+  }
+
+  .introduction h1 {
+    font-size: var(--text-display);
+    margin: .1em 0;
+  }
+
+  .proof {
+    padding: .9em 0 0;
+    break-before: page;
+    border-top: 1px solid var(--print-rule);
+  }
+
+  .introduction+.proof {
+    break-before: auto;
+  }
+
+  .proof h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .proof .subject,.proof .scope,.proof footer,.proof .path,.source-links,.uses,.print-refs {
+    font-size: var(--text-xs);
+  }
+
+  .proof p,.introduction p {
+    line-height: 1.35;
+  }
+
+  .steps li {
+    margin: .75em 0;
+  }
+
+  .claim {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  .reason,.given,.proof header {
+    break-inside: avoid;
+  }
+
+  .print-refs {
+    display: block;
+    color: var(--print-aside);
+    overflow-wrap: anywhere;
+  }
+
+  .steps .steps {
+    margin-left: 1.2em;
+    padding-left: 1em;
+  }
+
+  .given {
+    padding: .25em .7em;
+    margin: .6em 0;
+  }
+}
+
+@media print {
+  .proof {
+    break-before: auto;
+    margin-top: 1.6em;
+  }
+
+  .proof header {
+    break-after: avoid;
+  }
+
+  .proof .steps,.steps .steps {
+    margin-top: .45em;
+    margin-bottom: .45em;
+  }
+
+  .proof h2 {
+    margin: .2em 0;
+  }
+
+  .print-refs a {
+    text-decoration: none;
+  }
+}

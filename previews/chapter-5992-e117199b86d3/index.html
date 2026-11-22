@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#101918" />
+    <meta
+      name="description"
+      content="Explore the source theorems of the Riemann hypothesis formalization on the arXiv paper map, with proof dependencies and pinned Lean source."
+    />
+    <title>Riemann proof atlas</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23182020'/%3E%3Ctext x='15' y='49' font-size='53' font-family='Georgia' font-style='italic' fill='%23bdedc1'%3Eζ%3C/text%3E%3C/svg%3E"
+    />
+
+
+
+
+  <link rel="stylesheet" href="fonts.606fe45d6671852a.css"><link rel="stylesheet" href="tokens.0449755fae6a8186.css"><link rel="stylesheet" href="atlas.486865fac8c888fd.css"><link rel="stylesheet" href="shell.ee75c7f6e1577330.css"><script type="module" src="shell.6bbf04ec5fac32ab.js"></script></head>
+  <body data-site-page="explorer">
+
+    <a class="site-skip" href="#page-main">Skip to content</a>
+<header class="atlas-shell"><div class="atlas-shell-inner"><a class="site-brand" id="origin" href="index.html" aria-label="Riemann proof atlas, return to the original map"><span class="site-mark" aria-hidden="true">ζ</span><span>Riemann proof atlas</span></a><nav class="site-nav" aria-label="Atlas navigation"><button type="button" class="site-menu" aria-expanded="false" aria-controls="site-destinations" hidden>Menu <span aria-hidden="true">▾</span></button><div id="site-destinations" class="site-destinations"><a href="index.html" data-destination="explorer" id="home" aria-current="page">Explorer</a><a href="index.html#statement" data-destination="statement">What is proved</a><a href="index.html#chapter" data-destination="chapters">Chapters</a><a href="daily.html" data-destination="history">History</a><a href="editions.html" data-destination="editions">Editions</a><a href="structured.html" data-destination="proofs">Structured proofs</a><a href="notes.html" data-destination="method">Method and sources</a></div></nav></div></header>
+    <main id="page-main" tabindex="-1">
+      <section class="mapspace" aria-label="Interactive map">
+        <div
+          id="viewport"
+          tabindex="0"
+          aria-label="Map of arXiv papers and Lean declarations. Drag to pan. Use the plus and minus keys to zoom, arrow keys to pan, and the search field to select a theorem."
+        >
+          <canvas id="map" aria-hidden="true"></canvas>
+        </div>
+        <div class="mapbar">
+          <label class="field"
+            ><span>Proof scope</span
+            ><select id="scope" disabled>
+              <option value="all">Whole project</option>
+              <option value="any">Any of five endpoints</option>
+              <option value="1">Classical RH</option>
+              <option value="2">Explicit zeta zeros</option>
+              <option value="4">Dirichlet half-plane</option>
+              <option value="8">Dirichlet strip</option>
+              <option value="16">Primitive strip</option>
+              <option value="outside">Outside all five</option>
+              <option value="unknown">Shared source names</option>
+            </select></label
+          >
+          <label class="field"
+            ><span>Subject</span
+            ><select id="subject" disabled>
+              <option value="">All subjects</option>
+            </select></label
+          >
+          <div class="layerwrap">
+            <button class="layers" aria-expanded="false" aria-controls="layersPanel" id="layersBtn">
+              Layers
+            </button>
+            <div class="layerbox" id="layersPanel" hidden>
+              <label
+                ><input type="checkbox" id="papers" checked /> arXiv
+                papers</label
+              ><label
+                ><input type="checkbox" id="lean" checked /> Lean
+                theorems</label
+              ><label
+                ><input type="checkbox" id="labels" checked /> Map labels</label
+              ><label
+                ><input type="checkbox" id="relations" checked /> Selected proof
+                links</label
+              ><label class="evidenceField"
+                >Dependency evidence<select id="evidence">
+                  <option value="mask">All references</option>
+                  <option value="termMask">Types and values</option>
+                  <option value="valueMask">Values only</option>
+                </select></label
+              ><label class="evidenceField">Placement evidence<select id="placement">
+                  <option value="all">All attributions</option>
+                  <option value="direct">Declaration or proof</option>
+                  <option value="context">Surrounding context</option>
+                </select></label
+              ><label id="nativeLayer" hidden
+                ><input type="checkbox" id="generated" /> Other native
+                theorems</label
+              >
+            </div>
+          </div>
+        </div>
+        <div id="tip" role="tooltip" hidden></div>
+        <div class="maptools" aria-label="Map controls"><button id="inspectToggle" aria-controls="panel" aria-expanded="false" hidden>Inspector</button>
+          <button id="zoomIn" title="Zoom in (+)" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button id="zoomOut" title="Zoom out (−)" aria-label="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+          <button id="fit" title="Fit the map (Home)" aria-label="Fit the map"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/></svg></button>
+          <button id="fullScreen" title="Enter fullscreen (F)" aria-label="Enter fullscreen" aria-pressed="false" aria-keyshortcuts="F">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="expand" d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/><path class="contract" d="M4 9h5V4m6 0v5h5M9 20v-5H4m16 0h-5v5"/></svg>
+          </button>
+        </div>
+        <div id="mapbarBottom">
+          <span id="scene">arXiv paper map</span><span id="scale">1×</span
+          ><span class="layerkey"><i></i> Lean</span
+          ><span class="layerkey paperkey"><i></i> Papers</span>
+        </div>
+        <div id="mapMessage" role="status">Loading the paper map…</div>
+      </section>
+      <aside class="panel" id="panel" aria-label="Proof explorer"><h1 class="reader-page-title">Explorer</h1>
+        <div class="searchbox">
+          <div class="search-heading"><label for="search">Find a Lean theorem</label><a href="#statement" id="whatIsProved">What is proved</a></div>
+          <div class="searchfield">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.7"/><path d="m16 16 4.8 4.8"/></svg
+            ><input
+              type="search"
+              id="search"
+              placeholder="Name or part of a name"
+              autocomplete="off"
+              spellcheck="false"
+            /><kbd>/</kbd>
+          </div>
+        </div>
+        <div id="content" aria-live="polite" tabindex="-1">
+          <h2>Proof geography</h2>
+          <p>Reading the source index…</p>
+        </div>
+      </aside>
+    </main>
+    <dialog id="dialog">
+      <button class="dismiss" id="closeDialog" aria-label="Close dialog">
+        ×
+      </button>
+      <div id="dialogBody"></div>
+    </dialog>
+    <footer><span class="map-help"><button type="button" id="method">Map method</button><button type="button" id="sources">Map sources</button></span>
+      <span
+        ><a
+          href="https://lmcinnes.github.io/datamapplot_examples/arXiv/"
+          target="_blank"
+          rel="noopener"
+          >arXiv map by Leland McInnes</a
+        ></span
+      ><span
+        ><a
+          href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src"
+          target="_blank"
+          rel="noopener"
+          >Lean source · 40e56ba</a
+        ></span
+      >
+    </footer>
+    <noscript
+      >This atlas requires JavaScript to draw the map and look up theorem
+      declarations.</noscript
+    >
+    <script type="module" src="app.82484e246d155972.js"></script>
+  <footer class="site-colophon"><a href="SHA256SUMS" title="Hashes of the files in this interface build">Build 6425a9ae</a><a href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src">Lean edition 40e56bab</a><time datetime="2026-11-22T18:47:03Z">2026-11-22 UTC</time></footer></body>
+</html>
