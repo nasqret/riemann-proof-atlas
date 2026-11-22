@@ -16,29 +16,16 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23182020'/%3E%3Ctext x='15' y='49' font-size='53' font-family='Georgia' font-style='italic' fill='%23bdedc1'%3Eζ%3C/text%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="atlas.css?v=utc-history-1" />
-    <link rel="modulepreload" href="app.js?v=utc-history-1" />
-    <link rel="modulepreload" href="map.js" />
-    <link rel="modulepreload" href="data.js" />
-  </head>
-  <body>
-    <header class="mast">
-      <div class="identity">
-        <button type="button" id="origin" class="sigil" title="Return to the original map" aria-label="Return to the original map" disabled><span aria-hidden="true">ζ</span></button>
-        <div>
-          <h1>Riemann proof atlas</h1>
-          <p>Lean on the arXiv map</p>
-        </div>
-      </div>
-      <nav aria-label="Atlas navigation">
-        <button type="button" id="inspectToggle" aria-controls="panel" aria-expanded="false" hidden>Inspector</button>
-        <a class="history-nav" href="daily.html">History</a>
-        <button id="home" class="active">Explorer</button
-        ><button id="method">Method</button
-        ><button id="sources">Sources</button>
-      </nav>
-    </header>
-    <main>
+
+
+
+
+  <link rel="stylesheet" href="previews/chapter-5992-1f6ce24df46b/fonts.606fe45d6671852a.css"><link rel="stylesheet" href="previews/chapter-5992-1f6ce24df46b/tokens.0449755fae6a8186.css"><link rel="stylesheet" href="previews/chapter-5992-1f6ce24df46b/atlas.486865fac8c888fd.css"><link rel="stylesheet" href="previews/chapter-5992-1f6ce24df46b/shell.ee75c7f6e1577330.css"><script type="module" src="previews/chapter-5992-1f6ce24df46b/shell.6bbf04ec5fac32ab.js"></script></head>
+  <body data-site-page="explorer">
+
+    <a class="site-skip" href="#page-main">Skip to content</a>
+<header class="atlas-shell"><div class="atlas-shell-inner"><a class="site-brand" id="origin" href="index.html" aria-label="Riemann proof atlas, return to the original map"><span class="site-mark" aria-hidden="true">ζ</span><span>Riemann proof atlas</span></a><nav class="site-nav" aria-label="Atlas navigation"><button type="button" class="site-menu" aria-expanded="false" aria-controls="site-destinations" hidden>Menu <span aria-hidden="true">▾</span></button><div id="site-destinations" class="site-destinations"><a href="index.html" data-destination="explorer" id="home" aria-current="page">Explorer</a><a href="index.html#statement" data-destination="statement">What is proved</a><a href="index.html#chapter" data-destination="chapters">Chapters</a><a href="daily.html" data-destination="history">History</a><a href="editions.html" data-destination="editions">Editions</a><a href="structured.html" data-destination="proofs">Structured proofs</a><a href="notes.html" data-destination="method">Method and sources</a></div></nav></div></header>
+    <main id="page-main" tabindex="-1">
       <section class="mapspace" aria-label="Interactive map">
         <div
           id="viewport"
@@ -103,7 +90,7 @@
           </div>
         </div>
         <div id="tip" role="tooltip" hidden></div>
-        <div class="maptools" aria-label="Map controls">
+        <div class="maptools" aria-label="Map controls"><button id="inspectToggle" aria-controls="panel" aria-expanded="false" hidden>Inspector</button>
           <button id="zoomIn" title="Zoom in (+)" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
           <button id="zoomOut" title="Zoom out (−)" aria-label="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
           <button id="fit" title="Fit the map (Home)" aria-label="Fit the map"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/></svg></button>
@@ -118,9 +105,9 @@
         </div>
         <div id="mapMessage" role="status">Loading the paper map…</div>
       </section>
-      <aside class="panel" id="panel" aria-label="Proof explorer">
+      <aside class="panel" id="panel" aria-label="Proof explorer"><h1 class="reader-page-title">Explorer</h1>
         <div class="searchbox">
-          <label for="search">Find a Lean theorem</label>
+          <div class="search-heading"><label for="search">Find a Lean theorem</label><a href="#statement" id="whatIsProved">What is proved</a></div>
           <div class="searchfield">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.7"/><path d="m16 16 4.8 4.8"/></svg
             ><input
@@ -132,7 +119,7 @@
             /><kbd>/</kbd>
           </div>
         </div>
-        <div id="content" aria-live="polite">
+        <div id="content" aria-live="polite" tabindex="-1">
           <h2>Proof geography</h2>
           <p>Reading the source index…</p>
         </div>
@@ -144,7 +131,7 @@
       </button>
       <div id="dialogBody"></div>
     </dialog>
-    <footer>
+    <footer><span class="map-help"><button type="button" id="method">Map method</button><button type="button" id="sources">Map sources</button></span>
       <span
         ><a
           href="https://lmcinnes.github.io/datamapplot_examples/arXiv/"
@@ -165,6 +152,6 @@
       >This atlas requires JavaScript to draw the map and look up theorem
       declarations.</noscript
     >
-    <script type="module" src="app.js?v=utc-history-1"></script>
-  </body>
+    <script type="module" src="previews/chapter-5992-1f6ce24df46b/app.995849675ab33662.js"></script>
+  <footer class="site-colophon"><a href="previews/chapter-5992-1f6ce24df46b/SHA256SUMS" title="Hashes of the files in this interface build">Build a7144def</a><a href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src">Lean edition 40e56bab</a><time datetime="2026-11-22T19:36:31Z">2026-11-22 UTC</time></footer></body>
 </html>
