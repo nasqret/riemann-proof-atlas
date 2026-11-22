@@ -1,0 +1,87 @@
+name: Publish daily Lean snapshots
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/atlas-daily.yml'
+      - 'pipeline/editions/**'
+      - 'pipeline/corpus/source.py'
+  schedule:
+    - cron: '23 0 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: publish-daily-atlas
+  cancel-in-progress: false
+jobs:
+  capture:
+    if: github.repository == 'nasqret/riemann-proof-atlas'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - name: Check out the numbered declaration index and producers
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout: |
+            pipeline
+            data/lean/records
+            data/editions
+          path: atlas
+          persist-credentials: false
+      - name: Open the published data archive
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: atlas-daily
+          path: archive
+      - name: Test date boundaries, occurrence matches and immutable source links
+        run: python3 -B -m unittest discover -s atlas/pipeline/editions -p 'test_*.py'
+      - name: Fetch the official history and the tracked proposal
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          repo=leanprover-community/riemann-hypothesis
+          git init --bare "$RUNNER_TEMP/source.git"
+          git -C "$RUNNER_TEMP/source.git" remote add community "https://github.com/$repo.git"
+          gh api "repos/$repo/pulls/55" > "$RUNNER_TEMP/pr55.json"
+          head=$(jq -er '.head.sha' "$RUNNER_TEMP/pr55.json")
+          git -C "$RUNNER_TEMP/source.git" fetch --no-tags community '+refs/heads/main:refs/remotes/community/main' "$head"
+          date -u '+CAPTURE_TIME=%Y-%m-%dT%H:%M:%SZ' >> "$GITHUB_ENV"
+      - name: Capture revisions and verify the two-sided daily ledger
+        run: |
+          python3 -Bu atlas/pipeline/editions/daily.py --git "$RUNNER_TEMP/source.git" \
+            --lean atlas/data/lean --cache atlas/data/editions --output archive \
+            --pr "$RUNNER_TEMP/pr55.json" --as-of "$CAPTURE_TIME" --job "github-$GITHUB_RUN_ID"
+      - name: Audit the published rows against pinned Git source lines
+        run: |
+          python3 -B atlas/pipeline/editions/verify_daily.py --recent --root archive --git "$RUNNER_TEMP/source.git" --lean atlas/data/lean
+      - name: Observe VerifyTask's sources and associated compression proposals
+        id: external
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 -Bu atlas/pipeline/editions/verifytask.py --git "$RUNNER_TEMP/source.git" \
+            --output archive/verifytask --as-of "$CAPTURE_TIME"
+          python3 -B atlas/pipeline/editions/verifytask.py --output archive/verifytask --check
+      - name: Publish complete verified data in one commit
+        working-directory: archive
+        env:
+          VERIFY_RESULT: ${{ steps.external.outcome }}
+        run: |
+          set -euo pipefail
+          if [[ "$VERIFY_RESULT" != success ]]; then
+            git restore -- verifytask
+            git clean -fd -- verifytask/evidence/
+            echo "::warning::VerifyTask sources were unavailable. Retaining their last timestamped observation."
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- index.json editions pairs verifytask
+          if ! git diff --quiet --cached; then
+            git commit -m "Archive UTC source snapshots through $CAPTURE_TIME"
+            git push origin HEAD:refs/heads/atlas-daily
+          fi
+          jq -r '.days[-3:][] | .day+" "+.pin' index.json >> "$GITHUB_STEP_SUMMARY"
+          if [[ "$VERIFY_RESULT" != success ]]; then exit 1; fi

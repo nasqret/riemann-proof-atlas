@@ -1,0 +1,63 @@
+{
+  "asOf": "2026-11-22T12:32:10Z",
+  "mirror": {
+    "commit": "179fd6fe6f08a391c208fc93aab1328548499bf7",
+    "committedAt": "2026-11-20T17:39:44Z",
+    "equalsSubmission": true,
+    "sourceTree": "b41b516b1f7baee4d83ced235ecc71fd43c97695",
+    "sourceUrl": "https://github.com/Reen-Ai-H/riemann-hypothesis-lean-zh/tree/179fd6fe6f08a391c208fc93aab1328548499bf7/src"
+  },
+  "observedAt": "2026-11-22T12:32:10Z",
+  "proposals": [
+    {
+      "author": "Osgood001",
+      "base": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "comparison": {
+        "bytesAfter": 88400,
+        "bytesBefore": 111631,
+        "deletedLines": 1436,
+        "details": "evidence/comparison-3230c1eaecc235dacadbb8ed790337ac7afbde7bc6aa00474c8277433b8f17ed.json",
+        "files": 28,
+        "groups": [
+          {
+            "files": 26,
+            "name": "Formalism/ZeroFreeRegion/ZetaLogDerivativeBounds",
+            "netLines": -781
+          },
+          {
+            "files": 2,
+            "name": "Formalism/GammaFactorNonvanishing",
+            "netLines": -43
+          }
+        ],
+        "insertedLines": 612,
+        "linesAfter": 1563,
+        "linesBefore": 2387,
+        "netLines": -824
+      },
+      "createdAt": "2026-11-22T12:04:32Z",
+      "head": "018e327c93d07383f5542b97741ca17548db2a7e",
+      "mergedAt": null,
+      "number": 95,
+      "observedAt": "2026-11-22T12:32:10Z",
+      "repository": "https://github.com/Osgood001/riemann-hypothesis",
+      "status": "open",
+      "title": "Simplify proofs in GammaFactorNonvanishing and ZeroFreeRegion (−824 lines)",
+      "updatedAt": "2026-11-22T12:04:32Z",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/95"
+    }
+  ],
+  "site": {
+    "contributorAccountLinked": true,
+    "evidence": "evidence/site-f4e0976dc23c9bbfffe148a2156f5e00c78c3e164a757e8bb2dd9192ff7ec8e6.json",
+    "guide": "https://riemann.verifytask.cn/riemann/",
+    "mirrorLinked": true,
+    "observedAt": "2026-11-22T12:32:10Z",
+    "reportedApproxLines": 17370000,
+    "reportedArchiveBytes": 239275554,
+    "reportedFiles": 175187,
+    "role": "Reading guide",
+    "sourcePage": "https://riemann.verifytask.cn/riemann/sources/",
+    "url": "https://riemann.verifytask.cn/"
+  }
+}

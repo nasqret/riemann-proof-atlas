@@ -845,3 +845,6 @@ dialog a {
 }
 
 .layerbox { max-height: min(66dvh, 26rem); overflow-y: auto; overscroll-behavior: contain; }
+.mast nav .history-nav { align-self:center; color:var(--deep); font-weight:600; text-underline-offset:.22em; padding:.35rem .45rem; }
+@media(max-width:620px) { .mast nav .history-nav {font-size:.86rem; padding-inline:.22rem} }
+.immersive .mast nav .history-nav { display:none; }

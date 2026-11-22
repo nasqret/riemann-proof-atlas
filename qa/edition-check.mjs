@@ -16,7 +16,7 @@ export async function checkEditions() {
   await wait(()=>document.body.dataset.ready==="true");
   const conf=await (await fetch("data/editions/index.json")).json();
   const by=id=>conf.editions.find(e=>e.id===id);
-  expect($("#revision").options.length===conf.editions.length,"Missing frozen revision");
+  expect(conf.editions.every(c=>Array.from($("#revision").options).some(o=>o.value===c.commit)),"Missing frozen revision");
   const source=()=>Array.from($("#selection").querySelectorAll("a")).find(a=>a.textContent==="Lean at this snapshot")?.href;
   const original=()=>Array.from($("#selection").querySelectorAll("a")).find(a=>a.textContent==="Submitted Lean")?.href;
   const refs={};

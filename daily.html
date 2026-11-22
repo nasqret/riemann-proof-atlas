@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#142b29"><title>Daily snapshots · Riemann proof atlas</title>
+<meta name="description" content="Follow daily changes to the Lean source, explore removed declarations on the atlas, and compare independent simplifications.">
+<link rel="stylesheet" href="daily.css?v=utc-history-1"></head>
+<body><header><div class="wrap top"><a class="brand" href="./"><i aria-hidden="true">ζ</i> Riemann proof atlas</a><nav aria-label="Atlas navigation"><a href="editions.html">Edition map</a><a href="structured.html">Structured proofs</a></nav></div></header>
+<main class="wrap"><div class="intro"><h1>Daily snapshots</h1><p>Follow the changing size of the Lean source. Open any day to see which modules changed and where its theorems sit on the map.</p></div>
+<nav class="tracks" aria-label="Source history"><a href="#track=official" data-track="official">Official branch</a><a href="#track=proposal" data-track="proposal">Upstream PR #55</a><a href="#track=verifytask" data-track="verifytask">VerifyTask</a></nav>
+<div id="notice" role="status">Opening the archive…</div><div id="contents" aria-live="polite"></div>
+<details class="method"><summary>How the archive counts changes</summary><p>A closed day takes the last first-parent revision of the official branch before midnight UTC. The first comparison starts with the submitted tree. A day can retain the same tree or have line edits with the same theorem count. The open day shows the time of its capture.</p><p>The atlas counts explicitly written Lean <code>theorem</code> and <code>lemma</code> commands in <code>src/</code>, excluding the challenge specification. Each daily comparison joins occurrences in two Git trees. Unique moves are recorded separately. Repeated names that cannot be resolved are flagged. A renamed declaration may appear among both removals and additions. New source totals and formal verification are different measurements.</p>
+<p>The PR uses its own merge base. VerifyTask’s reading guide, source mirror and contributor proposals each identify their provenance and units. <a id="manifestLink" href="data/daily/index.json">Download the official snapshot manifest</a>.</p></details>
+</main><noscript>JavaScript enables the timeline. <a href="data/daily/index.json">Read the snapshot JSON</a>.</noscript><script type="module" src="daily.js?v=utc-history-1"></script></body></html>
