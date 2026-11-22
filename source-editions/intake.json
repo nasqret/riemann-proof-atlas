@@ -1,6 +1,25 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "changes": []
+  "tip": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+  "changes": [
+    {
+      "id": "merge-65",
+      "title": "Simplify explicit typeclass dumps in 4 kernel-used CapelliIdentities files",
+      "status": "merged",
+      "date": "2026-11-22",
+      "commit": "f1f6d65420dbbf36d6cfdac1af8d79511a855a5b",
+      "description": "4 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 65
+    },
+    {
+      "id": "merge-68",
+      "title": "Share the rank-induction proof of GL finiteness (9,010 fewer Lean lines)",
+      "status": "merged",
+      "date": "2026-11-22",
+      "commit": "09201d6a839516534e62aa598ff5ed82724105ac",
+      "description": "182 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 68
+    }
+  ]
 }
