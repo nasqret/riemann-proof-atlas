@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: var(--text-base)/1.6 var(--font-ui);
+}
+
+.notes-content {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-notes) var(--space-9);
+}
+
+.notes-content :any-link {
+  color: var(--deep);
+  text-underline-offset: .16em;
+}
+
+.notes-content :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.notes-content nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+}
+
+.notes-content h1, .notes-content h2 {
+  font-family: var(--font-reading);
+  font-weight: 500;
+  line-height: 1.16;
+}
+
+.notes-content h1 {
+  font-size: var(--text-display);
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+.notes-content h2 {
+  font-size: var(--text-xl);
+  margin: var(--space-7) 0 var(--space-3);
+}
+
+.notes-content section {
+  scroll-margin-top: var(--space-5);
+}
+
+.notes-content p {
+  margin: var(--space-4) 0;
+}
+
+.notes-content code {
+  overflow-wrap: anywhere;
+}

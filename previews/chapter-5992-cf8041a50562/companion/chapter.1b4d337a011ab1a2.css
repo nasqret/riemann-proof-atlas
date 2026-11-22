@@ -1,0 +1,153 @@
+body {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+}
+
+body, main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+}
+
+header {
+  padding: var(--space-3) var(--space-navigation);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  flex-wrap: wrap;
+  background: var(--map-panel-solid);
+  color: var(--map-panel-text);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+nav a + a::before {
+  content: "›";
+  display: inline-block;
+  margin-right: var(--space-3);
+  color: var(--map-panel-muted);
+}
+
+a {
+  color: var(--deep);
+  text-underline-offset: .2em;
+}
+
+header a {
+  color: inherit;
+  font-size: var(--text-sm);
+}
+
+.up {
+  white-space: nowrap;
+}
+
+.navigation {
+  padding: var(--space-3) var(--space-navigation);
+  border-bottom: 1px solid var(--rule);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  align-items: end;
+}
+
+.controls label {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--sub);
+  font-weight: 600;
+  max-width: 100%;
+}
+
+select {
+  font: inherit;
+  font-weight: 500;
+  color: var(--map-panel-solid);
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  padding: var(--space-2) var(--space-2);
+  max-width: min(22rem, 85vw);
+}
+
+.controls > a {
+  font-size: var(--text-sm);
+  padding: var(--space-1) 0;
+}
+
+.standing, #notice {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+
+.standing {
+  color: var(--sub);
+}
+
+#notice {
+  color: var(--danger);
+}
+
+#viewer {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  min-height: 68vh;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 620px) {
+  header {
+    gap: var(--space-2);
+  }
+
+  .controls {
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .controls label {
+    flex: 0 1 auto;
+  }
+
+  select {
+    max-width: min(13rem, 85vw);
+  }
+
+  .standing {
+    font-size: var(--text-xs);
+  }
+}
