@@ -1,0 +1,103 @@
+{
+  "release": "chapter-5992-e117199b86d3",
+  "chapter": "https://nasqret.github.io/riemann-proof-atlas/previews/chapter-5992-e117199b86d3/",
+  "inherited": "https://nasqret.github.io/riemann-proof-atlas/",
+  "pagesCommit": "ebb618afe575e5513668e27b0b47dc81998d1b3d",
+  "widths": [
+    [
+      1440,
+      900
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "routes": [
+    {
+      "id": "explorer",
+      "base": "chapter",
+      "path": "index.html",
+      "ready": "body[data-ready=true] .stats",
+      "position": "top"
+    },
+    {
+      "id": "theorem",
+      "base": "chapter",
+      "path": "index.html#theorem=385692",
+      "ready": "[data-card=membership]",
+      "position": "inspector"
+    },
+    {
+      "id": "history",
+      "base": "inherited",
+      "path": "daily.html#track=official&day=2026-11-20",
+      "ready": "body[data-ready=official] #contents h2",
+      "position": "top"
+    },
+    {
+      "id": "editions",
+      "base": "inherited",
+      "path": "editions.html#pin=40e56bab026552e089d7afcfeff08d2defb9c005&row=385692",
+      "ready": "body[data-ready=true] #selection h3",
+      "position": "top"
+    },
+    {
+      "id": "structured",
+      "base": "inherited",
+      "path": "structured.html#reflection",
+      "ready": "article#reflection",
+      "position": "anchor"
+    },
+    {
+      "id": "method",
+      "base": "inherited",
+      "path": "notes.html#method",
+      "ready": "section#method",
+      "position": "anchor"
+    },
+    {
+      "id": "statement",
+      "base": "chapter",
+      "path": "index.html#statement",
+      "ready": "[data-reader-view=statement] [data-endpoint=main-rh]",
+      "position": "inspector"
+    },
+    {
+      "id": "endpoint",
+      "base": "chapter",
+      "path": "index.html#statement=main-rh",
+      "ready": "[data-reader-view=endpoint] [data-card=premises]",
+      "position": "inspector"
+    },
+    {
+      "id": "component",
+      "base": "chapter",
+      "path": "index.html#component=cohomology",
+      "ready": "[data-reader-view=component] [data-card=chapters]",
+      "position": "inspector"
+    },
+    {
+      "id": "chapter",
+      "base": "chapter",
+      "path": "index.html#chapter=1.5992",
+      "ready": "svg [data-outline-node=descent]",
+      "position": "top"
+    },
+    {
+      "id": "step",
+      "base": "chapter",
+      "path": "index.html#proof=Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.CokerDual%3A8%3A9&step=g-14-3",
+      "ready": "[data-card=step] [data-source-line='16'][data-marked=true]",
+      "position": "inspector"
+    },
+    {
+      "id": "companion",
+      "base": "chapter",
+      "path": "companion/index.html#item=l%3Acokdual&proof=Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.CokerDual%3A8%3A9&step=g-14-3",
+      "ready": "#viewer",
+      "frameReady": "#key-list pre.lean.is-numbered[aria-label='Lines 14\u201316'] .ln[data-line='16']",
+      "position": "top"
+    }
+  ]
+}

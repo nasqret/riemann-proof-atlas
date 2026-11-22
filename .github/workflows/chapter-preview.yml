@@ -1,0 +1,64 @@
+name: Published chapter browser checks
+on:
+  push:
+    branches: [main]
+    paths: ['.github/preview-5992/**', '.github/workflows/chapter-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: published-chapter-tests-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  reader:
+    name: ${{ matrix.engine }} · chapter 5992
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/preview-5992
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned test dependencies
+        working-directory: .github/preview-5992
+        run: |
+          npm ci --no-audit --no-fund
+          ./node_modules/.bin/playwright install --with-deps "${{ matrix.engine }}"
+          python3 -m pip install --requirement requirements.txt
+      - name: Test the navigation and reading journeys
+        working-directory: .github/preview-5992
+        env:
+          ATLAS_ENGINE: ${{ matrix.engine }}
+        run: |
+          site=$(node -p 'require("./routes.json").chapter')
+          mkdir -p "$RUNNER_TEMP/chapter-checks"
+          node smoke.mjs "$site" "$ATLAS_ENGINE" "$RUNNER_TEMP/chapter-checks/shell.json"
+          node journeys.mjs "$site" "$RUNNER_TEMP/chapter-checks/journeys"
+      - name: Compare public pages and all thirty released code examples
+        if: ${{ !cancelled() }}
+        working-directory: .github/preview-5992
+        env:
+          ATLAS_ENGINE: ${{ matrix.engine }}
+        run: |
+          site=$(node -p 'require("./routes.json").chapter')
+          sheet="${site}interface/baseline/sheet/"
+          node visual.mjs --engine "$ATLAS_ENGINE" --fixture-set chapter \
+            --reference "$site" --reference-inherited "$site" --candidate "$site" --candidate-inherited "$site" \
+            --sheet "$sheet" --candidate-sheet "$sheet" --audit --out "$RUNNER_TEMP/chapter-checks/visual"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chapter-5992-${{ matrix.engine }}
+          path: ${{ runner.temp }}/chapter-checks
+          retention-days: 14

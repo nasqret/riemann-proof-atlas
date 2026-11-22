@@ -1,0 +1,7 @@
+{
+  "name": "riemann-atlas-visual-baseline",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"visual": "node visual.mjs"},
+  "devDependencies": {"axe-core": "4.10.3", "playwright": "1.62.1"}
+}
