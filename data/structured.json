@@ -1,0 +1,1145 @@
+{
+  "schema": 1,
+  "baseline": "40e56bab026552e089d7afcfeff08d2defb9c005",
+  "sources": {
+    "rh": {
+      "path": "Formalism/GammaFactorNonvanishing/RhOfRight.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "7e2c0b519ee420192cad8fb281c2d2bfebae2ba553342fd579c81c2aa0bd3dc5",
+      "lines": 62
+    },
+    "minor": {
+      "path": "Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "ce2c768520127f97fb6432e2cb6088f493ecd1b34c468644d4dcf681e6d6f409",
+      "lines": 228
+    },
+    "phi": {
+      "path": "Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean",
+      "commit": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "95a6c72eab0afc3586773122c53a90f96dbdb675a98826e2f786cc2192b02665",
+      "lines": 23
+    },
+    "oldphi": {
+      "path": "Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "a19c1839d8d9110f816b80b83861b78b41dc846fa1279e50c5cc1d212bf25b5e",
+      "lines": 834
+    },
+    "period": {
+      "path": "Formalism/WeaklyAdmissibleFiltrations/Statement.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "480fd5aa29071a7bd5c72a305b3329e11002f153",
+      "sha256": "87d8f3d71691aa180c0dd4938a66dde7c4adb794e682ff2a6db008793b22741c",
+      "lines": 575
+    },
+    "local": {
+      "path": "Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "ffb0c6b3405d143537b6fc5522c822869195822a99cfc8862940d4eaeb2e6e17",
+      "lines": 94
+    },
+    "sieves": {
+      "path": "Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/LocallyExactCech.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "7808b3d4051787d289c68dade7bd5f87d5da6ab3",
+      "sha256": "1ce32163f0c7c432fe86a2c4609d128ff23a1c30544b196b3f747f6996085d99",
+      "lines": 148
+    },
+    "double": {
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "a85b8347e025d29e79f02973e4d54f4dfcb2f5a5b9f7fd50a5bcba734dfde77e",
+      "lines": 312
+    },
+    "landau": {
+      "path": "Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "57f49606e6ffd8cab45672d8d4b9c7ded6c0b6b0d140821cc51b5baeb4f67ab5",
+      "lines": 170
+    },
+    "poles": {
+      "path": "Development/AutomorphicArithmetic/DedekindLFunctions/LandauZeroFreeCriterion.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "54fd0de979e0dad6ac7709ad8ecbec8a29e21872",
+      "sha256": "d4c5a8ba961bb0e91121212b697217904bf0ba56c2e89c00435fb7ee416a22d7",
+      "lines": 66
+    },
+    "dichotomy": {
+      "path": "Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/LandauDichotomy.lean",
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "blob": "947dae363ce629febcba27b1b70355438f8639a0",
+      "sha256": "f358ff8aecbe34019afe20224ae9a5890c99d55f6b6f7d838c1277e3b1d255ad",
+      "lines": 91
+    }
+  },
+  "readings": [
+    {
+      "id": "reflection",
+      "title": "Reflecting a zeta zero across the critical line",
+      "mapRow": 580898,
+      "category": "math.NT",
+      "source": "rh",
+      "proofValueEndpoints": [
+        "riemannHypothesis",
+        "riemannZeta_eq_zero_re"
+      ],
+      "steps": 8,
+      "scope": "Complete conditional theorem",
+      "moduleReplay": [
+        "submission"
+      ]
+    },
+    {
+      "id": "minor",
+      "title": "A two-column minor vanishes modulo w",
+      "mapRow": 708576,
+      "category": "math.AC",
+      "source": "minor",
+      "proofValueEndpoints": [
+        "riemannHypothesis",
+        "riemannZeta_eq_zero_re",
+        "LFunction_ne_zero_of_half_lt_re",
+        "LFunction_eq_zero_re",
+        "LFunction_eq_zero_re_of_isPrimitive"
+      ],
+      "steps": 7,
+      "scope": "Complete divisibility lemma",
+      "moduleReplay": [
+        "submission"
+      ]
+    },
+    {
+      "id": "frobenius",
+      "title": "Why Frobenius multiplies on a tensor product",
+      "mapRow": 446888,
+      "category": "math.RA",
+      "source": "phi",
+      "proofValueEndpoints": [
+        "riemannHypothesis",
+        "riemannZeta_eq_zero_re",
+        "LFunction_ne_zero_of_half_lt_re",
+        "LFunction_eq_zero_re",
+        "LFunction_eq_zero_re_of_isPrimitive"
+      ],
+      "steps": 6,
+      "scope": "Complete lemma across two source editions",
+      "moduleReplay": [
+        "merge-57",
+        "submission"
+      ]
+    },
+    {
+      "id": "descent",
+      "title": "Gluing local lifts of a section",
+      "mapRow": 423096,
+      "category": "math.AG",
+      "source": "local",
+      "proofValueEndpoints": [
+        "riemannHypothesis",
+        "riemannZeta_eq_zero_re",
+        "LFunction_ne_zero_of_half_lt_re",
+        "LFunction_eq_zero_re",
+        "LFunction_eq_zero_re_of_isPrimitive"
+      ],
+      "steps": 6,
+      "scope": "Eighth conjunct of an eight-part theorem",
+      "moduleReplay": [
+        "submission"
+      ]
+    },
+    {
+      "id": "integrals",
+      "title": "Continuity of a two-parameter integral",
+      "mapRow": 388602,
+      "category": "math.GN",
+      "source": "double",
+      "proofValueEndpoints": [
+        "riemannHypothesis",
+        "riemannZeta_eq_zero_re",
+        "LFunction_ne_zero_of_half_lt_re",
+        "LFunction_eq_zero_re",
+        "LFunction_eq_zero_re_of_isPrimitive"
+      ],
+      "steps": 7,
+      "scope": "Complete private lemma and its continuity helper",
+      "moduleReplay": []
+    },
+    {
+      "id": "landau",
+      "title": "Why a sparse window excludes a pole",
+      "mapRow": 424699,
+      "category": "math.CV",
+      "source": "landau",
+      "proofValueEndpoints": [
+        "riemannHypothesis",
+        "riemannZeta_eq_zero_re",
+        "LFunction_ne_zero_of_half_lt_re",
+        "LFunction_eq_zero_re",
+        "LFunction_eq_zero_re_of_isPrimitive"
+      ],
+      "steps": 10,
+      "scope": "Complete assembly, using the named analytic estimates",
+      "moduleReplay": [
+        "submission"
+      ]
+    }
+  ],
+  "passages": {
+    "rh:5-62": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "b3aca8525f383067547069ca4ef192f122700d4324b558575418620554c84a7a",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L5-L62"
+    },
+    "rh:5-8": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "bdbb6e8211de87846991bb16771b5b6d931f89ded5b023487a57549d9956099c",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L5-L8"
+    },
+    "rh:9-60": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "4f3404bc8fa4be47f56e1c5bbeeeb1699bde462bb8d82da49b9e282cea0ab819",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L9-L60"
+    },
+    "rh:11-27": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "875de37233b4aa86b1604cece83928de0ffbc5090d96b0d4e1edeb29c70d6330",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L11-L27"
+    },
+    "rh:28-30": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "6efc9664a93976954a16e9c6e6a456f65330c0cbb238536cb27736cf60427afc",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L28-L30"
+    },
+    "rh:10-11": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "c3e9302e462883d0b9622dd88c2577ab773d1a148889fe4140a8083cdd4dc898",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L10-L11"
+    },
+    "rh:31-59": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "f2dcb73f9606d00d9e6209779869d79038351b677afa0c49a822c1409d091646",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L31-L59"
+    },
+    "rh:61-61": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "39885de2591361d6c678f1e1b3cf6e7302f76292c5cada8a443733d15d32dbb3",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L61"
+    },
+    "rh:62-62": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "18fdf2d1c9f2ef65ee0fe2c3b3832109f13c8b5c5acef387d69022129c722a13",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L62"
+    },
+    "rh:8-9": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "d95cb449eab8e32962a4bcb7e455de33cef68de5b19abba56950af25ceaf361d",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L8-L9"
+    },
+    "rh:60-62": {
+      "blob": "3604637147a33e72248faddd775ea750e7846ead",
+      "sha256": "3ed012fccd4f362362f1dae2b2d664740c43abb25d70528eeb0d267bffec9c19",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/GammaFactorNonvanishing/RhOfRight.lean#L60-L62"
+    },
+    "minor:132-155": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "3426d9f7897613ffe3daf57fad6582f5f9c474feb80e37e02756dfac378e5102",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L132-L155"
+    },
+    "minor:138-140": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "6060c713de4f1f7a71f740ddeb4ec8f7843134959b328783921c7fcc12007007",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L138-L140"
+    },
+    "minor:139-141": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "2ecc248441d802ea68233ab916ff753f3e48e6f6e07d4a2120b10e186ad5fbee",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L139-L141"
+    },
+    "minor:142-148": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "6a6270ecbbd0a918798589abef577e38c7fb990dba77fe6ba6df03137801d23f",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L142-L148"
+    },
+    "minor:145-146": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "464f32b669a8714e0840214a24c40e50c90a6d2189fde988e2a642bd5b17a51f",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L145-L146"
+    },
+    "minor:147-148": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "79483f7b5043e9b38151d781bacb77e770bded8f04b3d8e56e7b3733d9af3cf0",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L147-L148"
+    },
+    "minor:149-152": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "fd7afe834232378c25255d2c3aca111caac8df39b28d511e6bb3e822f0aff574",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L149-L152"
+    },
+    "minor:153-155": {
+      "blob": "8ee2f1276f7f14e4737c70cce11f894a3ab8c348",
+      "sha256": "a9bbf3f8af4230ede3030b3df576bc6db42c7711dbb2758f2c09b8d180cfb6de",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyMinorDvd.lean#L153-L155"
+    },
+    "phi:5-23": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "0e0250722141217afd092d3b716ba0d681cb5f459ad0d2d248aa7989921d7c24",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L5-L23"
+    },
+    "oldphi:4-834": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "7c8028a84c000e15f8295df24563904a40a11d719583ab557d033bb3e3fa8f6c",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L4-L834"
+    },
+    "period:85-90": {
+      "blob": "480fd5aa29071a7bd5c72a305b3329e11002f153",
+      "sha256": "f870589eaad7abbf701e9b66cc8a5b6e9ae87893afe33a97a09212e9a179c600",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/WeaklyAdmissibleFiltrations/Statement.lean#L85-L90"
+    },
+    "period:166-167": {
+      "blob": "480fd5aa29071a7bd5c72a305b3329e11002f153",
+      "sha256": "67f0aed3b2996aa524c0c9b73c28b80a0ce3914e42ef081ec332f59b433a8f41",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/WeaklyAdmissibleFiltrations/Statement.lean#L166-L167"
+    },
+    "phi:14-18": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "79bd1fa83342b53c55e97502deb23102f61e837be848e2b6c5dc337bcd7e6f2a",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L14-L18"
+    },
+    "oldphi:825-829": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "ccc47309541e8cfa5dad9ef28027794594e91a6d832c535ba857cf932a1b0659",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L825-L829"
+    },
+    "phi:16-22": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "faf9e6dd5db169d1300b24115d79098160f9ade02ca5f1fd90a3f64257979f6c",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L16-L22"
+    },
+    "oldphi:826-833": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "768a11b4830a882ae39d7af186ed20a53c1b0d0dccfafa8d9fc3b667a1bd3e10",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L826-L833"
+    },
+    "phi:20-20": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "cbe60b1ab5fb6f1789817e49d21b299f9cf409a49b78367a760a058117201883",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L20"
+    },
+    "oldphi:831-831": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "cbe60b1ab5fb6f1789817e49d21b299f9cf409a49b78367a760a058117201883",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L831"
+    },
+    "phi:21-21": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "98a27ccd800bf5ca9908942fb8482d2b5841ac2cc6044ab42b59ace576cdcf83",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L21"
+    },
+    "oldphi:832-832": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "98a27ccd800bf5ca9908942fb8482d2b5841ac2cc6044ab42b59ace576cdcf83",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L832"
+    },
+    "phi:22-22": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "c3f960de10441ec2b410fe405f70048a3e1525993d81489f7aebf98f4bacfda4",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L22"
+    },
+    "oldphi:833-833": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "c3f960de10441ec2b410fe405f70048a3e1525993d81489f7aebf98f4bacfda4",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L833"
+    },
+    "phi:23-23": {
+      "blob": "95c90b2490a7897913c7d8f9ad7ce68065f45d6a",
+      "sha256": "7ea7b34ad37e5ac2ecffc8a1bae89d2bf1605d946821566c270a0594d80997d6",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L23"
+    },
+    "oldphi:834-834": {
+      "blob": "7ac0cefa035070a24db4b3924808ce9584819ebc",
+      "sha256": "7ea7b34ad37e5ac2ecffc8a1bae89d2bf1605d946821566c270a0594d80997d6",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/PhiMul.lean#L834"
+    },
+    "local:35-94": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "f5160c2a09ad19ef4cab45fbd519fb5fa1ecfcec4a153557cf3e8631521e49c8",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L35-L94"
+    },
+    "sieves:14-21": {
+      "blob": "7808b3d4051787d289c68dade7bd5f87d5da6ab3",
+      "sha256": "332b5c337eb088860df2021b8d65dc62fc674ef2b2024f644fe98b3c62d9d798",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/LocallyExactCech.lean#L14-L21"
+    },
+    "local:76-81": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "53cfef3fbdfd768c3a0d94bdfb25f52e31b317965eeb799611fe04face366c3e",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L76-L81"
+    },
+    "local:82-86": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "68eb43bcff5d822f25e62146db006ebf9e313a01c42adf444dbd2dc5775518e2",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L82-L86"
+    },
+    "local:11-17": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "b4ee98120ba383559c951b077324ea408279277a2d9151906d1b87aa8e0ed66d",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L11-L17"
+    },
+    "local:83-86": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "abcd1d9704383c4474b8166d0588c777aad601dcad6ce266e5466b48371b63f7",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L83-L86"
+    },
+    "local:6-9": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "644ba312fdf45ab1efb1a19ead70fcc45e366b9d8efdb7596096e04db0a52208",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L6-L9"
+    },
+    "local:79-82": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "9e334a032b05d07d9ad7d15c7c708caca56d048f4146c21789043d8fbd7c6fca",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L79-L82"
+    },
+    "local:87-87": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "ea5a9ca06fa5d6f10d66e195815766babf4960250b84b9d6ac6983dfdde3e899",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L87"
+    },
+    "local:88-94": {
+      "blob": "2b24ea23ae5b6cbc41994dfc0f11fc9bbb93b965",
+      "sha256": "9c70fef7a7e0fa87f1a48f0a3463ddefbb225621dd3f03b3045ea9bbe2d0f153",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CommutativeAlgebra/LocallyHoldsOfForallAndMonoAndInterAndPullback.lean#L88-L94"
+    },
+    "double:90-99": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "cd9133a1cb29204dccb2045af678dee5e874541e124c7623a351b1ab4c5d9cdd",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L90-L99"
+    },
+    "double:14-25": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "d72ded41f3cca6debd6372f17f622ef06ec727664184bfc8464d7fc7ba05a505",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L14-L25"
+    },
+    "double:17-19": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "b94bc91d57d9aecb34522de0f52ba665add44dbc0e22ce90ef15a4bda41951ed",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L17-L19"
+    },
+    "double:20-25": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "2e352ba5536fc8d09802827435cba8131160155b6d8ad40da6eaed596d433427",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L20-L25"
+    },
+    "double:95-96": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "a654ec980d0b5b9fba44589ff266f1be85baf853714073a3e8bea85a8aeb7749",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L95-L96"
+    },
+    "double:97-97": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "42d692211b204a39b292a78bc8af462909c4b410a7202521b83011f5e389c988",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L97"
+    },
+    "double:86-88": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "3c815bd29b79a3888dbf842c45385de3884cd560e9073c75fbdddbc66af6602b",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L86-L88"
+    },
+    "double:98-99": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "a7dd12e9db79e9368f27aae1416d1f0a2f47a0fa8ee7db9fa16181f76961e30f",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L98-L99"
+    },
+    "double:93-99": {
+      "blob": "fb065e70ea3a48a52d1d630929381bb63df58d6a",
+      "sha256": "f3aab0e35f8c389edbffd7ee3f2582e662a163c06a7f7f794f356df11603f8d2",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/ExistsCuspidalSectionFromLeviAverage.lean#L93-L99"
+    },
+    "landau:83-166": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "8d95946f324a151f2ad0605238c91f272f41d7ab4e86d2875b195c5a9fb0209d",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L83-L166"
+    },
+    "poles:15-29": {
+      "blob": "54fd0de979e0dad6ac7709ad8ecbec8a29e21872",
+      "sha256": "15fe64f0d26c7c745e2b5436f118be503f290b8e903ee060238f07edf480b059",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauZeroFreeCriterion.lean#L15-L29"
+    },
+    "landau:40-45": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "ef596c8769437c29b4a8b3787b6c41a86935c1b685f0477e4f82beaeb4bd2137",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L40-L45"
+    },
+    "landau:85-89": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "ebb0abae336e6fcf4cdb83af56551654805524dff28de1c793fd6400b6f45b94",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L85-L89"
+    },
+    "dichotomy:24-28": {
+      "blob": "947dae363ce629febcba27b1b70355438f8639a0",
+      "sha256": "a712601e33156ef54b8751cb2c8d61b3ca7eff74c63ecf3f66baafd7bf6c344b",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/LandauDichotomy.lean#L24-L28"
+    },
+    "landau:89-92": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "575b1075a28600a530696816f2b75419b7b18d9444fa6d2f426dcd5a80d56679",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L89-L92"
+    },
+    "landau:92-133": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "99828930a5b676ca654878d9f911b34b24d3b1f2ab1b8b4a8e1c5280bd02611c",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L92-L133"
+    },
+    "landau:92-112": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "3534901be4e7f4e3fb9fa3a994106770ff8f4f2f51e58a5a702c082e35285f86",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L92-L112"
+    },
+    "landau:113-116": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "0643f4c6653439993b3adc770abe5dfd8b8440c42eae0783a24af6b120790899",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L113-L116"
+    },
+    "landau:115-133": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "a9b40d8050be9bd9fad5671cb55f7c2eb204197b65331935dab875d04e5dfb71",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L115-L133"
+    },
+    "landau:19-26": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "153cdfc66b91ac9649ef30903a8810e2f2be2735cbbbca5df3ccb3ebe0c70ada",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L19-L26"
+    },
+    "landau:134-166": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "38803492426fac7e16500be0872a9b031d2b5d5c7987d744ba40d33965af6d95",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L134-L166"
+    },
+    "landau:134-152": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "090738fa80a6d48c049d96020914d5c6bad08f3bd676bc4219a8a3e273935058",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L134-L152"
+    },
+    "landau:153-166": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "1b9b40e8af3658b0b1305a49146b62209e8f6fbf666707f7e3ef3f4543a90847",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L153-L166"
+    },
+    "landau:83-91": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "80bc47fa8bcc77cf38774cfaea2e4bf742c8a562e35a09ed7c95d24ac0b3e0e9",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L83-L91"
+    },
+    "landau:132-135": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "696832bcfaebf8fa82d1390dfad84d120df822a4333ee382dd0bc76edaa736d9",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L132-L135"
+    },
+    "landau:166-166": {
+      "blob": "7915058f10b33a52652290cd887cbccdc00e676a",
+      "sha256": "26b1611a13a16fca1c63bbcff223688504d4bfb58caed282041f496d32d406d8",
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/landauWindow.lean#L166"
+    }
+  },
+  "steps": [
+    {
+      "reading": "reflection",
+      "step": "fix",
+      "label": "⟨1⟩1",
+      "depends": [],
+      "citations": [
+        "rh:5-8"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "left",
+      "label": "⟨1⟩2",
+      "depends": [
+        "fix",
+        "reflected",
+        "equation",
+        "factors"
+      ],
+      "citations": [
+        "rh:9-60"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "reflected",
+      "label": "⟨2⟩1",
+      "depends": [],
+      "citations": [
+        "rh:11-27"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "equation",
+      "label": "⟨2⟩2",
+      "depends": [
+        "reflected"
+      ],
+      "citations": [
+        "rh:28-30"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "factors",
+      "label": "⟨2⟩3",
+      "depends": [
+        "reflected"
+      ],
+      "citations": [
+        "rh:10-11",
+        "rh:31-59"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "equal",
+      "label": "⟨1⟩3",
+      "depends": [
+        "fix"
+      ],
+      "citations": [
+        "rh:61-61"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "right",
+      "label": "⟨1⟩4",
+      "depends": [
+        "fix"
+      ],
+      "citations": [
+        "rh:62-62"
+      ]
+    },
+    {
+      "reading": "reflection",
+      "step": "qed",
+      "label": "⟨1⟩5",
+      "depends": [
+        "left",
+        "equal",
+        "right"
+      ],
+      "citations": [
+        "rh:8-9",
+        "rh:60-62"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "quot",
+      "label": "⟨1⟩1",
+      "depends": [],
+      "citations": [
+        "minor:138-140"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "pzero",
+      "label": "⟨1⟩2",
+      "depends": [
+        "quot"
+      ],
+      "citations": [
+        "minor:139-141"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "row",
+      "label": "⟨1⟩3",
+      "depends": [
+        "quot",
+        "tail",
+        "sum"
+      ],
+      "citations": [
+        "minor:142-148"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "tail",
+      "label": "⟨2⟩1",
+      "depends": [],
+      "citations": [
+        "minor:145-146"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "sum",
+      "label": "⟨2⟩2",
+      "depends": [
+        "tail"
+      ],
+      "citations": [
+        "minor:147-148"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "entry",
+      "label": "⟨1⟩4",
+      "depends": [
+        "pzero"
+      ],
+      "citations": [
+        "minor:149-152"
+      ]
+    },
+    {
+      "reading": "minor",
+      "step": "qed",
+      "label": "⟨1⟩5",
+      "depends": [
+        "quot",
+        "row",
+        "entry"
+      ],
+      "citations": [
+        "minor:153-155"
+      ]
+    },
+    {
+      "reading": "frobenius",
+      "step": "maps",
+      "label": "⟨1⟩1",
+      "depends": [],
+      "citations": [
+        "period:85-90",
+        "period:166-167",
+        "phi:14-18",
+        "oldphi:825-829"
+      ]
+    },
+    {
+      "reading": "frobenius",
+      "step": "agree",
+      "label": "⟨1⟩2",
+      "depends": [
+        "maps",
+        "zero",
+        "pure",
+        "add"
+      ],
+      "citations": [
+        "phi:16-22",
+        "oldphi:826-833"
+      ]
+    },
+    {
+      "reading": "frobenius",
+      "step": "zero",
+      "label": "⟨2⟩1",
+      "depends": [],
+      "citations": [
+        "phi:20-20",
+        "oldphi:831-831"
+      ]
+    },
+    {
+      "reading": "frobenius",
+      "step": "pure",
+      "label": "⟨2⟩2",
+      "depends": [],
+      "citations": [
+        "phi:21-21",
+        "oldphi:832-832"
+      ]
+    },
+    {
+      "reading": "frobenius",
+      "step": "add",
+      "label": "⟨2⟩3",
+      "depends": [],
+      "citations": [
+        "phi:22-22",
+        "oldphi:833-833"
+      ]
+    },
+    {
+      "reading": "frobenius",
+      "step": "qed",
+      "label": "⟨1⟩3",
+      "depends": [
+        "agree",
+        "maps"
+      ],
+      "citations": [
+        "phi:23-23",
+        "oldphi:834-834"
+      ]
+    },
+    {
+      "reading": "descent",
+      "step": "cover",
+      "label": "⟨1⟩1",
+      "depends": [],
+      "citations": [
+        "sieves:14-21",
+        "local:76-81"
+      ]
+    },
+    {
+      "reading": "descent",
+      "step": "compatible",
+      "label": "⟨1⟩2",
+      "depends": [
+        "cover",
+        "images",
+        "inject"
+      ],
+      "citations": [
+        "local:82-86"
+      ]
+    },
+    {
+      "reading": "descent",
+      "step": "images",
+      "label": "⟨2⟩1",
+      "depends": [],
+      "citations": [
+        "local:11-17",
+        "local:83-86"
+      ]
+    },
+    {
+      "reading": "descent",
+      "step": "inject",
+      "label": "⟨2⟩2",
+      "depends": [
+        "images"
+      ],
+      "citations": [
+        "local:83-86"
+      ]
+    },
+    {
+      "reading": "descent",
+      "step": "glue",
+      "label": "⟨1⟩3",
+      "depends": [
+        "cover",
+        "compatible"
+      ],
+      "citations": [
+        "local:6-9",
+        "local:79-82",
+        "local:87-87"
+      ]
+    },
+    {
+      "reading": "descent",
+      "step": "qed",
+      "label": "⟨1⟩4",
+      "depends": [
+        "cover",
+        "glue"
+      ],
+      "citations": [
+        "local:88-94"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "helper",
+      "label": "⟨1⟩1",
+      "depends": [
+        "curry",
+        "bounded"
+      ],
+      "citations": [
+        "double:14-25"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "curry",
+      "label": "⟨2⟩1",
+      "depends": [],
+      "citations": [
+        "double:17-19"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "bounded",
+      "label": "⟨2⟩2",
+      "depends": [
+        "curry"
+      ],
+      "citations": [
+        "double:20-25"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "inner",
+      "label": "⟨1⟩2",
+      "depends": [
+        "helper"
+      ],
+      "citations": [
+        "double:95-96"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "outer",
+      "label": "⟨1⟩3",
+      "depends": [
+        "inner",
+        "helper"
+      ],
+      "citations": [
+        "double:97-97"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "integrable",
+      "label": "⟨1⟩4",
+      "depends": [
+        "inner"
+      ],
+      "citations": [
+        "double:86-88",
+        "double:98-99"
+      ]
+    },
+    {
+      "reading": "integrals",
+      "step": "qed",
+      "label": "⟨1⟩5",
+      "depends": [
+        "outer",
+        "integrable"
+      ],
+      "citations": [
+        "double:93-99"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "choose",
+      "label": "⟨1⟩1",
+      "depends": [],
+      "citations": [
+        "poles:15-29",
+        "landau:40-45",
+        "landau:85-89"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "split",
+      "label": "⟨1⟩2",
+      "depends": [
+        "choose"
+      ],
+      "citations": [
+        "dichotomy:24-28",
+        "landau:89-92"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "shift",
+      "label": "⟨1⟩3",
+      "depends": [
+        "choose",
+        "split",
+        "centres",
+        "bounds",
+        "compare"
+      ],
+      "citations": [
+        "landau:92-133"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "centres",
+      "label": "⟨2⟩1",
+      "depends": [],
+      "citations": [
+        "landau:92-112"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "bounds",
+      "label": "⟨2⟩2",
+      "depends": [
+        "centres"
+      ],
+      "citations": [
+        "landau:113-116"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "compare",
+      "label": "⟨2⟩3",
+      "depends": [
+        "bounds"
+      ],
+      "citations": [
+        "landau:115-133",
+        "landau:19-26"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "real",
+      "label": "⟨1⟩4",
+      "depends": [
+        "choose",
+        "split",
+        "positive",
+        "realestimate"
+      ],
+      "citations": [
+        "landau:134-166"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "positive",
+      "label": "⟨2⟩4",
+      "depends": [],
+      "citations": [
+        "landau:134-152"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "realestimate",
+      "label": "⟨2⟩5",
+      "depends": [
+        "positive"
+      ],
+      "citations": [
+        "landau:153-166"
+      ]
+    },
+    {
+      "reading": "landau",
+      "step": "qed",
+      "label": "⟨1⟩5",
+      "depends": [
+        "shift",
+        "real"
+      ],
+      "citations": [
+        "landau:83-91",
+        "landau:132-135",
+        "landau:166-166"
+      ]
+    }
+  ],
+  "native": {
+    "heliosJob": "26763620",
+    "version": "Lean (version 4.33.1, x86_64-unknown-linux-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+    "method": "LeanChecker.replayFromImports on the freshly compiled object and its imported environment",
+    "driverSha256": "411611387d5ae4bfbccb81f6dfb9edbd5b957c2042fd431bc6d4ab249990958e",
+    "results": [
+      {
+        "commit": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+        "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PhiMul",
+        "sourceSha256": "95a6c72eab0afc3586773122c53a90f96dbdb675a98826e2f786cc2192b02665",
+        "oleanSha256": "a2ae1bd9b52d4f45caa8bfc185660bd0887e56394e4629e3aba5aea89dab046c",
+        "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernelLogSha256": "b58fc89e1453070fddb2035377581cf7be1fc21130e021b459b66d651716b385",
+        "exit": 0
+      },
+      {
+        "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+        "module": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PhiMul",
+        "sourceSha256": "a19c1839d8d9110f816b80b83861b78b41dc846fa1279e50c5cc1d212bf25b5e",
+        "oleanSha256": "05c41e90015f81d6b0353250bc7458f7b1f27218e5f26937a3430548b4337fd4",
+        "compileLogSha256": "404b42f59fab882c592dfbb70364cff128c2162c00c93ae08f8a146152d5b852",
+        "kernelLogSha256": "a736a451df95804c314847b7e1ec5e03dec156248c9abc740921ae013f6b66ee",
+        "exit": 0
+      },
+      {
+        "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+        "module": "Formalism.GammaFactorNonvanishing.RhOfRight",
+        "sourceSha256": "7e2c0b519ee420192cad8fb281c2d2bfebae2ba553342fd579c81c2aa0bd3dc5",
+        "oleanSha256": "7d1f6298689fce2f9e66b8b9700e17e4616f057f2e0a2b5caf2f3f71682c19c1",
+        "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernelLogSha256": "f8021f8b93cdd6c781a754fd90b3bc40a1a669ccab68768c23a067eaf90dedc7",
+        "exit": 0
+      },
+      {
+        "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+        "module": "Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.KeyMinorDvd",
+        "sourceSha256": "ce2c768520127f97fb6432e2cb6088f493ecd1b34c468644d4dcf681e6d6f409",
+        "oleanSha256": "dccba2eea04bd7f11d1b9f4773b185c4d4d6d6a5876682a06909c92670e584c6",
+        "compileLogSha256": "b147444083815318dda2d073ea7fd0a47243c352602ecf3c4f514beaf1aebe85",
+        "kernelLogSha256": "c50a3d5d6947e1915db39f4005369412b5ff3c0ec6b9e08827cdeaa150d6bcdc",
+        "exit": 0
+      },
+      {
+        "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+        "module": "Development.AutomorphicArithmetic.CommutativeAlgebra.LocallyHoldsOfForallAndMonoAndInterAndPullback",
+        "sourceSha256": "ffb0c6b3405d143537b6fc5522c822869195822a99cfc8862940d4eaeb2e6e17",
+        "oleanSha256": "3e4ead29e69d38b882e9c0ab2d05f20729c513e7839b549af8f7f585c79e4ad0",
+        "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernelLogSha256": "83ddc86a2297739f86ba8316069d99404db93ec6c1c9247ee0db71967a7bf298",
+        "exit": 0
+      },
+      {
+        "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+        "module": "Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauWindow",
+        "sourceSha256": "57f49606e6ffd8cab45672d8d4b9c7ded6c0b6b0d140821cc51b5baeb4f67ab5",
+        "oleanSha256": "8d86e83f3e67215b2b4d9a17a30853fc48943cf9561eac431bac38f11889f0d0",
+        "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernelLogSha256": "3b3795b84d6006060962a88be57efb6a0731bf29d7598f4d06742ca8f24af537",
+        "exit": 0
+      }
+    ],
+    "standaloneIntegral": {
+      "sourceAlias": "double",
+      "verbatimLines": [
+        [
+          14,
+          25
+        ],
+        [
+          86,
+          99
+        ]
+      ],
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sha256": {
+        "IntegralReading.lean": "195d79214335849fad4c257bcd24b95e4e46ca257ef442f174afa8b90b9cfcb4",
+        "IntegralReading.olean": "bda4bc43bebf700d575c0cdbe8732fa684b2c229c4cb6befc2859c35e3026531",
+        "compile.log": "12b340d311f1adf0a14cb7ba1c0aed30347b01711646dcfcefd1109f098df878",
+        "kernel.log": "66dad0bd1576fb4da12721dc8c435524707d760ccc3dd7a5fe6558994de866c5"
+      }
+    }
+  }
+}

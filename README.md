@@ -4,6 +4,10 @@ Explore the written Lean theorems and lemmas of the Riemann hypothesis project o
 
 **[Explore the map](https://nasqret.github.io/riemann-proof-atlas/)** · [Watch the 52-second tour](https://nasqret.github.io/riemann-proof-atlas/film/) · [Reading notes](https://nasqret.github.io/riemann-proof-atlas/notes.html) · [Public reading dashboard](https://nasqret.github.io/riemann-rev/) · [Original paper map](https://lmcinnes.github.io/datamapplot_examples/arXiv/)
 
+[Compare the source editions](https://nasqret.github.io/riemann-proof-atlas/editions.html) · [Read the structured proofs](https://nasqret.github.io/riemann-proof-atlas/structured.html) · [Download the proof reader (PDF)](https://nasqret.github.io/riemann-proof-atlas/structured-proofs.pdf)
+
+The edition map preserves the original coordinates for confidently matched declarations and links to the Lean source in each revision. The selector records the submission, merged simplifications and separately pinned proposals. The proof reader opens the corresponding tactic fragment for each numbered step. [Compare the two Frobenius proofs](https://nasqret.github.io/riemann-proof-atlas/structured.html#frobenius) · [Snapshot catalogue](https://nasqret.github.io/riemann-proof-atlas/data/editions/index.json)
+
 [![The interactive atlas showing the classical RH proof filter](film/assets/edition.webp)](https://nasqret.github.io/riemann-proof-atlas/)
 
 The atlas covers 818,755 written declarations, 4,983 proof bundles and 2,477,303 papers. Of the 818,755 declarations, 802,362 have a subject or contextual placement. Another 16,393 appear in 168 named source sections. Choose **Layers → Placement evidence** to isolate declarations and proofs or their surrounding mathematical context. [Inspect matrix addition](https://nasqret.github.io/riemann-proof-atlas/#theorem=10) · [Browse source sections](https://nasqret.github.io/riemann-proof-atlas/#subject=unresolved) · [Attribution evidence](https://nasqret.github.io/riemann-proof-atlas/data/refinement/index.json)

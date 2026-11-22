@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore the original Lean proof and pinned community simplifications on the same arXiv map.">
+<title>Source editions · Riemann proof atlas</title>
+<link rel="stylesheet" href="atlas.css?v=source-sections-2"><link rel="stylesheet" href="editions.css">
+</head><body class="edition-page">
+<header class="mast"><div class="identity"><a class="sigil" aria-label="Open the original proof atlas" href="./">ζ</a><div><h1>Source editions</h1><p>Riemann proof atlas</p></div></div><nav aria-label="Reading navigation"><a href="./">Proof atlas</a><a href="structured.html">Structured proofs</a></nav></header>
+<main><section class="mapspace" aria-label="Map for the selected source edition">
+  <div id="viewport" tabindex="0" aria-label="Pan and zoom the source edition. Use arrow keys, plus and minus."><canvas id="map" aria-hidden="true"></canvas></div>
+  <div class="mapbar"><label class="field"><span>Snapshot</span><select id="revision" disabled><option>Loading editions…</option></select></label>
+  <label class="field"><span>Compared with submission</span><select id="change" disabled>
+  <option value="present">Present in snapshot</option><option value="0">Unchanged modules</option><option value="1">Edited modules</option><option value="4">Moved by name</option><option value="2">Unmatched original</option><option value="3">Unmatched snapshot</option></select></label></div>
+  <span id="tip" hidden></span>
+  <div class="maptools" aria-label="Map navigation"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="fit" aria-label="Fit map">⌂</button></div>
+  <div id="mapbarBottom"><span id="scale"></span><span id="scene">arXiv paper map</span></div>
+</section><aside id="panel" class="panel">
+  <section aria-live="polite" id="editionInfo"><h2>Opening the map…</h2></section>
+  <label class="edition-filter">Mathematical subject<select id="subject" disabled><option value="">All subjects</option></select></label>
+  <label class="edition-filter">Find a declaration<input id="lookup" type="search" placeholder="Lean name" disabled autocomplete="off"></label>
+  <p id="matches" class="small" role="status"></p><section id="selection" aria-live="polite"></section>
+  <details class="edition-method"><summary>How to read this comparison</summary><p>Matching uses written names and physical modules in two pinned Git trees. Common declarations retain their original subject coordinates. An edited module may contain unchanged proofs. A cross-module match requires a unique original name and exactly one unmatched destination.</p><p>Repeated private names may remain unmatched after a move. New and ambiguous destination names have exact source links in the source-section index. Endpoint dependencies and proof paths are available for the original submission in the proof atlas. The edition maps measure written source.</p>
+  <p><a href="data/editions/audit.json">Source-link audit</a> · <a href="data/editions/index.json">Edition data</a></p></details>
+  <details class="edition-method"><summary>Other community proposals</summary><ul id="proposalList"></ul></details>
+</aside></main>
+<noscript>Enable JavaScript to explore snapshots. The <a href="structured.html">structured proofs</a> can be read directly.</noscript>
+<script type="module" src="editions.js"></script>
+</body></html>

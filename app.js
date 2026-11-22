@@ -368,6 +368,8 @@ function overview() {
         ),
         button("Fit Lean layer", fitFiltered),
         button("Browse bundles", () => bundleList(null)),
+        link("Compare source editions", "editions.html"),
+        link("Read structured proofs", "structured.html"),
       ),
     );
   else

@@ -619,6 +619,7 @@ export class AtlasMap {
       const h = {
         type: bundles ? "bundles" : "dots", category: b.category,
         count: n, anchor: id, sx, sy, rad: n === 1 ? 3.9 : clamp(4.5 + Math.log2(n) * .47, 5, 11),
+        get rows() { return members; },
         get ids() {
           if (!bundles) return members;
           if (!node.bundles) node.bundles = [...new Set(Array.from(members, i => c.bundle[i]))];

@@ -1,0 +1,29 @@
+.edition-page .mast .sigil,.proof-head .sigil { display:grid; place-items:center; text-decoration:none; }
+.edition-page .mast nav a,.proof-head nav a { color:var(--deep); padding:.5rem; font-weight:600; text-underline-offset:.22em; }
+.edition-page .mapbar { grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); max-width:41rem; }
+.edition-page .field select { width:100%; }
+.edition-page .panel { padding-block:1.4rem; }
+.edition-page .edition-filter { display:grid; gap:.3rem; margin:.85rem 0; font-size:.92rem; font-weight:650; }
+.edition-filter select,.edition-filter input { width:100%; min-height:2.7rem; padding:.35rem .6rem; background:#fff; border:1px solid #899e93; border-radius:.35rem; font:inherit; }
+.edition-page h2 { line-height:1.13; margin:.3rem 0 .7rem; }
+.edition-page .date { color:#46675c; font-size:.9rem; margin:0; }
+.edition-page .numbers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:.9rem 0; border-block:1px solid var(--rule); padding:.7rem 0; gap:.5rem; }
+.numbers div { display:flex; flex-direction:column; }
+.numbers strong { font:600 clamp(.93rem,1.5vw,1.3rem)/1.5 var(--sans); }
+.numbers small { color:#46675c; }
+.edition-page .edition-method { border-top:1px solid var(--rule); margin-top:1rem; padding:.75rem 0; }
+.edition-method summary { cursor:pointer; font-weight:650; }
+.edition-page #selection button,.edition-page .jump { text-align:left; padding:.45rem .2rem; min-height:2.5rem; color:#185e4a; text-decoration:underline; overflow-wrap:anywhere; }
+.edition-page #selection button:hover,.edition-page .jump:hover { color:#122e27; }
+.edition-page .result { display:block; width:100%; border-bottom:1px solid var(--rule); }
+.edition-page .pages { display:flex; gap:1rem; }
+.edition-page .sources { display:flex; gap:.7rem; flex-wrap:wrap; }
+.edition-page #selection h3 { font-family:var(--serif); font-size:1.22rem; }
+.edition-page #matches { margin:.7rem 0; }
+@media (max-width:620px) {
+ .edition-page .mast nav a,.proof-head nav a { font-size:.86rem; padding:.25rem; }
+ .edition-page .mast nav { flex-wrap:wrap; justify-content:flex-end; max-width:42%; }
+ .edition-page .mapbar { grid-template-columns:minmax(0,1.08fr) minmax(0,1fr); }
+ .edition-page .field { min-height:3rem; } .edition-page .field span { white-space:normal; line-height:1.1; }
+ .edition-page .maptools { bottom:2.7rem; }
+}
