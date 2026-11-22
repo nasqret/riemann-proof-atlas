@@ -33,12 +33,28 @@ async function marked(p) {
   const lines=await p.locator('[data-card="step"] [data-source-line][data-marked="true"]').evaluateAll(a=>a.map(x=>Number(x.dataset.sourceLine)));
   assert.deepEqual(lines,[14,15,16]);
 }
+async function leanStyle(locator) {
+  return locator.evaluate(async node => {
+    const doc=node.ownerDocument;
+    const css=doc.defaultView.getComputedStyle(node);
+    await doc.fonts.ready;
+    const result={family:css.fontFamily,size:css.fontSize,lineHeight:css.lineHeight,wrap:css.whiteSpace,
+      overflowWrap:css.overflowWrap,wordBreak:css.wordBreak,ligatures:css.fontVariantLigatures,tabSize:css.tabSize};
+    if(!result.family.includes("Atlas Lean Mono") || ![...doc.fonts].some(font=>font.family.includes("Atlas Lean Mono") && font.status==="loaded"))
+      throw Error("The source's own document did not load Atlas Lean Mono: "+JSON.stringify(result));
+    return result;
+  });
+}
 try {
   await run('J1',async p=>{
     await cold(p);await choose(p.locator('#whatIsProved'));await view(p,'statement');
     assert.equal(await p.locator('[data-endpoint]').count(),5);
     await choose(p.locator('[data-endpoint="main-rh"] a').first());await view(p,'endpoint');
     await choose(p.locator('[data-component="cohomology"]'));await view(p,'component');
+    const prose=p.locator('[data-reader-view="component"] .intro');
+    assert.equal(await prose.locator('math').count(),2);
+    assert.equal(await prose.locator('math msqrt msup').count(),1);
+    assert.equal(await prose.evaluate(n=>[...n.childNodes].filter(x=>x.nodeType===Node.TEXT_NODE).some(x=>x.textContent.includes("$"))),false);
     await choose(p.locator('[data-card="chapters"] a').first());await view(p,'chapter');
     await choose(p.locator('[data-card="reading"] a').first());
     await p.locator('#item option[value="l:cokdual"]').waitFor({state:'attached'});await p.locator('#item').selectOption('l:cokdual');
@@ -47,8 +63,19 @@ try {
     const f=p.frameLocator('#viewer');const source=f.locator('#key-list pre.lean.is-numbered[aria-label="Lines 14–16"] .ln[data-line]');
     await source.first().waitFor();assert.deepEqual(await source.evaluateAll(a=>a.map(x=>Number(x.dataset.line))),[14,15,16]);
     assert.ok(await f.locator('#key-list a.source-link[href$="CokerDual.lean#L14-L16"]').count());
+    const evidence=f.locator('#coverage-note');
+    if(!await evidence.isVisible())await f.locator('#note-toggle').click();
+    const fact=evidence.locator('[data-field="fact"] > code');
+    await fact.waitFor();
+    const readerStyle=await leanStyle(f.locator('#key-list pre.lean.is-numbered[aria-label="Lines 14–16"]'));
+    assert.deepEqual(await leanStyle(fact),readerStyle);
+    assert.equal(readerStyle.wrap,"pre");assert.equal(readerStyle.overflowWrap,"normal");
+    assert.equal(readerStyle.ligatures,"none");assert.equal(readerStyle.size,"14px");assert.equal(readerStyle.tabSize,"4");
     if(dest)await p.screenshot({path:path.join(dest,'companion.png')});
-    await choose(p.locator('#structured'));await view(p,'step');await marked(p);return {choicesToNumberedLines:8,lines:[14,15,16],note:'Lemma 8.2'};
+    await choose(p.locator('#structured'));await view(p,'step');await marked(p);
+    const inspector=p.locator('[data-card="step"] pre.reader-code').first();
+    assert.deepEqual(await leanStyle(inspector),readerStyle);
+    return {choicesToNumberedLines:8,lines:[14,15,16],note:'Lemma 8.2',componentFormulas:2,matchingSourceStyles:readerStyle};
   });
   await run('J2',async p=>{
     await cold(p,'#theorem=412256');const card=p.locator('[data-card="membership"]');await card.waitFor();

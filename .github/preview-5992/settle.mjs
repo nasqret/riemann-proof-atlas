@@ -44,6 +44,13 @@ export async function settle(route) {
     await snooze(80);
   }
   await frame();await frame();
+  if(route.position==="anchor" && route.replayScroll){
+    const target=route.replayScroll[1];
+    if(Math.abs(scrollY-target)>1)throw Error("Fragment landed at "+scrollY+"; reference "+target+" in "+route.id);
+    window.scrollTo({top:target,behavior:"instant"});
+    await frame();await frame();
+    if(scrollY!==target)throw Error("Could not restore the reference viewport for "+route.id);
+  }
   return {title:document.title,route:location.hash,viewport:[innerWidth,innerHeight],scroll:[scrollX,scrollY],
     horizontalOverflow:document.documentElement.scrollWidth-innerWidth,
     ...(route.frameReady?{pdf:doc.querySelector("#status").textContent.trim()}: {})};

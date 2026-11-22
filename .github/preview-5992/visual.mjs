@@ -122,7 +122,9 @@ try{
               result.reference=await capture(pages.reference,"reference",engine,size,entry);
             }
             if(!args["record-only"]){
-              result.candidate=await capture(pages.candidate,"candidate",engine,size,entry);
+              const sameAddress = result.reference.url === new URL(entry.path,bases.candidate[entry.base]).href;
+              const replay = sameAddress && entry.position==="anchor" ? {...entry,replayScroll:result.reference.scroll} : entry;
+              result.candidate=await capture(pages.candidate,"candidate",engine,size,replay);
               const differences=path.join(out,engine,size.join("x"),"differences");
               result.pixels=pixelResult(path.resolve(out,result.reference.file),path.resolve(out,result.candidate.file),path.join(differences,entry.id+".webp"));
               if(!result.pixels.passed)report.failures.push({engine,size,id:entry.id,type:"pixels"});

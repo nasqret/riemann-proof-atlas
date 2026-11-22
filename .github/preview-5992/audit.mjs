@@ -1,8 +1,10 @@
 import { createRequire } from "node:module";
+import { readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { settle } from "./settle.mjs";
 
 const require = createRequire(import.meta.url);
+const axeSource = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 const tags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 export const profile = {latency: 80, downloadThroughput: 1_000_000, uploadThroughput: 350_000, cpuSlowdown: 4};
 export const budgets = {largestPaintMs: 2500, layoutShift: 0.02, tabToNextPaintMs: 100, scriptGzipBytes: 150000};
@@ -60,9 +62,11 @@ export async function audit(browser, engine, options, url, entry) {
     const values = await page.evaluate(() => window.atlasVisualMeasurements);
     values.scriptGzipBytes = 0;
     for (const response of scripts.values()) values.scriptGzipBytes += gzipSync(await response.body(), {level: 9}).length;
-    const axe = require.resolve("axe-core/axe.min.js");
     for (const frame of page.frames()) {
-      await frame.addScriptTag({path: axe});
+      // Playwright's browser-side evaluation avoids adding an inline script element
+      // to the PDF reader. Collect the timing observations before running axe.
+      await frame.evaluate(axeSource);
+      if (!await frame.evaluate(() => typeof window.axe?.run === "function")) throw Error("Accessibility instrumentation unavailable in "+frame.url());
     }
     const violations = await page.evaluate(async tags => {
       const result = await window.axe.run(document, {runOnly: {type: "tag", values: tags}});
