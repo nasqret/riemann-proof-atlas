@@ -1,0 +1,12 @@
+Atlas Lean Mono Regular is a subset of JuliaMono Regular 0.061 by cormullion.
+Copyright (c) 2020 - 2023, cormullion, with Reserved Font Name JuliaMono.
+
+Atlas Lean Mono retains the original character outlines and metrics for the
+printable characters in the Lean submission. Its OpenType features retain
+combining-mark positioning and composition. The derivative uses a new name.
+
+This font is distributed under the SIL Open Font License 1.1. See
+OFL-JuliaMono.txt for the original notice and full licence.
+
+Upstream project: https://github.com/cormullion/juliamono
+Source revision: 44822b1b503dfe21221adda5728dadd83108ae71

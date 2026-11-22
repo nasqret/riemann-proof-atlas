@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142522">
+  <title>Reading notes · Riemann proof atlas</title>
+<link rel="stylesheet" href="fonts.606fe45d6671852a.css"><link rel="stylesheet" href="tokens.0449755fae6a8186.css"><link rel="stylesheet" href="notes.bfd9a82962ea4cc7.css"><link rel="stylesheet" href="shell.ee75c7f6e1577330.css"><script type="module" src="shell.6bbf04ec5fac32ab.js"></script></head>
+<body data-site-page="method"><a class="site-skip" href="#page-main">Skip to content</a>
+<header class="atlas-shell"><div class="atlas-shell-inner"><a class="site-brand" id="origin" href="index.html" aria-label="Riemann proof atlas, return to the original map"><span class="site-mark" aria-hidden="true">ζ</span><span>Riemann proof atlas</span></a><nav class="site-nav" aria-label="Atlas navigation"><button type="button" class="site-menu" aria-expanded="false" aria-controls="site-destinations" hidden>Menu <span aria-hidden="true">▾</span></button><div id="site-destinations" class="site-destinations"><a href="index.html" data-destination="explorer" id="home">Explorer</a><a href="index.html#statement" data-destination="statement">What is proved</a><a href="index.html#chapter" data-destination="chapters">Chapters</a><a href="daily.html" data-destination="history">History</a><a href="editions.html" data-destination="editions">Editions</a><a href="structured.html" data-destination="proofs">Structured proofs</a><a href="notes.html" data-destination="method" aria-current="page">Method and sources</a></div></nav></div></header><div class="notes-content">
+  <header><h1>Reading the proof map</h1>
+    <nav aria-label="Reading notes"><a href="#findings">Mathematical findings</a><a href="#method">Placement method</a><a href="#copies">Repeated names</a><a href="#data">Data and sources</a><a href="../../film/">Watch the 52-second tour</a></nav>
+  </header>
+  <main id="page-main" tabindex="-1">
+    <section id="findings"><h2>Where the RH proof goes</h2>
+      <p>Following references from proof and definition values in <code>riemannHypothesis</code> reaches 647,905 individually identified written declarations. The overlay places 640,546 of these across 16 arXiv subjects, including contextual assignments. The remaining 7,359 have source links in named sections. The three largest assigned subjects are number theory (175,450), commutative algebra (140,147) and rings and algebras (131,517).</p>
+      <p>One arithmetic construction supplies a local–global Galois parameter. On the analytic side, a Landau argument constrains poles using a window estimate. Another lemma passes from that estimate to a zero-free region. Each link opens a specific theorem where you can inspect the printed Lean statement and its proof dependencies.</p>
+      <nav aria-label="Worked examples"><a href="./#theorem=435423&amp;scope=1&amp;evidence=valueMask">Galois parameter</a><a href="./#theorem=424699&amp;scope=1&amp;evidence=valueMask">Landau argument</a><a href="./#theorem=424690&amp;scope=1&amp;evidence=valueMask">Zero-free criterion</a><a href="../../evidence/subjects.json">All subject counts and source examples</a></nav>
+    </section>
+    <section id="method"><h2>Why a dot sits here</h2>
+      <p>Each paper retains its published map position and color. The Lean layer compares declarations with reviewed proof passages, mathematical terms in their names and statements, and evidence from nearby code. A match places a declaration in a named arXiv neighborhood. Small deterministic offsets distinguish bundles and their members. The inspector shows the evidence and confidence of each assignment.</p>
+      <p>The second edition recovered 272,060 declarations from the old unplaced bundle. Written identifiers and exported type or proof references account for 136,842. The namespace or physical source module supplies context for 135,218. A further 16,393 declarations are grouped in 168 exact source sections. Choose <strong>Layers → Placement evidence</strong> to compare kinds of evidence.</p>
+      <p>The theorem <code>lie_add</code> states that the Lie condition is closed under matrix addition. Its exported type refers to <code>Matrix.add</code>. The nearby declaration <code>bounded : Bounded</code> gives less information. Its Bessel-model placement comes from the source module. The inspector identifies the basis in each case.</p>
+      <nav aria-label="Attribution examples"><a href="./#theorem=10">Matrix type witness</a><a href="./#theorem=0">Bessel module context</a><a href="./#subject=unresolved">Source-section index</a><a href="../../data/refinement/index.json">Evidence counts and comparisons</a></nav>
+      <p>In a comparison with earlier directly classifiable statements, type-reference placement agreed with the original subject in 1,235 of 2,073 cases. Module context agreed in 141 of 506. A formula and its surrounding argument can legitimately occupy different areas. Inspecting the actual witness helps interpret those differences.</p>
+      <p>Eleven of twelve original classification controls agreed with the review assignment. One finite-group character identity inherited the number-theory label of an Artin-conductor file. The controls record the source signature, expected category, assigned topic and matched terms for each case.</p>
+      <p>Bundles use direct proof and type references, shared files and imports. The size of a bundle reflects how the argument was formalized. Follow a named witness on a connection between bundles to see which declaration actually refers to the other.</p>
+      <nav aria-label="Classification"><a href="../../evidence/classification-controls.json">Twelve controls and the exception</a><a href="../../data/lean/topics.json">Topics and original map anchors</a></nav>
+    </section>
+    <section id="copies"><h2>When two files use the same Lean name</h2>
+      <p>The archive contains 268 written occurrences in 133 repeated-name groups. Counting distinct names once gives 648,016 in the classical RH value closure. Comparing the original compiled objects with the export identifies 61 sole compatible physical proofs, excludes 63 alternatives, and finds 100 occurrences whose compatible terms agree up to bound-variable renaming. The other 44 occurrences have names absent from the export.</p>
+      <p>Choose <strong>Count repeated names</strong> in the explorer to compare two source files side by side through their pinned links.</p>
+      <nav aria-label="Source copies"><a href="./">Open the explorer</a><a href="../../data/shared-sources.json.gz">Download all source-copy comparisons</a></nav>
+    </section>
+    <section id="data"><h2>Data and sources</h2>
+      <p>The edition covers 818,755 written statements in 4,983 proof bundles on Leland McInnes’s map of 2,477,303 arXiv papers. Five endpoint filters follow references in the checked Lean export. Helios verified all 15 endpoint tables and the witnesses for 221,204 directed bundle connections. During zoom, each marker keeps the world position of one actual declaration as its group divides. The inventory lists the SHA-256 of each file in this edition.</p>
+      <nav aria-label="Edition data"><a href="../../evidence/coverage.json">Overlay verification</a><a href="../../data/base/manifest.json">Paper-map manifest</a><a href="../../data/native/verification.json">Compiled theorem checks</a><a href="SHA256SUMS">File checksums</a></nav>
+      <p>Open the original map to explore the paper embedding, the pinned source tree to read the Lean project, or the public reading guide for the argument from beginning to end.</p>
+      <nav aria-label="Original sources"><a href="https://lmcinnes.github.io/datamapplot_examples/arXiv/">Original arXiv map by Leland McInnes</a><a href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src">Pinned Lean source</a><a href="https://nasqret.github.io/riemann-rev/">Public reading guide</a><a href="https://math.mit.edu/~drew/grh/">Independent verification</a></nav>
+    </section>
+  </main>
+</div><footer class="site-colophon"><a href="SHA256SUMS" title="Hashes of the files in this interface build">Build a7144def</a><a href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src">Lean edition 40e56bab</a><time datetime="2026-11-22T19:36:31Z">2026-11-22 UTC</time></footer></body>
+</html>

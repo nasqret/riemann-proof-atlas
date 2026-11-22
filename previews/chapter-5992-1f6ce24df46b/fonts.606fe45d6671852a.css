@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Atlas Lean Mono";
+  src: url("./atlas-lean-mono.228718e6df3745d8.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  ascent-override: 95%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Atlas Local Mono";
+  src: local("Courier New"), local("Liberation Mono"), local("Courier");
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 100%;
+  ascent-override: 95%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+:root {
+  --font-ui: system-ui, sans-serif;
+  --font-reading: ui-serif, Georgia, Cambria, serif;
+  --font-code: "Atlas Lean Mono", "Atlas Local Mono", ui-monospace, monospace;
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-reading);
+  --font-mono: var(--font-code);
+}
