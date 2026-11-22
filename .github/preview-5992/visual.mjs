@@ -85,7 +85,13 @@ async function capture(page,side,engine,size,entry){
   }
   const prefix=path.join(out,engine,size.join("x"),side);await mkdir(prefix,{recursive:true});
   const file=path.join(prefix,entry.id+".webp"),png=path.join(temporary,"capture.png");
-  await page.screenshot({path:png,fullPage:false,animations:"disabled",caret:"hide",scale:"css",timeout:60000});
+  const shot={path:png,animations:"disabled",caret:"hide",scale:"css",timeout:60000};
+  if(entry.position==="anchor"){
+    // These two static articles have no sticky content. Photograph the viewport
+    // in document coordinates, independent of the browser's fractional scroll painting.
+    await page.evaluate(async()=>{window.scrollTo({top:0,behavior:"instant"});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});
+    await page.screenshot({...shot,fullPage:true,clip:{x:0,y:rendered.scroll[1],width:size[0],height:size[1]}});
+  }else await page.screenshot(shot);
   const result={url,...rendered,file:path.relative(out,file),sha256:imageTool("pack",png,file).trim(),bytes:(await stat(file)).size};
   if(entry.fixture){
     const crop=path.join(prefix,entry.id+"-code.webp");

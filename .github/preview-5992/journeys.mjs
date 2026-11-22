@@ -70,12 +70,33 @@ try {
     const readerStyle=await leanStyle(f.locator('#key-list pre.lean.is-numbered[aria-label="Lines 14–16"]'));
     assert.deepEqual(await leanStyle(fact),readerStyle);
     assert.equal(readerStyle.wrap,"pre");assert.equal(readerStyle.overflowWrap,"normal");
-    assert.equal(readerStyle.ligatures,"none");assert.equal(readerStyle.size,"14px");assert.equal(readerStyle.tabSize,"4");
+    assert.equal(readerStyle.ligatures,"none");assert.ok(Math.abs(parseFloat(readerStyle.size)-14)<0.0001);assert.equal(readerStyle.tabSize,"4");
+    const numbered=f.locator('#key-list pre.lean.is-numbered[aria-label="Lines 14–16"]');
+    const sourcePanel=f.locator('#key-list pre[aria-label="Lines 14–16"] + .lean-actions');
+    const factPanel=evidence.locator('[data-field="fact"] .lean-actions');
+    for(const [block,actions,label] of [[numbered,sourcePanel,'Copy lines'],[fact,factPanel,'Copy fact']]){
+      const before=await block.textContent();
+      const wrap=actions.getByRole('button',{name:'Wrap lines'});
+      await wrap.click();assert.equal(await wrap.getAttribute('aria-pressed'),'true');
+      assert.equal(await block.evaluate(n=>n.ownerDocument.defaultView.getComputedStyle(n).whiteSpace),'pre-wrap');
+      assert.equal(await block.textContent(),before);
+      await wrap.click();assert.equal(await wrap.getAttribute('aria-pressed'),'false');
+      // Verify exact clipboard payload and the selectable fallback in an isolated test tab.
+      await block.evaluate(n=>Object.defineProperty(n.ownerDocument.defaultView.navigator,'clipboard',{
+        configurable:true,value:{writeText:async text=>{n.ownerDocument.defaultView.atlasCopied=text;}}}));
+      await actions.getByRole('button',{name:label}).click();
+      assert.equal(await block.evaluate(n=>n.ownerDocument.defaultView.atlasCopied),before);
+      await block.evaluate(n=>Object.defineProperty(n.ownerDocument.defaultView.navigator,'clipboard',{
+        configurable:true,value:{writeText:async()=>{throw Error('Clipboard unavailable in this test');}}}));
+      await actions.getByRole('button',{name:label}).click();const fallback=actions.getByRole('textbox');
+      assert.equal(await fallback.inputValue(),before);
+      assert.equal(await fallback.evaluate(n=>n.value.substring(n.selectionStart,n.selectionEnd)),before);
+    }
     if(dest)await p.screenshot({path:path.join(dest,'companion.png')});
     await choose(p.locator('#structured'));await view(p,'step');await marked(p);
     const inspector=p.locator('[data-card="step"] pre.reader-code').first();
     assert.deepEqual(await leanStyle(inspector),readerStyle);
-    return {choicesToNumberedLines:8,lines:[14,15,16],note:'Lemma 8.2',componentFormulas:2,matchingSourceStyles:readerStyle};
+    return {choicesToNumberedLines:8,lines:[14,15,16],note:'Lemma 8.2',componentFormulas:2,matchingSourceStyles:readerStyle,sourceAndFactActions:true};
   });
   await run('J2',async p=>{
     await cold(p,'#theorem=412256');const card=p.locator('[data-card="membership"]');await card.waitFor();
@@ -85,9 +106,13 @@ try {
   });
   await run('J3',async p=>{
     await cold(p,'#chapter=tower-bound');await view(p,'chapter');const imports=p.locator('[data-card="imports"] [data-import]');assert.equal(await imports.count(),110);
+    const importFold=p.locator('[data-card="imports"] details').first();
+    await importFold.locator('summary').click();
+    const note=imports.filter({hasText:'Kum.dinfNil'}).getByRole('link',{name:'Read Theorem A · page 1 in the published note'});
+    const noteUrl=await note.getAttribute('href');assert.ok(noteUrl.endsWith('local-nilpotence-0d6916877cbe.pdf#nameddest=section%2A.1'));
     const desc=imports.filter({hasText:'Tower.desc'}).first();assert.match(await desc.innerText(),/6879/);await choose(desc.locator('a').first());await view(p,'outside');
     assert.match(await p.locator('[data-reader-view="outside"]').innerText(),/6879/);await choose(p.locator('[data-reader-view="outside"] a').filter({hasText:'Return to'}).first());await view(p,'chapter');
-    return {imports:110,outsideOwner:'1.6879',return:true};
+    return {imports:110,outsideOwner:'1.6879',return:true,publishedImport:noteUrl};
   });
   await run('J5',async p=>{
     await cold(p,'#chapter=1.5992');await view(p,'chapter');const group=p.locator('svg [data-outline-node]');await group.first().waitFor({state:'visible'});assert.equal(await group.count(),13);
