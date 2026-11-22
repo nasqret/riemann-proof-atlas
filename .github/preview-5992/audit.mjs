@@ -51,7 +51,11 @@ export async function audit(browser, engine, options, url, entry) {
     await page.goto(url, {waitUntil: "domcontentloaded", timeout: 150000});
     await page.waitForLoadState("networkidle", {timeout: 150000});
     await page.evaluate(settle, entry);
-    await page.keyboard.press("Tab");
+    // A verified companion may give its PDF iframe the initial focus.
+    // Start the timed keyboard action in the top document that owns this observation.
+    const start=page.locator(".site-skip, .skip-reader, a[href], button:enabled").first();
+    await start.focus();
+    await start.press("Tab");
     await page.waitForFunction(() => Number.isFinite(window.atlasVisualMeasurements.tabToNextPaintMs));
     const values = await page.evaluate(() => window.atlasVisualMeasurements);
     values.scriptGzipBytes = 0;

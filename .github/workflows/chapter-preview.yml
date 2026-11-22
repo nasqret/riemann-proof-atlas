@@ -8,7 +8,7 @@ permissions:
   contents: read
 concurrency:
   group: published-chapter-tests-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   reader:
     name: ${{ matrix.engine }} · chapter 5992
@@ -56,6 +56,10 @@ jobs:
           node visual.mjs --engine "$ATLAS_ENGINE" --fixture-set chapter \
             --reference "$site" --reference-inherited "$site" --candidate "$site" --candidate-inherited "$site" \
             --sheet "$sheet" --candidate-sheet "$sheet" --audit --out "$RUNNER_TEMP/chapter-checks/visual"
+      - name: Summarize the browser results
+        if: always()
+        working-directory: .github/preview-5992
+        run: node report.mjs "$RUNNER_TEMP/chapter-checks" "${{ matrix.engine }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

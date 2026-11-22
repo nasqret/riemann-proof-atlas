@@ -78,8 +78,10 @@ async function capture(page,side,engine,size,entry){
   await page.waitForLoadState("networkidle", {timeout:90000});
   const rendered=await page.evaluate(settle,entry);
   if(entry.fixture){
-    const range=await page.locator("[data-fixture] .lean-line").evaluateAll(lines=>[Number(lines[0]?.dataset.declarationLine),Number(lines.at(-1)?.dataset.declarationLine),lines.length]);
-    if(range[0]!==entry.first || range[1]!==entry.last || range[2]!==entry.last-entry.first+1)throw Error("Incomplete source fixture "+entry.fixture);
+    const expected=fixtures.fixtures.find(f=>f.key===entry.fixture);
+    const lines=await page.locator("[data-fixture] .lean-line").evaluateAll(rows=>rows.map(row=>[Number(row.dataset.declarationLine),row.querySelector(".line-source").textContent]));
+    if(lines.length!==entry.last-entry.first+1 || lines.length!==expected.source.length ||
+       lines.some(([number,source],i)=>number!==entry.first+i || source!==expected.source[i])) throw Error("Incorrect Lean text or range for "+entry.fixture);
   }
   const prefix=path.join(out,engine,size.join("x"),side);await mkdir(prefix,{recursive:true});
   const file=path.join(prefix,entry.id+".webp"),png=path.join(temporary,"capture.png");

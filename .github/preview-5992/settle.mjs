@@ -14,7 +14,17 @@ export async function settle(route) {
   await Promise.all([document.fonts.ready,doc.fonts.ready]);
   if(route.position==="inspector" && innerWidth<=620)document.querySelector("#panel").scrollIntoView({block:"start",behavior:"instant"});
   else if(route.position==="top")window.scrollTo({top:0,behavior:"instant"});
-  else if(route.position==="anchor" && location.hash)document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({block:"start",behavior:"instant"});
+  else if(route.position==="anchor" && location.hash){
+    const anchor=document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if(anchor){
+      // WebKit can paint fractional fragment offsets one pixel apart after a warm navigation.
+      window.scrollTo({top:0,behavior:"instant"});
+      await frame();await frame();
+      const margin=parseFloat(getComputedStyle(anchor).scrollMarginTop)||0;
+      const y=Math.floor(anchor.getBoundingClientRect().top+scrollY-margin);
+      window.scrollTo({top:y,behavior:"instant"});
+    }
+  }
   const canvas=document.querySelector("canvas#map");
   let previous="",stableSince=performance.now();
   while(true){
