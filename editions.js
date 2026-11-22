@@ -226,7 +226,8 @@ $("fit").onclick=()=>map.fit();
 window.addEventListener("popstate",()=>restore().catch(issue));
 (async()=>{
   const [data]=await Promise.all([json(directory+"index.json"),original.load(),map.baseLoad()]);
-  registry=data; const choices=$("revision");
+  registry=data; $("observed").textContent="Pull-request states captured "+data.observedAt+".";
+  const choices=$("revision");
   choices.replaceChildren();
   for(const [status,title] of [["submission","Submission"],["merged","Merged changes"],["proposal","Pinned proposals"]]) {
     const group=el("optgroup");group.label=title;

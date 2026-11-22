@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [source-editions/registry.json, source-editions/discover.py, .github/workflows/atlas-edition-watch.yml]
   schedule:
     - cron: '17 */6 * * *'
 permissions:
@@ -17,16 +16,16 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          sparse-checkout: source-editions
-          persist-credentials: false
       - name: Read first-parent source changes
         env:
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          mkdir -p source-editions
+          for file in registry.json discover.py; do
+            curl --fail --silent --show-error --retry 2 "https://raw.githubusercontent.com/$GH_REPO/$GITHUB_SHA/source-editions/$file" -o "source-editions/$file"
+          done
           registry=source-editions/registry.json
           upstream="$RUNNER_TEMP/upstream.git"
           git init --bare "$upstream"

@@ -170,7 +170,9 @@
       ],
       "steps": 7,
       "scope": "Complete private lemma and its continuity helper",
-      "moduleReplay": []
+      "moduleReplay": [
+        "submission"
+      ]
     },
     {
       "id": "landau",
@@ -1057,8 +1059,16 @@
     }
   ],
   "native": {
-    "heliosJob": "26763620",
+    "heliosJobs": [
+      "26763620",
+      "26764019"
+    ],
     "version": "Lean (version 4.33.1, x86_64-unknown-linux-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+    "largeModule": {
+      "authenticatedProjectObjects": 23128,
+      "importsLogSha256": "a7b875f0fc69222d37e57d69dc894cb73ba09f4d22339fbdee5fc2abbc200aba",
+      "mapPolicySha256": "d36e5f8184780d21e912e72146f294a2a6507a5ae807c86f7449e3dac196a1c2"
+    },
     "method": "LeanChecker.replayFromImports on the freshly compiled object and its imported environment",
     "driverSha256": "411611387d5ae4bfbccb81f6dfb9edbd5b957c2042fd431bc6d4ab249990958e",
     "results": [
@@ -1069,7 +1079,8 @@
         "oleanSha256": "a2ae1bd9b52d4f45caa8bfc185660bd0887e56394e4629e3aba5aea89dab046c",
         "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "kernelLogSha256": "b58fc89e1453070fddb2035377581cf7be1fc21130e021b459b66d651716b385",
-        "exit": 0
+        "exit": 0,
+        "heliosJob": "26763620"
       },
       {
         "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
@@ -1078,7 +1089,8 @@
         "oleanSha256": "05c41e90015f81d6b0353250bc7458f7b1f27218e5f26937a3430548b4337fd4",
         "compileLogSha256": "404b42f59fab882c592dfbb70364cff128c2162c00c93ae08f8a146152d5b852",
         "kernelLogSha256": "a736a451df95804c314847b7e1ec5e03dec156248c9abc740921ae013f6b66ee",
-        "exit": 0
+        "exit": 0,
+        "heliosJob": "26763620"
       },
       {
         "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
@@ -1087,7 +1099,8 @@
         "oleanSha256": "7d1f6298689fce2f9e66b8b9700e17e4616f057f2e0a2b5caf2f3f71682c19c1",
         "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "kernelLogSha256": "f8021f8b93cdd6c781a754fd90b3bc40a1a669ccab68768c23a067eaf90dedc7",
-        "exit": 0
+        "exit": 0,
+        "heliosJob": "26763620"
       },
       {
         "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
@@ -1096,7 +1109,8 @@
         "oleanSha256": "dccba2eea04bd7f11d1b9f4773b185c4d4d6d6a5876682a06909c92670e584c6",
         "compileLogSha256": "b147444083815318dda2d073ea7fd0a47243c352602ecf3c4f514beaf1aebe85",
         "kernelLogSha256": "c50a3d5d6947e1915db39f4005369412b5ff3c0ec6b9e08827cdeaa150d6bcdc",
-        "exit": 0
+        "exit": 0,
+        "heliosJob": "26763620"
       },
       {
         "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
@@ -1105,7 +1119,8 @@
         "oleanSha256": "3e4ead29e69d38b882e9c0ab2d05f20729c513e7839b549af8f7f585c79e4ad0",
         "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "kernelLogSha256": "83ddc86a2297739f86ba8316069d99404db93ec6c1c9247ee0db71967a7bf298",
-        "exit": 0
+        "exit": 0,
+        "heliosJob": "26763620"
       },
       {
         "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
@@ -1114,7 +1129,18 @@
         "oleanSha256": "8d86e83f3e67215b2b4d9a17a30853fc48943cf9561eac431bac38f11889f0d0",
         "compileLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "kernelLogSha256": "3b3795b84d6006060962a88be57efb6a0731bf29d7598f4d06742ca8f24af537",
-        "exit": 0
+        "exit": 0,
+        "heliosJob": "26763620"
+      },
+      {
+        "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+        "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsCuspidalSectionFromLeviAverage",
+        "sourceSha256": "a85b8347e025d29e79f02973e4d54f4dfcb2f5a5b9f7fd50a5bcba734dfde77e",
+        "oleanSha256": "71b5b3db19d912ad8162257e143206568fe324299c3ce0403fc2567f3a7fe6f6",
+        "compileLogSha256": "2ebb4ef94ca03e8616d5e1b21bfc30867e1501c0af98a7d8c11c8445da29e07f",
+        "kernelLogSha256": "6706b06bda033605aaa6075166cb2c1ecdf480402d5700ea57ebf8f84e0a831b",
+        "exit": 0,
+        "heliosJob": "26764019"
       }
     ],
     "standaloneIntegral": {
