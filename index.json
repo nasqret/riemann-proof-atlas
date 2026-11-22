@@ -51,7 +51,8 @@
       "captures": [
         {
           "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
-          "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae"
+          "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae",
+          "observedAt": "2026-11-22T12:23:10Z"
         }
       ],
       "changes": [
@@ -689,6 +690,6 @@
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-22T12:23:10Z",
+  "capturedAt": "2026-11-22T12:43:25Z",
   "observedTip": "7cce738ba719a32964ca3822d0994f4c6952c7ae"
 }
