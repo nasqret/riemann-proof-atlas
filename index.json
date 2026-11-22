@@ -428,6 +428,144 @@
       "committedAt": "2026-11-22T08:50:12Z",
       "checkedLinks": 75,
       "summarySha256": "c5fc4386f021df36e5df79dae77170ef003c7ed7f8774f2d6c473e09c932a3de"
+    },
+    "7da4577eb40dd74b09218d111114ca43bc2ad226": {
+      "sourceTree": "50296bb63a4263e1cbbb8853e67ea10881bbd68f",
+      "sourceFiles": 164463,
+      "lines": 16588671,
+      "written": 785975,
+      "states": [
+        785692,
+        283,
+        32780,
+        0,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "05a98b61eb6265600e8aa0f6dd4ff1c46c571e8037d9d4fca2c8dccc3503c4cf",
+        "locations.json.gz": "e49ba22b402a725816cf9c6b9ff6ae396aa6c47aafd8c294da71c8e0540eb97a"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "2": [
+          9441,
+          9442,
+          9443,
+          9444,
+          9445,
+          9800,
+          9801,
+          9839,
+          9840,
+          9841,
+          10244,
+          10245
+        ],
+        "1": [
+          408853,
+          408854,
+          408855,
+          408856,
+          409074,
+          409075,
+          409417,
+          409418,
+          409593,
+          409594,
+          409595,
+          409906
+        ],
+        "3": []
+      },
+      "commit": "7da4577eb40dd74b09218d111114ca43bc2ad226",
+      "assetPin": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "committedAt": "2026-11-21T20:54:20Z",
+      "checkedLinks": 72,
+      "summarySha256": "9218c4d399895ae65e21fd1b306cd00c8cef35c0e825ad05eb902df37aeb5466"
+    },
+    "a7016a34bb7e84e8f031c2179bd71cb9c20f2517": {
+      "sourceTree": "e16a0d499b5e3b6a2d23407889be2c3d44f1db05",
+      "sourceFiles": 150632,
+      "lines": 14473033,
+      "written": 677713,
+      "states": [
+        503872,
+        173838,
+        141045,
+        3,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "0dd0ffa96ef560835f423decafe8eb45cad86cdea130544351233a37a76e1c69",
+        "locations.json.gz": "bbb0113fb0927094d650d996edc76f04bef760ef630045c56ad33a7ba1369295"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "1": [
+          18,
+          19,
+          20,
+          43,
+          45,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757
+        ]
+      },
+      "commit": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "assetPin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "committedAt": "2026-11-21T21:49:34Z",
+      "checkedLinks": 75,
+      "summarySha256": "4ca92c57f3b43e2440e261e65ecb72039d89eab9a400465c3dc2f2e301c09aff"
     }
   },
   "comparisons": {
@@ -498,6 +636,23 @@
       "deletedLines": 2222306,
       "sha256": "a7af28d1fd5e7989d180ec42b101e2182b5ee1810b802504d0c55147316431d2",
       "asset": "pairs/2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb.json.gz"
+    },
+    "7da4577eb40dd74b09218d111114ca43bc2ad226..a7016a34bb7e84e8f031c2179bd71cb9c20f2517": {
+      "before": "7da4577eb40dd74b09218d111114ca43bc2ad226",
+      "after": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "removed": 108265,
+      "added": 3,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 677710,
+      "filesAdded": 0,
+      "filesRemoved": 13831,
+      "filesEdited": 39459,
+      "insertedLines": 106848,
+      "deletedLines": 2222486,
+      "sha256": "6d28505df1d6d6cb1572b09b970950fbae36a4335b1c77c75e1f8566bbddb600",
+      "asset": "pairs/7da4577eb40dd74b09218d111114ca43bc2ad226..a7016a34bb7e84e8f031c2179bd71cb9c20f2517.json.gz"
     }
   },
   "proposals": {
@@ -510,6 +665,16 @@
       "status": "open",
       "mergedAt": null,
       "versions": [
+        {
+          "pr": 55,
+          "title": "Unused declarations",
+          "head": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+          "base": "7da4577eb40dd74b09218d111114ca43bc2ad226",
+          "comparison": "7da4577eb40dd74b09218d111114ca43bc2ad226..a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+          "status": "open",
+          "mergedAt": null,
+          "observedAt": "2026-11-22T02:35:32Z"
+        },
         {
           "pr": 55,
           "title": "Remove declarations that are unused in the proof",

@@ -1,0 +1,48 @@
+{
+  "pages": {
+    "guide": {
+      "canonical": "https://verifytask.cn/riemann/",
+      "downloads": [],
+      "githubLinks": [
+        "https://github.com/Osgood001/verifytask",
+        "https://github.com/Reen-Ai-H/riemann-hypothesis-lean-zh"
+      ],
+      "sha256": "44aed86449ae599788b0f0129f0feb6bd8d7684095c6d6baf0faabd00bdb53ad",
+      "url": "https://riemann.verifytask.cn/riemann/"
+    },
+    "home": {
+      "canonical": "https://verifytask.cn/",
+      "downloads": [],
+      "githubLinks": [
+        "https://github.com/Osgood001/verifytask",
+        "https://github.com/harbor-framework/harbor",
+        "https://github.com/harbor-framework/harbor-cookbook"
+      ],
+      "sha256": "b782691287f5464160c99dd5f732beefb682ab848b696a2116660b565dda853d",
+      "url": "https://riemann.verifytask.cn/"
+    },
+    "sources": {
+      "canonical": "https://verifytask.cn/riemann/sources/",
+      "downloads": [
+        "https://alpo.ge/lean.tar.gz.part01",
+        "https://web.archive.org/web/20261120142003/https://alpo.ge/lean.tar.gz.part01"
+      ],
+      "githubLinks": [
+        "https://github.com/CocoSgt/riemann-hypothesis-lean",
+        "https://github.com/Osgood001/verifytask",
+        "https://github.com/Reen-Ai-H/riemann-hypothesis-lean-zh",
+        "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean#L185",
+        "https://github.com/leanprover/lean4checker",
+        "https://github.com/luosiallen/riemann-hypothesis-lean-verify",
+        "https://github.com/mirkovicdev/riemann-hypothesis-lean"
+      ],
+      "sha256": "f30b090b8b4348ec9f07add0249f201ccbc30e31cb652f13e1612e87b002c05e",
+      "url": "https://riemann.verifytask.cn/riemann/sources/"
+    }
+  },
+  "reported": {
+    "reportedApproxLines": 17370000,
+    "reportedArchiveBytes": 239275554,
+    "reportedFiles": 175187
+  }
+}
