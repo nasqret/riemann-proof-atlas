@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "1b894f7511841e6607bc0398cf2657526bbb29d9",
+  "tip": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
   "changes": [
     {
       "id": "merge-65",
@@ -38,6 +38,15 @@
       "commit": "c7791603122c0328f79e49f6be5d7d4402effc53",
       "description": "53 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 115
+    },
+    {
+      "id": "merge-150",
+      "title": "Complete the remaining reviewed Lean 4.36 cleanup",
+      "status": "merged",
+      "date": "2026-11-23",
+      "commit": "b0ab0ada2632235c2bba9f40853531bbbf3a28d8",
+      "description": "79 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 150
     }
   ]
 }
