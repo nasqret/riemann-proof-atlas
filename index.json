@@ -1,0 +1,529 @@
+{
+  "schema": 1,
+  "repository": "leanprover-community/riemann-hypothesis",
+  "baseline": "40e56bab026552e089d7afcfeff08d2defb9c005",
+  "days": [
+    {
+      "day": "2026-11-20",
+      "pin": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "before": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "comparison": "40e56bab026552e089d7afcfeff08d2defb9c005..e50d09817ad81469f737e8f637561e6ccf86c670",
+      "closed": true,
+      "captures": [
+        {
+          "pin": "e50d09817ad81469f737e8f637561e6ccf86c670",
+          "comparison": "40e56bab026552e089d7afcfeff08d2defb9c005..e50d09817ad81469f737e8f637561e6ccf86c670"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "day": "2026-11-21",
+      "pin": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "before": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "comparison": "e50d09817ad81469f737e8f637561e6ccf86c670..f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "closed": true,
+      "captures": [
+        {
+          "pin": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+          "comparison": "e50d09817ad81469f737e8f637561e6ccf86c670..f28a764e76a18f68680446bf09682c24d1a8b5c4"
+        }
+      ],
+      "changes": [
+        {
+          "pin": "8f558a8848a80dac6851a00a95ca477ff403e922",
+          "title": "simplify Main imports and remove six unused modules",
+          "pr": 8
+        },
+        {
+          "pin": "7da4577eb40dd74b09218d111114ca43bc2ad226",
+          "title": "Prune unused top-level imports and 11,163 unreachable dead modules",
+          "pr": 45
+        }
+      ]
+    },
+    {
+      "day": "2026-11-22",
+      "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "before": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+          "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae"
+        }
+      ],
+      "changes": [
+        {
+          "pin": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+          "title": "Simplify explicit typeclass dumps in 5 CapelliIdentities files",
+          "pr": 57
+        },
+        {
+          "pin": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
+          "title": "Simplify explicit typeclass dump in CapelliIdentities/FixPiIff.lean",
+          "pr": 60
+        },
+        {
+          "pin": "f1f6d65420dbbf36d6cfdac1af8d79511a855a5b",
+          "title": "Simplify explicit typeclass dumps in 4 kernel-used CapelliIdentities files",
+          "pr": 65
+        },
+        {
+          "pin": "09201d6a839516534e62aa598ff5ed82724105ac",
+          "title": "Share the rank-induction proof of GL finiteness (9,010 fewer Lean lines)",
+          "pr": 68
+        }
+      ]
+    }
+  ],
+  "editions": {
+    "40e56bab026552e089d7afcfeff08d2defb9c005": {
+      "sourceTree": "b41b516b1f7baee4d83ced235ecc71fd43c97695",
+      "sourceFiles": 175187,
+      "lines": 17374215,
+      "written": 818755,
+      "states": [
+        818755,
+        0,
+        0,
+        0,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "c51b8f975bd7014d4e15c193711802e009f2fd8279c3cc88e42f11b22d29b0af",
+        "locations.json.gz": "0c244a29ec3f4090d74d395747f7ddaf67cc04ac78c794f91072d26a7166d80e"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "3": []
+      },
+      "commit": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "assetPin": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "committedAt": "2026-11-20T14:36:09Z",
+      "checkedLinks": 24,
+      "summarySha256": "24862c26e85123600b4964452dc74e34040c09a42c4b882fbd4f086f3e93c35a"
+    },
+    "e50d09817ad81469f737e8f637561e6ccf86c670": {
+      "sourceTree": "24df20b62d9976ccd20da819bc20b16f808f0fdd",
+      "sourceFiles": 175187,
+      "lines": 17374215,
+      "written": 818755,
+      "states": [
+        818755,
+        0,
+        0,
+        0,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "c51b8f975bd7014d4e15c193711802e009f2fd8279c3cc88e42f11b22d29b0af",
+        "locations.json.gz": "0c244a29ec3f4090d74d395747f7ddaf67cc04ac78c794f91072d26a7166d80e"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "3": []
+      },
+      "commit": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "assetPin": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "committedAt": "2026-11-20T20:43:21Z",
+      "checkedLinks": 24,
+      "summarySha256": "28367a0fcf65efeca4334247ca33f2f3194ffefa21fd36a73b17f64bc1d10b77"
+    },
+    "f28a764e76a18f68680446bf09682c24d1a8b5c4": {
+      "sourceTree": "50296bb63a4263e1cbbb8853e67ea10881bbd68f",
+      "sourceFiles": 164463,
+      "lines": 16588671,
+      "written": 785975,
+      "states": [
+        785692,
+        283,
+        32780,
+        0,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "05a98b61eb6265600e8aa0f6dd4ff1c46c571e8037d9d4fca2c8dccc3503c4cf",
+        "locations.json.gz": "e49ba22b402a725816cf9c6b9ff6ae396aa6c47aafd8c294da71c8e0540eb97a"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "2": [
+          9441,
+          9442,
+          9443,
+          9444,
+          9445,
+          9800,
+          9801,
+          9839,
+          9840,
+          9841,
+          10244,
+          10245
+        ],
+        "1": [
+          408853,
+          408854,
+          408855,
+          408856,
+          409074,
+          409075,
+          409417,
+          409418,
+          409593,
+          409594,
+          409595,
+          409906
+        ],
+        "3": []
+      },
+      "commit": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "assetPin": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "committedAt": "2026-11-21T21:33:02Z",
+      "checkedLinks": 72,
+      "summarySha256": "9218c4d399895ae65e21fd1b306cd00c8cef35c0e825ad05eb902df37aeb5466"
+    },
+    "7cce738ba719a32964ca3822d0994f4c6952c7ae": {
+      "sourceTree": "32d5e33acd950c25bc30a9b30fc6d14686630c28",
+      "sourceFiles": 164282,
+      "lines": 16562305,
+      "written": 785531,
+      "states": [
+        785203,
+        328,
+        33224,
+        0,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "2025cdebc8f90d7a4b7a5e54360d7d4fd6e175a077383a297e550c4eb15fb5ad",
+        "locations.json.gz": "4c873d406c6da103ca04acfaf48526ccf2c6bae78f894620421f24f3e1e07eef"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "2": [
+          9441,
+          9442,
+          9443,
+          9444,
+          9445,
+          9800,
+          9801,
+          9839,
+          9840,
+          9841,
+          10244,
+          10245
+        ],
+        "1": [
+          87978,
+          408853,
+          408854,
+          408855,
+          408856,
+          409074,
+          409075,
+          409417,
+          409418,
+          409593,
+          409594,
+          409595
+        ],
+        "3": []
+      },
+      "commit": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "assetPin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "committedAt": "2026-11-22T11:08:58Z",
+      "checkedLinks": 72,
+      "summarySha256": "57b012efc55587b4dd907d4220a8148a59b632912e43c8fd6603b822be6a10ed"
+    },
+    "2dea99006976a5104032e495d7513dee40fbb5ca": {
+      "sourceTree": "32d5e33acd950c25bc30a9b30fc6d14686630c28",
+      "sourceFiles": 164282,
+      "lines": 16562305,
+      "written": 785531,
+      "states": [
+        785203,
+        328,
+        33224,
+        0,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "2025cdebc8f90d7a4b7a5e54360d7d4fd6e175a077383a297e550c4eb15fb5ad",
+        "locations.json.gz": "4c873d406c6da103ca04acfaf48526ccf2c6bae78f894620421f24f3e1e07eef"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "2": [
+          9441,
+          9442,
+          9443,
+          9444,
+          9445,
+          9800,
+          9801,
+          9839,
+          9840,
+          9841,
+          10244,
+          10245
+        ],
+        "1": [
+          87978,
+          408853,
+          408854,
+          408855,
+          408856,
+          409074,
+          409075,
+          409417,
+          409418,
+          409593,
+          409594,
+          409595
+        ],
+        "3": []
+      },
+      "commit": "2dea99006976a5104032e495d7513dee40fbb5ca",
+      "assetPin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "committedAt": "2026-11-22T07:30:37Z",
+      "checkedLinks": 72,
+      "summarySha256": "57b012efc55587b4dd907d4220a8148a59b632912e43c8fd6603b822be6a10ed"
+    },
+    "607375a494cceb57576114deb9e1b8fff53ca0cb": {
+      "sourceTree": "55e13cf8e6f98a4e94a8669a83f9b1e3c9299f11",
+      "sourceFiles": 150452,
+      "lines": 14446809,
+      "written": 677279,
+      "states": [
+        503435,
+        173841,
+        141479,
+        3,
+        0
+      ],
+      "assets": {
+        "states.bin.gz": "7eade21d02e3ec9b28c5382a7132896331214afc21307e4aa0e3d0e6d8c098e7",
+        "locations.json.gz": "614a61edfa85a7ff4df6150d903649d00c04a14acda7e9977e10c502ee943ae8"
+      },
+      "examples": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "1": [
+          18,
+          19,
+          20,
+          43,
+          45,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757
+        ]
+      },
+      "commit": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "assetPin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "committedAt": "2026-11-22T08:50:12Z",
+      "checkedLinks": 75,
+      "summarySha256": "c5fc4386f021df36e5df79dae77170ef003c7ed7f8774f2d6c473e09c932a3de"
+    }
+  },
+  "comparisons": {
+    "40e56bab026552e089d7afcfeff08d2defb9c005..e50d09817ad81469f737e8f637561e6ccf86c670": {
+      "before": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "after": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "removed": 0,
+      "added": 0,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 818755,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesEdited": 0,
+      "insertedLines": 0,
+      "deletedLines": 0,
+      "sha256": "29abebfcbf519c80c755ffc9c44e607a5756ebe14cb0a53bb38adbc98fa1cd66",
+      "asset": "pairs/40e56bab026552e089d7afcfeff08d2defb9c005..e50d09817ad81469f737e8f637561e6ccf86c670.json.gz"
+    },
+    "e50d09817ad81469f737e8f637561e6ccf86c670..f28a764e76a18f68680446bf09682c24d1a8b5c4": {
+      "before": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "after": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "removed": 32780,
+      "added": 0,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 785975,
+      "filesAdded": 0,
+      "filesRemoved": 10724,
+      "filesEdited": 13,
+      "insertedLines": 7,
+      "deletedLines": 785551,
+      "sha256": "73f9c5bb841533a4a448f25b7522bde8ca97d95792a5ac77d6adfae452681ea7",
+      "asset": "pairs/e50d09817ad81469f737e8f637561e6ccf86c670..f28a764e76a18f68680446bf09682c24d1a8b5c4.json.gz"
+    },
+    "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae": {
+      "before": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "after": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "removed": 444,
+      "added": 0,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 785531,
+      "filesAdded": 0,
+      "filesRemoved": 181,
+      "filesEdited": 11,
+      "insertedLines": 332,
+      "deletedLines": 26698,
+      "sha256": "51bcd79863de1e11bdcb3e7ce227fd7755ab24fa1d171b3d9a95725ef567d6bf",
+      "asset": "pairs/f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae.json.gz"
+    },
+    "2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb": {
+      "before": "2dea99006976a5104032e495d7513dee40fbb5ca",
+      "after": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "removed": 108255,
+      "added": 3,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 677276,
+      "filesAdded": 0,
+      "filesRemoved": 13830,
+      "filesEdited": 39418,
+      "insertedLines": 106810,
+      "deletedLines": 2222306,
+      "sha256": "a7af28d1fd5e7989d180ec42b101e2182b5ee1810b802504d0c55147316431d2",
+      "asset": "pairs/2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb.json.gz"
+    }
+  },
+  "proposals": {
+    "55": {
+      "pr": 55,
+      "title": "Remove declarations that are unused in the proof",
+      "head": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "base": "2dea99006976a5104032e495d7513dee40fbb5ca",
+      "comparison": "2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "status": "open",
+      "mergedAt": null,
+      "versions": [
+        {
+          "pr": 55,
+          "title": "Remove declarations that are unused in the proof",
+          "head": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+          "base": "2dea99006976a5104032e495d7513dee40fbb5ca",
+          "comparison": "2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb",
+          "status": "open",
+          "mergedAt": null,
+          "observedAt": "2026-11-22T12:23:10Z"
+        }
+      ]
+    }
+  },
+  "external": "verifytask/index.json",
+  "capturedAt": "2026-11-22T12:23:10Z",
+  "observedTip": "7cce738ba719a32964ca3822d0994f4c6952c7ae"
+}
