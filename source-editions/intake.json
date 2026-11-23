@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+  "tip": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
   "changes": [
     {
       "id": "merge-65",
@@ -47,6 +47,15 @@
       "commit": "b0ab0ada2632235c2bba9f40853531bbbf3a28d8",
       "description": "79 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 150
+    },
+    {
+      "id": "merge-185",
+      "title": "Integrate proof cleanup and bump to Lean 4.37.0-rc1",
+      "status": "merged",
+      "date": "2026-11-23",
+      "commit": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "description": "149,353 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 185
     }
   ]
 }
