@@ -44,15 +44,20 @@
     },
     {
       "day": "2026-11-22",
-      "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
       "before": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
-      "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae",
-      "closed": false,
+      "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "closed": true,
       "captures": [
         {
           "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
           "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..7cce738ba719a32964ca3822d0994f4c6952c7ae",
           "observedAt": "2026-11-22T12:23:10Z"
+        },
+        {
+          "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+          "comparison": "f28a764e76a18f68680446bf09682c24d1a8b5c4..1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+          "endExclusive": "2026-11-23T00:00:00Z"
         }
       ],
       "changes": [
@@ -75,6 +80,42 @@
           "pin": "09201d6a839516534e62aa598ff5ed82724105ac",
           "title": "Share the rank-induction proof of GL finiteness (9,010 fewer Lean lines)",
           "pr": 68
+        },
+        {
+          "pin": "14f383e5edeae10b9991d9b8aec26b58aabc57eb",
+          "title": "Bump to Lean and Mathlib v4.36.0",
+          "pr": 66
+        },
+        {
+          "pin": "c7791603122c0328f79e49f6be5d7d4402effc53",
+          "title": "Land the first reviewed Lean 4.36 cleanup batch",
+          "pr": 115
+        },
+        {
+          "pin": "b0ab0ada2632235c2bba9f40853531bbbf3a28d8",
+          "title": "Complete the remaining reviewed Lean 4.36 cleanup",
+          "pr": 150
+        }
+      ]
+    },
+    {
+      "day": "2026-11-23",
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "before": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "comparison": "1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+          "comparison": "1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+          "observedAt": "2026-11-23T07:54:22Z"
+        }
+      ],
+      "changes": [
+        {
+          "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+          "title": "Integrate proof cleanup and bump to Lean 4.37.0-rc1",
+          "pr": 185
         }
       ]
     }
@@ -567,6 +608,166 @@
       "committedAt": "2026-11-21T21:49:34Z",
       "checkedLinks": 75,
       "summarySha256": "4ca92c57f3b43e2440e261e65ecb72039d89eab9a400465c3dc2f2e301c09aff"
+    },
+    "1cc42d2c900ba764cb63e3c36383c720f30a77ca": {
+      "sourceTree": "612386007adebbfa6651fdca9b1ab8f560ab2722",
+      "sourceFiles": 149396,
+      "lines": 15168574,
+      "written": 666649,
+      "states": [
+        0,
+        665988,
+        152738,
+        632,
+        29
+      ],
+      "assets": {
+        "states.bin.gz": "29f3589f50a46e3a6835d1b1c985240992ccd3b51f6f48a0b8afde16208d92b0",
+        "locations.json.gz": "4e23bce66a9d6353c47deaa49c648467bd58ff3b6547e09002ce15435e072c18"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "2": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          44,
+          46,
+          47
+        ],
+        "4": [
+          3487,
+          7251,
+          7252,
+          7465,
+          7569,
+          7957,
+          99774,
+          411224,
+          420860,
+          432379,
+          432380,
+          432382
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "assetPin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "committedAt": "2026-11-22T22:12:13Z",
+      "checkedLinks": 96,
+      "summarySha256": "29bcae54019e1b280e1b8b561f03e1cfc798e65e7ea31e91b037bfbed59af623"
+    },
+    "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0": {
+      "sourceTree": "b050c420c303cd0fd127a79d2700883fa399c18f",
+      "sourceFiles": 149216,
+      "lines": 20788873,
+      "written": 666380,
+      "states": [
+        0,
+        665557,
+        153169,
+        794,
+        29
+      ],
+      "assets": {
+        "states.bin.gz": "d595240cdaa4885e8a9be2bc396f3c3d84da58123a65f08458fe6966b4ce142f",
+        "locations.json.gz": "7312596fb5ecc6924f826ff441296d6b12a90fe92f85802dfafc733824ecfdad"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "2": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          44,
+          46,
+          47
+        ],
+        "4": [
+          3487,
+          7251,
+          7252,
+          7465,
+          7569,
+          7957,
+          99774,
+          411224,
+          420860,
+          432379,
+          432380,
+          432382
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "assetPin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "committedAt": "2026-11-23T07:20:10Z",
+      "checkedLinks": 96,
+      "summarySha256": "39a88d44a7e1100c2664ba206a62fd6b855bab3466374d5c3161d8d385b8a25e"
     }
   },
   "comparisons": {
@@ -654,6 +855,40 @@
       "deletedLines": 2222486,
       "sha256": "6d28505df1d6d6cb1572b09b970950fbae36a4335b1c77c75e1f8566bbddb600",
       "asset": "pairs/7da4577eb40dd74b09218d111114ca43bc2ad226..a7016a34bb7e84e8f031c2179bd71cb9c20f2517.json.gz"
+    },
+    "f28a764e76a18f68680446bf09682c24d1a8b5c4..1cc42d2c900ba764cb63e3c36383c720f30a77ca": {
+      "before": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "after": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "removed": 119958,
+      "added": 632,
+      "moved": 29,
+      "ambiguousRemoved": 3,
+      "ambiguousAdded": 2,
+      "retained": 666017,
+      "filesAdded": 1,
+      "filesRemoved": 15068,
+      "filesEdited": 149395,
+      "insertedLines": 1876007,
+      "deletedLines": 3296104,
+      "sha256": "03157cfaabd772ea99c0c79e2492f88b5d1eb470be969c19f9fc99963b7eda75",
+      "asset": "pairs/f28a764e76a18f68680446bf09682c24d1a8b5c4..1cc42d2c900ba764cb63e3c36383c720f30a77ca.json.gz"
+    },
+    "1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0": {
+      "before": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "after": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "removed": 432,
+      "added": 163,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 666217,
+      "filesAdded": 0,
+      "filesRemoved": 180,
+      "filesEdited": 149173,
+      "insertedLines": 6337345,
+      "deletedLines": 717046,
+      "sha256": "e0d9de0193602567ad1e46d1ce10b1f1d5d74d1e5a6b025595832bb7024967c6",
+      "asset": "pairs/1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0.json.gz"
     }
   },
   "proposals": {
@@ -690,6 +925,6 @@
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-22T12:43:25Z",
-  "observedTip": "7cce738ba719a32964ca3822d0994f4c6952c7ae"
+  "capturedAt": "2026-11-23T07:54:22Z",
+  "observedTip": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0"
 }
