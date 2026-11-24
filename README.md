@@ -2,7 +2,9 @@
 
 Explore the written Lean theorems and lemmas of the Riemann hypothesis project on Leland McInnes’s map of arXiv papers. Select a subject or proof bundle, click a theorem, and follow **Open Lean source** to its original line. **Trace full graph path** explains how one of the five endpoint statements reaches the chosen theorem.
 
-**[Explore the map](https://nasqret.github.io/riemann-proof-atlas/)** · [Watch the 52-second tour](https://nasqret.github.io/riemann-proof-atlas/film/) · [Reading notes](https://nasqret.github.io/riemann-proof-atlas/notes.html) · [Public reading dashboard](https://nasqret.github.io/riemann-rev/) · [Original paper map](https://lmcinnes.github.io/datamapplot_examples/arXiv/)
+**[Explore the map](https://nasqret.github.io/riemann-proof-atlas/)** · [Rubinstein’s reading guide](https://nasqret.github.io/riemann-proof-atlas/rubinstein.html) · [Watch the 52-second tour](https://nasqret.github.io/riemann-proof-atlas/film/) · [Reading notes](https://nasqret.github.io/riemann-proof-atlas/notes.html) · [Public reading dashboard](https://nasqret.github.io/riemann-rev/) · [Original paper map](https://lmcinnes.github.io/datamapplot_examples/arXiv/)
+
+The guide follows 521 citation stops in Michael O. Rubinstein’s 265-page working draft. Select a citation to see its position and open its exact Lean lines. The reader opens the original PDF at Waterloo. Choose a saved copy of version 2 for highlights on the printed names. [Begin on page 61](https://nasqret.github.io/riemann-proof-atlas/rubinstein.html#page=61&cite=QH.thinH)
 
 **[Daily snapshot dashboard](https://nasqret.github.io/riemann-proof-atlas/daily.html)** · [Official history](https://nasqret.github.io/riemann-proof-atlas/daily.html#track=official) · [PR #55 revisions](https://nasqret.github.io/riemann-proof-atlas/daily.html#track=proposal) · [VerifyTask and contributor changes](https://nasqret.github.io/riemann-proof-atlas/daily.html#track=verifytask) · [Daily capture runs](https://github.com/nasqret/riemann-proof-atlas/actions/workflows/atlas-daily.yml)
 

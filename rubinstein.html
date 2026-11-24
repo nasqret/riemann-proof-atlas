@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/fonts.606fe45d6671852a.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/tokens.0449755fae6a8186.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/shell.ee75c7f6e1577330.css">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Follow the Lean citations in Michael O. Rubinstein’s working draft for the Riemann zeta function, page by page on the proof atlas."
+    />
+    <meta name="theme-color" content="#142c28" />
+    <title>Rubinstein’s reading path · Riemann proof atlas</title>
+    <link rel="stylesheet" href="rubinstein/reading.css" />
+    <script type="module" src="rubinstein/reading.js"></script>
+  <link rel="stylesheet" href="navigation/menus.87309a92af4e50d3.css"><script type="module" src="navigation/menus.80fa5ead06db55aa.js"></script></head>
+  <body data-site-page="rubinstein">
+    <a class="site-skip" href="#reading">Skip to content</a>
+<header class="atlas-shell"><div class="atlas-shell-inner"><a class="site-brand" id="origin" href="index.html" aria-label="Riemann proof atlas, return to the original map"><span class="site-mark" aria-hidden="true">ζ</span><span>Riemann proof atlas</span></a><nav class="site-nav atlas-navigation" aria-label="Atlas navigation"><a href="index.html" data-destination="explorer" tabindex="0" id="home">Explorer</a><a href="rubinstein.html" data-destination="rubinstein" tabindex="0" aria-current="page">Rubinstein’s guide</a><details class="atlas-nav-group" data-group="proof" name="atlas-sections"><summary>Proof</summary><div class="atlas-nav-links"><a href="index.html#statement" data-destination="statement" tabindex="0">What is proved</a><a href="index.html#chapter" data-destination="chapters" tabindex="0">Chapters</a><a href="companion/index.html" data-destination="proofs" tabindex="0">Proof reader</a></div></details><details class="atlas-nav-group" data-group="atlas" name="atlas-sections"><summary>Atlas</summary><div class="atlas-nav-links"><a href="daily.html" data-destination="history" tabindex="0">History</a><a href="editions.html" data-destination="editions" tabindex="0">Editions</a><a href="notes.html" data-destination="method" tabindex="0">Method and sources</a></div></details></nav></div></header>
+    <main id="reading" tabindex="-1">
+      <header class="intro">
+        <div>
+          <h1>Rubinstein’s reading path</h1>
+          <p>
+            Follow the Lean citations in Michael O. Rubinstein’s working
+            draft for the Riemann zeta function.
+          </p>
+        </div>
+        <details class="about">
+          <summary>How the path is placed</summary>
+          <div>
+            <p id="coverage">Loading the page concordance…</p>
+            <p>
+              Filled dots use the declaration’s position in the submitted atlas.
+              Outlined dots sit near a mapped declaration connected by a Lean
+              reference, file, proof unit, or source directory. Select an
+              outlined dot to inspect that connection. Gaps between cited pages
+              break the reading path.
+            </p>
+            <p>
+              Rubinstein’s draft reduces the main inequality to thirteen
+              hypotheses and identifies the inputs it takes from Lean.
+            </p>
+            <a
+              href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/"
+              target="_blank"
+              rel="noopener"
+              >Author’s introduction and version history</a
+            >
+          </div>
+        </details>
+      </header>
+      <nav
+        class="mobile-jump"
+        aria-label="Reading panes and citation navigation"
+      >
+        <a href="#map-pane" id="jumpMap">Map</a
+        ><a href="#paper-pane" id="jumpPaper">Write-up</a>
+        <div>
+          <button id="mobilePrev" aria-label="Previous reading stop" disabled>
+            Previous</button
+          ><button id="mobileNext" aria-label="Next reading stop" disabled>
+            Next
+          </button>
+        </div>
+      </nav>
+      <div class="spread">
+        <section
+          class="map-pane"
+          id="map-pane"
+          aria-label="Reading path on the arXiv map"
+        >
+          <div class="pane-heading">
+            <h2>Reading map</h2>
+            <div class="layers">
+              <label class="switch"
+                ><input type="checkbox" id="background" /> Atlas dots</label
+              ><label class="switch"
+                ><input type="checkbox" id="whole" /> Whole path</label
+              >
+            </div>
+          </div>
+          <div class="map-wrap">
+            <div
+              id="viewport"
+              tabindex="0"
+              aria-label="Reading path map. Drag to pan, use plus or minus to zoom. Every stop can also be chosen below."
+            >
+              <canvas id="map" aria-hidden="true"></canvas>
+            </div>
+            <div id="tip" hidden role="tooltip"></div>
+            <div class="map-zoom" aria-label="Map controls">
+              <button type="button" id="zoomIn" aria-label="Zoom map in">
+                +</button
+              ><button type="button" id="zoomOut" aria-label="Zoom map out">
+                −</button
+              ><button type="button" id="fit" aria-label="Fit path in map">
+                Fit
+              </button>
+            </div>
+            <div id="mapPlacement" class="placement-badge" hidden></div>
+            <div class="legend" aria-label="Map legend">
+              <span class="legend-entry"><i class="trail-symbol"></i> Citation order</span>
+              <span class="legend-entry"><i class="context-symbol"></i> Context</span>
+              <span class="legend-entry"><i class="active-symbol"></i> Selected</span>
+            </div>
+            <span id="scale">1×</span
+            ><span id="scene" hidden>arXiv paper map</span>
+          </div>
+          <div class="map-caption">
+            <p>The dashed path follows the order of citations in the write-up. Region names describe clusters of arXiv papers.</p>
+            <label class="switch"><input type="checkbox" id="dependencies" disabled /> Show Lean references for this stop</label>
+            <div id="referenceDetails" hidden>
+              <p id="referenceStatus" role="status"></p>
+              <div class="edge-key" id="edgeKey">
+                <span><i class="edge-out"></i> Uses</span>
+                <span><i class="edge-in"></i> Used by</span>
+              </div>
+              <details id="neighborList" hidden>
+                <summary>Inspect connected theorems</summary>
+                <ul id="neighborLinks"></ul>
+              </details>
+            </div>
+          </div>
+          <section class="passage" aria-label="Selected citation">
+            <div class="passage-head">
+              <span id="stopStatus" role="status"></span>
+              <div class="step-controls">
+                <button id="previous" disabled>Previous stop</button
+                ><button id="next" class="primary" disabled>Next stop</button>
+              </div>
+            </div>
+            <h3 id="citationTitle">Loading citations…</h3>
+            <p id="placement"></p>
+            <div id="placementEvidence" hidden>
+              <p><span id="evidenceLead"></span> <a id="anchorLink"></a></p>
+              <p id="paperEvidence" hidden>Also cited on <a id="paperNeighbor"></a></p>
+            </div>
+            <label id="selectLabel" for="citations"
+              >Citations on this page</label
+            ><select id="citations" disabled></select>
+            <div class="source-actions">
+              <a id="leanSource" target="_blank" rel="noopener" hidden
+                >Open Lean source</a
+              ><a id="explore" hidden>Inspect in Explorer</a
+              ><button class="link-button" id="focus" hidden>
+                Center on this dot
+              </button>
+            </div>
+            <details class="unit-context" id="context" hidden>
+              <summary>Component attribution of this Lean unit</summary>
+              <p id="contextText"></p>
+            </details>
+          </section>
+        </section>
+        <section
+          class="paper-pane"
+          id="paper-pane"
+          aria-label="Rubinstein’s write-up"
+        >
+          <div class="pane-heading">
+            <h2>The write-up</h2>
+            <a
+              id="original"
+              target="_blank"
+              rel="noopener"
+              href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf"
+              >Author’s PDF</a
+            >
+          </div>
+          <div class="paper-controls">
+            <div class="page-controls">
+              <button id="pagePrev" aria-label="Previous PDF page" disabled>
+                ‹</button
+              ><label for="pageNo">Page</label
+              ><input
+                type="number"
+                id="pageNo"
+                min="1"
+                max="265"
+                inputmode="numeric"
+                value="61"
+                disabled
+              /><span id="pageCount">/ 265</span
+              ><button id="pageNext" aria-label="Next PDF page" disabled>
+                ›
+              </button>
+            </div>
+            <label class="zoom-label" id="localZoom" hidden
+              >Page zoom
+              <select id="pdfZoom">
+                <option value="1">Fit width</option>
+                <option value="1.3">130%</option>
+                <option value="1.6">160%</option>
+                <option value="2">200%</option>
+              </select></label
+            >
+          </div>
+          <div class="remote-citations" id="remoteCitationBar" hidden>
+            <span id="remoteCitationLabel">Printed mentions</span>
+            <div id="remoteCitations" role="group" aria-labelledby="remoteCitationLabel"></div>
+            <p id="remoteEmpty" hidden>No indexed Lean names on this page.</p>
+          </div>
+          <div
+            class="paper-scroll"
+            id="paperScroll"
+            tabindex="0"
+            aria-label="Scrollable document page"
+          >
+            <p class="paper-load" id="paperLoad" role="status">
+              Opening the write-up…
+            </p>
+            <div id="sheet" hidden>
+              <canvas id="pdfCanvas" aria-hidden="true"></canvas>
+              <div id="pdfText" class="text-layer"></div>
+              <div id="marks" aria-label="Printed citation highlights"></div>
+            </div>
+            <iframe
+              id="remotePdf"
+              title="Rubinstein’s original Waterloo PDF"
+              referrerpolicy="no-referrer"
+              hidden
+            ></iframe>
+            <div class="remote-fallback" id="remoteFallback" hidden>
+              <h3>Read this page at Waterloo</h3>
+              <p>Open the author’s PDF in your browser, or choose a saved copy below to read it with citation highlights.</p>
+              <a id="remotePageLink" target="_blank" rel="noopener noreferrer"
+                href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf">Open this page</a>
+            </div>
+          </div>
+          <div class="paper-foot">
+            <span>Waterloo · 22 November 2026 · v2</span
+            ><label class="file-label"
+              >Open local PDF<input
+                id="file"
+                type="file"
+                accept="application/pdf"
+            /></label>
+          </div>
+          <div class="paper-options" id="paperOptions" hidden>
+            <span>Open a saved copy of v2 for highlights on the page.</span>
+            <button type="button" id="toggleEmbed" class="link-button" aria-controls="remotePdf">Hide embedded PDF</button>
+          </div>
+          <p id="pdfError" role="status" hidden></p>
+        </section>
+      </div>
+      <section class="navigator" aria-label="Browse pages of the exposition">
+        <div class="timeline-heading">
+          <h2>Pages in the exposition</h2>
+          <span id="pageStatus"></span>
+        </div>
+        <div
+          id="timeline"
+          role="group"
+          aria-label="Pages with named Lean declarations"
+        ></div>
+        <div class="part-nav">
+          <button data-page="1">Title page</button><span id="parts"></span>
+        </div>
+      </section>
+      <p id="error" role="alert" hidden></p>
+    </main>
+  </body>
+</html>
