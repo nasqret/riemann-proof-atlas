@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "73958da58a8a4d1f61b789745c5444baf6247cae",
+  "tip": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
   "changes": [
     {
       "id": "merge-65",
@@ -128,6 +128,51 @@
       "commit": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
       "description": "1,275 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 896
+    },
+    {
+      "id": "merge-1018",
+      "title": "chore: batch 4 of 121 small PRs",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "bb9476b875a219608a9068f8f18d8c56b4e7f1ca",
+      "description": "1,778 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1018
+    },
+    {
+      "id": "merge-1119",
+      "title": "chore: batch 5 of 68 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "1cd97d8aa4a16681b109389ab18eefa4b2ba36d8",
+      "description": "1,335 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1119
+    },
+    {
+      "id": "merge-1198",
+      "title": "chore: batch 6 of 68 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "1da818b50f1e18808db2792b9dc735bda8cb84d8",
+      "description": "8,402 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1198
+    },
+    {
+      "id": "merge-1266",
+      "title": "chore: batch 7 of 65 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "307cef33f046955ee79dba47e0d828d06496d75f",
+      "description": "3,252 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1266
+    },
+    {
+      "id": "merge-1313",
+      "title": "chore: batch 8 of 46 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+      "description": "440 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1313
     }
   ]
 }
