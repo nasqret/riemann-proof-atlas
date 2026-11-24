@@ -55,6 +55,9 @@ async function keyboardMenus(page) {
     await summary.focus();
     await summary.press('Enter');
     await link(page, first).waitFor();
+    // A delayed reader update can announce its current URL while a menu is in use.
+    await page.evaluate(() => window.dispatchEvent(new Event('atlas-address-change')));
+    assert.equal(await details.evaluate((e) => e.open), true, 'An update within the same section preserves the open menu');
     await page.keyboard.press('Tab');
     assert.equal(await link(page, first).evaluate((e) => e === document.activeElement), true, `Tab enters ${name}`);
     await page.keyboard.press('Escape');
@@ -71,11 +74,18 @@ async function chooseNav(page, key) {
 async function checkRetainedDestinations(page) {
   for (const [key, ready] of [
     ['statement', '[data-reader-view="statement"]'], ['chapters', '[data-reader-view="chapters"]'],
-    ['proofs', '#viewer'], ['history', '#contents h2'], ['editions', 'body[data-ready="true"]'],
+    ['proofs', '#viewer'], ['history', 'body[data-ready="official"]'], ['editions', 'body[data-ready="true"]'],
     ['method', 'section#method'],
   ]) {
     await chooseNav(page, key);
     await page.locator(ready).first().waitFor({ state: 'attached' });
+    if (key === 'history') {
+      // The history page renders its bundled index first, then the daily remote feed.
+      // Finish the refresh before leaving this page and cancelling its ledger fetch.
+      await page.waitForLoadState('networkidle');
+      await page.locator('body[data-ready="official"] #contents h2').first().waitFor();
+      assert.equal(await page.locator('#contents [role="alert"]').count(), 0);
+    }
     await checkShell(page, key);
   }
   await page.goto(absolute('index.html#chapter=1.5992'), { waitUntil: 'domcontentloaded' });
@@ -240,6 +250,32 @@ async function withoutPDFViewer() {
   }
 }
 
+async function menuDuringStartup() {
+  const context = await browser.newContext({ reducedMotion: 'reduce' });
+  let release;
+  const resumeMenu = new Promise(resolve => { release = resolve; });
+  try {
+    const page = await context.newPage();
+    await page.route('**/navigation/menus.*.js', async route => {
+      await resumeMenu;
+      await route.continue();
+    });
+    await page.goto(absolute('companion/index.html'), { waitUntil: 'commit' });
+    const atlas = group(page, 'atlas');
+    await atlas.locator('summary').click();
+    await link(page, 'history').waitFor();
+    release();
+    await page.waitForLoadState('domcontentloaded');
+    assert.equal(await atlas.evaluate(e => e.open), true, 'Loading the shared navigation preserves a native open menu');
+    await link(page, 'history').click();
+    assert.equal(new URL(page.url()).pathname, new URL('daily.html', base).pathname);
+    return true;
+  } finally {
+    release();
+    await context.close();
+  }
+}
+
 try {
   const requests = await browser.newContext();
   const json = async (path) => {
@@ -260,8 +296,9 @@ try {
   const viewports = [];
   for (const [width, height] of [[1440, 960], [390, 844]]) viewports.push(await run(width, height, data, placements));
   const fallback = await withoutPDFViewer();
+  const earlyMenu = await menuDuringStartup();
   const result = { base: base.href, engine, version: browser.version(), viewports, sourcePin: data.sourcePin,
-    upstreamStatus: upstream.status(), withoutPDFViewer: fallback,
+    upstreamStatus: upstream.status(), withoutPDFViewer: fallback, menuDuringStartup: earlyMenu,
     pages: data.pages.length, stops: data.pages.flat().length, declarations: Object.keys(data.declarations).length, contextual: proxyIds.length };
   if (options.receipt) await writeFile(options.receipt, JSON.stringify(result, null, 2) + '\n');
   console.log(JSON.stringify(result));
