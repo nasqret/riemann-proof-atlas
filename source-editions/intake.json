@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+  "tip": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
   "changes": [
     {
       "id": "merge-65",
@@ -56,6 +56,33 @@
       "commit": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
       "description": "149,353 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 185
+    },
+    {
+      "id": "merge-221",
+      "title": "Replace redundant proofs with Mathlib or internal reuse",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "98cc3736f046abae883d8cda839c84f3004257a7",
+      "description": "3,369 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 221
+    },
+    {
+      "id": "merge-324",
+      "title": "perf: delete thin wrappers and combine modules into import-graph clumps",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "ecc801f3f81d5b8a28b06867db81978668622992",
+      "description": "101,356 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 324
+    },
+    {
+      "id": "merge-539",
+      "title": "chore: batch small proof cleanups and statement removals (ported onto #324)",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "c82871e6002287776ae8a7c9a1a79926f15c3c8e",
+      "description": "1,642 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 539
     }
   ]
 }
