@@ -1,5 +1,5 @@
-import { ReadingMap } from "./path-map.js";
-import { Paper } from "./paper.js";
+import { ReadingMap } from "./path-map.js?v=1ef9e74caf809c67";
+import { Paper } from "./paper.js?v=f44dd8e8329de811";
 
 const $ = (id) => document.getElementById(id);
 const option = (text, value) => new Option(text, value);
@@ -41,7 +41,7 @@ function contextMatches(context, path) {
 
 async function start() {
   const [response, candidate] = await Promise.all([
-    fetch(new URL("./path.json", import.meta.url)),
+    fetch(new URL("./path.json?v=a58f0bb48749a893", import.meta.url)),
     readContext().catch(() => null),
   ]);
   if (!response.ok) throw Error("The page concordance could not be loaded.");

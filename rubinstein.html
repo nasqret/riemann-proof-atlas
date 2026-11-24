@@ -13,8 +13,8 @@
     />
     <meta name="theme-color" content="#142c28" />
     <title>Rubinstein’s reading path · Riemann proof atlas</title>
-    <link rel="stylesheet" href="rubinstein/reading.css" />
-    <script type="module" src="rubinstein/reading.js"></script>
+    <link rel="stylesheet" href="rubinstein/reading.css?v=6a0b859536b196c4" />
+    <script type="module" src="rubinstein/reading.js?v=c29d9f9628b8e08c"></script>
   <link rel="stylesheet" href="navigation/menus.87309a92af4e50d3.css"><script type="module" src="navigation/menus.c624a7346606912f.js"></script></head>
   <body data-site-page="rubinstein">
     <a class="site-skip" href="#reading">Skip to content</a>
@@ -225,13 +225,13 @@
             ></iframe>
             <div class="remote-fallback" id="remoteFallback" hidden>
               <h3>Read this page at Waterloo</h3>
-              <p>Open the author’s PDF in your browser, or choose a saved copy below to read it with citation highlights.</p>
+              <p>Open the author’s PDF at the selected page. A saved copy of version 2 also works with on-page highlights.</p>
               <a id="remotePageLink" target="_blank" rel="noopener noreferrer"
                 href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf">Open this page</a>
             </div>
           </div>
           <div class="paper-foot">
-            <span>Waterloo · 22 November 2026 · v2</span
+            <span>Rubinstein · 22 November 2026 · v2</span
             ><label class="file-label"
               >Open local PDF<input
                 id="file"
@@ -240,7 +240,7 @@
             /></label>
           </div>
           <div class="paper-options" id="paperOptions" hidden>
-            <span>Open a saved copy of v2 for highlights on the page.</span>
+            <button type="button" id="retryHighlights" class="link-button" hidden>Retry highlights</button>
             <button type="button" id="toggleEmbed" class="link-button" aria-controls="remotePdf">Hide embedded PDF</button>
           </div>
           <p id="pdfError" role="status" hidden></p>

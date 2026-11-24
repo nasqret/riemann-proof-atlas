@@ -7,6 +7,7 @@ export class Paper {
     this.choose = choose;
     this.page = null;
     this.epoch = 0;
+    this.loadId = 0;
     this.part = null;
     this.useFrame = navigator.pdfViewerEnabled === true;
     this.externalMode = false;
@@ -19,6 +20,8 @@ export class Paper {
       if (this.doc && this.width !== this.scroll.clientWidth) this.render();
     });
     this.observer.observe(this.scroll);
+    this.retry = $("retryHighlights");
+    this.retry?.addEventListener("click", () => this.init());
     $("toggleEmbed").onclick = () => {
       this.useFrame = !this.useFrame;
       this.external();
@@ -31,35 +34,54 @@ export class Paper {
       const file = e.target.files[0];
       e.target.value = "";
       if (!file) return;
+      const id = ++this.loadId;
+      this.download?.abort();
       try {
-        await this.openBytes(await file.arrayBuffer());
+        await this.openBytes(await file.arrayBuffer(), "local", id);
       } catch (err) {
-        this.error(err.message);
+        if (id === this.loadId) {
+          if (!this.doc) this.external();
+          this.error(err.message);
+        }
       }
     };
   }
 
   async init() {
-    const local = ["127.0.0.1", "localhost", "[::1]"].includes(
-      location.hostname,
-    );
-    if (local && location.pathname === "/rubinstein.html") {
-      try {
-        const response = await fetch(
-          new URL("rubinstein-local.pdf", document.baseURI),
-        );
-        if (
-          response.ok &&
-          response.headers.get("content-type")?.includes("application/pdf")
-        ) {
-          await this.openBytes(await response.arrayBuffer());
-          return;
-        }
-      } catch (err) {
-        this.error(err.message);
+    const authorURL = this.data.paper.readerUrl;
+    const privatePreview = ["127.0.0.1", "localhost", "[::1]"].includes(location.hostname)
+      && location.pathname === "/rubinstein.html";
+    if (!authorURL && !privatePreview) {
+      this.external();
+      return;
+    }
+    const id = ++this.loadId;
+    this.download?.abort();
+    const controller = new AbortController();
+    this.download = controller;
+    const timeout = setTimeout(() => controller.abort(), 30000);
+    if (this.retry) this.retry.disabled = true;
+    this.error("");
+    try {
+      const response = await fetch(authorURL || new URL("rubinstein-local.pdf", document.baseURI), {
+        credentials: "omit", referrerPolicy: "no-referrer", signal: controller.signal,
+      });
+      if (!response.ok) throw Error("The PDF download returned HTTP " + response.status + ".");
+      const bytes = await response.arrayBuffer();
+      await this.openBytes(bytes, authorURL ? "author" : "local", id);
+    } catch (err) {
+      if (id === this.loadId) {
+        this.external();
+        this.error("On-page highlights could not load. " +
+          (err.name === "AbortError" ? "The PDF download timed out." : err.message));
+      }
+    } finally {
+      clearTimeout(timeout);
+      if (this.download === controller) {
+        this.download = null;
+        if (this.retry) this.retry.disabled = false;
       }
     }
-    if (!this.doc) this.external();
   }
 
   error(message) {
@@ -67,11 +89,12 @@ export class Paper {
     $("pdfError").hidden = !message;
   }
 
-  async openBytes(bytes) {
+  async openBytes(bytes, source, id) {
     const digest = Array.from(
       new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)),
       (n) => n.toString(16).padStart(2, "0"),
     ).join("");
+    if (id !== this.loadId) return;
     if (digest !== this.data.paper.sha256)
       throw Error(
         "This file is a different edition. Choose Rubinstein’s Waterloo v2 PDF, dated 22 November 2026.",
@@ -87,22 +110,27 @@ export class Paper {
       data: new Uint8Array(bytes),
       isEvalSupported: false,
     }).promise;
-    if (doc.numPages !== this.data.pages.length)
+    if (id !== this.loadId) {
+      await doc.destroy();
+      return;
+    }
+    if (doc.numPages !== this.data.pages.length) {
+      await doc.destroy();
       throw Error("The PDF page count differs from the page index.");
+    }
     const old = this.doc;
     this.doc = doc;
     this.TextLayer = pdfjs.TextLayer;
-    if (old) await old.destroy();
     this.externalMode = false;
     this.hideFrame();
-    this.scroll.dataset.source = "local";
+    this.scroll.dataset.source = source;
     $("remoteFallback").hidden = true;
     $("remoteCitationBar").hidden = true;
     $("paperOptions").hidden = true;
     $("localZoom").hidden = false;
     $("pdfZoom").disabled = false;
     this.error("");
-    await this.render();
+    await Promise.all([this.render(), old?.destroy()]);
   }
 
   external() {
@@ -111,6 +139,7 @@ export class Paper {
     this.sheet.hidden = true;
     $("remoteCitationBar").hidden = false;
     $("paperOptions").hidden = false;
+    if (this.retry) this.retry.hidden = !this.data.paper.readerUrl;
     $("localZoom").hidden = true;
     $("pdfZoom").disabled = true;
     $("remoteFallback").hidden = this.useFrame;

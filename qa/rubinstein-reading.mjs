@@ -1,5 +1,6 @@
 /** Exercise a Pages installation in a clean browser. The optional local PDF stays on the test machine. */
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
@@ -26,6 +27,8 @@ const destinations = {
 };
 const groupFor = { statement: 'proof', chapters: 'proof', proofs: 'proof', history: 'atlas', editions: 'atlas', method: 'atlas' };
 const originalPDF = 'https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf';
+const authorRevision = '278761172565a762b1e5642003b3b97547f71a57';
+const pdfDigest = 'b49de5037af55c6df66843db710332a358c4eb1d2799581c673cd2ea17e8ea40';
 const absolute = (path) => new URL(path, base).href;
 const nav = (page) => page.getByRole('navigation', { name: 'Atlas navigation', exact: true });
 const link = (page, key) => nav(page).locator(`a[data-destination="${key}"]`);
@@ -107,6 +110,57 @@ async function turnPage(page, number) {
   await input.press('Enter');
 }
 
+async function renderedPDF(page, number, source = 'author') {
+  await page.waitForFunction(({ number, source }) => {
+    const sheet = document.querySelector('#sheet');
+    const text = document.querySelector('#pdfText');
+    return document.querySelector('#paperScroll')?.dataset.source === source && sheet && !sheet.hidden &&
+      sheet.dataset.page === String(number) && text?.dataset.page === String(number) &&
+      text.textContent.trim().length > 0 && document.querySelector('#pdfCanvas')?.width > 200;
+  }, { number, source }, { timeout: 45000 });
+  assert.equal(await page.locator('#pdfZoom').isEnabled(), true);
+  assert.equal(await page.locator('#remotePdf').isVisible(), false);
+}
+
+// Compare overlay geometry with the selectable text that PDF.js obtained from the document.
+// The text layer may split one Lean name across several spans.
+async function checkPrintedName(page, id, occurrences) {
+  const marks = page.locator(`#marks button[data-citation="${id}"]`);
+  assert.equal(await marks.count(), occurrences, `Printed occurrences of ${id}`);
+  const aligned = await marks.evaluateAll((buttons, id) => {
+    const walker = document.createTreeWalker(document.querySelector('#pdfText'), NodeFilter.SHOW_TEXT);
+    let text = '';
+    const nodes = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      nodes.push({ node, start: text.length, end: text.length + node.length });
+      text += node.textContent;
+    }
+    const printed = [];
+    for (let i = text.indexOf(id); i >= 0; i = text.indexOf(id, i + id.length)) {
+      const first = nodes.find((n) => n.start <= i && i < n.end);
+      const last = nodes.find((n) => n.start < i + id.length && i + id.length <= n.end);
+      const range = document.createRange();
+      range.setStart(first.node, i - first.start);
+      range.setEnd(last.node, i + id.length - last.start);
+      printed.push([...range.getClientRects()]);
+    }
+    const assigned = new Set();
+    return buttons.every((button) => {
+      const a = button.getBoundingClientRect();
+      const match = printed.findIndex((rects, index) => !assigned.has(index) && rects.some((b) => {
+        const w = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        const h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        return w > 0 && h > 0 && w * h > 0.38 * Math.min(a.width * a.height, b.width * b.height);
+      }));
+      assigned.add(match);
+      return match >= 0;
+    });
+  }, id);
+  assert.ok(aligned, `Each ${id} hotspot overlaps its own printed occurrence`);
+  return marks;
+}
+
 async function runReader(page, data, placements, width) {
   const mobile = width < 800;
   const next = page.locator(mobile ? '#mobileNext' : '#next');
@@ -116,22 +170,17 @@ async function runReader(page, data, placements, width) {
   const pane = await page.locator('#paper-pane').boundingBox();
   const map = await page.locator('#map-pane').boundingBox();
   assert.ok(mobile ? pane.y >= map.y + map.height - 1 : pane.x >= map.x + map.width - 1, 'Readable two-pane layout');
-  await page.locator('#remoteCitations .paper-citation').first().waitFor();
-  assert.equal(await page.locator('#sheet').isVisible(), false, 'A fresh visitor has no local copy');
-  const mode = await page.locator('#remotePdf').isVisible() ? 'Waterloo frame' : 'external PDF link';
-  if (mode === 'Waterloo frame') {
-    assert.equal(await page.locator('#remotePdf').getAttribute('src'), `${originalPDF}#page=61`);
-  } else {
-    await page.locator('#remoteFallback').waitFor();
-    assert.equal(await page.locator('#remoteFallback a').first().getAttribute('href'), `${originalPDF}#page=61`);
-  }
+  await renderedPDF(page, 61);
+  assert.equal(await page.locator('#marks button').count(), data.pages[60].reduce((n, s) => n + s.boxes.length, 0));
+  await checkPrintedName(page, 'QH.thinH', 1);
   await next.click();
   await atPage(page, 61, 'meanSqK');
   await page.goBack({ waitUntil: 'domcontentloaded' });
   await atPage(page, 61, 'QH.thinH');
   await page.goForward({ waitUntil: 'domcontentloaded' });
   await atPage(page, 61, 'meanSqK');
-  await page.locator('#citations').selectOption('hostThickExists');
+  const host = await checkPrintedName(page, 'hostThickExists', 1);
+  await host.click();
   await atPage(page, 61, 'hostThickExists');
   const cite = data.declarations.hostThickExists;
   assert.equal(await page.locator('#leanSource').getAttribute('href'),
@@ -147,7 +196,8 @@ async function runReader(page, data, placements, width) {
   await atPage(page, 1);
   assert.equal(await page.locator('#leanSource').isVisible(), false);
   assert.equal(await page.locator('#citations').isDisabled(), true);
-  if (mode === 'Waterloo frame') assert.equal(await page.locator('#remotePdf').getAttribute('src'), `${originalPDF}#page=1`);
+  await renderedPDF(page, 1);
+  assert.equal(await page.locator('#marks button').count(), 0, 'The title page has no citation hotspots');
   await next.click();
   await atPage(page, 61, 'QH.thinH');
   await turnPage(page, 77);
@@ -180,23 +230,26 @@ async function runReader(page, data, placements, width) {
 
   await page.goto(absolute('rubinstein.html#page=220&cite=slopesN_at_of&occ=2'), { waitUntil: 'domcontentloaded' });
   await atPage(page, 220, 'slopesN_at_of');
-  const sameName = page.locator('#remoteCitations .paper-citation').filter({ hasText: 'slopesN_at_of' });
-  assert.equal(await sameName.count(), 2);
+  await renderedPDF(page, 220);
+  const sameName = await checkPrintedName(page, 'slopesN_at_of', 2);
+  assert.equal(await sameName.nth(1).getAttribute('aria-pressed'), 'true');
   await sameName.first().click();
   await page.waitForURL((url) => new URLSearchParams(url.hash.slice(1)).get('occ') === null);
+  assert.equal(await sameName.first().getAttribute('aria-pressed'), 'true');
   await sameName.nth(1).click();
   await page.waitForURL((url) => new URLSearchParams(url.hash.slice(1)).get('occ') === '2');
-  if (options.pdf) {
-    await page.locator('#file').setInputFiles(options.pdf);
-    await page.locator('#pdfText[data-page="220"]').waitFor({ state: 'attached' });
-    const marks = page.locator('#marks button[data-citation="slopesN_at_of"]');
-    assert.equal(await marks.count(), 2);
-    assert.equal(await marks.nth(1).getAttribute('aria-pressed'), 'true');
-    await page.locator('#marks button[data-citation="claimHigh_valid"]').first().click();
-    await atPage(page, 220, 'claimHigh_valid');
-  }
+  assert.equal(await sameName.nth(1).getAttribute('aria-pressed'), 'true');
+  const widthBefore = await page.locator('#sheet').evaluate((s) => s.clientWidth);
+  await page.locator('#pdfZoom').selectOption('2');
+  await page.waitForFunction((width) => document.querySelector('#sheet').clientWidth > 1.15 * width, widthBefore);
+  await renderedPDF(page, 220);
+  await checkPrintedName(page, 'slopesN_at_of', 2);
+  const distinct = await checkPrintedName(page, 'claimHigh_valid', 2);
+  await distinct.first().click();
+  await atPage(page, 220, 'claimHigh_valid');
+  assert.equal(await page.locator('#citationTitle').innerText(), 'claimHigh_valid');
   assert.equal(await page.locator('#error').innerText(), '');
-  return { mode, localHighlights: Boolean(options.pdf) };
+  return { onlineHighlights: true, repeatedOccurrences: 2, zoomedPDF: true, uncitedTitlePage: true };
 }
 
 async function run(width, height, data, placements) {
@@ -204,12 +257,13 @@ async function run(width, height, data, placements) {
   const page = await ctx.newPage();
   page.setDefaultTimeout(30000);
   const failures = [];
+  const authorResponses = [];
   page.on('pageerror', (error) => failures.push(error.message));
   page.on('response', (response) => {
     const url = new URL(response.url());
+    if (url.href === data.paper.readerUrl) authorResponses.push(response.status());
     if (url.origin === base.origin && response.status() >= 400 &&
-        ['document', 'script', 'stylesheet', 'fetch', 'xhr'].includes(response.request().resourceType()) &&
-        !(['localhost', '127.0.0.1', '[::1]'].includes(base.hostname) && url.pathname === new URL('rubinstein-local.pdf', base).pathname)) {
+        ['document', 'script', 'stylesheet', 'fetch', 'xhr'].includes(response.request().resourceType())) {
       failures.push(`${response.status()} ${url.pathname}`);
     }
   });
@@ -220,6 +274,7 @@ async function run(width, height, data, placements) {
     await keyboardMenus(page);
     await chooseNav(page, 'rubinstein');
     const reader = await runReader(page, data, placements, width);
+    assert.ok(authorResponses.some((code) => code >= 200 && code < 300), 'Fresh visit fetched the pinned PDF from its author');
     await checkRetainedDestinations(page);
     assert.deepEqual(failures, []);
     return { width, height, destinations: Object.keys(destinations).length, ...reader };
@@ -237,14 +292,78 @@ async function withoutPDFViewer() {
     const page = await context.newPage();
     await page.goto(absolute('rubinstein.html#page=77&cite=originRow'), { waitUntil: 'domcontentloaded' });
     await atPage(page, 77, 'originRow');
-    const outside = page.locator('#remoteFallback a');
-    await outside.waitFor();
-    assert.equal(await outside.getAttribute('href'), `${originalPDF}#page=77`);
-    assert.equal(await page.locator('#remotePdf').isVisible(), false);
-    await turnPage(page, 1);
-    await atPage(page, 1);
-    assert.equal(await outside.getAttribute('href'), `${originalPDF}#page=1`);
+    await renderedPDF(page, 77);
+    const other = page.locator('#marks button[data-citation="blockBound_of_fockJet"]').first();
+    await other.click();
+    await atPage(page, 77, 'blockBound_of_fockJet');
     return true;
+  } finally {
+    await context.close();
+  }
+}
+
+async function failedAuthorPDF(data, fault) {
+  const context = await browser.newContext({ viewport: { width: 900, height: 850 } });
+  try {
+    if (fault === 'blocked') {
+      await context.addInitScript(() => Object.defineProperty(navigator, 'pdfViewerEnabled', { get: () => false }));
+    }
+    let attempts = 0;
+    await context.route(data.paper.readerUrl, async (route) => {
+      attempts++;
+      if (fault === 'blocked') return route.abort('failed');
+      const upstream = await route.fetch();
+      assert.ok(upstream.ok(), 'Fetch the genuine PDF for the digest test');
+      const edition = await upstream.body();
+      assert.equal(createHash('sha256').update(edition).digest('hex'), pdfDigest);
+      // A trailing PDF comment leaves every page and hotspot intact. Only the SHA changes.
+      const changed = Buffer.concat([edition, Buffer.from('\n% Local browser test edition\n')]);
+      await route.fulfill({ status: 200, body: changed, headers: {
+        'content-type': 'application/pdf', 'access-control-allow-origin': '*', 'cache-control': 'no-store',
+      } });
+    });
+    const page = await context.newPage();
+    await page.goto(absolute('rubinstein.html#page=220&cite=slopesN_at_of&occ=2'), { waitUntil: 'domcontentloaded' });
+    await atPage(page, 220, 'slopesN_at_of');
+    const retry = page.locator('#retryHighlights');
+    await retry.waitFor({ timeout: 45000 });
+    assert.ok(attempts > 0, `Injected ${fault} response reached the browser`);
+    if (fault === 'changed PDF') assert.match(await page.locator('#pdfError').innerText(), /different edition/i);
+    assert.equal(await page.locator('#sheet').isVisible(), false, 'Unverified bytes have no interactive page');
+    const fallback = (await page.locator('#paperScroll').getAttribute('data-source'));
+    assert.ok(['waterloo', 'page-link'].includes(fallback), `Visible fallback after ${fault}`);
+    if (fallback === 'page-link') {
+      const outside = page.locator('#remoteFallback a');
+      await outside.waitFor();
+      assert.equal(await outside.getAttribute('href'), `${originalPDF}#page=220`);
+    } else {
+      assert.equal(await page.locator('#remotePdf').getAttribute('src'), `${originalPDF}#page=220`);
+    }
+    const mentions = page.locator('#remoteCitations .paper-citation[data-citation="slopesN_at_of"]');
+    assert.equal(await mentions.count(), 2);
+    await mentions.first().click();
+    await page.waitForURL((url) => !new URLSearchParams(url.hash.slice(1)).has('occ'));
+    await page.locator('#remoteCitations [data-citation="claimHigh_valid"]').first().click();
+    await atPage(page, 220, 'claimHigh_valid');
+    let rescuedWithFile = false;
+    if (fault === 'blocked' && options.pdf) {
+      await page.locator('#file').setInputFiles(options.pdf);
+      await renderedPDF(page, 220, 'local');
+      const marks = await checkPrintedName(page, 'slopesN_at_of', 2);
+      await marks.nth(1).click();
+      await atPage(page, 220, 'slopesN_at_of');
+      assert.equal(await marks.nth(1).getAttribute('aria-pressed'), 'true');
+      rescuedWithFile = true;
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await retry.waitFor();
+    }
+    await context.unroute(data.paper.readerUrl);
+    const actualResponse = page.waitForResponse((response) => response.url() === data.paper.readerUrl && response.ok());
+    await retry.click();
+    await actualResponse;
+    await renderedPDF(page, 220);
+    await checkPrintedName(page, 'slopesN_at_of', 2);
+    return { fault, fallback, rescuedWithFile, retriedFromAuthor: true };
   } finally {
     await context.close();
   }
@@ -286,6 +405,10 @@ try {
   const [data, placements] = await Promise.all([json('rubinstein/path.json'), json('data/context/paper.json')]);
   assert.equal(data.sourcePin, placements.sourcePin);
   assert.equal(data.paper.url, originalPDF);
+  const authorUrl = new URL(data.paper.readerUrl);
+  assert.equal(authorUrl.origin, 'https://raw.githubusercontent.com');
+  assert.ok(authorUrl.pathname.startsWith(`/mrubinst/alpoge-claude-rh-explained/${authorRevision}/`));
+  assert.equal(data.paper.sha256, pdfDigest);
   const upstream = await requests.request.get(originalPDF, { headers: { Range: 'bytes=0-31' }, timeout: 45000 });
   assert.ok(upstream.ok(), `Waterloo PDF HTTP ${upstream.status()}`);
   assert.match(upstream.headers()['content-type'], /application\/pdf/i);
@@ -295,10 +418,13 @@ try {
   await requests.close();
   const viewports = [];
   for (const [width, height] of [[1440, 960], [390, 844]]) viewports.push(await run(width, height, data, placements));
-  const fallback = await withoutPDFViewer();
+  const noNativeViewer = await withoutPDFViewer();
+  const failureRecovery = [];
+  for (const fault of ['blocked', 'changed PDF']) failureRecovery.push(await failedAuthorPDF(data, fault));
   const earlyMenu = await menuDuringStartup();
   const result = { base: base.href, engine, version: browser.version(), viewports, sourcePin: data.sourcePin,
-    upstreamStatus: upstream.status(), withoutPDFViewer: fallback, menuDuringStartup: earlyMenu,
+    upstreamStatus: upstream.status(), authorPDF: data.paper.readerUrl, sha256: pdfDigest,
+    withoutPDFViewer: noNativeViewer, failureRecovery, menuDuringStartup: earlyMenu,
     pages: data.pages.length, stops: data.pages.flat().length, declarations: Object.keys(data.declarations).length, contextual: proxyIds.length };
   if (options.receipt) await writeFile(options.receipt, JSON.stringify(result, null, 2) + '\n');
   console.log(JSON.stringify(result));
