@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+  "tip": "73958da58a8a4d1f61b789745c5444baf6247cae",
   "changes": [
     {
       "id": "merge-65",
@@ -83,6 +83,51 @@
       "commit": "c82871e6002287776ae8a7c9a1a79926f15c3c8e",
       "description": "1,642 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 539
+    },
+    {
+      "id": "merge-438",
+      "title": "Post-module-consolidation batch",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "dc76b2788ef7ad0a6d2d4575ca3320a677c72cd9",
+      "description": "16,866 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 438
+    },
+    {
+      "id": "merge-591",
+      "title": "chore: batch of 46 small PRs (stacked on #438)",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "c827d9fe3249dbd50b6bb82c948fcae88cfff583",
+      "description": "68 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 591
+    },
+    {
+      "id": "merge-295",
+      "title": "Keep one copy of each duplicate theorem and definition (for Lean 4.37.0-rc1)",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+      "description": "9,280 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 295
+    },
+    {
+      "id": "merge-644",
+      "title": "chore: batch of 47 small PRs (stacked on #295)",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+      "description": "144 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 644
+    },
+    {
+      "id": "merge-896",
+      "title": "chore: batch 3 of 230 small PRs",
+      "status": "merged",
+      "date": "2026-11-24",
+      "commit": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+      "description": "1,275 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 896
     }
   ]
 }
