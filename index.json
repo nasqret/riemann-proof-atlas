@@ -100,15 +100,20 @@
     },
     {
       "day": "2026-11-23",
-      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
       "before": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
-      "comparison": "1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
-      "closed": false,
+      "comparison": "1cc42d2c900ba764cb63e3c36383c720f30a77ca..7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "closed": true,
       "captures": [
         {
           "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
           "comparison": "1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
           "observedAt": "2026-11-23T07:54:22Z"
+        },
+        {
+          "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+          "comparison": "1cc42d2c900ba764cb63e3c36383c720f30a77ca..7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+          "endExclusive": "2026-11-24T00:00:00Z"
         }
       ],
       "changes": [
@@ -116,6 +121,62 @@
           "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
           "title": "Integrate proof cleanup and bump to Lean 4.37.0-rc1",
           "pr": 185
+        },
+        {
+          "pin": "98cc3736f046abae883d8cda839c84f3004257a7",
+          "title": "Replace redundant proofs with Mathlib or internal reuse",
+          "pr": 221
+        },
+        {
+          "pin": "ecc801f3f81d5b8a28b06867db81978668622992",
+          "title": "perf: delete thin wrappers and combine modules into import-graph clumps",
+          "pr": 324
+        },
+        {
+          "pin": "c82871e6002287776ae8a7c9a1a79926f15c3c8e",
+          "title": "chore: batch small proof cleanups and statement removals (ported onto #324)",
+          "pr": 539
+        }
+      ]
+    },
+    {
+      "day": "2026-11-24",
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "before": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "comparison": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157..73958da58a8a4d1f61b789745c5444baf6247cae",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+          "comparison": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157..73958da58a8a4d1f61b789745c5444baf6247cae",
+          "observedAt": "2026-11-24T10:07:07Z"
+        }
+      ],
+      "changes": [
+        {
+          "pin": "dc76b2788ef7ad0a6d2d4575ca3320a677c72cd9",
+          "title": "Post-module-consolidation batch",
+          "pr": 438
+        },
+        {
+          "pin": "c827d9fe3249dbd50b6bb82c948fcae88cfff583",
+          "title": "chore: batch of 46 small PRs (stacked on #438)",
+          "pr": 591
+        },
+        {
+          "pin": "a28ad7ec8b9f5ff4ec448fe210d3ac57aacfffe1",
+          "title": "Keep one copy of each duplicate theorem and definition (for Lean 4.37.0-rc1)",
+          "pr": 295
+        },
+        {
+          "pin": "343b1de38bbe4c5c66f1c1c0afd7c34e8645acdf",
+          "title": "chore: batch of 47 small PRs (stacked on #295)",
+          "pr": 644
+        },
+        {
+          "pin": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+          "title": "chore: batch 3 of 230 small PRs",
+          "pr": 896
         }
       ]
     }
@@ -768,6 +829,166 @@
       "committedAt": "2026-11-23T07:20:10Z",
       "checkedLinks": 96,
       "summarySha256": "39a88d44a7e1100c2664ba206a62fd6b855bab3466374d5c3161d8d385b8a25e"
+    },
+    "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157": {
+      "sourceTree": "433e26c9b7ffe05fb58f803f3fb5338f1a6c1ba5",
+      "sourceFiles": 62073,
+      "lines": 17168409,
+      "written": 638135,
+      "states": [
+        0,
+        397794,
+        184808,
+        4188,
+        236153
+      ],
+      "assets": {
+        "states.bin.gz": "98ccf45251241b3fc9b2dccebeab45a27b06deb4e4d44d75ab3fea62fa26b2b5",
+        "locations.json.gz": "306cf18bb7a8d05a6c91e0e240a3ebc1c2e0cdf48c7ea1dc29825f95d849f8d3"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          18,
+          19,
+          20
+        ],
+        "4": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          21,
+          22,
+          27
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "assetPin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "committedAt": "2026-11-23T23:47:45Z",
+      "checkedLinks": 96,
+      "summarySha256": "a89e58b09e1ee65eb2ebc936650cf1b0cccc81e182a0d0504c0692e63532449c"
+    },
+    "73958da58a8a4d1f61b789745c5444baf6247cae": {
+      "sourceTree": "6e972745429bd501b15e5daa9db46c8a9feb85db",
+      "sourceFiles": 60629,
+      "lines": 16766464,
+      "written": 612095,
+      "states": [
+        0,
+        382948,
+        211456,
+        4796,
+        224351
+      ],
+      "assets": {
+        "states.bin.gz": "b351d3f18e91d14df120dc3385403d85959af14297376380c335aa90719d234c",
+        "locations.json.gz": "73aa74a41cf83dc9edf87517f13b843fa57606b28c2999800bbcbb32126c2fa5"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          18,
+          19,
+          20
+        ],
+        "4": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          21,
+          22,
+          27
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "assetPin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "committedAt": "2026-11-24T09:50:10Z",
+      "checkedLinks": 96,
+      "summarySha256": "d867132ee549037a661e1611bc0ba666218af2db589a207e93dd184f3fe8beb6"
     }
   },
   "comparisons": {
@@ -889,6 +1110,40 @@
       "deletedLines": 717046,
       "sha256": "e0d9de0193602567ad1e46d1ce10b1f1d5d74d1e5a6b025595832bb7024967c6",
       "asset": "pairs/1cc42d2c900ba764cb63e3c36383c720f30a77ca..9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0.json.gz"
+    },
+    "1cc42d2c900ba764cb63e3c36383c720f30a77ca..7cbe484e5a2d2ae973f1e7167e39080ce2fe4157": {
+      "before": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "after": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "removed": 32080,
+      "added": 3566,
+      "moved": 236445,
+      "ambiguousRemoved": 3778,
+      "ambiguousAdded": 3294,
+      "retained": 634569,
+      "filesAdded": 6,
+      "filesRemoved": 87329,
+      "filesEdited": 62048,
+      "insertedLines": 9031604,
+      "deletedLines": 7031769,
+      "sha256": "2c11ea2c17ecaba834d0ae011a9f91c126f235c3873669ca58ba9141eadd7353",
+      "asset": "pairs/1cc42d2c900ba764cb63e3c36383c720f30a77ca..7cbe484e5a2d2ae973f1e7167e39080ce2fe4157.json.gz"
+    },
+    "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157..73958da58a8a4d1f61b789745c5444baf6247cae": {
+      "before": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "after": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "removed": 26900,
+      "added": 860,
+      "moved": 1483,
+      "ambiguousRemoved": 4,
+      "ambiguousAdded": 2,
+      "retained": 611235,
+      "filesAdded": 251,
+      "filesRemoved": 1695,
+      "filesEdited": 19936,
+      "insertedLines": 131044,
+      "deletedLines": 532989,
+      "sha256": "845a8d5838e3cbe55bf5ccceee544c4aebef5028f1c10c107e0afcb5d3b58c02",
+      "asset": "pairs/7cbe484e5a2d2ae973f1e7167e39080ce2fe4157..73958da58a8a4d1f61b789745c5444baf6247cae.json.gz"
     }
   },
   "proposals": {
@@ -898,7 +1153,7 @@
       "head": "607375a494cceb57576114deb9e1b8fff53ca0cb",
       "base": "2dea99006976a5104032e495d7513dee40fbb5ca",
       "comparison": "2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb",
-      "status": "open",
+      "status": "closed",
       "mergedAt": null,
       "versions": [
         {
@@ -920,11 +1175,21 @@
           "status": "open",
           "mergedAt": null,
           "observedAt": "2026-11-22T12:23:10Z"
+        },
+        {
+          "pr": 55,
+          "title": "Remove declarations that are unused in the proof",
+          "head": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+          "base": "2dea99006976a5104032e495d7513dee40fbb5ca",
+          "comparison": "2dea99006976a5104032e495d7513dee40fbb5ca..607375a494cceb57576114deb9e1b8fff53ca0cb",
+          "status": "closed",
+          "mergedAt": null,
+          "observedAt": "2026-11-24T10:07:07Z"
         }
       ]
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-23T07:54:22Z",
-  "observedTip": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0"
+  "capturedAt": "2026-11-24T10:07:07Z",
+  "observedTip": "73958da58a8a4d1f61b789745c5444baf6247cae"
 }
