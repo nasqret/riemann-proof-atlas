@@ -4,6 +4,8 @@ Explore the written Lean theorems and lemmas of the Riemann hypothesis project o
 
 **[Explore the map](https://nasqret.github.io/riemann-proof-atlas/)** · [Rubinstein’s reading guide](https://nasqret.github.io/riemann-proof-atlas/rubinstein.html) · [Watch the 52-second tour](https://nasqret.github.io/riemann-proof-atlas/film/) · [Reading notes](https://nasqret.github.io/riemann-proof-atlas/notes.html) · [Public reading dashboard](https://nasqret.github.io/riemann-rev/) · [Original paper map](https://lmcinnes.github.io/datamapplot_examples/arXiv/)
 
+**[June 2026 paper map](https://nasqret.github.io/riemann-proof-atlas/june-map.html)** · 3,080,258 paper rows, 28,977 named regions and a filter for 549,618 papers with a verified primary mathematics category. Select a proof marker to inspect its supporting paper and open the original Lean declarations.
+
 The guide follows 521 citation stops in Michael O. Rubinstein’s 265-page working draft. Select a citation to see its position and open its exact Lean lines. The reader loads the author’s pinned version 2 and highlights each printed name on the PDF page. [Begin on page 61](https://nasqret.github.io/riemann-proof-atlas/rubinstein.html#page=61&cite=QH.thinH)
 
 **[Daily snapshot dashboard](https://nasqret.github.io/riemann-proof-atlas/daily.html)** · [Official history](https://nasqret.github.io/riemann-proof-atlas/daily.html#track=official) · [PR #55 revisions](https://nasqret.github.io/riemann-proof-atlas/daily.html#track=proposal) · [VerifyTask and contributor changes](https://nasqret.github.io/riemann-proof-atlas/daily.html#track=verifytask) · [Daily capture runs](https://github.com/nasqret/riemann-proof-atlas/actions/workflows/atlas-daily.yml)
