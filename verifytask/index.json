@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-24T10:07:07Z",
+  "asOf": "2026-11-25T08:51:56Z",
   "days": [
     {
       "date": "2026-11-20",
@@ -67,7 +67,7 @@
     },
     {
       "date": "2026-11-24",
-      "final": false,
+      "final": true,
       "mirror": {
         "commit": "179fd6fe6f08a391c208fc93aab1328548499bf7",
         "committedAt": "2026-11-20T17:39:44Z",
@@ -83,6 +83,25 @@
         "evidence": "evidence/site-448c096311131ba1e40d8e62cbbe59521fd65865729fc28dd10fae9e0cc8a06a.json",
         "previousEvidence": "evidence/site-67f613a809af637096c0be106f65b669e26119a0ed4945f49468c1e8c7976caf.json"
       }
+    },
+    {
+      "date": "2026-11-25",
+      "final": false,
+      "mirror": {
+        "commit": "179fd6fe6f08a391c208fc93aab1328548499bf7",
+        "committedAt": "2026-11-20T17:39:44Z",
+        "equalsSubmission": true,
+        "sourceTree": "b41b516b1f7baee4d83ced235ecc71fd43c97695",
+        "sourceUrl": "https://github.com/Reen-Ai-H/riemann-hypothesis-lean-zh/tree/179fd6fe6f08a391c208fc93aab1328548499bf7/src"
+      },
+      "mirrorChange": null,
+      "observation": "evidence/observation-a7f02427229a97cb73cbdf7f0d3b6afd57f135536a7bac13797c0115d47fbc76.json",
+      "opened": [],
+      "siteMetricsChange": {
+        "changeInReportedValues": {},
+        "evidence": "evidence/site-24c1ed3b9c8b63ea5ee0af636906ebff8c96ed3170a57b2a6669318b6e25a187.json",
+        "previousEvidence": "evidence/site-448c096311131ba1e40d8e62cbbe59521fd65865729fc28dd10fae9e0cc8a06a.json"
+      }
     }
   ],
   "mirror": {
@@ -94,6 +113,7 @@
     "evidence/observation-1b6d281acbae0834b6db563d90ce625daaa77c8c758bce85cf70c96fb752266d.json",
     "evidence/observation-2d4d0691831468da609366ff8e09d4e05505144f195a44d87b9c24835b0a6704.json",
     "evidence/observation-892520e25cdf580e5afcf68cfc0e64993824c63987bee409b4ea4d5e8fd7a43b.json",
+    "evidence/observation-a7f02427229a97cb73cbdf7f0d3b6afd57f135536a7bac13797c0115d47fbc76.json",
     "evidence/observation-aa2902588b01ca7a577b5bc72b3b5a50ce2f29d6517f2503bdfc481c4ee911fb.json",
     "evidence/observation-d7e9bd2a1e21d1085d1c9715f57fa29f7c5a6b5f4cf05e0d4bfb876437fc0a48.json",
     "evidence/observation-ee123af2709ce50244b3c21832b733ee3b723c385f5ce81602877bd081c99102.json"
@@ -124,7 +144,7 @@
       "head": "b5c830f1cd3f529d94602391dc4b5c93829fdf16",
       "mergedAt": null,
       "number": 95,
-      "observedAt": "2026-11-24T10:11:18Z",
+      "observedAt": "2026-11-25T08:56:31Z",
       "repository": "https://github.com/Osgood001/riemann-hypothesis",
       "status": "closed",
       "title": "Simplify proofs in GammaFactorNonvanishing and ZeroFreeRegion (−824 lines)",
@@ -135,10 +155,10 @@
   "schema": 1,
   "site": {
     "contributorAccountLinked": false,
-    "evidence": "evidence/site-448c096311131ba1e40d8e62cbbe59521fd65865729fc28dd10fae9e0cc8a06a.json",
+    "evidence": "evidence/site-24c1ed3b9c8b63ea5ee0af636906ebff8c96ed3170a57b2a6669318b6e25a187.json",
     "guide": "https://riemann.verifytask.cn/riemann/",
     "mirrorLinked": false,
-    "observedAt": "2026-11-24T10:11:18Z",
+    "observedAt": "2026-11-25T08:56:31Z",
     "reportedApproxLines": null,
     "reportedArchiveBytes": null,
     "reportedFiles": null,

@@ -1,0 +1,36 @@
+{
+  "pages": {
+    "guide": {
+      "canonical": null,
+      "downloads": [],
+      "githubLinks": [
+        "https://github.com/Osgood001/riemann-hypothesis"
+      ],
+      "sha256": "4e0bc7366381fdb421e7a44cedd7fd4954fdeb8c7399fb6e9440f3bd9d0798f2",
+      "url": "https://riemann.verifytask.cn/riemann/"
+    },
+    "home": {
+      "canonical": null,
+      "downloads": [],
+      "githubLinks": [
+        "https://github.com/Osgood001/riemann-hypothesis"
+      ],
+      "sha256": "fb0ee21700086fc27ecba118f2780c0d31f8e65153c29e7a6848994a02d95cb3",
+      "url": "https://riemann.verifytask.cn/"
+    },
+    "sources": {
+      "canonical": null,
+      "downloads": [],
+      "githubLinks": [
+        "https://github.com/Osgood001/riemann-hypothesis"
+      ],
+      "sha256": "4e0bc7366381fdb421e7a44cedd7fd4954fdeb8c7399fb6e9440f3bd9d0798f2",
+      "url": "https://riemann.verifytask.cn/riemann/sources/"
+    }
+  },
+  "reported": {
+    "reportedApproxLines": null,
+    "reportedArchiveBytes": null,
+    "reportedFiles": null
+  }
+}
