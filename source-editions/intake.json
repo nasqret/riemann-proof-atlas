@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "tip": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
   "changes": [
     {
       "id": "merge-65",
@@ -173,6 +173,69 @@
       "commit": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
       "description": "440 Lean source paths changed relative to the preceding mainline revision.",
       "pr": 1313
+    },
+    {
+      "id": "merge-1410",
+      "title": "chore: batch 9 of 84 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "67c00ce1025a73f81a39533ac42deb47f15c4a15",
+      "description": "6,205 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1410
+    },
+    {
+      "id": "merge-1739",
+      "title": "chore: batch 10 of 186 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+      "description": "11,953 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1739
+    },
+    {
+      "id": "merge-1801",
+      "title": "chore: batch 11 of 51 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "c40250a50104b7e02e7d74f658d00fa7b1f4827c",
+      "description": "789 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1801
+    },
+    {
+      "id": "merge-1853",
+      "title": "chore: batch 12 of 59 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "fcb6eac7534875d32d68030967e2deae6d686151",
+      "description": "937 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 1853
+    },
+    {
+      "id": "merge-2057",
+      "title": "chore: batch 13 of 166 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+      "description": "3,350 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 2057
+    },
+    {
+      "id": "merge-2164",
+      "title": "chore: batch 14 of 122 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "a18a350c3e5aad997766cff2670b292313e46574",
+      "description": "2,159 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 2164
+    },
+    {
+      "id": "merge-2318",
+      "title": "chore: batch 15 of 139 small PRs",
+      "status": "merged",
+      "date": "2026-11-25",
+      "commit": "246656fc62ac80c1214f48550138076c4f278569",
+      "description": "3,967 Lean source paths changed relative to the preceding mainline revision.",
+      "pr": 2318
     }
   ]
 }
