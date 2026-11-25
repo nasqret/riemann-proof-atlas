@@ -1,5 +1,6 @@
 import {JuneMap} from "./map.js";
 import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js";
+import {renderPaletteLegend, indexPalette, paperPaletteTopic} from "./palette.js";
 
 const $ = id => document.getElementById(id);
 const pane = $("inspector-content"), search = $("search");
@@ -164,29 +165,9 @@ function overview(write = false) {
     for (const p of ordered) addRow(anchors, p.label, p.papers?.[0]?.id || "", () => choose("placement", p, {focusMap: true}));
     pane.append(details("Browse Lean anchors", anchors));
   }
-  if (manifest.legend) {
-    const article = details("Paper colors and counts");
-    article.addEventListener("toggle", async () => {
-      if (!article.open || article.dataset.loaded) return;
-      try {
-        legend ??= await cached(manifest.legend);
-        if (article.dataset.loaded) return;
-        const list = itemList();
-        for (const color of legend.colors) {
-          const reg = regionById.get(color.key);
-          const row = reg ? addRow(list, color.label, fmt(color.count), () => choose("region", reg, {focusMap: true})) : null;
-          if (row && /^#[0-9a-f]{6}$/i.test(color.color)) {
-            const swatch = element("i", null, "color-swatch"); swatch.style.backgroundColor = color.color;
-            row.querySelector(".item-name").prepend(swatch);
-          } else if (!row) {
-            const li = element("li", color.label + " · " + fmt(color.count), "legend-static"); list.append(li);
-          }
-        }
-        article.append(list); article.dataset.loaded = "true";
-      } catch (error) { diagnostic(error); }
-    });
-    pane.append(article);
-  }
+  if (legend) pane.append(renderPaletteLegend(legend, () => map.layers.math, key => {
+    const reg = regionById.get(key); if (reg) choose("region", reg, {focusMap: true});
+  }));
   const guide = details("Map method and controls",
     element("p", "The background counts papers at their supplied F2LLM coordinates. Each region label sits on a member nearest the region’s mean position. Zoom in to see finer labels and select individual papers."),
     element("p", "Drag or use arrow keys to pan. Scroll, pinch or use plus and minus to zoom. Home fits the map. The crosshair finds papers near the center."),
@@ -331,6 +312,8 @@ async function renderPaper(seed, token) {
   pane.append(element("p", "June source row " + fmt(seed.row), "detail-meta"));
   const paper = seed.levels || !papers ? seed : await papers.lookup(seed.row, seed.x, seed.y);
   if (token !== routeToken || !paper) return;
+  const colorTopic = paperPaletteTopic(map.topicPalette, paper);
+  if (colorTopic) pane.append(element("p", "Map color · " + colorTopic.label + (Number.isInteger(colorTopic.level) ? " · level " + colorTopic.level : ""), "detail-meta"));
   if (paper.category) pane.append(element("p", "Primary category · " + paper.category, "muted"));
   if (paper.levels) {
     const list = itemList();
@@ -497,6 +480,7 @@ function mathLens(requested, write = true) {
   const enabled = !!manifest.mathTiles && requested;
   if (map.layers.math !== enabled) map.setLayer("math", enabled);
   $("show-math").checked = enabled;
+  document.dispatchEvent(new Event("june-palette-lens"));
   $("paper-key").textContent = enabled ? "Confirmed math" : "Papers";
   $("math-coverage").hidden = !enabled;
   const text = enabled ? fmt(manifest.mathTiles.paperCount) + " papers with a matched primary math category" : "All June papers";
@@ -510,7 +494,9 @@ function mathLens(requested, write = true) {
 }
 async function init() {
   manifest = await readJSON("manifest.json");
-  const [regionData, lean] = await Promise.all([cached(manifest.regions), manifest.placements ? cached(manifest.placements) : null]);
+  const [regionData, lean, palette] = await Promise.all([cached(manifest.regions), manifest.placements ? cached(manifest.placements) : null,
+    manifest.legend ? cached(manifest.legend) : null]);
+  legend = palette;
   levels = regionData.levels;
   levels.forEach((group, i) => {
     group.regions.sort((a,b) => b.count - a.count || a.label.localeCompare(b.label));
@@ -550,6 +536,7 @@ async function init() {
     select: (kind, item) => choose(kind, item, {fromMap: true}),
     near: nearby, notice: flash, error: diagnostic
   });
+  map.topicPalette = indexPalette(legend);
   $("edition-caption").textContent = fmt(manifest.paperCount) + " arXiv paper rows in the F2LLM embedding";
   if (manifest.source?.credit) $("map-credit").textContent = "Paper map by " + manifest.source.credit;
   $("show-lean").disabled = !places.length; $("lean-key").hidden = !places.length;

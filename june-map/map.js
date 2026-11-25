@@ -1,9 +1,10 @@
 import {dataURL} from "./papers.js";
+import {drawPalettePapers} from "./palette.js";
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const overlaps = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
 const inBox = (x, y, b) => x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3];
-export const isMath = category => /^math[.-]/i.test(category || "");
+export const isMath = category => /^math(?:[.-]|$)/i.test(category || "");
 const mathPaper = paper => isMath(paper.category);
 
 class DensityTiles {
@@ -205,6 +206,7 @@ export class JuneMap {
     this.el.dataset.anchors = this.leanHits.length;
   }
   drawPapers() {
+    if (this.topicPalette && drawPalettePapers(this, mathPaper)) return;
     const {ctx} = this;
     ctx.fillStyle = this.layers.math ? "#c8efd5" : "#dceadf";
     const radius = Math.min(3, 1.35 + Math.log2(this.zoom / this.pointZoom + 1) * .4);
