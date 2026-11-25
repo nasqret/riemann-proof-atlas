@@ -1,0 +1,17 @@
+{
+  "edges": {
+    "files": 1718,
+    "bytes": 126018245,
+    "inventorySha256": "9b5222bcb0d6da92e3cf1e90de575f27c18dbcb7ed6a9f605cc57d72fa3bf1f6"
+  },
+  "records": {
+    "files": 3743,
+    "bytes": 85938039,
+    "inventorySha256": "92c6715bca58857a0e6ece2324b43f4cdaae3299d8f4515281f27e9b499541f8"
+  },
+  "palette": {
+    "files": 2732,
+    "bytes": 12762449,
+    "inventorySha256": "32d122f89bd717ed9bd819c887d439b253fa9b1130c85992185f3f70259f9d61"
+  }
+}

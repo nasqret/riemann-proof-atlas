@@ -1,6 +1,7 @@
 import {JuneMap} from "./map.js";
 import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js";
 import {renderPaletteLegend, indexPalette, paperPaletteTopic} from "./palette.js";
+import {createProofReader} from "./nodes.js";
 
 const $ = id => document.getElementById(id);
 const pane = $("inspector-content"), search = $("search");
@@ -8,7 +9,7 @@ const fmt = number => Number(number).toLocaleString("en-US");
 const norm = value => String(value ?? "").normalize("NFKD").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 const cache = new Map(), regionById = new Map(), regionByCode = new Map(), placeById = new Map();
 const exampleByRoute = new Map();
-let manifest, levels, regionList, placementData, places, papers, map, legend, routeToken = 0, lastAddress;
+let manifest, levels, regionList, placementData, places, papers, map, legend, proof, routeToken = 0, lastAddress;
 let browseLevel = 0, browseLimit = 7, timer, noticeTimer, queryTicket = 0, searchWorker, directoryBoot, markerTable;
 
 function element(tag, content, css) {
@@ -81,11 +82,12 @@ function diagnostic(error) {
   $("reader-status").textContent = error.message || String(error);
 }
 function begin(clearSearch = true) {
+  proof?.clear();
   if (clearSearch) search.value = "";
   document.querySelector(".edition-link").href = "index.html";
   clearTimeout(timer); queryTicket++;
   pane.dataset.state = "loading";
-  pane.replaceChildren(); pane.scrollTop = 0;
+  delete pane.dataset.item; pane.replaceChildren(); pane.scrollTop = 0;
   return ++routeToken;
 }
 function mobileDetail() {
@@ -127,11 +129,13 @@ function openItem(kind, item, {focusMap = false, fromMap = false, origin = null}
   if (focusMap) {
     const zoom = kind === "region" ? map.regionZoom(item) : kind === "paper" ? map.pointZoom * 2 : 12;
     map.go(item.x, item.y, zoom);
+  } else if (kind === "placement" && fromMap) {
+    map.go(item.x, item.y, Math.max(8, map.zoom));
   }
   if (kind === "region") renderRegion(item, token).catch(diagnostic);
   if (kind === "placement") renderPlacement(item, token, origin).catch(diagnostic);
   if (kind === "paper") renderPaper(item, token).catch(diagnostic);
-  if (fromMap) mobileDetail();
+  if (fromMap && kind !== "placement") mobileDetail();
 }
 function levelTitle(index) {
   const group = levels[index];
@@ -143,8 +147,9 @@ function overview(write = false) {
   if (write) setAddress(route());
   map.select(null); map.fit();
   pane.dataset.state = "overview";
-  pane.append(element("h2", "Map overview"), element("p", "Select a topic label to read about a region. Gold diamonds connect Lean topics to papers in this edition."));
-  pane.append(metricRow([["topic regions", regionList.length], ["topic levels", levels.length], ["Lean anchors", places.length]]));
+  pane.append(element("h2", "Map overview"), element("p", "Select a topic label to read about a region. Select a gold diamond to open a paper’s proof bundles and their Lean declarations."));
+  pane.append(metricRow([["topic regions", regionList.length], ["topic levels", levels.length], ["proof anchors in scope", map.placements.length]]));
+  if (proof?.available) proof.overview(pane);
   pane.append(element("h3", "Browse regions"));
   const select = element("select"); select.className = "browse-select"; select.setAttribute("aria-label", "Browse regions at topic level");
   levels.forEach((_, i) => { const opt = element("option", levelTitle(i)); opt.value = i; select.append(opt); });
@@ -159,9 +164,9 @@ function overview(write = false) {
   };
   select.onchange = () => { browseLevel = Number(select.value); browseLimit = 7; update(); };
   update();
-  if (places.length) {
+  if (map.placements.length) {
     const anchors = itemList();
-    const ordered = [...places].sort((a, b) => b.theorems - a.theorems || a.label.localeCompare(b.label));
+    const ordered = [...map.placements].sort((a, b) => b.theorems - a.theorems || a.label.localeCompare(b.label));
     for (const p of ordered) addRow(anchors, p.label, p.papers?.[0]?.id || "", () => choose("placement", p, {focusMap: true}));
     pane.append(details("Browse Lean anchors", anchors));
   }
@@ -242,7 +247,8 @@ function exampleLink(ex) {
 }
 async function renderPlacement(place, token, origin) {
   pane.dataset.state = "placement"; pane.dataset.item = place.id;
-  viewHeading("Lean paper anchor", place.label, [["written theorems", place.theorems], ["with direct evidence", place.directEvidenceTheorems], ["bundles", place.bundleCount]]);
+  const archived = [["archived theorem rows", place.theorems], ["with direct evidence", place.directEvidenceTheorems], ["archived bundles", place.bundleCount]];
+  viewHeading("June paper anchor", place.label, proof?.available ? null : archived);
   if (origin) {
     document.querySelector(".edition-link").href = explorer(origin.kind, origin.id);
     const box = element("div", null, "origin-record");
@@ -252,7 +258,11 @@ async function renderPlacement(place, token, origin) {
       box.append(element("p", origin.info.supported ? "Source context supports a suggested topic." : "This source context provides a reading location. Its fine topic remains open.", "quiet"));
     pane.append(box);
   }
-  pane.append(element("p", "This marker uses a June paper coordinate linked to the original atlas by arXiv ID. Theorems assigned to its Lean topics share this reading location."));
+  if (proof?.available) {
+    const nodes = element("section", null, "proof-at-anchor"); pane.append(nodes);
+    proof.placement(nodes, place, origin, token).catch(error => { if (token === routeToken) nodes.append(element("p", error.message)); });
+  }
+  pane.append(element("p", "The diamond marks the supporting paper’s exact June coordinate. Written declarations share it through a proof bundle or a source-context witness."));
   for (const topic of place.topics || []) {
     const note = topic.anchorNote;
     if (note) pane.append(element("p", note, "muted"));
@@ -261,12 +271,14 @@ async function renderPlacement(place, token, origin) {
     const list = itemList();
     place.papers.forEach(p => addMember(list, {...p, x: place.x, y: place.y}, true));
     pane.append(element("h3", "Supporting papers"), list);
+    pane.append(element("p", `June paper row ${fmt(place.papers[0].row)} · x = ${place.x}, y = ${place.y}`, "detail-meta"));
   }
   if (place.examples?.length) {
     const list = itemList();
     for (const example of place.examples) list.append(exampleLink(example));
     pane.append(element("h3", "Declarations in the original Explorer"), list);
   }
+  if (proof?.available) pane.append(details("Archived theorem counts", metricRow(archived)));
   if (place.contextSuggested || place.contextOnly) pane.append(details("Contextual placements",
     metricRow([["with a suggested topic", place.contextSuggested], ["context only", place.contextOnly]]),
     element("p", "Context-only records use a source connection for navigation. Their fine topic remains open.")));
@@ -315,6 +327,8 @@ async function renderPaper(seed, token) {
   const colorTopic = paperPaletteTopic(map.topicPalette, paper);
   if (colorTopic) pane.append(element("p", "Map color · " + colorTopic.label + (Number.isInteger(colorTopic.level) ? " · level " + colorTopic.level : ""), "detail-meta"));
   if (paper.category) pane.append(element("p", "Primary category · " + paper.category, "muted"));
+  const anchor = places.find(place => place.papers?.some(p => p.row === paper.row));
+  if (anchor) pane.append(link("Browse this paper’s proof bundles", route("placement", anchor.id), "soft-button"));
   if (paper.levels) {
     const list = itemList();
     for (const group of levels) {
@@ -352,7 +366,13 @@ function searchResults(value, write = true) {
   if (write) setAddress(route("search", value), previous);
   const query = norm(value), parts = query.split(/\s+/).filter(Boolean);
   pane.dataset.state = "search"; pane.append(element("h2", "Search results"));
-  const matches = localNames.map(entry => ({entry, rank: Math.min(score(entry.normal, query, parts),
+  if (proof?.available) {
+    const proofResults = element("section"); pane.append(proofResults);
+    timer = setTimeout(() => { if (token === routeToken) proof.search(value, proofResults, token); }, 160);
+    pane.append(element("h3", "June regions and paper anchors"));
+  }
+  const matches = localNames.filter(entry => !proof?.available || entry.kind === "region" ||
+    (entry.kind === "placement" && map.placements.includes(entry.item))).map(entry => ({entry, rank: Math.min(score(entry.normal, query, parts),
     entry.alias ? score(entry.alias, query, parts) : Infinity)}))
     .filter(m => Number.isFinite(m.rank)).sort((a,b) => a.rank - b.rank || a.entry.label.length - b.entry.label.length);
   const list = itemList();
@@ -364,7 +384,7 @@ function searchResults(value, write = true) {
   if (list.childNodes.length) pane.append(list);
   else pane.append(element("p", "No matching region or indexed anchor example.", "muted"));
   const directory = element("div"); pane.append(directory);
-  if (query.length >= 2) {
+  if (!proof?.available && query.length >= 2) {
     directory.append(button("Search the full Lean name index", () => fullSearch(value, directory, token)));
     if (!matches.length || /[_.]/.test(value)) timer = setTimeout(() => fullSearch(value, directory, token), 420);
   }
@@ -447,6 +467,12 @@ async function openOrigin(kind, id, write = true) {
     if (name) pane.append(element("p", name, "declaration-name"));
     pane.append(element("p", kind === "theorem" ? "This theorem has no direct paper transfer in the June edition." : "The June placement index has no paper coordinate for this " + kind + "."),
       link("Open the " + kind + " in the original Explorer", explorer(kind, id), "soft-button"));
+    if (proof?.available && kind === "theorem" && /^\d+$/.test(id)) {
+      const written = await proof.writtenFromAtlas(Number(id));
+      if (token === routeToken && written != null) {
+        const section = element("p"); section.append(link("Inspect its written declaration and June context", route("written", written), "text-button")); pane.append(section);
+      }
+    }
   } catch (error) { if (token === routeToken) pane.replaceChildren(element("p", error.message), link("Open the original record", explorer(kind, id))); }
 }
 function unknown() {
@@ -457,8 +483,13 @@ async function restore() {
   if (!map || lastAddress === location.href) return;
   lastAddress = location.href;
   mathLens(new URLSearchParams(location.search).get("papers") === "math", false);
+  if (proof?.available) proof.applyScope();
   const params = new URLSearchParams(location.hash.slice(1));
   const go = {focusMap: true};
+  for (const kind of ["written", "constant", "proofBundle", "unplaced"]) if (params.has(kind)) {
+    if (proof?.available) return proof.open(kind, params.get(kind), params);
+    return unknown();
+  }
   if (params.has("region")) { const r = regionById.get(params.get("region")); return r ? openItem("region", r, go) : unknown(); }
   if (params.has("placement")) { const p = placeById.get(params.get("placement")); return p ? openItem("placement", p, go) : unknown(); }
   for (const kind of ["theorem", "context", "bundle"]) if (params.has(kind)) return openOrigin(kind, params.get(kind), false);
@@ -526,7 +557,7 @@ async function init() {
     }
   }
   papers = manifest.papers ? new PaperShards(manifest.papers, manifest.world, manifest.categories?.labels) : null;
-  map = new JuneMap($("viewport"), manifest, levels, places, papers, {
+  map = new JuneMap($("viewport"), manifest, levels, [], papers, {
     camera(m) {
       const label = m.levels[m.levelIndex]?.level;
       $("scale").textContent = (m.zoom >= 10 ? Math.round(m.zoom) : Number(m.zoom.toFixed(1))) + "×" + (m.layers.labels && label !== undefined ? " · Level " + label : "");
@@ -537,6 +568,18 @@ async function init() {
     near: nearby, notice: flash, error: diagnostic
   });
   map.topicPalette = indexPalette(legend);
+  proof = createProofReader({map, places, pane, element, link, button, metricRow, viewHeading, route,
+    begin, active: token => token === routeToken, showMap});
+  try { await proof.initialize(); }
+  catch (error) {
+    map.placements = []; map.drawSoon();
+    $("node-scope").disabled = true; $("node-scope").title = error.message;
+    $("reader-status").textContent = "Proof index unavailable. " + error.message;
+  }
+  $("node-scope").onchange = event => {
+    const url = proof.scopeURL(event.target.value);
+    setAddress(url); lastAddress = null; restore();
+  };
   $("edition-caption").textContent = fmt(manifest.paperCount) + " arXiv paper rows in the F2LLM embedding";
   if (manifest.source?.credit) $("map-credit").textContent = "Paper map by " + manifest.source.credit;
   $("show-lean").disabled = !places.length; $("lean-key").hidden = !places.length;

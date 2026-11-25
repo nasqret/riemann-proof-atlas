@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "passed": true,
+  "sourcePin": "40e56bab026552e089d7afcfeff08d2defb9c005",
+  "counts": {
+    "all": {
+      "written": 1068007,
+      "constant": 1484733,
+      "unplaced": 223054
+    },
+    "rh": {
+      "written": 805679,
+      "constant": 1478219,
+      "unplaced": 221468
+    }
+  },
+  "distinctNames": 1793229,
+  "lexicalPostings": 2552740,
+  "writtenMemberships": 1068007,
+  "constantMemberships": 1484733,
+  "ownedMemberships": 1261679,
+  "theoremInverses": 818755,
+  "contextWitnesses": 265645,
+  "contextualTheorems": 16393,
+  "publicAssetInventory": {
+    "files": 3742,
+    "bytes": 85933346,
+    "inventorySha256": "06c1d47cecfc77e360e87d9967f8d3af9df9af2f4225769d74c5892c2074491a"
+  },
+  "verifierSha256": "5a81aabaf4199c8139f6d7c62074e1cbfba0fdf3837e9210f2ac7811cfa0e662",
+  "readinessSha256": "de76ad4951be1fc67b47fd4629aacbc5681f1675661a6aacc510f9a34edaed8c"
+}

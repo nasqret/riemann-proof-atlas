@@ -204,6 +204,7 @@ export class JuneMap {
     this.el.dataset.exact = String(this.canPick);
     this.el.dataset.labels = this.labelHits.length;
     this.el.dataset.anchors = this.leanHits.length;
+    this.proofPosition?.();
   }
   drawPapers() {
     if (this.topicPalette && drawPalettePapers(this, mathPaper)) return;
@@ -382,6 +383,13 @@ export class JuneMap {
         case "ArrowRight": this.go(this.x + step / this.scale, this.y, this.zoom); break;
         case "ArrowUp": this.go(this.x, this.y + step / this.scale, this.zoom); break;
         case "ArrowDown": this.go(this.x, this.y - step / this.scale, this.zoom); break;
+        case "b": case "B": {
+          const near = (this.leanHits || []).map(hit => ({item: hit.item, distance: Math.hypot(hit.x - this.width / 2, hit.y - this.height / 2)}))
+            .sort((a, b) => a.distance - b.distance)[0];
+          if (near && this.layers.lean) this.events.select("placement", near.item);
+          else this.events.notice("No proof anchor in the current view.");
+          break;
+        }
         case "Enter": this.pick([this.width / 2, this.height / 2], true).catch(this.events.error); break;
         default: return;
       }

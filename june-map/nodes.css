@@ -1,0 +1,48 @@
+.proof-scope { display: flex; gap: .65rem; align-items: center; margin-top: .65rem; }
+.proof-scope label { flex: none; font-weight: 600; font-size: .82rem; }
+.proof-scope select, .proof-filter input { min-width: 0; min-height: 2.35rem; padding: .32rem .42rem; border: 1px solid #a5b8a9; border-radius: .35rem; background: #fff; color: #1c3c34; font: inherit; font-size: .85rem; }
+.proof-scope select { flex: 1; }
+.proof-overview { padding: 0 0 .55rem; border-bottom: 1px solid var(--rule, #d4dcd3); }
+.proof-filter { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .3rem .38rem; margin: .9rem 0; }
+.proof-filter label { grid-column: 1 / -1; font: 600 .85rem var(--font-ui, system-ui, sans-serif); }
+.proof-filter button, .proof-step { padding: .25rem .55rem; border: 1px solid #a5b8a9; border-radius: .32rem; background: #f5f8f1; color: #19493f; font-weight: 600; font-size: .82rem; }
+.proof-filter button:hover, .proof-step:not(:disabled):hover { background: #e4eddf; }
+.proof-step { display: inline-flex; min-height: 2.35rem; align-items: center; justify-content: center; text-decoration: none; }
+.proof-step:disabled { color: #607467; opacity: .65; }
+.proof-paging { display: flex; gap: .45rem; margin: .45rem 0 .8rem; }
+.proof-page-count, .proof-source-path { color: var(--sub, #4e6862); font-size: .82rem; }
+.proof-list .item-name, .proof-map-row[data-kind="written"] .item-name, .proof-map-row[data-kind="constant"] .item-name { font-family: var(--font-code, ui-monospace, monospace); font-size: .83rem; }
+.proof-list [data-kind="bundle"] .item-name { font-family: inherit; font-size: .93rem; }
+.proof-list .item-count { max-width: 39%; text-align: right; white-space: normal; overflow-wrap: anywhere; }
+.proof-records { margin-top: .75rem; }
+.proof-jump { margin: .65rem 0; }
+.proof-paper-title { display: block; color: #194d42; text-underline-offset: .15em; overflow-wrap: anywhere; }
+.proof-reach { color: var(--deep, #134941); font-size: .9rem; font-weight: 650; }
+.export-evidence dl { margin: .45rem 0; }
+.export-evidence dl div { display: flex; align-items: baseline; justify-content: space-between; gap: .8rem; padding: .24rem 0; }
+.export-evidence dt { font-size: .82rem; color: var(--sub, #4e6862); }
+.export-evidence dd { font-family: var(--font-code, ui-monospace, monospace); font-size: .82rem; overflow-wrap: anywhere; }
+.proof-paper { margin-top: 1.25rem; padding-top: .2rem; border-top: 1px solid var(--rule, #d4dcd3); }
+#proof-leader, #proof-callout { position: absolute; z-index: 1; }
+#proof-leader[hidden], #proof-callout[hidden] { display: none; }
+#proof-leader { inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#proof-leader line { stroke: #ffd18c; stroke-width: 1.7; filter: drop-shadow(0 1px 1px #15251d); }
+#proof-callout { width: min(16rem, calc(100% - 1.2rem)); border: 1px solid #d3af75; border-radius: .45rem; box-shadow: 0 .2rem .75rem #0005; padding: .45rem .58rem .35rem; background: #1a2c28fa; color: #f7f6eb; }
+#proof-callout header { display: flex; gap: .45rem; align-items: center; justify-content: space-between; }
+#proof-callout strong { font-size: .86rem; }
+#proof-callout .proof-close { display: grid; place-items: center; flex: none; width: 1.65rem; height: 1.6rem; color: #edecd9; font-size: 1.25rem; line-height: 1; }
+#proof-callout button:hover, #proof-callout a:hover { color: #ffdc9e; }
+.proof-map-paper { margin: 0 0 .3rem; color: #c2d5c8; font-size: .72rem; }
+.proof-map-list { padding: 0; margin: 0; list-style: none; }
+.proof-map-row { display: flex; align-items: center; gap: .3rem; padding: .29rem .06rem; min-height: 1.8rem; border-top: 1px solid #516358; color: #f4f1df; text-decoration: none; font-size: .82rem; }
+.proof-map-row .item-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+a.proof-map-row::after { content: "›"; margin-left: auto; color: #f2cb8b; }
+.proof-map-controls { display: flex; align-items: center; gap: .35rem; margin-top: .18rem; color: #dce6d9; font-size: .73rem; }
+.proof-map-controls .proof-step { min-width: 1.8rem; min-height: 1.7rem; padding: 0 .33rem; background: transparent; color: #faf5dc; border-color: #7b8d7c; }
+.proof-map-controls .proof-step:not(:disabled):hover { background: #314b3e; }
+.proof-inspect { margin-left: auto; min-height: 1.9rem; color: #fde3aa; text-decoration: underline; text-underline-offset: .16em; }
+#proof-callout :focus-visible { outline: 2px solid #ffe5a6; outline-offset: 1px; }
+@media (max-width: 800px) {
+  #proof-callout { width: min(13rem, 43%); }
+  .proof-scope { margin-top: .43rem; }
+}
