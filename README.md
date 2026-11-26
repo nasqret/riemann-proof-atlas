@@ -1,6 +1,10 @@
 # Riemann proof atlas
 
-Explore the written Lean theorems and lemmas of the Riemann hypothesis project on Leland McInnes’s map of arXiv papers. Select a subject or proof bundle, click a theorem, and follow **Open Lean source** to its original line. **Trace full graph path** explains how one of the five endpoint statements reaches the chosen theorem.
+Explore the Lean declarations behind the Riemann hypothesis project on two maps of arXiv papers. Select a paper, a proof bundle and a declaration to open its Lean source. The snapshot slider follows each edition at its own Git revision.
+
+**[Original map](https://nasqret.github.io/riemann-proof-atlas/)** · **[Paper Sky](https://nasqret.github.io/riemann-proof-atlas/june-map.html)** · **[Full dependency graph](https://nasqret.github.io/riemann-proof-atlas/#graph=1&constant=14065054)** · [All 28 snapshots](https://nasqret.github.io/riemann-proof-atlas/notes.html#proof-snapshots) · [Readable edition in Paper Sky](https://nasqret.github.io/riemann-proof-atlas/june-map.html?snapshot=dd2dcbe020d101dc603063ba5a7197b2c69600f1&track=readable)
+
+The submission has 1,068,007 written declarations and 1,484,733 compiled constants. Both maps place every written command and 1,484,660 compiled constants. The remaining 73 are foundational constants such as equality. They remain available in the graph, which contains 116,808,656 directed dependency edges. Later snapshots expose source references at their own revisions. [Placement audit](https://nasqret.github.io/riemann-proof-atlas/data/time-map/placement-audit.json) · [Snapshot source audit](https://nasqret.github.io/riemann-proof-atlas/data/time-map/source-audit.json)
 
 **[Explore the map](https://nasqret.github.io/riemann-proof-atlas/)** · [Watch the 52-second tour](https://nasqret.github.io/riemann-proof-atlas/film/) · [Reading notes](https://nasqret.github.io/riemann-proof-atlas/notes.html) · [Public reading dashboard](https://nasqret.github.io/riemann-rev/) · [Original paper map](https://lmcinnes.github.io/datamapplot_examples/arXiv/)
 
@@ -14,7 +18,7 @@ The edition map preserves the original coordinates for confidently matched decla
 
 [![The interactive atlas showing the classical RH proof filter](film/assets/edition.webp)](https://nasqret.github.io/riemann-proof-atlas/)
 
-The atlas covers 818,755 written declarations, 4,983 proof bundles and 2,477,303 papers. Of the 818,755 declarations, 802,362 have a subject or contextual placement. Another 16,393 appear in 168 named source sections. Choose **Layers → Placement evidence** to isolate declarations and proofs or their surrounding mathematical context. [Inspect matrix addition](https://nasqret.github.io/riemann-proof-atlas/#theorem=10) · [Browse source sections](https://nasqret.github.io/riemann-proof-atlas/#subject=unresolved) · [Attribution evidence](https://nasqret.github.io/riemann-proof-atlas/data/refinement/index.json)
+The original theorem and lemma layer covers 818,755 written declarations, 4,983 proof bundles and 2,477,303 papers. Of the 818,755 declarations, 802,362 have a subject or contextual placement. Another 16,393 appear in 168 named source sections. Choose **Layers → Placement evidence** to isolate declarations and proofs or their surrounding mathematical context. [Inspect matrix addition](https://nasqret.github.io/riemann-proof-atlas/#theorem=10) · [Browse source sections](https://nasqret.github.io/riemann-proof-atlas/#subject=unresolved) · [Attribution evidence](https://nasqret.github.io/riemann-proof-atlas/data/refinement/index.json)
 
 Select **ζ** to return to the original map. Zooming reveals more declarations while each existing marker keeps its geographic anchor. Use the four-corner icon or **F** for fullscreen. **Inspector** opens the theorem panel while the map stays in fullscreen. Use **/** to search, the arrow keys to pan, and **+** or **−** to zoom.
 
