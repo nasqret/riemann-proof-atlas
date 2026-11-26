@@ -1,8 +1,8 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=3c98e73747befb37";
+import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=ae95f7bc8cd066f0";
 import { methodText } from "../previews/chapter-5992-6fa73d518b93/attribution.6be4e17d59387f6f.js";
 import { Catalog, json, fmt, scopePass, merc } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
-import { AtlasMap } from "./map.js?atlas=3c98e73747befb37";
+import { AtlasMap } from "./map.js?atlas=ae95f7bc8cd066f0";
 import { NativeLayer } from "../previews/chapter-5992-6fa73d518b93/native-layer.d5b735863936c162.js";
 import { nativeDetail, openNative } from "../previews/chapter-5992-6fa73d518b93/native.7d5caf1515c8b15d.js";
 import { mountScreen } from "../previews/chapter-5992-6fa73d518b93/screen.19df69767d639472.js";

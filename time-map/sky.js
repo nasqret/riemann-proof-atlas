@@ -535,7 +535,13 @@ function addLayer(parent) {
     }
   });
   sourceIndexLink.hidden = true;
-  parent.append(sourceIndexLink);
+  const controls = sky ? node("div", null, "time-sky-controls") : parent.querySelector(".mapbar");
+  if (sky) {
+    const layers = parent.querySelector(".map-layers");
+    layers.before(controls);
+    controls.append(layers);
+  }
+  controls.append(sourceIndexLink);
   graphView = node("section", null, "time-graph-view");
   graphView.id = "time-graph-view";
   graphView.setAttribute("aria-label", "Dependency graph");
