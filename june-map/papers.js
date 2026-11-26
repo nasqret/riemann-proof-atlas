@@ -14,7 +14,13 @@ export async function readBytes(url) {
   const file = await response.arrayBuffer();
   const head = new Uint8Array(file, 0, Math.min(2, file.byteLength));
   if (head[0] !== 31 || head[1] !== 139) return file;
-  const stream = new Blob([file]).stream().pipeThrough(new DecompressionStream("gzip"));
+  const compressed = new ReadableStream({
+    start(controller) {
+      controller.enqueue(new Uint8Array(file));
+      controller.close();
+    },
+  });
+  const stream = compressed.pipeThrough(new DecompressionStream("gzip"));
   return new Response(stream).arrayBuffer();
 }
 export async function readURL(url) {
@@ -30,7 +36,8 @@ export function paperURL(id) {
 const decode = string => Uint8Array.from(atob(string), c => c.charCodeAt(0));
 
 export class PaperShards {
-  constructor(spec, world, categories = []) {
+  constructor(spec, world, categories = [], readPart = readJSON) {
+    this.readPart = readPart;
     this.spec = spec;
     this.world = world;
     this.categories = categories;
@@ -38,7 +45,7 @@ export class PaperShards {
   }
   async index() {
     if (!this.pending) {
-      this.pending = readJSON(this.spec.index).then(({leaves}) => {
+      this.pending = this.readPart(this.spec.index).then(({leaves}) => {
         const [xmin, ymin, xmax, ymax] = this.world;
         return leaves.map(([z, x, y, count]) => {
           const side = (xmax - xmin) / 2 ** z;
@@ -61,7 +68,7 @@ export class PaperShards {
       return cached;
     }
     const path = this.spec.template.replace("{z}", leaf.z).replace("{x}", leaf.x).replace("{y}", leaf.y);
-    const result = readJSON(path).then(({papers, xy, rows, levels, categoryCodes}) => {
+    const result = this.readPart(path).then(({papers, xy, rows, levels, categoryCodes}) => {
       const points = new DataView(decode(xy).buffer);
       const sourceRows = new DataView(decode(rows).buffer);
       const codes = levels ? new DataView(decode(levels).buffer) : null;

@@ -1,9 +1,10 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js?atlas=de34adf8c4baea9c";
-import {JuneMap} from "./map.js?atlas=de34adf8c4baea9c";
-import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js";
+import {bytes as geometryBytes} from "../time-map/original-io.js?atlas=8f96d1aab28fcadc";
+import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js?atlas=8f96d1aab28fcadc";
+import {JuneMap} from "./map.js?atlas=8f96d1aab28fcadc";
+import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js?atlas=8f96d1aab28fcadc";
 import {renderPaletteLegend, indexPalette, paperPaletteTopic} from "./palette.js";
-import {createProofReader} from "./nodes.js?atlas=de34adf8c4baea9c";
+import {createProofReader} from "./nodes.js?atlas=8f96d1aab28fcadc";
 
 const $ = id => document.getElementById(id);
 const pane = $("inspector-content"), search = $("search");
@@ -562,7 +563,8 @@ async function init() {
         normal: norm(context.name), alias: norm(context.printed)});
     }
   }
-  papers = manifest.papers ? new PaperShards(manifest.papers, manifest.world, manifest.categories?.labels) : null;
+  papers = manifest.papers ? new PaperShards(manifest.papers, manifest.world, manifest.categories?.labels,
+    async path => JSON.parse(new TextDecoder().decode(await geometryBytes(dataURL(path))))) : null;
   map = new JuneMap($("viewport"), manifest, levels, [], papers, {
     camera(m) {
       const label = m.levels[m.levelIndex]?.level;

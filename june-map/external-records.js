@@ -1,5 +1,5 @@
 // Source data for two independent Lake projects in a single immutable Git commit.
-import {readURL} from './papers.js';
+import {readURL} from './papers.js?atlas=8f96d1aab28fcadc';
 
 const origin=new URL('data/time-map/external/',document.baseURI);
 const assetVersion=new URL(import.meta.url).searchParams.get('atlas');

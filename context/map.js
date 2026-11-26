@@ -1,7 +1,7 @@
 /* versioned proof map */
-import {setOriginalPointMap, drawOriginalSnapshot, hitOriginalSnapshot} from "../time-map/retained-points.de34adf8c4baea9c.js";
-import {drawExternalPoints, hitExternalPoint} from "../time-map/external-points.de34adf8c4baea9c.js";
-import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=de34adf8c4baea9c";
+import {setOriginalPointMap, drawOriginalSnapshot, hitOriginalSnapshot} from "../time-map/retained-points.8f96d1aab28fcadc.js";
+import {drawExternalPoints, hitExternalPoint} from "../time-map/external-points.8f96d1aab28fcadc.js";
+import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=8f96d1aab28fcadc";
 import { PointTree } from "../previews/chapter-5992-6fa73d518b93/point-tree.3cc85be4105f3ffa.js";
 import { bytes, json, merc, fmt, scopePass } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
 const BASE = "data/base/";

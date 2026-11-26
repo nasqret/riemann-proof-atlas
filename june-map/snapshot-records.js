@@ -1,9 +1,9 @@
 // Both maps read these physical Git-source records and the same pinned submission cards.
-import {readBytes, readURL} from "./papers.js";
+import {readBytes, readURL} from "./papers.js?atlas=8f96d1aab28fcadc";
 import {nodeIndex, writtenRecord} from "./node-records.js";
-import {externalEdition} from "../time-map/edition-address.js?atlas=de34adf8c4baea9c";
+import {externalEdition} from "../time-map/edition-address.js?atlas=8f96d1aab28fcadc";
 
-const external = () => import("./external-records.js?atlas=de34adf8c4baea9c");
+const external = () => import("./external-records.js?atlas=8f96d1aab28fcadc");
 
 const root = new URL("data/time-map/", document.baseURI);
 const base = new URL("data/june-nodes/", document.baseURI);

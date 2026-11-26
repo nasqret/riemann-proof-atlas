@@ -1,7 +1,7 @@
 /* versioned proof map */
-import {drawExternalPoints, hitExternalPoint} from "../time-map/external-points.de34adf8c4baea9c.js";
-import {exclusiveProofLayer, activeHistoricalPin, inspectExternalPoint, draw as drawTime} from "../time-map/sky.js?atlas=de34adf8c4baea9c";
-import {dataURL} from "./papers.js";
+import {drawExternalPoints, hitExternalPoint} from "../time-map/external-points.8f96d1aab28fcadc.js";
+import {exclusiveProofLayer, activeHistoricalPin, inspectExternalPoint, draw as drawTime} from "../time-map/sky.js?atlas=8f96d1aab28fcadc";
+import {dataURL} from "./papers.js?atlas=8f96d1aab28fcadc";
 import {drawPalettePapers} from "./palette.js";
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));

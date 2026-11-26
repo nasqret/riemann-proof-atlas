@@ -7,7 +7,7 @@ import {
   bundlesAt,
   listNodes,
 } from "../june-map/node-records.js";
-import { externalEdition, setSnapshotAddress, snapshotSelector, sourceTreeURL } from "./edition-address.js?atlas=de34adf8c4baea9c";
+import { externalEdition, setSnapshotAddress, snapshotSelector, sourceTreeURL } from "./edition-address.js?atlas=8f96d1aab28fcadc";
 
 const BASE = "40e56bab026552e089d7afcfeff08d2defb9c005";
 let query = new URLSearchParams(location.search);
@@ -42,7 +42,7 @@ function route(key, value, extra = {}, at = location.href) {
   url.hash = key ? new URLSearchParams({ [key]: String(value), ...extra }).toString() : "";
   return url.href;
 }
-const rec = () => import("../june-map/snapshot-records.js?atlas=de34adf8c4baea9c");
+const rec = () => import("../june-map/snapshot-records.js?atlas=8f96d1aab28fcadc");
 const placement = () => import("./placement.js");
 let catalogPromise, atlasPromise;
 function catalog() {
@@ -762,7 +762,7 @@ function inspectNearest(event) {
     event.preventDefault();
     event.stopImmediatePropagation();
     const address = location.href;
-    import("./external-points.de34adf8c4baea9c.js").then((map) => {
+    import("./external-points.8f96d1aab28fcadc.js").then((map) => {
       if (location.href !== address) return;
       const hit = map.hitExternalPoint(bridge.width() / 2, bridge.height() / 2, true);
       if (hit) inspectExternalPoint(hit);
@@ -1102,7 +1102,7 @@ async function originalWrittenLocation(record, t, note,gesture) {
       return;
     }
     const point = historical
-      ? await (await import("./retained-points.de34adf8c4baea9c.js")).originalWrittenPosition(record.baseId, record.atlas)
+      ? await (await import("./retained-points.8f96d1aab28fcadc.js")).originalWrittenPosition(record.baseId, record.atlas)
       : await bridge.basePoint(record.id, record.atlas);
     if (!active(t)) return;
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) {
