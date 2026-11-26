@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-25T08:51:56Z",
+  "asOf": "2026-11-26T03:34:25Z",
   "days": [
     {
       "date": "2026-11-20",
@@ -86,7 +86,7 @@
     },
     {
       "date": "2026-11-25",
-      "final": false,
+      "final": true,
       "mirror": {
         "commit": "179fd6fe6f08a391c208fc93aab1328548499bf7",
         "committedAt": "2026-11-20T17:39:44Z",
@@ -102,6 +102,25 @@
         "evidence": "evidence/site-24c1ed3b9c8b63ea5ee0af636906ebff8c96ed3170a57b2a6669318b6e25a187.json",
         "previousEvidence": "evidence/site-448c096311131ba1e40d8e62cbbe59521fd65865729fc28dd10fae9e0cc8a06a.json"
       }
+    },
+    {
+      "date": "2026-11-26",
+      "final": false,
+      "mirror": {
+        "commit": "179fd6fe6f08a391c208fc93aab1328548499bf7",
+        "committedAt": "2026-11-20T17:39:44Z",
+        "equalsSubmission": true,
+        "sourceTree": "b41b516b1f7baee4d83ced235ecc71fd43c97695",
+        "sourceUrl": "https://github.com/Reen-Ai-H/riemann-hypothesis-lean-zh/tree/179fd6fe6f08a391c208fc93aab1328548499bf7/src"
+      },
+      "mirrorChange": null,
+      "observation": "evidence/observation-2523c4fb92a8ad09f05fade9aa60bfea7032b18f7eadea463f4d58f12f318e12.json",
+      "opened": [],
+      "siteMetricsChange": {
+        "changeInReportedValues": {},
+        "evidence": "evidence/site-214457bda96d2c65bae4feec1ba3a60538e14eb897321892b1b75e72372a87d7.json",
+        "previousEvidence": "evidence/site-24c1ed3b9c8b63ea5ee0af636906ebff8c96ed3170a57b2a6669318b6e25a187.json"
+      }
     }
   ],
   "mirror": {
@@ -111,6 +130,7 @@
   },
   "observations": [
     "evidence/observation-1b6d281acbae0834b6db563d90ce625daaa77c8c758bce85cf70c96fb752266d.json",
+    "evidence/observation-2523c4fb92a8ad09f05fade9aa60bfea7032b18f7eadea463f4d58f12f318e12.json",
     "evidence/observation-2d4d0691831468da609366ff8e09d4e05505144f195a44d87b9c24835b0a6704.json",
     "evidence/observation-892520e25cdf580e5afcf68cfc0e64993824c63987bee409b4ea4d5e8fd7a43b.json",
     "evidence/observation-a7f02427229a97cb73cbdf7f0d3b6afd57f135536a7bac13797c0115d47fbc76.json",
@@ -155,10 +175,10 @@
   "schema": 1,
   "site": {
     "contributorAccountLinked": false,
-    "evidence": "evidence/site-24c1ed3b9c8b63ea5ee0af636906ebff8c96ed3170a57b2a6669318b6e25a187.json",
+    "evidence": "evidence/site-214457bda96d2c65bae4feec1ba3a60538e14eb897321892b1b75e72372a87d7.json",
     "guide": "https://riemann.verifytask.cn/riemann/",
     "mirrorLinked": false,
-    "observedAt": "2026-11-25T08:56:31Z",
+    "observedAt": "2026-11-26T03:36:07Z",
     "reportedApproxLines": null,
     "reportedArchiveBytes": null,
     "reportedFiles": null,

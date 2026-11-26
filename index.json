@@ -217,15 +217,20 @@
     },
     {
       "day": "2026-11-25",
-      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
       "before": "82c577caf1b8a66c76212d78a399234f55813d28",
-      "comparison": "82c577caf1b8a66c76212d78a399234f55813d28..75e2012dcc6f3093e223ef8d327b88395ff7d27c",
-      "closed": false,
+      "comparison": "82c577caf1b8a66c76212d78a399234f55813d28..756a70250dcba9162b99d4ea35c186558434c17e",
+      "closed": true,
       "captures": [
         {
           "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
           "comparison": "82c577caf1b8a66c76212d78a399234f55813d28..75e2012dcc6f3093e223ef8d327b88395ff7d27c",
           "observedAt": "2026-11-25T08:51:56Z"
+        },
+        {
+          "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+          "comparison": "82c577caf1b8a66c76212d78a399234f55813d28..756a70250dcba9162b99d4ea35c186558434c17e",
+          "endExclusive": "2026-11-26T00:00:00Z"
         }
       ],
       "changes": [
@@ -258,8 +263,63 @@
           "pin": "246656fc62ac80c1214f48550138076c4f278569",
           "title": "chore: batch 15 of 139 small PRs",
           "pr": 2318
+        },
+        {
+          "pin": "ef451fc356cbc66861df031531aaafd2843797ac",
+          "title": "chore: batch 16 of 157 small PRs",
+          "pr": 2491
+        },
+        {
+          "pin": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+          "title": "chore: batch 17 of 228 small PRs",
+          "pr": 2787
+        },
+        {
+          "pin": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+          "title": "chore: batch 18 of 98 small PRs",
+          "pr": 2960
+        },
+        {
+          "pin": "d91ae2678eea19a0c3045ffca37f1da757c2e719",
+          "title": "chore: batch 19 of 162 small PRs",
+          "pr": 3142
+        },
+        {
+          "pin": "91b273530883b723ef4422436e0dc3557749325a",
+          "title": "chore: batch 20 of 258 small PRs",
+          "pr": 3454
+        },
+        {
+          "pin": "98d36aafeeb30c1f40fdda96c3574faa34dfa413",
+          "title": "chore: batch 21 of 467 small PRs",
+          "pr": 3964
+        },
+        {
+          "pin": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+          "title": "chore: batch 22 of 272 small PRs",
+          "pr": 4346
+        },
+        {
+          "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+          "title": "chore: batch 23 of 440 small PRs",
+          "pr": 4761
         }
       ]
+    },
+    {
+      "day": "2026-11-26",
+      "pin": "d85ea673400d21f60655ea34fc57f5d16068c74a",
+      "before": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "d85ea673400d21f60655ea34fc57f5d16068c74a",
+          "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a",
+          "observedAt": "2026-11-26T03:34:25Z"
+        }
+      ],
+      "changes": []
     }
   ],
   "editions": {
@@ -1230,6 +1290,166 @@
       "committedAt": "2026-11-25T07:24:48Z",
       "checkedLinks": 96,
       "summarySha256": "d9c85c01d583364c0ef1153958a5551ec41548e3d6513eb5b740ef434199b6cc"
+    },
+    "756a70250dcba9162b99d4ea35c186558434c17e": {
+      "sourceTree": "9ef527296d055511d5d94d79c517405ddc44c880",
+      "sourceFiles": 58946,
+      "lines": 13710027,
+      "written": 569585,
+      "states": [
+        0,
+        361700,
+        254697,
+        5527,
+        202358
+      ],
+      "assets": {
+        "states.bin.gz": "3a258e0ca2ea411a1e8de0d53e1a4e848e205b0adc74a67f642f41401cdfb343",
+        "locations.json.gz": "d910867a022b980b02120026088abf3b194da3713354fd554d3dd7861e5dbdfc"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          18,
+          19,
+          20
+        ],
+        "4": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          21,
+          22,
+          27
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "assetPin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "committedAt": "2026-11-25T21:25:34Z",
+      "checkedLinks": 96,
+      "summarySha256": "f1e4c06f2eaa146f8cdbae3c87b32dbbae8e12d20feb8977be33e292a13d861b"
+    },
+    "d85ea673400d21f60655ea34fc57f5d16068c74a": {
+      "sourceTree": "9ef527296d055511d5d94d79c517405ddc44c880",
+      "sourceFiles": 58946,
+      "lines": 13710027,
+      "written": 569585,
+      "states": [
+        0,
+        361700,
+        254697,
+        5527,
+        202358
+      ],
+      "assets": {
+        "states.bin.gz": "3a258e0ca2ea411a1e8de0d53e1a4e848e205b0adc74a67f642f41401cdfb343",
+        "locations.json.gz": "d910867a022b980b02120026088abf3b194da3713354fd554d3dd7861e5dbdfc"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          18,
+          19,
+          20
+        ],
+        "4": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          21,
+          22,
+          27
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "d85ea673400d21f60655ea34fc57f5d16068c74a",
+      "assetPin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "committedAt": "2026-11-26T03:24:20Z",
+      "checkedLinks": 96,
+      "summarySha256": "f1e4c06f2eaa146f8cdbae3c87b32dbbae8e12d20feb8977be33e292a13d861b"
     }
   },
   "comparisons": {
@@ -1419,6 +1639,40 @@
       "deletedLines": 671780,
       "sha256": "d171208d214bedce374ec79b61f7bc9d9ac9d9de426b025ba32c97876b345b22",
       "asset": "pairs/82c577caf1b8a66c76212d78a399234f55813d28..75e2012dcc6f3093e223ef8d327b88395ff7d27c.json.gz"
+    },
+    "82c577caf1b8a66c76212d78a399234f55813d28..756a70250dcba9162b99d4ea35c186558434c17e": {
+      "before": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "after": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "removed": 29362,
+      "added": 1182,
+      "moved": 2086,
+      "ambiguousRemoved": 5,
+      "ambiguousAdded": 5,
+      "retained": 568403,
+      "filesAdded": 65,
+      "filesRemoved": 941,
+      "filesEdited": 51420,
+      "insertedLines": 194847,
+      "deletedLines": 2437362,
+      "sha256": "aa6b7447257627c042d590093d4388686ba2efd30ae951c14bd7ce673cc64916",
+      "asset": "pairs/82c577caf1b8a66c76212d78a399234f55813d28..756a70250dcba9162b99d4ea35c186558434c17e.json.gz"
+    },
+    "756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a": {
+      "before": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "after": "d85ea673400d21f60655ea34fc57f5d16068c74a",
+      "removed": 0,
+      "added": 0,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 569585,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesEdited": 0,
+      "insertedLines": 0,
+      "deletedLines": 0,
+      "sha256": "ae989c3fe95bc367671d1d60c9d25fe5147f46c02afc9b093609eca3ce4bcbc3",
+      "asset": "pairs/756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a.json.gz"
     }
   },
   "proposals": {
@@ -1465,6 +1719,6 @@
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-25T08:51:56Z",
-  "observedTip": "75e2012dcc6f3093e223ef8d327b88395ff7d27c"
+  "capturedAt": "2026-11-26T03:34:25Z",
+  "observedTip": "d85ea673400d21f60655ea34fc57f5d16068c74a"
 }
