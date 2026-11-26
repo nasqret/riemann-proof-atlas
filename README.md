@@ -6,9 +6,13 @@ Explore the written Lean theorems and lemmas of the Riemann hypothesis project o
 
 **[Paper Sky](https://nasqret.github.io/riemann-proof-atlas/june-map.html)** · 3,080,258 paper rows, 28,977 named regions and a filter for 549,618 papers with a verified primary mathematics category. Select a proof marker to inspect its supporting paper and open the original Lean declarations.
 
+**[Explore the Sernau compact GRH edition](https://nasqret.github.io/riemann-proof-atlas/?snapshot=72fead102f663d5c7a407964a13dc0cf9d977207&edition=grh-compact)** · [Read the four-page note](https://nasqret.github.io/riemann-rev/summary/grh-condensed-summary.pdf) · [Compare the source sizes](https://nasqret.github.io/riemann-proof-atlas/notes.html#sernau-compact)
+
+The last stop on the proof evolution slider is the compact external rewriting, with 76,149 Lean code lines under its source root. The preceding stop opens its readable companion.
+
 **[Explore the complete RH dependency graph](https://nasqret.github.io/riemann-proof-atlas/#graph=1&constant=14065054)** · [Inspect the original Lean source](https://nasqret.github.io/riemann-proof-atlas/june-map.html#written=1026737) · [Excluded foundations](https://nasqret.github.io/riemann-proof-atlas/june-map.html#foundation=1) · [Coverage and checks](https://nasqret.github.io/riemann-proof-atlas/data/time-map/placement-audit.json)
 
-The map switch and snapshot slider open 28 pinned revisions on both paper backgrounds. Choose the daily history, the separate readable edition, prior captures or a pull request. Every command opens at its exact revision. [Latest Alpöge snapshot](https://nasqret.github.io/riemann-proof-atlas/?snapshot=d85ea673400d21f60655ea34fc57f5d16068c74a) · [Current readable edition](https://nasqret.github.io/riemann-proof-atlas/june-map.html?snapshot=dd2dcbe020d101dc603063ba5a7197b2c69600f1&track=readable)
+The map switch and snapshot slider open 30 pinned source editions on both paper backgrounds. Choose the daily history, the separate readable edition, prior captures or a pull request. Every command opens at its exact revision. [Latest Alpöge snapshot](https://nasqret.github.io/riemann-proof-atlas/?snapshot=d85ea673400d21f60655ea34fc57f5d16068c74a) · [Current readable edition](https://nasqret.github.io/riemann-proof-atlas/june-map.html?snapshot=dd2dcbe020d101dc603063ba5a7197b2c69600f1&track=readable)
 
 Paper Sky uses 21 colors for named topic regions. The legend gives each region’s paper count and opens its place on the map. Two neutral colors distinguish other named topics from papers without a name at any of the nine levels.
 

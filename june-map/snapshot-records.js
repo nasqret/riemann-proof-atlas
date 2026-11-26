@@ -1,6 +1,9 @@
 // Both maps read these physical Git-source records and the same pinned submission cards.
 import {readBytes, readURL} from "./papers.js";
 import {nodeIndex, writtenRecord} from "./node-records.js";
+import {externalEdition} from "../time-map/edition-address.js?atlas=de34adf8c4baea9c";
+
+const external = () => import("./external-records.js?atlas=de34adf8c4baea9c");
 
 const root = new URL("data/time-map/", document.baseURI);
 const base = new URL("data/june-nodes/", document.baseURI);
@@ -23,13 +26,23 @@ const bytes = (url) => cache(blocks,url.href,()=>readBytes(url.href),120);
 const partURL = key => new URL("parts/"+key+".gz",root);
 const part = key => bytes(partURL(key));
 const obj = key => cache(blocks,"j:"+key,async()=>JSON.parse(decoder.decode(await part(key))),120);
-export const snapshotIndex = () => json(new URL("index.json",root),stable);
+const indexURL = new URL("index.json",root);
+const assetVersion = new URL(import.meta.url).searchParams.get("atlas");
+if (assetVersion) indexURL.searchParams.set("atlas",assetVersion);
+export const snapshotIndex = () => json(indexURL,stable);
 async function edition(pin){
   const index=await snapshotIndex(), meta=index.snapshots.find(s=>s.pin===pin);
   if(!meta)throw Error("Unknown source revision.");
   return {index, meta, data:await obj(meta.treeData)};
 }
-export const snapshotStats = async pin=>(await edition(pin)).data.stats;
+export async function snapshotStats(pin) {
+  if (externalEdition(pin)) {
+    const api = await external();
+    const [stats, index] = await Promise.all([api.externalStats(pin), api.externalIndex()]);
+    return {...stats, endpoints:index.snapshots.find((row) => row.pin === pin).endpoints};
+  }
+  return (await edition(pin)).data.stats;
+}
 const bit=(view,i)=>Boolean(view[i>>>3]&(1<<(i&7)));
 function expanded(pin,what,property){
   return cache(blocks,what+pin,async()=>{
@@ -40,8 +53,14 @@ function expanded(pin,what,property){
     return Uint8Array.from({length:n},(_,i)=>Number(bit(packed,i)));
   },120);
 }
-export const snapshotPresence = pin =>expanded(pin,"physical","presence");
-export const snapshotAtlasPresence = pin =>expanded(pin,"atlas","atlasPresence");
+export async function snapshotPresence(pin) {
+  if (externalEdition(pin)) return (await external()).externalPresence(pin);
+  return expanded(pin,"physical","presence");
+}
+export async function snapshotAtlasPresence(pin) {
+  if (externalEdition(pin)) return (await external()).externalAtlasPresence(pin);
+  return expanded(pin,"atlas","atlasPresence");
+}
 function view(buf,columns){
   const d=new DataView(buf), n=d.getUint32(0,true);
   if(buf.byteLength!==4+n*columns*4)throw Error("Invalid source-record block.");
@@ -79,9 +98,11 @@ async function groupsFor(pin){
   },120);
 }
 export async function snapshotBundle(pin,id){
+  if (externalEdition(pin)) return (await external()).externalBundle(pin,id);
   const g=(await groupsFor(pin)).byID.get(id);return g?.written?g:null;
 }
 export async function snapshotBundlesAt(pin,marker){
+  if (externalEdition(pin)) return (await external()).externalBundlesAt(pin,marker);
   return (await groupsFor(pin)).all.filter(g=>g.id && g.marker===marker && g.written>0);
 }
 async function renames(s){
@@ -193,7 +214,11 @@ async function info(pin,id){
   }
   return card;
 }
-export function snapshotRecord(pin,id){return cache(blocks,"rec:"+pin+"/"+id,()=>info(pin,id),120);}
+function historicalRecord(pin,id){return cache(blocks,"rec:"+pin+"/"+id,()=>info(pin,id),120);}
+export async function snapshotRecord(pin,id) {
+  if (externalEdition(pin)) return (await external()).externalRecord(pin,id);
+  return historicalRecord(pin,id);
+}
 
 async function sourceName(s,id){
   if(id<s.index.baselineRows){
@@ -230,6 +255,7 @@ async function baseMembers(pos,idx){
   const i=pos%idx.memberStride;return [block.get(0,i),block.get(1,i)];
 }
 export async function listSnapshotNodes(pin,o={}){
+  if (externalEdition(pin)) return (await external()).listExternalNodes(pin,o);
   if(o.foundation||o.kind==="constant")return empty();
   const {offset,limit}=options(o), s=await edition(pin), grouped=await groupsFor(pin);
   let selected;
@@ -272,6 +298,7 @@ function windowBounds(dir,q,exact){
     high==null?dir.length:lower(dir.length,i=>dir[i][0]>=high)];
 }
 export async function findSnapshotNodes(pin,q,o={}){
+  if (externalEdition(pin)) return (await external()).findExternalNodes(pin,q,o);
   if(o.foundation||o.kind==="constant")return empty();
   const {offset,limit}=options(o), spelling=String(q??"").trim(), fold=spelling.toLowerCase();
   if(!fold)return empty();
@@ -328,7 +355,7 @@ export async function findSnapshotNodes(pin,q,o={}){
   }
   return {total,rows};
 }
-export async function resolveSnapshot(fromPin,toPin,id){
+async function historicalResolve(fromPin,toPin,id){
   if(!valid(id))return {status:"unmatched",id:null,candidates:[]};
   const [from,to]=await Promise.all([edition(fromPin),edition(toPin)]);
   const source=await snapshotRecord(fromPin,id);
@@ -345,7 +372,14 @@ export async function resolveSnapshot(fromPin,toPin,id){
     return {status:"present",id:cands[0].id,basis:"unique-same-path-name-and-kind",candidates:[]};
   return {status:cands.length?"ambiguous":"removed",id:null,candidates:cands.map(v=>({id:v.id,name:v.name,kind:"written"}))};
 }
+export async function resolveSnapshot(fromPin,toPin,id){
+  if (externalEdition(fromPin) || externalEdition(toPin)) {
+    return (await external()).resolveExternal(fromPin,toPin,id,{record:historicalRecord,resolve:historicalResolve});
+  }
+  return historicalResolve(fromPin,toPin,id);
+}
 export async function snapshotReferences(pin,id){
+  if (externalEdition(pin)) return (await external()).externalReferences(pin,id);
   const card=await snapshotRecord(pin,id);if(!card?.present)return [];
   const namespace=card.name.split(".").slice(0,-1);
   return Promise.all(card.references.map(async entry=>{

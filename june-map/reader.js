@@ -1,9 +1,9 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js?atlas=ae95f7bc8cd066f0";
-import {JuneMap} from "./map.js?atlas=ae95f7bc8cd066f0";
+import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js?atlas=de34adf8c4baea9c";
+import {JuneMap} from "./map.js?atlas=de34adf8c4baea9c";
 import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js";
 import {renderPaletteLegend, indexPalette, paperPaletteTopic} from "./palette.js";
-import {createProofReader} from "./nodes.js?atlas=ae95f7bc8cd066f0";
+import {createProofReader} from "./nodes.js?atlas=de34adf8c4baea9c";
 
 const $ = id => document.getElementById(id);
 const pane = $("inspector-content"), search = $("search");
@@ -608,7 +608,7 @@ async function init() {
       e.preventDefault(); search.focus();
     }
   });
-  mountTime({viewport:map.el, camera:()=>[map.x,map.y,map.zoom],restoreCamera:([x,y,z])=>map.go(x,y,z),clearSelection:()=>{map.select(null);proof?.clear();},zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(), visible:()=>map.layers.lean,
+  mountTime({viewport:map.el, camera:()=>[map.x,map.y,map.zoom],pointerActive:()=>map.pointer.size>0,restoreCamera:([x,y,z])=>map.go(x,y,z),clearSelection:()=>{map.select(null);proof?.clear();},zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(), visible:()=>map.layers.lean,
     topicSearch:q=>topicMatches(regionList,q,"region"),screen:(x,y)=>map.screen(x,y),go:(x,y)=>map.go(x,y,Math.max(8,Math.min(32,map.zoom)))});
   search.disabled = false;
   search.oninput = () => {

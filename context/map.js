@@ -1,6 +1,7 @@
 /* versioned proof map */
-import {setOriginalPointMap, drawOriginalSnapshot, hitOriginalSnapshot} from "../time-map/retained-points.js";
-import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=ae95f7bc8cd066f0";
+import {setOriginalPointMap, drawOriginalSnapshot, hitOriginalSnapshot} from "../time-map/retained-points.de34adf8c4baea9c.js";
+import {drawExternalPoints, hitExternalPoint} from "../time-map/external-points.de34adf8c4baea9c.js";
+import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=de34adf8c4baea9c";
 import { PointTree } from "../previews/chapter-5992-6fa73d518b93/point-tree.3cc85be4105f3ffa.js";
 import { bytes, json, merc, fmt, scopePass } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
 const BASE = "data/base/";
@@ -507,11 +508,13 @@ export class AtlasMap {
     if (!this.unplaced && this.show.labels) this.landmarks();
     if (exclusiveProofLayer() && historicalPin()) {
       const pin = activeHistoricalPin();
+      drawExternalPoints(this, pin, "original");
       if (pin && this.show.lean) drawOriginalSnapshot(this, pin);
       drawTime();
       document.getElementById("scale").textContent = (this.zoom > 15 ? Math.round(this.zoom) : Number(this.zoom.toFixed(1))) + "×";
       return;
     }
+    drawExternalPoints(this, null, "original");
     if (this.cat && this.show.lean && this.show.relations) this.proofLines();
     if (this.cat && this.show.lean) this.leanMarks();
     if (this.nativeLayer && this.show.generated) this.nativeLayer.draw(this);
@@ -677,7 +680,7 @@ export class AtlasMap {
     }
   }
   hit(sx, sy) {
-    if (activeHistoricalPin()) { const item = hitOriginalSnapshot(sx, sy); if (item) return {type:"time-node",route:item,count:item.count}; }
+    if (activeHistoricalPin()) { const item = hitOriginalSnapshot(sx, sy) || hitExternalPoint(sx, sy); if (item) return {type:"time-node",route:item,count:item.count}; }
     if (!historicalPin() && !this.chapterLayer && this.contextLayer?.enabled && !this.unplaced) {
       const contextual = this.contextLayer.hit(sx, sy);
       if (contextual) return contextual;

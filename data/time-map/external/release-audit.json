@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "verificationSHA256": "81901a8030f12d569bf9b5f3bf69c0d890a925caa6e3b1d8cb58461c5e570bf9",
+  "independentReceiptSHA256": "b588c88806c7c22380a7ad58305f677396a60560238df1071ba22187d7523ea7",
+  "repository": "lsernau/grh-lean",
+  "commit": "72fead102f663d5c7a407964a13dc0cf9d977207",
+  "checkedFiles": 102
+}

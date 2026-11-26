@@ -1,5 +1,6 @@
 /* versioned proof map */
-import {exclusiveProofLayer, draw as drawTime} from "../time-map/sky.js?atlas=ae95f7bc8cd066f0";
+import {drawExternalPoints, hitExternalPoint} from "../time-map/external-points.de34adf8c4baea9c.js";
+import {exclusiveProofLayer, activeHistoricalPin, inspectExternalPoint, draw as drawTime} from "../time-map/sky.js?atlas=de34adf8c4baea9c";
 import {dataURL} from "./papers.js";
 import {drawPalettePapers} from "./palette.js";
 
@@ -206,6 +207,7 @@ export class JuneMap {
     this.el.dataset.exact = String(this.canPick);
     this.el.dataset.labels = this.labelHits.length;
     this.el.dataset.anchors = this.leanHits.length;
+    drawExternalPoints(this, activeHistoricalPin(), "june");
     this.proofPosition?.();
     drawTime();
   }
@@ -349,7 +351,8 @@ export class JuneMap {
       const at = this.point(event);
       this.el.focus({preventScroll: true});
       this.el.setPointerCapture(event.pointerId);
-      this.pointer.set(event.pointerId, {start: at, now: at, moved: false});
+      const external = hitExternalPoint(...at);
+      this.pointer.set(event.pointerId, {start: at, now: at, moved: false, external, address:location.href});
       if (this.pointer.size > 1) for (const entry of this.pointer.values()) entry.moved = true;
       this.el.classList.add("dragging");
     });
@@ -368,6 +371,10 @@ export class JuneMap {
       this.pointer.delete(event.pointerId);
       if (!this.pointer.size) this.el.classList.remove("dragging");
       if (!entry || entry.moved || event.type !== "pointerup") return;
+      if (entry.external) {
+        if (entry.address === location.href) inspectExternalPoint(entry.external);
+        return;
+      }
       const at = this.point(event), hit = this.hit(...at);
       if (hit) this.events.select(hit.kind, hit.item);
       else this.pick(at).catch(this.events.error);

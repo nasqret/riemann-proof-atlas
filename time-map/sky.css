@@ -508,6 +508,19 @@ body.immersive .time-tools {
 .time-counted .time-dot span {
   display: block;
 }
+.time-external-detail .time-dot::before {
+  content: "";
+  position: absolute;
+  width: 1.75rem;
+  border-top: 1px solid #f4ce92;
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
+.time-external-detail .time-dot i,
+.time-external-detail .time-dot span {
+  margin-left: 1.25rem;
+  margin-top: -1.25rem;
+}
 .time-map-popup {
   position: absolute;
   z-index: 2;
@@ -680,6 +693,25 @@ body.immersive .time-tools {
   color: #526b5a;
   font-weight: 400;
   font-size: 0.71rem;
+}
+.time-tools #time-final {
+  justify-self: start;
+  min-height: 1.65rem;
+  padding: 0.1rem 0;
+  border: 0;
+  background: transparent;
+  color: #285740;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.time-tools #time-final[hidden] {
+  display: none;
+}
+@media (pointer: coarse) {
+  .time-tools #time-final {
+    min-height: 44px;
+  }
 }
 .time-filter {
   display: flex;

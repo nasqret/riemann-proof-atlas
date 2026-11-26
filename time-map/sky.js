@@ -7,10 +7,11 @@ import {
   bundlesAt,
   listNodes,
 } from "../june-map/node-records.js";
+import { externalEdition, setSnapshotAddress, snapshotSelector, sourceTreeURL } from "./edition-address.js?atlas=de34adf8c4baea9c";
 
 const BASE = "40e56bab026552e089d7afcfeff08d2defb9c005";
 let query = new URLSearchParams(location.search);
-let pin = query.get("snapshot") || BASE;
+let pin = snapshotSelector(query) || BASE;
 let historical = pin !== BASE;
 const sky = document.body.dataset.sitePage === "june-map";
 const geometry = sky ? "sky" : "original";
@@ -19,8 +20,6 @@ const fmt = (n) => Number(n).toLocaleString("en-US");
 const $ = (id) => document.getElementById(id);
 const realId = (value) =>
   /^\d+$/.test(value ?? "") && Number.isSafeInteger(Number(value)) ? Number(value) : null;
-const sourceURL = (revision) =>
-  "https://github.com/leanprover-community/riemann-hypothesis/tree/" + revision + "/src";
 const node = (tag, text, cls) => {
   const n = document.createElement(tag);
   if (text != null) n.textContent = text;
@@ -43,11 +42,14 @@ function route(key, value, extra = {}, at = location.href) {
   url.hash = key ? new URLSearchParams({ [key]: String(value), ...extra }).toString() : "";
   return url.href;
 }
-const rec = () => import("../june-map/snapshot-records.js");
+const rec = () => import("../june-map/snapshot-records.js?atlas=de34adf8c4baea9c");
 const placement = () => import("./placement.js");
 let catalogPromise, atlasPromise;
 function catalog() {
-  return (catalogPromise ??= fetch(new URL("data/time-map/pins.json", document.baseURI))
+  const url = new URL("data/time-map/pins.json", document.baseURI);
+  const version = new URL(import.meta.url).searchParams.get("atlas");
+  if (version) url.searchParams.set("atlas", version);
+  return (catalogPromise ??= fetch(url)
     .then((r) => {
       if (!r.ok) throw Error("Snapshot catalogue (HTTP " + r.status + ")");
       return r.json();
@@ -93,11 +95,18 @@ const beforeGraph = new WeakMap();
 let focusGraph = false;
 const markerCache = new Map();
 const labels = {
+  journey: "Proof evolution",
   daily: "Daily history",
   archives: "Recorded snapshots",
   proposals: "Pull requests",
   readable: "Readable edition",
+  sernau: "Sernau editions",
 };
+function revisionName(key) {
+  const edition = externalEdition(key);
+  if (edition) return (data?.snapshots.find((row) => row.pin === key)?.sourcePin || "").slice(0, 8) + " · " + edition;
+  return key.slice(0, 8);
+}
 function switches() {
   refreshEdition();
   const key = hash();
@@ -146,9 +155,9 @@ function showPanel(on) {
   document.body.classList.toggle("time-reading", on);
 }
 function locationURL(next, params = hash(), nextTrack = track) {
-  const url = new URL(location.href);
-  url.searchParams.set("snapshot", next);
-  if (nextTrack && nextTrack !== "daily") url.searchParams.set("track", nextTrack);
+  const url = setSnapshotAddress(new URL(location.href), next);
+  const defaultTrack = data?.tracks.journey?.length ? "journey" : "daily";
+  if (nextTrack && nextTrack !== defaultTrack) url.searchParams.set("track", nextTrack);
   else url.searchParams.delete("track");
   url.hash = params.toString();
   return url;
@@ -265,6 +274,14 @@ function prepareChrome(spec) {
   data = spec;
   const all = new Map(spec.snapshots.map((s) => [s.pin, s]));
   rev = all.get(pin);
+  if (rev && externalEdition(pin)) {
+    const canonical = setSnapshotAddress(new URL(location.href), pin);
+    if (canonical.href !== location.href) {
+      history.replaceState(history.state, "", canonical);
+      readSearch = canonical.search;
+      query = canonical.searchParams;
+    }
+  }
   const preferred = query.get("track");
   track =
     Object.hasOwn(labels, preferred) && spec.tracks[preferred]?.includes(pin)
@@ -301,12 +318,16 @@ function prepareChrome(spec) {
   previous.disabled = position < 1;
   next.disabled = position < 0 || position >= trackPins.length - 1;
   output.textContent = describe(pin);
-  pinLink.textContent = pin.slice(0, 8);
+  pinLink.textContent = (rev?.sourcePin || pin).slice(0, 8);
   pinLink.hidden = !rev;
   if (rev) {
-    pinLink.href = sourceURL(pin);
-    pinLink.title = pin;
+    pinLink.href = sourceTreeURL(rev);
+    pinLink.title = rev.sourceRepository ? rev.sourceRepository + " · " + rev.sourcePath + " · " + rev.sourcePin : pin;
   }
+  const terminal = spec.tracks.journey?.at(-1);
+  const latest = $("time-final");
+  latest.hidden = !externalEdition(terminal) || terminal === pin;
+  latest.onclick = () => changePin(terminal, "journey");
   previous.onclick = () => changePin(trackPins[position - 1]);
   next.onclick = () => changePin(trackPins[position + 1]);
   slider.oninput = () => {
@@ -337,6 +358,8 @@ function prepareChrome(spec) {
   };
   if (!rev) $("time-announce").textContent = "Unknown snapshot. Choose a recorded revision.";
   document.body.dataset.snapshot = pin;
+  document.body.dataset.sourcePin = rev?.sourcePin || pin;
+  document.body.dataset.edition = rev?.edition || "";
   document.body.dataset.snapshotTrack = track;
   document.body.dataset.timeReady = "true";
 }
@@ -488,7 +511,7 @@ async function loadMarkers(wanted, token) {
   if (size && Number.isFinite(current)) {
     size.textContent = fmt(current) + " written commands";
     const prev = trackPins?.[trackPins.indexOf(wanted) - 1];
-    if (prev)
+    if (prev && Boolean(externalEdition(prev)) === Boolean(externalEdition(wanted)))
       (await rec())
         .snapshotIndex()
         .then((master) => {
@@ -603,6 +626,7 @@ export function draw() {
   }
   layer.dataset.visible = String(markers.filter((m) => m.element && !m.element.hidden).length);
   layer.classList.toggle("time-counted", bridge.zoom() >= 6);
+  layer.classList.toggle("time-external-detail", Boolean(externalEdition(pin)) && bridge.zoom() >= 6);
   if (exactSelection) {
     const [sx, sy] = bridge.screen(exactSelection.x, exactSelection.y);
     selectionRing.hidden = sx < 0 || sy < 0 || sx > width || sy > height;
@@ -678,7 +702,7 @@ function mapPage(marker, title, reader, ticket, fixed = false) {
       fixed
         ? "Written commands without a paper coordinate"
         : exactSelection
-          ? "Recorded Original map position"
+          ? exactSelection.paperLayout ? "Paper-centered declaration layout" : "Recorded Original map position"
           : "Paper " + marker.anchor.arxivId,
     ),
     body,
@@ -734,6 +758,18 @@ function mapPage(marker, title, reader, ticket, fixed = false) {
 }
 
 function inspectNearest(event) {
+  if (externalEdition(pin) && event.key.toLowerCase() === "d" && !event.ctrlKey && !event.altKey && !event.metaKey) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const address = location.href;
+    import("./external-points.de34adf8c4baea9c.js").then((map) => {
+      if (location.href !== address) return;
+      const hit = map.hitExternalPoint(bridge.width() / 2, bridge.height() / 2, true);
+      if (hit) inspectExternalPoint(hit);
+      else $("time-announce").textContent = "No paper-centered declaration point is visible here.";
+    });
+    return;
+  }
   if (
     !showMarkers() ||
     !bridge ||
@@ -761,6 +797,17 @@ function navigate(k, v, extra) {
 }
 function mayCenterOriginal(gesture) {
   return (gesture === undefined || gesture === cameraGesture) && !bridge.pointerActive?.();
+}
+function displayExternalPosition(record, gesture, focus) {
+  const coordinates = record.coordinates?.[sky ? "june" : "original"];
+  if (!coordinates?.every(Number.isFinite)) return false;
+  const [x, y] = coordinates;
+  exactSelection = { x, y, paperLayout: true };
+  if (focus && !keepCamera() && mayCenterOriginal(gesture)) {
+    bridge.restoreCamera([x, y, Math.max(sky ? 52 : 75, bridge.zoom())]);
+  }
+  draw();
+  return true;
 }
 function focusMarker(m, gesture) {
   selected = m?.anchor.id || null;
@@ -880,7 +927,7 @@ async function missing(h, t) {
   if (data.snapshots.some((s) => s.pin === from))
     panel.append(
       a(
-        "Open the selected declaration at " + from.slice(0, 8),
+        "Open the selected declaration at " + revisionName(from),
         route("written", id, {}, locationURL(from)),
         "time-link",
       ),
@@ -904,20 +951,28 @@ async function written(id, t) {
     absent(id);
     return;
   }
+  id = r.id;
   heading(
-    "Written declaration · " + (r.commandKind || "Lean command") + " · row " + id,
+    (externalEdition(pin) ? rev.sourceRepository + " · " + rev.edition + " · " : "") +
+      "Written declaration · " + (r.commandKind || "Lean command") + " · row " + id,
     r.name,
     "written",
     id,
   );
   const m = markerFor(r.marker);
   focusMarker(m,gesture);
+  const paperLayout = externalEdition(pin) && displayExternalPosition(r, gesture, sky || r.baseId == null);
   if (r.path) panel.append(node("p", r.path + (r.line ? " · line " + r.line : ""), "time-path"));
   if (r.sourceUrl) panel.append(a("Read pinned Lean source", r.sourceUrl, "time-button"));
   else panel.append(node("p", "The source register supplies no pinned line range for this command."));
+  if (paperLayout && (sky || r.baseId == null))
+    panel.append(node("p", "This declaration has a display position around its supporting paper. The paper anchor carries the recorded map coordinate.", "time-note"));
   if (historical) {
     const bases = {
       "submission-source-correspondence": "Paper assignment of the corresponding submission command",
+      "identical-source-tree": "Paper assignment from the identical source tree in the readable edition",
+      "identical-source-command": "Paper assignment from an identical source command",
+      "same-qualified-source-name": "Paper navigation from a matching qualified source name",
       "literal-source-reference": "Paper assignment from a declaration named in this command",
       "same-module-source-neighbor": "Paper assignment from a nearby declaration in the same module",
       "source-topic-vocabulary": "Paper assignment from topic terms in the source",
@@ -1047,11 +1102,14 @@ async function originalWrittenLocation(record, t, note,gesture) {
       return;
     }
     const point = historical
-      ? await (await import("./retained-points.js")).originalWrittenPosition(record.baseId, record.atlas)
+      ? await (await import("./retained-points.de34adf8c4baea9c.js")).originalWrittenPosition(record.baseId, record.atlas)
       : await bridge.basePoint(record.id, record.atlas);
     if (!active(t)) return;
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) {
-      note.remove();
+      if (externalEdition(pin) && displayExternalPosition(record, gesture, true)) {
+        note.textContent = "This declaration has a display position around its supporting paper.";
+        draw();
+      } else note.remove();
       return;
     }
     exactSelection = point;
@@ -1342,7 +1400,9 @@ async function dependencyGraph(h, t) {
       if (joined.status === "present") writtenID = joined.id;
     }
   }
-  if (!hasSelection) {
+  if (!hasSelection && externalEdition(pin)) {
+    writtenID = rev?.rootWritten ?? (await api.snapshotStats(pin)).rootWritten;
+  } else if (!hasSelection) {
     historicSource = await api.snapshotRecord(pin, root.written);
     if (historicSource?.present) writtenID = historicSource.id;
     else {
@@ -1364,13 +1424,13 @@ async function dependencyGraph(h, t) {
   const compiledURL = locationURL(BASE, compiled, "daily").href;
   if (!historicSource?.present) {
     const title = provided?.name || (hasSelection ? "Source declaration unavailable" : root.name);
-    heading("Source references · " + pin.slice(0, 8), title, "graph-empty", writtenID ?? constantID);
+    heading("Source references · " + revisionName(pin), title, "graph-empty", writtenID ?? constantID);
     const msg = "This revision has no verified written source for this selection.";
     panel.append(node("p", msg), a(compiledLabel, compiledURL, "time-button"));
     graphMessage(title, msg, a(compiledLabel, compiledURL, "time-graph-action"));
     return;
   }
-  heading("Source references · " + pin.slice(0, 8), historicSource.name, "source-graph", historicSource.id);
+  heading("Source references · " + revisionName(pin), historicSource.name, "source-graph", historicSource.id);
   panel.append(
     node(
       "p",
@@ -1386,13 +1446,13 @@ async function dependencyGraph(h, t) {
   const refs = await api.snapshotReferences(pin, historicSource.id);
   const rows = refs.map((ref) => ({
     name: ref.name,
-    meta: ref.targetId == null ? "literal source identifier" : "unique source-name candidate",
+    meta: ref.targetId == null ? "literal source identifier" : (ref.relation || "unique source-name candidate"),
     url: ref.targetId == null ? null : graphTarget("written", ref.targetId),
     source: ref.sourceUrl,
     line: ref.line,
   }));
   await graphDiagram(
-    "Source references · " + pin.slice(0, 8),
+    "Source references · " + revisionName(pin),
     "Named references in this command",
     historicSource.name,
     t,
@@ -1665,6 +1725,18 @@ async function searchRows(q, t) {
 }
 function overview(t) {
   heading(rev?.label || "Revision", "Proof in this snapshot", "overview");
+  if (externalEdition(pin)) {
+    const directory = a(rev.sourceRepository + " · " + rev.sourcePath, sourceTreeURL(rev), "time-link");
+    panel.append(directory);
+    panel.append(node("p", "Green points group written declarations around their supporting papers. Select a group to zoom in or an individual point to read its Lean source. With the map focused, D selects the nearest green point. The Original map also shows verified positions inherited from the submission.", "time-note"));
+    const endpoints = rev.endpoints || stats?.endpoints || [];
+    if (endpoints.length) {
+      const host = box("Statements in this edition");
+      pages(host, t, slice(endpoints.map((entry) => ({
+        name: entry.name, url: route("written", entry.id),
+      }))));
+    }
+  }
   const count = historical ? stats?.written : markers.reduce((n, m) => n + m.count, 0);
   if (count != null)
     panel.append(
@@ -1877,7 +1949,7 @@ function refreshEdition() {
     oldTrack = query.get("track");
   readSearch = location.search;
   query = new URLSearchParams(readSearch);
-  const wanted = query.get("snapshot") || BASE;
+  const wanted = snapshotSelector(query) || BASE;
   if (wanted === before && oldTrack === query.get("track")) {
     syncSwitch();
     return;
@@ -1919,11 +1991,12 @@ function startEdition() {
 }
 export function mountTime(api) {
   bridge = api;
-  if(!sky) {
+  {
     const mapControls=bridge.viewport.parentElement;
     for(const event of ["pointerdown","wheel","keydown"]) {
       mapControls.addEventListener(event,e=>{
-        if(!e.target.closest("#viewport,#zoomIn,#zoomOut,#fit"))return;
+        if(sky && !externalEdition(pin))return;
+        if(!e.target.closest("#viewport,#zoomIn,#zoomOut,#zoom-in,#zoom-out,#fit"))return;
         if(event==="pointerdown" && e.button!==0)return;
         if(event==="keydown" && !["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","+","=","-","Enter"," "].includes(e.key))return;
         cameraGesture++;
@@ -2002,10 +2075,21 @@ export async function addPlacementLinks(host, scope) {
 }
 export async function originalPaperHit(hit, map) {
   if (hit?.type === "time-node") {
+    if (hit.route.kind === "external-written") {
+      inspectExternalPoint(hit.route);
+      return;
+    }
     const { kind, id, sx, sy, count } = hit.route;
     if (count > 1 && map.zoom < 1500 && Number.isFinite(sx) && Number.isFinite(sy)) {
       const p = hit.route.world || map.project(sx, sy);
       map.go(p[0], p[1], Math.min(200000, map.zoom * 4));
+      return;
+    }
+    if (externalEdition(pin) && (kind === "theorem" || kind === "written")) {
+      const address = location.href;
+      const physical = kind === "theorem" ? await writtenFromAtlas(id) : id;
+      const row = physical == null ? null : await (await rec()).snapshotRecord(pin, physical);
+      if (location.href === address && row?.present) navigate("written", row.id);
       return;
     }
     if (["theorem", "written", "placement", "proofBundle"].includes(kind)) navigate(kind, id);
@@ -2013,6 +2097,28 @@ export async function originalPaperHit(hit, map) {
   }
   if (hit?.type === "paper") navigate("paper", hit.row);
   if (hit?.type === "label") navigate("label", hit.l.id);
+}
+
+export function inspectExternalPoint(hit) {
+  if (!hit || !externalEdition(pin) || hit.pin !== pin) return;
+  if (hit.count === 1) {
+    navigate("written", hit.id);
+    return;
+  }
+  const maxZoom = sky ? 320 : 1500;
+  if (bridge.zoom() < maxZoom) {
+    bridge.restoreCamera([...hit.world, Math.min(maxZoom, 4 * bridge.zoom())]);
+    return;
+  }
+  const ticket = restoring;
+  exactSelection = { x: hit.world[0], y: hit.world[1], paperLayout: true };
+  mapPage(markerFor(hit.marker), fmt(hit.count) + " declarations at this position", async (offset, limit) => {
+    const api = await rec();
+    const members = hit.members.subarray(offset, offset + limit);
+    const cards = await Promise.all(Array.from(members, (i) => api.snapshotRecord(pin, hit.records[i].id)));
+    return { total: hit.count, rows: cards.map(recordItem) };
+  }, ticket);
+  draw();
 }
 
 export async function placementCounts(records) {
