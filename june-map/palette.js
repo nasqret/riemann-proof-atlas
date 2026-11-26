@@ -89,7 +89,7 @@ export function renderPaletteLegend(legend, isMath, selectRegion) {
     const math = isMath() && rich;
     const field = math ? "mathCount" : "count";
     const total = legend.colors.reduce((sum, entry) => sum + entry[field], 0);
-    body.replaceChildren(node("p", countFormat.format(total) + (math ? " confirmed mathematics paper rows" : " paper rows across the full June map"), "palette-total"));
+    body.replaceChildren(node("p", countFormat.format(total) + (math ? " confirmed mathematics paper rows" : " paper rows across Paper Sky"), "palette-total"));
     body.append(node("p", rich
       ? "Each paper takes the first matching topic from levels 6, 7 and 8, in that order. Each pixel shows its most frequent color and mixes ties. Brighter pixels contain more papers."
       : "Paper colors follow the broadest topic level in the June source."));

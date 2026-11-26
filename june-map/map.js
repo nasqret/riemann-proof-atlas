@@ -1,3 +1,5 @@
+/* versioned proof map */
+import {exclusiveProofLayer, draw as drawTime} from "../time-map/sky.js";
 import {dataURL} from "./papers.js";
 import {drawPalettePapers} from "./palette.js";
 
@@ -196,7 +198,7 @@ export class JuneMap {
     if (this.layers.density) (this.layers.math && this.mathTiles ? this.mathTiles : this.tiles).draw(this);
     this.labelHits = []; this.leanHits = [];
     if (this.canPick && this.layers.density) this.drawPapers();
-    if (this.layers.lean) this.drawLean();
+    if (this.layers.lean && !exclusiveProofLayer()) this.drawLean();
     if (this.layers.labels && this.levels.length) this.drawLabels();
     if (this.selected) this.drawSelection();
     this.el.dataset.level = this.levels[this.levelIndex]?.level ?? "";
@@ -205,6 +207,7 @@ export class JuneMap {
     this.el.dataset.labels = this.labelHits.length;
     this.el.dataset.anchors = this.leanHits.length;
     this.proofPosition?.();
+    drawTime();
   }
   drawPapers() {
     if (this.topicPalette && drawPalettePapers(this, mathPaper)) return;

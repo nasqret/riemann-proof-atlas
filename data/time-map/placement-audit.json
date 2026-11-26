@@ -1,0 +1,246 @@
+{
+  "passed": true,
+  "pin": "40e56bab026552e089d7afcfeff08d2defb9c005",
+  "indexSHA256": "37abfcdb1cc178d3945c688a7db9836c5a4442cea0699e53ab750241df061ba3",
+  "graphRawSHA256": "7f2bb10c0b47382dc4176d156125be09fdac473ef7a657cd351f251f6fa3c1bb",
+  "edgeRowsScanned": 116808656,
+  "frontierEdges": 5,
+  "writtenAnchorsChecked": 1068007,
+  "constantIdentitiesChecked": 1484733,
+  "kernelPathLinksChecked": 222981,
+  "maximumWitnessDepth": 10,
+  "pathsWithCompilerSupport": 0,
+  "pathsWithAmbiguousIntermediate": 10172,
+  "namespaceRowsChecked": 0,
+  "foundationRowsChecked": 73,
+  "privateFoundationMatcherEdges": {
+    "49308": [
+      [
+        2083,
+        3
+      ],
+      [
+        2084,
+        3
+      ],
+      [
+        2534,
+        2
+      ]
+    ],
+    "1379": [
+      [
+        266,
+        3
+      ],
+      [
+        267,
+        3
+      ],
+      [
+        268,
+        3
+      ],
+      [
+        1376,
+        2
+      ]
+    ]
+  },
+  "paperIDsAndBothCoordinatesChecked": 77,
+  "examples": {
+    "Eq": {
+      "id": 1,
+      "status": "foundation",
+      "marker": null,
+      "path": [],
+      "writtenWitness": -1
+    },
+    "Eq.refl": {
+      "id": 9,
+      "status": "foundation",
+      "marker": null,
+      "path": [],
+      "writtenWitness": -1
+    },
+    "Eq.absolutelyContinuous": {
+      "id": 198596,
+      "status": "graph-neighbor",
+      "marker": "a-3001596",
+      "path": [
+        {
+          "constant": 198596,
+          "via": 1739107,
+          "flags": 2,
+          "direction": 1
+        }
+      ],
+      "writtenWitness": 106766
+    },
+    "PadicComplexInt.eq_1": {
+      "id": 531837,
+      "status": "graph-neighbor",
+      "marker": "a-1354527",
+      "path": [
+        {
+          "constant": 531837,
+          "via": 7170543,
+          "flags": 2,
+          "direction": 1
+        }
+      ],
+      "writtenWitness": 354015
+    },
+    "riemannHypothesis": {
+      "id": 14065054,
+      "status": "theoremPaper",
+      "marker": "a-1482408",
+      "path": [],
+      "writtenWitness": 1026737
+    },
+    "Nat": {
+      "id": 61,
+      "status": "graph-neighbor",
+      "marker": "a-775314",
+      "path": [
+        {
+          "constant": 61,
+          "via": 1937369,
+          "flags": 3,
+          "direction": 1
+        }
+      ],
+      "writtenWitness": 54
+    },
+    "CategoryTheory.Category": {
+      "id": 435991,
+      "status": "graph-neighbor",
+      "marker": "a-463704",
+      "path": [
+        {
+          "constant": 435991,
+          "via": 10825891,
+          "flags": 3,
+          "direction": 1
+        }
+      ],
+      "writtenWitness": 11018
+    }
+  },
+  "counts": {
+    "all": {
+      "written": 1068007,
+      "plottedWritten": 1068007,
+      "constant": 1484733,
+      "plottedConstant": 1484660,
+      "foundation": 73,
+      "unpositioned": 0,
+      "formerlyUnplaced": 223054,
+      "newlyPositioned": 222981,
+      "byRoute": {
+        "theoremPaper": 844133,
+        "contextWithSuggestedTopic": 73779,
+        "contextNavigationOnly": 343767,
+        "graph-neighbor": 76421,
+        "graph-path": 136388,
+        "namespace-context": 0,
+        "unpositioned": 0,
+        "foundation": 73,
+        "graph-navigation": 10172
+      },
+      "tiedTopPapers": 28381,
+      "graphEvidence": {
+        "graph-neighbor": {
+          "winnerBands": {
+            "tied": 10026,
+            "uniqueBelowOneThird": 21181,
+            "uniqueOneThirdThroughHalf": 13862,
+            "uniqueMajority": 31352
+          },
+          "oneDistinctSourceOwner": 13754,
+          "compilerOnWitnessPath": 0,
+          "ambiguousOrDiffuseIntermediate": 0
+        },
+        "graph-path": {
+          "winnerBands": {
+            "tied": 17411,
+            "uniqueBelowOneThird": 1536,
+            "uniqueOneThirdThroughHalf": 9214,
+            "uniqueMajority": 108227
+          },
+          "oneDistinctSourceOwner": 65019,
+          "compilerOnWitnessPath": 0,
+          "ambiguousOrDiffuseIntermediate": 0
+        },
+        "graph-navigation": {
+          "winnerBands": {
+            "tied": 944,
+            "uniqueBelowOneThird": 399,
+            "uniqueOneThirdThroughHalf": 2596,
+            "uniqueMajority": 6233
+          },
+          "oneDistinctSourceOwner": 127,
+          "compilerOnWitnessPath": 0,
+          "ambiguousOrDiffuseIntermediate": 10172
+        }
+      }
+    },
+    "rh": {
+      "written": 805679,
+      "plottedWritten": 805679,
+      "constant": 1478219,
+      "plottedConstant": 1478146,
+      "foundation": 73,
+      "unpositioned": 0,
+      "formerlyUnplaced": 221468,
+      "newlyPositioned": 221395,
+      "byRoute": {
+        "theoremPaper": 844119,
+        "contextWithSuggestedTopic": 73088,
+        "contextNavigationOnly": 339544,
+        "graph-neighbor": 76420,
+        "graph-path": 134975,
+        "namespace-context": 0,
+        "unpositioned": 0,
+        "foundation": 73,
+        "graph-navigation": 10000
+      },
+      "tiedTopPapers": 28110,
+      "graphEvidence": {
+        "graph-neighbor": {
+          "winnerBands": {
+            "tied": 10026,
+            "uniqueBelowOneThird": 21181,
+            "uniqueOneThirdThroughHalf": 13862,
+            "uniqueMajority": 31351
+          },
+          "oneDistinctSourceOwner": 13753,
+          "compilerOnWitnessPath": 0,
+          "ambiguousOrDiffuseIntermediate": 0
+        },
+        "graph-path": {
+          "winnerBands": {
+            "tied": 17179,
+            "uniqueBelowOneThird": 1536,
+            "uniqueOneThirdThroughHalf": 9200,
+            "uniqueMajority": 107060
+          },
+          "oneDistinctSourceOwner": 64162,
+          "compilerOnWitnessPath": 0,
+          "ambiguousOrDiffuseIntermediate": 0
+        },
+        "graph-navigation": {
+          "winnerBands": {
+            "tied": 905,
+            "uniqueBelowOneThird": 395,
+            "uniqueOneThirdThroughHalf": 2549,
+            "uniqueMajority": 6151
+          },
+          "oneDistinctSourceOwner": 116,
+          "compilerOnWitnessPath": 0,
+          "ambiguousOrDiffuseIntermediate": 10000
+        }
+      }
+    }
+  }
+}

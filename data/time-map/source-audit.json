@@ -1,0 +1,1854 @@
+{
+  "schema": 1,
+  "passed": true,
+  "sourcePins": 28,
+  "sourceTrees": 24,
+  "decodedPhysicalSlotsAndAddedRows": 25789587,
+  "addedIdentityCounts": {
+    "submission": 24096,
+    "readable": 23858
+  },
+  "sharedAddedIdentityCountBetweenFamilies": 0,
+  "scannerInputSHA256": {
+    "scan.py": "7d715dba1271e56270eccf34b07b4710bd5f0555f58eb4b8e0e6b83eddf20372",
+    "source.py": "a13f8bf6d8a887fda4b3f7397ae35d485ea6c0c34aa1911feec152acacbd5af4",
+    "source_spans.py": "00306fac6e13140c1fa5d20465eaf102a4c29e6e88d5aa015fbd71891cb363d9",
+    "triage.py": "121ac2f19e9eaec620f3032a20ba727198d9ee7a4ca24cb8915cd4dafc1c8657",
+    "triage_v1.py": "1194d474c97ad5b14b132aa66088f728b46ef36db2a2aa361a73e10958f824d9"
+  },
+  "checkedContentAddressedParts": 3002,
+  "pinnedGitSourceRanges": [
+    {
+      "pin": "40e56bab026552e089d7afcfeff08d2defb9c005",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "e50d09817ad81469f737e8f637561e6ccf86c670",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "f28a764e76a18f68680446bf09682c24d1a8b5c4",
+      "id": 503244,
+      "state": "same-command",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AdjointLiftingOfCohomology.lean",
+      "line": 26,
+      "endLine": 29,
+      "selection": "adjoint_lift_of_prints (hH : _root_.UpperTheory.V.Af.HypothesesH'"
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 21,
+      "endLine": 21,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 48,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/ContinuousOnOrbit.lean",
+      "line": 21,
+      "endLine": 35,
+      "selection": "CWLin.comp_sigma (hAd : DsAd) (hU : URep Hm σ) {B : H → V} (hB : "
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 4689,
+      "state": "moved",
+      "path": "CompanionTheory/RealGroups/DiscreteSeries/DiscreteSeriesClassification/DiscreteSeriesExhaustion/MatrixCoefficientDecay/HilbertSchmidtDecay/DecayAssembly/EnormAddSqLe.lean",
+      "line": 16,
+      "endLine": 42,
+      "selection": "absorb {M α : Type*} (S : Submodule ℂ (M → ℂ)) (I : Finset α) (h "
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 160303,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DivisorProofs/EtaleChainsDiscBiprodDescIsIso.lean",
+      "line": 36,
+      "endLine": 71,
+      "selection": "chains_disc_biprod_isIso : ∀ (R : Type) [CommRing R] {P₁ P₂ Q : P"
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 4649,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/SpectralGeometry/LocalGlobalProofs/StableLattices/GoodPathReplicate.lean",
+      "line": 12,
+      "endLine": 14,
+      "selection": "FarLabels {n : ℕ} (χ χ' : Fin n → ℂ) (B : ℝ) : Prop :="
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 152,
+      "endLine": 152,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 60,
+      "endLine": 60,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 1865,
+      "endLine": 1869,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 54,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 99,
+      "endLine": 106,
+      "selection": "spanFam {n : ℕ} (S : Submodule ℝ (Mat n)) : ∃ (d : ℕ) (X : Fin d "
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 181618,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsTieCoordBase.lean",
+      "line": 106,
+      "endLine": 106,
+      "selection": "runAlg (r : RunData J) : Algebra r.full.J.Q.c.F D.what₂.LL := ins"
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 62,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 163,
+      "endLine": 174,
+      "selection": "psiGen_cont (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) :"
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 191,
+      "endLine": 191,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 22,
+      "endLine": 22,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 1819,
+      "endLine": 1823,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 54,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 53,
+      "endLine": 60,
+      "selection": "spanFam {n : ℕ} (S : Submodule ℝ (Mat n)) : ∃ (d : ℕ) (X : Fin d "
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 108666,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/ContractionOfVacuumCombinationsProof.lean",
+      "line": 1327,
+      "endLine": 1335,
+      "selection": "contr_smul_left' {ρ σ : ℕ} {B : BesLev D ρ} {B' : BesLev D σ} (l "
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 62,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 117,
+      "endLine": 128,
+      "selection": "psiGen_cont (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) :"
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 153,
+      "endLine": 153,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 22,
+      "endLine": 22,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 1814,
+      "endLine": 1818,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 54,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 53,
+      "endLine": 60,
+      "selection": "spanFam {n : ℕ} (S : Submodule ℝ (Mat n)) : ∃ (d : ℕ) (X : Fin d "
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 5924,
+      "state": "renamed",
+      "path": "CompanionTheory/SpectralGeometry/CountingDefinitions/AdelicEulerProducts/IsEulerProd.lean",
+      "line": 45,
+      "endLine": 45,
+      "selection": "blockOne_zero_zero : blockOne t A 0 0 = t := rfl"
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 62,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 117,
+      "endLine": 128,
+      "selection": "psiGen_cont (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) :"
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 153,
+      "endLine": 153,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "id": 503244,
+      "state": "same-command",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AdjointLiftingOfCohomology.lean",
+      "line": 26,
+      "endLine": 29,
+      "selection": "adjoint_lift_of_prints (hH : _root_.UpperTheory.V.Af.HypothesesH'"
+    },
+    {
+      "pin": "7cce738ba719a32964ca3822d0994f4c6952c7ae",
+      "id": 138251,
+      "state": "edited",
+      "path": "Development/AbelianVarietyTheory/Proofs/DivisorProofs/AutomorphicFormsFiniteGL.lean",
+      "line": 5,
+      "endLine": 6,
+      "selection": "automorphicFormsFiniteGL : GlobalTheory.Published.AutomorphicForm"
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 60,
+      "endLine": 60,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 48,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/ContinuousOnOrbit.lean",
+      "line": 63,
+      "endLine": 77,
+      "selection": "CWLin.comp_sigma (hAd : DsAd) (hU : URep Hm σ) {B : H → V} (hB : "
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 4689,
+      "state": "moved",
+      "path": "CompanionTheory/RealGroups/DiscreteSeries/DiscreteSeriesClassification/DiscreteSeriesExhaustion/MatrixCoefficientDecay/HilbertSchmidtDecay/DecayAssembly/EnormAddSqLe.lean",
+      "line": 59,
+      "endLine": 85,
+      "selection": "absorb {M α : Type*} (S : Submodule ℂ (M → ℂ)) (I : Finset α) (h "
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 160303,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DivisorProofs/EtaleChainsDiscBiprodDescIsIso.lean",
+      "line": 72,
+      "endLine": 107,
+      "selection": "chains_disc_biprod_isIso : ∀ (R : Type) [CommRing R] {P₁ P₂ Q : P"
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 4649,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/SpectralGeometry/LocalGlobalProofs/StableLattices/GoodPathReplicate.lean",
+      "line": 58,
+      "endLine": 60,
+      "selection": "FarLabels {n : ℕ} (χ χ' : Fin n → ℂ) (B : ℝ) : Prop :="
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 191,
+      "endLine": 191,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 60,
+      "endLine": 60,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 1865,
+      "endLine": 1869,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 54,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 99,
+      "endLine": 106,
+      "selection": "spanFam {n : ℕ} (S : Submodule ℝ (Mat n)) : ∃ (d : ℕ) (X : Fin d "
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 108666,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/ContractionOfVacuumCombinationsProof.lean",
+      "line": 1327,
+      "endLine": 1335,
+      "selection": "contr_smul_left' {ρ σ : ℕ} {B : BesLev D ρ} {B' : BesLev D σ} (l "
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 62,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 163,
+      "endLine": 174,
+      "selection": "psiGen_cont (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) :"
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 191,
+      "endLine": 191,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 22,
+      "endLine": 22,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 1819,
+      "endLine": 1823,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 54,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 53,
+      "endLine": 60,
+      "selection": "spanFam {n : ℕ} (S : Submodule ℝ (Mat n)) : ∃ (d : ℕ) (X : Fin d "
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 108666,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/ContractionOfVacuumCombinationsProof.lean",
+      "line": 1327,
+      "endLine": 1335,
+      "selection": "contr_smul_left' {ρ σ : ℕ} {B : BesLev D ρ} {B' : BesLev D σ} (l "
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 62,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 117,
+      "endLine": 128,
+      "selection": "psiGen_cont (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) :"
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 153,
+      "endLine": 153,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "8f558a8848a80dac6851a00a95ca477ff403e922",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "8f558a8848a80dac6851a00a95ca477ff403e922",
+      "id": 1026737,
+      "state": "same-command",
+      "path": "Main.lean",
+      "line": 4,
+      "endLine": 4,
+      "selection": "riemannHypothesis : RiemannHypothesis := rhOfAll"
+    },
+    {
+      "pin": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+      "id": 503244,
+      "state": "same-command",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AdjointLiftingOfCohomology.lean",
+      "line": 26,
+      "endLine": 29,
+      "selection": "adjoint_lift_of_prints (hH : _root_.UpperTheory.V.Af.HypothesesH'"
+    },
+    {
+      "pin": "bdda2f0eac48cfc445d43a43f37b50cbb7ab01ef",
+      "id": 550785,
+      "state": "edited",
+      "path": "Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/CoboundaryOfGenerator.lean",
+      "line": 5,
+      "endLine": 9,
+      "selection": "ContAction.{u_1, u_2, u_3}"
+    },
+    {
+      "pin": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
+      "id": 503244,
+      "state": "same-command",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/AdjointLiftingOfCohomology.lean",
+      "line": 26,
+      "endLine": 29,
+      "selection": "adjoint_lift_of_prints (hH : _root_.UpperTheory.V.Af.HypothesesH'"
+    },
+    {
+      "pin": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
+      "id": 550785,
+      "state": "edited",
+      "path": "Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/CoboundaryOfGenerator.lean",
+      "line": 5,
+      "endLine": 9,
+      "selection": "ContAction.{u_1, u_2, u_3}"
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 47,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/ContinuousOnOrbit.lean",
+      "line": 15,
+      "endLine": 15,
+      "selection": "LieWd.lieW {W : List (Mat n)} (h : LieWd Hm W) : LieW (UH Hm) W :"
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 16,
+      "endLine": 16,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 9365,
+      "state": "edited",
+      "path": "CompanionTheory/SpectralGeometry/LocalGlobalProofs/StableLattices/FibreAcyclicityOfSectionsStatement.lean",
+      "line": 91,
+      "endLine": 94,
+      "selection": "_root_.GlobalTheory.T.fibre_acyclicity_of_sections : ∀ {k : Type}"
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 54,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 40,
+      "endLine": 47,
+      "selection": "spanFam {n : ℕ} (S : Submodule ℝ (Mat n)) : ∃ (d : ℕ) (X : Fin d "
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 82471,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Definitions/SemilocalFrames/ExistsPeriodMapDet.lean",
+      "line": 303,
+      "endLine": 304,
+      "selection": "HRep.EEd (A : HRep k r) (P : Mat k r) (x : Idx k r 1 → A.H) : Idx"
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 1150,
+      "state": "moved-and-edited",
+      "path": "CompanionTheory/AutomorphicTheory/PieriRules/ThetaBesselIsometries/FamilySetupCayleyBound.lean",
+      "line": 139,
+      "endLine": 140,
+      "selection": "_root_.Gp91.GlobalTheory.T.bessel_cayley_side_bound : PI.KFinSmoo"
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 147,
+      "endLine": 147,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "7a36b6406c49cf49843cb42a4ebdac73bd937a36",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "7a36b6406c49cf49843cb42a4ebdac73bd937a36",
+      "id": 2092,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 8,
+      "endLine": 13,
+      "selection": "UnitaryRep (G : Type*) [Group G] [TopologicalSpace G] (H : Type*)"
+    },
+    {
+      "pin": "7a36b6406c49cf49843cb42a4ebdac73bd937a36",
+      "id": 2114,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 89,
+      "endLine": 92,
+      "selection": "continuous_of_weak (ρ : G →* unitary (H →L[ℂ] H))"
+    },
+    {
+      "pin": "7a36b6406c49cf49843cb42a4ebdac73bd937a36",
+      "id": 1068012,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 24,
+      "endLine": 24,
+      "selection": "instance : CoeFun (UnitaryRep G H) (fun _ => G → H →L[ℂ] H) := ⟨o"
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 66,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/OrbitMult.lean",
+      "line": 31,
+      "endLine": 124,
+      "selection": "orbit_mult (hCL : CutLim) (hAd : DsAd) (hF : Factor) {k r : ℕ} {W"
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 66924,
+      "state": "edited",
+      "path": "Development/AbelianVarietyTheory/Definitions/GaloisGeometry/ReductionUniformizerPoint.lean",
+      "line": 216,
+      "endLine": 217,
+      "selection": "pullStr_Ystrπ (s : ℕ) : pullStr I f s ≫ Ystrπ I s = Ystrπ (pull I"
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 663686,
+      "state": "renamed",
+      "path": "Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/RLFock.lean",
+      "line": 1115,
+      "endLine": 1122,
+      "selection": "fockEx : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.Fock"
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 1068012,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 24,
+      "endLine": 24,
+      "selection": "instance : CoeFun (UnitaryRep G H) (fun _ => G → H →L[ℂ] H) := ⟨o"
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 66,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/OrbitMult.lean",
+      "line": 31,
+      "endLine": 124,
+      "selection": "orbit_mult (hCL : CutLim) (hAd : DsAd) (hF : Factor) {k r : ℕ} {W"
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 32,
+      "endLine": 36,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 663686,
+      "state": "renamed",
+      "path": "Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/RLFock.lean",
+      "line": 1115,
+      "endLine": 1122,
+      "selection": "fockEx : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.Fock"
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 1068012,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 24,
+      "endLine": 24,
+      "selection": "instance : CoeFun (UnitaryRep G H) (fun _ => G → H →L[ℂ] H) := ⟨o"
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 66,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/OrbitMult.lean",
+      "line": 31,
+      "endLine": 124,
+      "selection": "orbit_mult (hCL : CutLim) (hAd : DsAd) (hF : Factor) {k r : ℕ} {W"
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 45,
+      "state": "edited",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGapAlt.lean",
+      "line": 32,
+      "endLine": 36,
+      "selection": "bounded : Bounded :="
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 663686,
+      "state": "renamed",
+      "path": "Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/RLFock.lean",
+      "line": 1115,
+      "endLine": 1122,
+      "selection": "fockEx : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.Fock"
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 1068012,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 24,
+      "endLine": 24,
+      "selection": "instance : CoeFun (UnitaryRep G H) (fun _ => G → H →L[ℂ] H) := ⟨o"
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 71,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselSmoothness/BesselSmoothOf.lean",
+      "line": 12,
+      "endLine": 17,
+      "selection": "NilAlg {n : ℕ} (𝓡 : Set (Matrix (Fin n) (Fin n) ℂ)) (N : ℕ) : Pro"
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 0,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 47,
+      "state": "moved",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/Bundle0001.lean",
+      "line": 18,
+      "endLine": 18,
+      "selection": "LieWd.lieW {W : List (Mat n)} (h : LieWd Hm W) : LieW (UH Hm) W :"
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 126363,
+      "state": "renamed",
+      "path": "Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ExistsCoordReducedFibreClosedPoint.lean",
+      "line": 294,
+      "endLine": 369,
+      "selection": "Core.exists_coord : ∀ C : Core, C.HasTests → C.Fib → ∀ w : C.G.to"
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 1068007,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 148,
+      "endLine": 148,
+      "selection": "instance (k r : ℕ) (i : Fin (2 * r + k + 1)) : Decidable (outer k"
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 0,
+      "state": "unchanged-file",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/BesselMapUniqGap.lean",
+      "line": 17,
+      "endLine": 17,
+      "selection": "Lie (Hm X : Mat n) : Prop := Xᴴ * Hm + Hm * X = 0"
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 66,
+      "state": "same-command",
+      "path": "CompanionTheory/AutomorphicTheory/BesselOrbitBounds/BesselMapUniqueness/OrbitMult.lean",
+      "line": 31,
+      "endLine": 124,
+      "selection": "orbit_mult (hCL : CutLim) (hAd : DsAd) (hF : Factor) {k r : ℕ} {W"
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 66924,
+      "state": "edited",
+      "path": "Development/AbelianVarietyTheory/Definitions/GaloisGeometry/ReductionUniformizerPoint.lean",
+      "line": 216,
+      "endLine": 217,
+      "selection": "pullStr_Ystrπ (s : ℕ) : pullStr I f s ≫ Ystrπ I s = Ystrπ (pull I"
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 663686,
+      "state": "renamed",
+      "path": "Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/RLFock.lean",
+      "line": 1115,
+      "endLine": 1122,
+      "selection": "fockEx : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.Fock"
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 1068012,
+      "state": "snapshot-only",
+      "path": "CompanionTheory/AutomorphicTheory/SchurLimitBounds/SchurOrthogonality/URepBasic.lean",
+      "line": 24,
+      "endLine": 24,
+      "selection": "instance : CoeFun (UnitaryRep G H) (fun _ => G → H →L[ℂ] H) := ⟨o"
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1067999,
+      "state": "unchanged-file",
+      "path": "Statements.lean",
+      "line": 3,
+      "endLine": 4,
+      "selection": "RiemannZetaZerosOnLine : Prop :="
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1026737,
+      "state": "edited",
+      "path": "Main.lean",
+      "line": 5,
+      "endLine": 5,
+      "selection": "riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line N"
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 86749,
+      "state": "renamed",
+      "path": "Lib/CM/Sigma/Basic.lean",
+      "line": 98,
+      "endLine": 98,
+      "selection": "sigmaSign (w : ℂ) : ℂ := if w / 2 ∈ L.lattice then 1 else -1"
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1092103,
+      "state": "snapshot-only",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 62,
+      "endLine": 100,
+      "selection": "New.exists_fundDomain_prod {I V W : Type*} [NormedAddCommGroup V]"
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1067999,
+      "state": "unchanged-file",
+      "path": "Statements.lean",
+      "line": 3,
+      "endLine": 4,
+      "selection": "RiemannZetaZerosOnLine : Prop :="
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1026737,
+      "state": "edited",
+      "path": "Main.lean",
+      "line": 5,
+      "endLine": 5,
+      "selection": "riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line N"
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 86749,
+      "state": "renamed",
+      "path": "Lib/CM/Sigma/Basic.lean",
+      "line": 98,
+      "endLine": 98,
+      "selection": "sigmaSign (w : ℂ) : ℂ := if w / 2 ∈ L.lattice then 1 else -1"
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1092103,
+      "state": "snapshot-only",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 62,
+      "endLine": 100,
+      "selection": "New.exists_fundDomain_prod {I V W : Type*} [NormedAddCommGroup V]"
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1067999,
+      "state": "unchanged-file",
+      "path": "Statements.lean",
+      "line": 3,
+      "endLine": 4,
+      "selection": "RiemannZetaZerosOnLine : Prop :="
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1026737,
+      "state": "edited",
+      "path": "Main.lean",
+      "line": 5,
+      "endLine": 5,
+      "selection": "riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line N"
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 86749,
+      "state": "renamed",
+      "path": "Lib/CM/Sigma/Basic.lean",
+      "line": 98,
+      "endLine": 98,
+      "selection": "sigmaSign (w : ℂ) : ℂ := if w / 2 ∈ L.lattice then 1 else -1"
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1092103,
+      "state": "snapshot-only",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 62,
+      "endLine": 100,
+      "selection": "New.exists_fundDomain_prod {I V W : Type*} [NormedAddCommGroup V]"
+    }
+  ],
+  "pinnedNavigationSamples": [
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 1070015,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicSpectrum/Proofs/BlockDecomposition/OpenCellLeviUnipotentConjugationStatement.lean",
+      "line": 20,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 1070033,
+      "kind": "literal-source-peer",
+      "path": "Development/AutomorphicSpectrum/Proofs/BlockDecomposition/OpenCellLeviUnipotentConjugationStatement.lean",
+      "line": 191,
+      "literal": "ent_ne",
+      "witness": 1070029
+    },
+    {
+      "pin": "1cc42d2c900ba764cb63e3c36383c720f30a77ca",
+      "id": 1070748,
+      "kind": "imported-module-peer",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.CayDensExTop",
+      "witness": 1070749
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1070015,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicSpectrum/Proofs/BlockDecomposition/OpenCellLeviUnipotentConjugationStatement.lean",
+      "line": 61,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1070033,
+      "kind": "literal-source-peer",
+      "path": "Development/AutomorphicSpectrum/Proofs/BlockDecomposition/OpenCellLeviUnipotentConjugationStatement.lean",
+      "line": 232,
+      "literal": "ent_ne",
+      "witness": 1070029
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1076367,
+      "kind": "imported-module-peer",
+      "path": "GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AnResBridgeSheetCore.lean",
+      "line": 4,
+      "literal": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridgeAnalytic",
+      "witness": 987248
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1070748,
+      "kind": "source-import-navigation-only",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OmegaDensity",
+      "witness": 849291
+    },
+    {
+      "pin": "7cbe484e5a2d2ae973f1e7167e39080ce2fe4157",
+      "id": 1071158,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "GroundTheory/GlobalFields/Artin/Places.lean",
+      "line": 3,
+      "literal": "Mathlib.NumberTheory.NumberField.Basic",
+      "witness": -1
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1071082,
+      "kind": "source-topic-vocabulary",
+      "path": "GroundTheory/AutomorphicForms/GL2Classical/HeckeCommute.lean",
+      "line": 29,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1078682,
+      "kind": "literal-source-peer",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/WeightZeroPeriodMatrices.lean",
+      "line": 238,
+      "literal": "wt_phi",
+      "witness": 1078681
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1081705,
+      "kind": "same-file-source-peer",
+      "path": "Lemmata/CharpolySmul.lean",
+      "line": 12,
+      "literal": "Matrix.charpoly_smul",
+      "witness": 1081704
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1076367,
+      "kind": "imported-module-peer",
+      "path": "GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AnResBridgeSheetCore.lean",
+      "line": 4,
+      "literal": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridgeAnalytic",
+      "witness": 987248
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1070748,
+      "kind": "source-import-navigation-only",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OmegaDensity",
+      "witness": 849291
+    },
+    {
+      "pin": "82c577caf1b8a66c76212d78a399234f55813d28",
+      "id": 1071158,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "GroundTheory/GlobalFields/Artin/Places.lean",
+      "line": 3,
+      "literal": "Mathlib.NumberTheory.NumberField.Basic",
+      "witness": -1
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1070116,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicSpectrum/Proofs/MetricProofs/GapEqWeightSubNextStatement.lean",
+      "line": 12,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1071673,
+      "kind": "literal-source-peer",
+      "path": "ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/BirationalGeometry/WithBotEqOfAddOne.lean",
+      "line": 12,
+      "literal": "ReciprocityTheory.ChartRestriction.G.AI.I1.cyc_withBot_eq_of_add_one",
+      "witness": 1081757
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1081705,
+      "kind": "same-file-source-peer",
+      "path": "Lemmata/CharpolySmul.lean",
+      "line": 12,
+      "literal": "Matrix.charpoly_smul",
+      "witness": 1081704
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1076369,
+      "kind": "imported-module-peer",
+      "path": "GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AnResBridgeSheetCore.lean",
+      "line": 4,
+      "literal": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridgeAnalytic",
+      "witness": 987248
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1070748,
+      "kind": "source-import-navigation-only",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OmegaDensity",
+      "witness": 849291
+    },
+    {
+      "pin": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "id": 1071158,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "GroundTheory/GlobalFields/Artin/Places.lean",
+      "line": 3,
+      "literal": "Mathlib.NumberTheory.NumberField.Basic",
+      "witness": -1
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 1070015,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicSpectrum/Proofs/BlockDecomposition/OpenCellLeviUnipotentConjugationStatement.lean",
+      "line": 61,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 1070033,
+      "kind": "literal-source-peer",
+      "path": "Development/AutomorphicSpectrum/Proofs/BlockDecomposition/OpenCellLeviUnipotentConjugationStatement.lean",
+      "line": 232,
+      "literal": "ent_ne",
+      "witness": 1070029
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 1070748,
+      "kind": "source-import-navigation-only",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OmegaDensity",
+      "witness": 848926
+    },
+    {
+      "pin": "9c9f665ed79ce0fa8da61bd803b7a4bf1ad62ed0",
+      "id": 1071158,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "GroundTheory/GlobalFields/Artin/Places.lean",
+      "line": 3,
+      "literal": "Mathlib.NumberTheory.NumberField.Basic",
+      "witness": -1
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1071082,
+      "kind": "source-topic-vocabulary",
+      "path": "GroundTheory/AutomorphicForms/GL2Classical/HeckeCommute.lean",
+      "line": 67,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1079925,
+      "kind": "literal-source-peer",
+      "path": "Development/WeilBound/RepresentationTheoryGL/UnitaryDualProof/HermitianForms/LiftStep.lean",
+      "line": 125,
+      "literal": "Ct_congr",
+      "witness": 1079924
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1081705,
+      "kind": "same-file-source-peer",
+      "path": "Lemmata/CharpolySmul.lean",
+      "line": 12,
+      "literal": "Matrix.charpoly_smul",
+      "witness": 1081704
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1076367,
+      "kind": "imported-module-peer",
+      "path": "GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AnResBridgeSheetCore.lean",
+      "line": 4,
+      "literal": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridgeAnalytic",
+      "witness": 987248
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1070748,
+      "kind": "source-import-navigation-only",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OmegaDensity",
+      "witness": 849291
+    },
+    {
+      "pin": "73958da58a8a4d1f61b789745c5444baf6247cae",
+      "id": 1071158,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "GroundTheory/GlobalFields/Artin/Places.lean",
+      "line": 3,
+      "literal": "Mathlib.NumberTheory.NumberField.Basic",
+      "witness": -1
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1070116,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicSpectrum/Proofs/MetricProofs/GapEqWeightSubNextStatement.lean",
+      "line": 53,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1078682,
+      "kind": "literal-source-peer",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/WeightZeroPeriodMatrices.lean",
+      "line": 238,
+      "literal": "wt_phi",
+      "witness": 1078681
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1081705,
+      "kind": "same-file-source-peer",
+      "path": "Lemmata/CharpolySmul.lean",
+      "line": 12,
+      "literal": "Matrix.charpoly_smul",
+      "witness": 1081704
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1076369,
+      "kind": "imported-module-peer",
+      "path": "GroundTheory/HeightsAndTheta/Heights/HilbertSamuel/AnResBridgeSheetCore.lean",
+      "line": 4,
+      "literal": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridgeAnalytic",
+      "witness": 987248
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1070748,
+      "kind": "source-import-navigation-only",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/ArchimedeanOrbitMeasures/CayDensExOm.lean",
+      "line": 3,
+      "literal": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.OmegaDensity",
+      "witness": 849291
+    },
+    {
+      "pin": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+      "id": 1071158,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "GroundTheory/GlobalFields/Artin/Places.lean",
+      "line": 3,
+      "literal": "Mathlib.NumberTheory.NumberField.Basic",
+      "witness": -1
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 1085065,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/IdeleGenerators/NormCongruenceUnits/SeedII.lean",
+      "line": 46,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "c9b3e57f0fe987012d32c2523635387bfe56d5a5",
+      "id": 1086342,
+      "kind": "mathlib-import-topic-navigation",
+      "path": "Formalism/PeriodIntegrals/UnitaryGroupMassFormula/Shared/HermitianInverse.lean",
+      "line": 1,
+      "literal": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "witness": -1
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 1071082,
+      "kind": "source-topic-vocabulary",
+      "path": "GroundTheory/AutomorphicForms/GL2Classical/HeckeCommute.lean",
+      "line": 20,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "a7016a34bb7e84e8f031c2179bd71cb9c20f2517",
+      "id": 1086630,
+      "kind": "source-import-navigation-only",
+      "path": "GroundTheory/GlobalFields/AnalyticClassNumber/QuadraticConductor.lean",
+      "line": 2,
+      "literal": "GroundTheory.GlobalFields.AnalyticClassNumber.QuadraticLegendre",
+      "witness": 966090
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 1071082,
+      "kind": "source-topic-vocabulary",
+      "path": "GroundTheory/AutomorphicForms/GL2Classical/HeckeCommute.lean",
+      "line": 20,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "7ea35ecdeb780dbd53230d6a99bbfcd1353430b7",
+      "id": 1086630,
+      "kind": "source-import-navigation-only",
+      "path": "GroundTheory/GlobalFields/AnalyticClassNumber/QuadraticConductor.lean",
+      "line": 2,
+      "literal": "GroundTheory.GlobalFields.AnalyticClassNumber.QuadraticLegendre",
+      "witness": 966090
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 1071082,
+      "kind": "source-topic-vocabulary",
+      "path": "GroundTheory/AutomorphicForms/GL2Classical/HeckeCommute.lean",
+      "line": 20,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "f8d82e1e8480552292b196ff118931a0da2b55db",
+      "id": 1086630,
+      "kind": "source-import-navigation-only",
+      "path": "GroundTheory/GlobalFields/AnalyticClassNumber/QuadraticConductor.lean",
+      "line": 2,
+      "literal": "GroundTheory.GlobalFields.AnalyticClassNumber.QuadraticLegendre",
+      "witness": 966090
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 1089855,
+      "kind": "source-topic-vocabulary",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/AutomorphyLifting/SubquotientSupport/Bundle0003.lean",
+      "line": 19,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 1089754,
+      "kind": "source-file-topic",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/IdeleGenerators/HolomorphicIrreducibility/Bundle0012.lean",
+      "line": 1,
+      "literal": "HolomorphicIrreducibility",
+      "witness": -1
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 1089757,
+      "kind": "literal-source-peer",
+      "path": "Development/AutomorphicArithmetic/AutomorphicVarieties/IdeleGenerators/HolomorphicIrreducibility/Bundle0012.lean",
+      "line": 58,
+      "literal": "cong_trans",
+      "witness": 1089754
+    },
+    {
+      "pin": "c46e65bd3954a405288728e236c1641bbf3ef56d",
+      "id": 1087527,
+      "kind": "imported-module-peer",
+      "path": "Formalism/LocalToGlobal/IndefiniteReal/LevelTypeEquivalence/GEqUnit.lean",
+      "line": 5,
+      "literal": "Formalism.LocalToGlobal.Divisibility.DefGroupLemmas",
+      "witness": 1070589
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 1071082,
+      "kind": "source-topic-vocabulary",
+      "path": "GroundTheory/AutomorphicForms/GL2Classical/HeckeCommute.lean",
+      "line": 20,
+      "literal": "automorphic",
+      "witness": -1
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 1070528,
+      "kind": "source-file-topic",
+      "path": "Formalism/LocalRingCardinality/SpanPowerMembership/NZLevD.lean",
+      "line": 1,
+      "literal": "LocalRingCardinality",
+      "witness": -1
+    },
+    {
+      "pin": "607375a494cceb57576114deb9e1b8fff53ca0cb",
+      "id": 1086630,
+      "kind": "source-import-navigation-only",
+      "path": "GroundTheory/GlobalFields/AnalyticClassNumber/QuadraticConductor.lean",
+      "line": 2,
+      "literal": "GroundTheory.GlobalFields.AnalyticClassNumber.QuadraticLegendre",
+      "witness": 966090
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1092104,
+      "kind": "source-topic-vocabulary",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 122,
+      "literal": "fourier",
+      "witness": -1
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1092103,
+      "kind": "source-file-topic",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 6,
+      "literal": "The additive character, Haar measures and the rational lattice in the adeles",
+      "witness": -1
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1092138,
+      "kind": "literal-source-peer",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 429,
+      "literal": "exists_hasFundDomain",
+      "witness": 1092137
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1093957,
+      "kind": "same-file-source-peer",
+      "path": "Lib/Analytic/Primes.lean",
+      "line": 189,
+      "literal": "New.summable_vonMangoldt_not_prime",
+      "witness": 1093963
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1093905,
+      "kind": "imported-module-peer",
+      "path": "Lib/Analytic/Landau.lean",
+      "line": 1,
+      "literal": "Lib.Analytic.EntireLFunction",
+      "witness": 1093893
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1103033,
+      "kind": "same-file-navigation-only",
+      "path": "Lib/Shimura/ArcExtension.lean",
+      "line": 122,
+      "literal": "New.HasThetaCoords.holomorphicAt",
+      "witness": 1103039
+    },
+    {
+      "pin": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
+      "id": 1105251,
+      "kind": "source-import-navigation-only",
+      "path": "Lib/Weil/Construction/ThetaJets.lean",
+      "line": 1,
+      "literal": "Lib.General.LinearAlgebra.PolarDecomposition",
+      "witness": 1100583
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1092104,
+      "kind": "source-topic-vocabulary",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 122,
+      "literal": "fourier",
+      "witness": -1
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1092103,
+      "kind": "source-file-topic",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 6,
+      "literal": "The additive character, Haar measures and the rational lattice in the adeles",
+      "witness": -1
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1092138,
+      "kind": "literal-source-peer",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 429,
+      "literal": "exists_hasFundDomain",
+      "witness": 1092137
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1093957,
+      "kind": "same-file-source-peer",
+      "path": "Lib/Analytic/Primes.lean",
+      "line": 189,
+      "literal": "New.summable_vonMangoldt_not_prime",
+      "witness": 1093963
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1093905,
+      "kind": "imported-module-peer",
+      "path": "Lib/Analytic/Landau.lean",
+      "line": 1,
+      "literal": "Lib.Analytic.EntireLFunction",
+      "witness": 1093893
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1103033,
+      "kind": "same-file-navigation-only",
+      "path": "Lib/Shimura/ArcExtension.lean",
+      "line": 122,
+      "literal": "New.HasThetaCoords.holomorphicAt",
+      "witness": 1103039
+    },
+    {
+      "pin": "d1a89786248472c61263785a6fe60d9fec66afc2",
+      "id": 1105251,
+      "kind": "source-import-navigation-only",
+      "path": "Lib/Weil/Construction/ThetaJets.lean",
+      "line": 1,
+      "literal": "Lib.General.LinearAlgebra.PolarDecomposition",
+      "witness": 1100583
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1092104,
+      "kind": "source-topic-vocabulary",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 122,
+      "literal": "fourier",
+      "witness": -1
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1092103,
+      "kind": "source-file-topic",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 6,
+      "literal": "The additive character, Haar measures and the rational lattice in the adeles",
+      "witness": -1
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1092138,
+      "kind": "literal-source-peer",
+      "path": "Lib/Adelic/Adeles/AdditiveCharacter.lean",
+      "line": 429,
+      "literal": "exists_hasFundDomain",
+      "witness": 1092137
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1093957,
+      "kind": "same-file-source-peer",
+      "path": "Lib/Analytic/Primes.lean",
+      "line": 189,
+      "literal": "New.summable_vonMangoldt_not_prime",
+      "witness": 1093963
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1093905,
+      "kind": "imported-module-peer",
+      "path": "Lib/Analytic/Landau.lean",
+      "line": 1,
+      "literal": "Lib.Analytic.EntireLFunction",
+      "witness": 1093893
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1103033,
+      "kind": "same-file-navigation-only",
+      "path": "Lib/Shimura/ArcExtension.lean",
+      "line": 122,
+      "literal": "New.HasThetaCoords.holomorphicAt",
+      "witness": 1103039
+    },
+    {
+      "pin": "dd2dcbe020d101dc603063ba5a7197b2c69600f1",
+      "id": 1105251,
+      "kind": "source-import-navigation-only",
+      "path": "Lib/Weil/Construction/ThetaJets.lean",
+      "line": 1,
+      "literal": "Lib.General.LinearAlgebra.PolarDecomposition",
+      "witness": 1100583
+    }
+  ],
+  "trees": {
+    "b41b516b1f7baee4d83ced235ecc71fd43c97695": {
+      "written": 1068007,
+      "theorems": 818755,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "24df20b62d9976ccd20da819bc20b16f808f0fdd": {
+      "written": 1068007,
+      "theorems": 818755,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "50296bb63a4263e1cbbb8853e67ea10881bbd68f": {
+      "written": 1031027,
+      "theorems": 785975,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "612386007adebbfa6651fdca9b1ab8f560ab2722": {
+      "written": 837517,
+      "theorems": 666649,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "433e26c9b7ffe05fb58f803f3fb5338f1a6c1ba5": {
+      "written": 808034,
+      "theorems": 638135,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "01237e23d953494c79cdec97baf46686f7a74285": {
+      "written": 766013,
+      "theorems": 597765,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "9ef527296d055511d5d94d79c517405ddc44c880": {
+      "written": 732407,
+      "theorems": 569585,
+      "unplaced": 0,
+      "previousTheoremCensus": false
+    },
+    "32d5e33acd950c25bc30a9b30fc6d14686630c28": {
+      "written": 1030527,
+      "theorems": 785531,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "b050c420c303cd0fd127a79d2700883fa399c18f": {
+      "written": 837202,
+      "theorems": 666380,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "6e972745429bd501b15e5daa9db46c8a9feb85db": {
+      "written": 783170,
+      "theorems": 612095,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "9d70dfd21c0264a58934560a7c36e89dbef5a486": {
+      "written": 752775,
+      "theorems": 586594,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "4b778460050f83e0a48af652350784f4dec1a0ea": {
+      "written": 1067984,
+      "theorems": 818738,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "4f7faf0e3da31f8c8521067c136369b51ca1200d": {
+      "written": 1031027,
+      "theorems": 785975,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "73a27c288ce8eac1bfef986aac0bd271279ea404": {
+      "written": 1031027,
+      "theorems": 785975,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "6398a58acb44c4e1c67b7f16ca7b60d22050f307": {
+      "written": 975576,
+      "theorems": 747691,
+      "unplaced": 5,
+      "previousTheoremCensus": true
+    },
+    "97601c01abd91cc105d6f1ea04ef6da686ac5a0e": {
+      "written": 1031027,
+      "theorems": 785975,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "e16a0d499b5e3b6a2d23407889be2c3d44f1db05": {
+      "written": 860002,
+      "theorems": 677713,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "9a1ffdc3040d8a80a65de354bafd68607ab29722": {
+      "written": 835975,
+      "theorems": 653686,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "8c3e267af1925128c0384babda1d0e908111a72a": {
+      "written": 830431,
+      "theorems": 648142,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "4918b87c12dcbaeeb1beda63d3042fb179bbc916": {
+      "written": 1031027,
+      "theorems": 785975,
+      "unplaced": 0,
+      "previousTheoremCensus": true
+    },
+    "55e13cf8e6f98a4e94a8669a83f9b1e3c9299f11": {
+      "written": 859522,
+      "theorems": 677279,
+      "unplaced": 1,
+      "previousTheoremCensus": true
+    },
+    "55fe9c6cb2e5be421c5871e772b6d736ecb5d164": {
+      "written": 23841,
+      "theorems": 18227,
+      "unplaced": 2,
+      "previousTheoremCensus": false
+    },
+    "a72640f6adbe76edcb64d61759a387b39ad3abfb": {
+      "written": 23835,
+      "theorems": 18221,
+      "unplaced": 2,
+      "previousTheoremCensus": false
+    },
+    "d07c6bebede73bd3764a09a334994bb9a4b328c7": {
+      "written": 23747,
+      "theorems": 18142,
+      "unplaced": 2,
+      "previousTheoremCensus": false
+    }
+  },
+  "verifierSha256": "423d9488211b160b88133aecdc6c5b0a1c923cecccbd32a63bbd721cdb61344b"
+}

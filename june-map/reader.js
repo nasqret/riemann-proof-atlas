@@ -1,3 +1,5 @@
+/* versioned proof map */
+import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js";
 import {JuneMap} from "./map.js";
 import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js";
 import {renderPaletteLegend, indexPalette, paperPaletteTopic} from "./palette.js";
@@ -71,6 +73,7 @@ function route(kind, id, extra = {}) {
 function setAddress(href, replace = false) {
   if (href !== location.pathname + location.search + location.hash) history[replace ? "replaceState" : "pushState"](null, "", href);
   lastAddress = location.href;
+  window.dispatchEvent(new Event("atlas-address-change"));
 }
 function flash(message) {
   clearTimeout(noticeTimer);
@@ -260,6 +263,7 @@ async function renderPlacement(place, token, origin) {
   }
   if (proof?.available) {
     const nodes = element("section", null, "proof-at-anchor"); pane.append(nodes);
+    if (!historicalPin()) nodes.append(link("Browse graph constants at this paper", route("anchorConstants",place.id), "text-button"));
     proof.placement(nodes, place, origin, token).catch(error => { if (token === routeToken) nodes.append(element("p", error.message)); });
   }
   pane.append(element("p", "The diamond marks the supporting paper’s exact June coordinate. Written declarations share it through a proof bundle or a source-context witness."));
@@ -453,7 +457,7 @@ async function theoremName(id) {
 async function openOrigin(kind, id, write = true) {
   const token = begin();
   if (write) setAddress(route(kind, id));
-  map.select(null); pane.append(element("p", "Locating this " + kind + " on the June map…"));
+  map.select(null); pane.append(element("p", "Locating this " + kind + " in Paper Sky…"));
   try {
     const [found, name] = await Promise.all([
       resolveOrigin(kind, String(id)),
@@ -479,8 +483,10 @@ function unknown() {
   begin(); map.select(null); pane.dataset.state = "unknown";
   pane.append(element("h2", "Selection unavailable"), element("p", "This link does not identify a record in the June edition."), button("Map overview", () => overview(true)));
 }
-async function restore() {
+async function restore() { const held=keepCamera(); try { return await restoreNative(); } finally { restoreCamera(held); } }
+async function restoreNative() {
   if (!map || lastAddress === location.href) return;
+  if (handlesRoute()) { lastAddress = location.href; mathLens(new URLSearchParams(location.search).get("papers") === "math", false); return restoreTime(); }
   lastAddress = location.href;
   mathLens(new URLSearchParams(location.search).get("papers") === "math", false);
   if (proof?.available) proof.applyScope();
@@ -602,12 +608,16 @@ async function init() {
       e.preventDefault(); search.focus();
     }
   });
+  mountTime({viewport:map.el, camera:()=>[map.x,map.y,map.zoom],restoreCamera:([x,y,z])=>map.go(x,y,z),clearSelection:()=>{map.select(null);proof?.clear();},zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(), visible:()=>map.layers.lean,
+    topicSearch:q=>topicMatches(regionList,q,"region"),screen:(x,y)=>map.screen(x,y),go:(x,y)=>map.go(x,y,Math.max(8,Math.min(32,map.zoom)))});
   search.disabled = false;
   search.oninput = () => {
+    if (searchInput(search.value)) return;
     const value = search.value.trim();
     if (value) searchResults(value); else overview(true);
   };
   search.onkeydown = e => {
+    if (historicalPin() && e.key === "Escape") { e.preventDefault(); search.value = ""; searchInput(""); return; }
     if (e.key === "Escape") { e.preventDefault(); if (search.value) overview(true); else search.blur(); }
     if (e.key === "ArrowDown") { const first = pane.querySelector(".item-link"); if (first) { e.preventDefault(); first.focus(); } }
   };

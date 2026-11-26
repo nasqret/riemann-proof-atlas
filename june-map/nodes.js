@@ -1,3 +1,5 @@
+/* versioned proof map */
+import {placementText, addPlacementLinks, actualPlacement, placementCounts} from "../time-map/sky.js";
 // The map holds paper coordinates. Bundle, command and constant links open records at
 // the supporting paper; only the paper itself is passed to the map projection.
 import {nodeIndex, writtenRecord, constantRecord, constantSummary, findNodes, listNodes, bundlesAt, proofBundle, writtenFromAtlas} from "./node-records.js";
@@ -41,7 +43,7 @@ export function createProofReader({map, places, pane, element, link, button, met
   }
   const recordLink = (label, kind, id, css, extra) => link(label, route(kind, id, extra), css);
   const item = (name, detail, href, type) => ({name, detail, href, type});
-  const nodeItem = record => item(record.name, kindLabel(record.kind) + " " + record.id + (record.unplaced ? " · unplaced" : ""), route(record.kind, record.id), record.kind);
+  const nodeItem = record => item(record.name, kindLabel(record.kind) + " " + record.id + (record.status === "foundation" ? " · foundational" : record.status === "unpositioned" ? " · unpositioned" : ""), route(record.kind, record.id), record.kind);
   const bundleItem = bundle => item(bundle.label, fmt(bundle[countKey()]), route("proofBundle", bundle.id), "bundle");
   function makeRow(record, compact = false) {
     const li = element("li");
@@ -284,7 +286,11 @@ export function createProofReader({map, places, pane, element, link, button, met
     pane.replaceChildren(); pane.dataset.state = "constant"; pane.dataset.item = String(id);
     viewHeading("Graph constant · " + (c.constantKind || "Lean export") + " · export name ID " + c.id, c.name);
     reach(c);
-    const place = places[c.marker]; locate(place);
+    const mapped = await actualPlacement(c.id);
+    if (!active(token)) return;
+    const place = mapped?.plotted ? places[mapped.markerIndex] : null;
+    const formerRoute = c.route;
+    locate(place);
     if (c.owner != null) {
       const box = element("section", null, "proof-owner");
       box.append(element("h3", "Written owner"));
@@ -294,9 +300,10 @@ export function createProofReader({map, places, pane, element, link, button, met
       if (c.ownerBasis) box.append(element("p", "Ownership evidence · " + c.ownerBasis, "detail-meta"));
       pane.append(box); source(c, "Read owner’s pinned Lean source");
     } else {
-      const why = c.ownerStatus === "project-owner-unresolved" ? "The project ownership register leaves this constant unresolved." : "This name is external to the project or absent from its written ownership register.";
-      pane.append(element("h3", "Unplaced graph constant"), element("p", why + " Its graph edges are available here."),
-        recordLink("Browse unplaced constants", "unplaced", 1, "text-button"));
+      placementText(pane,mapped);
+      if (place) pane.append(recordLink("Supporting paper · " + place.papers[0].id, "placement", place.id, "text-button"));
+      else pane.append(recordLink(mapped?.status === "foundation" ? "Browse foundational constants" : "Browse unpositioned constants",
+        mapped?.status === "foundation" ? "foundation" : "unpositioned", 1, "text-button"));
     }
     const [host, body] = section("Direct dependencies");
     pane.append(host);
@@ -311,7 +318,7 @@ export function createProofReader({map, places, pane, element, link, button, met
       const field = element("div"); field.append(element("dt", label), element("dd", String(value))); fields.append(field);
     }
     evidence.append(fields); pane.append(evidence);
-    if (place) paperInfo(c);
+    if (place && c.owner != null) paperInfo({...c, marker:mapped.markerIndex, route:formerRoute});
   }
   async function renderBundle(id, token) {
     const b = await proofBundle(id);
@@ -391,7 +398,7 @@ export function createProofReader({map, places, pane, element, link, button, met
         const rows = possible.filter(r => r && (selectedScope !== "rh" || r.rooted)).map(nodeItem);
         return pageOf(rows)(offset, limit);
       }
-      const data = await findNodes(value, {kind, scope: selectedScope, offset, limit});
+      const data = await (await import("../time-map/placement.js")).findPlaced(value, {kind, scope: selectedScope, status:"all", offset, limit});
       return {total: data.total, rows: data.rows.map(nodeItem)};
     };
     const empty = number != null ? "No proof node with this ID in the selected scope." : "No Lean names begin with this query in the selected scope.";
@@ -402,13 +409,11 @@ export function createProofReader({map, places, pane, element, link, button, met
     const intro = element("section", null, "proof-overview");
     intro.append(element("h3", "Proof nodes"));
     intro.append(metricRow(scope === "written" ? [["written declarations", stats.written]] :
-      scope === "graph" ? [["graph constants", stats.constant], ["unplaced", stats.unplaced]] :
+      scope === "graph" ? [["graph constants", stats.constant], ["unpositioned", stats.unplaced]] :
       [["written owners", stats.written], ["graph constants", stats.constant]]));
     const rootKind = scope === "graph" ? "constant" : "written";
     intro.append(recordLink("Open " + index.root.name, rootKind, index.root[rootKind], "soft-button"));
-    if (scope !== "written") {
-      const p = element("p"); p.append(recordLink("Browse " + fmt(stats.unplaced) + " unplaced constants", "unplaced", 1, "text-button")); intro.append(p);
-    }
+    if (scope !== "written") addPlacementLinks(intro, scope === "rh" ? "rh" : "all");
     host.append(intro);
   }
   async function placement(host, place, origin, token) {
@@ -438,7 +443,7 @@ export function createProofReader({map, places, pane, element, link, button, met
     const records = await nodeIndex();
     if (records.markers.length !== places.length || places.some((place, i) => records.markers[i].id !== place.id))
       throw Error("The proof index and June paper anchors belong to different map editions.");
-    index = records; applyScope(); select.disabled = false;
+    index = await placementCounts(records); applyScope(); select.disabled = false;
   }
   return {initialize, applyScope, scopeURL, open, search, clear, overview, placement, writtenFromAtlas,
     get available() { return !!index; }, get places() { return map.placements; }};

@@ -20,12 +20,17 @@
 
 
 
-  <link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/fonts.606fe45d6671852a.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/tokens.0449755fae6a8186.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/atlas.486865fac8c888fd.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/shell.ee75c7f6e1577330.css"><link rel="stylesheet" href="context/placements.css"><link rel="stylesheet" href="navigation/menus.87309a92af4e50d3.css"><script type="module" src="navigation/menus.c624a7346606912f.js"></script></head>
+  <link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/fonts.606fe45d6671852a.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/tokens.0449755fae6a8186.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/atlas.486865fac8c888fd.css"><link rel="stylesheet" href="previews/chapter-5992-6fa73d518b93/shell.ee75c7f6e1577330.css"><link rel="stylesheet" href="context/placements.css"><link rel="stylesheet" href="navigation/menus.87309a92af4e50d3.css"><script type="module" src="navigation/menus.c624a7346606912f.js"></script><link rel="stylesheet" href="time-map/sky.css"></head>
   <body data-site-page="explorer" data-context-cohort="rubinstein-v2">
 
     <a class="site-skip" href="#page-main">Skip to content</a>
-<header class="atlas-shell"><div class="atlas-shell-inner"><a class="site-brand" id="origin" href="index.html" aria-label="Riemann proof atlas, return to the original map"><span class="site-mark" aria-hidden="true">ζ</span><span>Riemann proof atlas</span></a><nav class="site-nav atlas-navigation" aria-label="Atlas navigation"><a href="index.html" data-destination="explorer" tabindex="0" id="home" aria-current="page">Explorer</a><a href="rubinstein.html" data-destination="rubinstein" tabindex="0">Rubinstein’s guide</a><details class="atlas-nav-group" data-group="proof" name="atlas-sections"><summary>Proof</summary><div class="atlas-nav-links"><a href="index.html#statement" data-destination="statement" tabindex="0">What is proved</a><a href="index.html#chapter" data-destination="chapters" tabindex="0">Chapters</a><a href="companion/index.html" data-destination="proofs" tabindex="0">Proof reader</a></div></details><details class="atlas-nav-group" data-group="atlas" name="atlas-sections"><summary>Atlas</summary><div class="atlas-nav-links"><a href="june-map.html" data-destination="june-map" tabindex="0">June 2026 paper map</a><a href="daily.html" data-destination="history" tabindex="0">History</a><a href="editions.html" data-destination="editions" tabindex="0">Editions</a><a href="notes.html" data-destination="method" tabindex="0">Method and sources</a></div></details></nav></div></header>
-    <main id="page-main" tabindex="-1">
+<header class="atlas-shell"><div class="atlas-shell-inner"><a class="site-brand" id="origin" href="index.html" aria-label="Riemann proof atlas, return to the original map"><span class="site-mark" aria-hidden="true">ζ</span><span>Riemann proof atlas</span></a><nav class="site-nav atlas-navigation" aria-label="Atlas navigation"><a href="index.html" data-destination="explorer" tabindex="0" id="home" aria-current="page">Explorer</a><a href="rubinstein.html" data-destination="rubinstein" tabindex="0">Rubinstein’s guide</a><details class="atlas-nav-group" data-group="proof" name="atlas-sections"><summary>Proof</summary><div class="atlas-nav-links"><a href="index.html#statement" data-destination="statement" tabindex="0">What is proved</a><a href="index.html#chapter" data-destination="chapters" tabindex="0">Chapters</a><a href="companion/index.html" data-destination="proofs" tabindex="0">Proof reader</a></div></details><details class="atlas-nav-group" data-group="atlas" name="atlas-sections"><summary>Atlas</summary><div class="atlas-nav-links"><a href="june-map.html" data-destination="june-map" tabindex="0">Paper Sky</a><a href="daily.html" data-destination="history" tabindex="0">History</a><a href="editions.html" data-destination="editions" tabindex="0">Editions</a><a href="notes.html" data-destination="method" tabindex="0">Method and sources</a></div></details></nav></div></header>
+    <section class="time-tools" aria-label="Proof map and snapshot">
+  <div class="time-views"><nav class="time-map-switch" aria-label="Choose a paper map"><a href="index.html" aria-current="page">Original map</a><a href="june-map.html" id="time-switch-other">Paper Sky</a></nav><button type="button" id="time-graph" aria-pressed="false" aria-controls="time-graph-view">Dependency graph</button></div>
+  <div class="time-control"><label for="time-track">Proof history</label><select id="time-track" aria-label="Snapshot track"></select><button type="button" id="time-prev" aria-label="Previous proof snapshot" title="Previous snapshot" disabled>‹</button><input type="range" id="time-slider" aria-label="Proof snapshot" min="0" max="0" step="1" value="0" disabled><button type="button" id="time-next" aria-label="Next proof snapshot" title="Next snapshot" disabled>›</button></div>
+  <div class="time-stamp"><div class="time-snapshot-title"><output id="time-date" for="time-slider"></output><small id="time-size"></small></div><a id="time-pin" hidden></a><button type="button" id="time-bookmark" aria-label="Copy snapshot link">Copy link</button></div><span id="time-announce" role="status"></span>
+</section>
+<main id="page-main" tabindex="-1">
       <section class="mapspace" aria-label="Interactive map">
         <div
           id="viewport"
@@ -60,7 +65,7 @@
               Layers
             </button>
             <div class="layerbox" id="layersPanel" hidden>
-              <a id="june-edition" href="june-map.html">Open June 2026 paper map</a>
+              <a id="june-edition" href="june-map.html">Open Paper Sky</a>
               <label
                 ><input type="checkbox" id="papers" checked /> arXiv
                 papers</label
@@ -154,5 +159,5 @@
       declarations.</noscript
     >
     <script type="module" src="context/app.js"></script>
-  <footer class="site-colophon"><a href="previews/chapter-5992-6fa73d518b93/SHA256SUMS" title="Hashes of the files in this interface build">Build 9fa57178</a><a href="https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src">Lean edition 40e56bab</a><time datetime="2026-11-23T12:07:27Z">2026-11-23 UTC</time></footer><script type="module" src="june-map/edition-link.js"></script></body>
+  <footer class="site-colophon"><a href="data/time-map/release.json">Snapshot release</a><a href="SHA256SUMS">File checksums</a><time datetime="2026-11-26T03:34:25Z">2026-11-26 UTC</time></footer><script type="module" src="june-map/edition-link.js"></script></body>
 </html>

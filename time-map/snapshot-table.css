@@ -1,0 +1,8 @@
+.snapshot-archive { border-top: 1px solid #31504e; padding: .65rem 0; }
+.snapshot-archive summary { cursor: pointer; font-weight: 650; }
+.snapshot-table { overflow-x: auto; margin-block: .55rem; }
+.snapshot-table table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.snapshot-table th, .snapshot-table td { padding: .45rem .7rem .45rem 0; text-align: left; }
+.snapshot-table td { white-space: nowrap; }
+.snapshot-table th[scope="row"] { font-weight: 500; min-width: 9rem; }
+.snapshot-table thead { border-bottom: 1px solid #526a67; }

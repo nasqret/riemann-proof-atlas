@@ -1,3 +1,4 @@
+import {appendSnapshotMaps} from "./time-map/snapshot-links.js";
 import { Catalog, bytes, fmt, json, merc } from "./data.js";
 import { dailyFeed, editionBytes, ledger } from "./daily-feed.js";
 import { AtlasMap } from "./map.js";
@@ -120,6 +121,7 @@ function info(card) {
   const links=el("div",undefined,"sources");
   links.append(link(card.commit.slice(0,9),github()+"/tree/"+card.commit+"/src"));
   if(card.pr) links.append(link("Pull request #"+card.pr,github()+"/pull/"+card.pr));
+  void appendSnapshotMaps(links,card.commit);
   panel.replaceChildren(el("p",roles[card.status]+" · "+card.date,"date"),el("h2",card.title),
     el("p",card.description),numbers,links);
 }

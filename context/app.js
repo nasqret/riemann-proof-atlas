@@ -1,3 +1,5 @@
+/* versioned proof map */
+import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js";
 import { methodText } from "../previews/chapter-5992-6fa73d518b93/attribution.6be4e17d59387f6f.js";
 import { Catalog, json, fmt, scopePass, merc } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
 import { AtlasMap } from "./map.js";
@@ -1189,6 +1191,7 @@ async function edgeWitness(i, j, k) {
 }
 async function handleHit(h, e) {
   if (!ready) return;
+  if (historicalPin()) { await originalPaperHit(h, map); return; }
   if (h.type === "context") return contextual.hit(h);
   if (h.type === "native") {
     if (h.ids.length === 1) {
@@ -1493,7 +1496,12 @@ function doSearch() {
   worker.postMessage({ q });
 }
 async function restore() {
+  const held = keepCamera();
+  try { return await restoreOriginal(); } finally { restoreCamera(held); }
+}
+async function restoreOriginal() {
   if (!ready) return;
+  if (handlesRoute()) { restoredAddress = location.href; return restoreTime(); }
   restoredAddress = location.href;
   const h = new URLSearchParams(location.hash.slice(1));
   const sc = h.get("scope") || "all",
@@ -1631,6 +1639,7 @@ $("#dialog").addEventListener("click", (e) => {
   if (e.target === $("#dialog")) $("#dialog").close();
 });
 search.oninput = () => {
+  if (searchInput(search.value)) return;
   clearTimeout(timer);
   timer = setTimeout(doSearch, 150);
 };
@@ -1688,6 +1697,8 @@ document.querySelector(".skip-reader")?.addEventListener("click", (event) => {
     $("#subject").disabled = false;
     $("#nativeLayer").hidden = false;
     $("#mapMessage").hidden = true;
+    mountTime({viewport:map.view, camera:()=>[map.cx,map.cy,map.zoom],restoreCamera:([x,y,z])=>map.go(x,y,z),clearSelection:()=>{map.selected=null;map.edges=[];map.setScene(false);},zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(),basePoint:(id,atlas)=>originalBasePoint(map,id,atlas),topicSearch:q=>topicMatches([...map.labelById.values()],q,"label"), visible:()=>map.show.lean && !map.unplaced,
+      screen:(x,y)=>[map.px(x),map.py(y)],goWritten:(x,y)=>map.go(x,y,Math.max(100,Math.min(1500,map.zoom))),go:(x,y)=>{map.setScene(false);map.go(x,y,Math.max(5,Math.min(24,map.zoom)));}, paper:async row=>{const meta=map.base.paper_metadata;const shard=await json("data/base/"+meta.template.replace("{part}",Math.floor(row/meta.rows_per_shard)));return shard[row%meta.rows_per_shard];}, label:id=>map.labelById.get(id)});
     await restore();
     map.size();
     map.draw();

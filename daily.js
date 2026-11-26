@@ -1,3 +1,4 @@
+import {appendSnapshotMaps} from "./time-map/snapshot-links.js";
 import { dailyFeed, localFeed, dailyAsset, ledger, mapLink, sourceFile } from "./daily-feed.js";
 
 const $ = id => document.getElementById(id);
@@ -90,7 +91,8 @@ function pairOverview(parent,label,after,before,key) {
   s.append(node("p",fmt(c.removed)+" removed occurrences · "+fmt(c.added)+" additions · "+fmt(c.moved)+" matched moves."));
   if(c.ambiguousRemoved || c.ambiguousAdded) s.append(node("p",fmt(c.ambiguousRemoved)+" before and "+fmt(c.ambiguousAdded)+" after occurrences have ambiguous names.","meta"));
   const actions=node("div",undefined,"actions");
-  actions.append(link("Open snapshot map",mapLink({pin:after.commit}),"action primary"));
+  actions.append(link("Compare theorem changes",mapLink({pin:after.commit}),"action primary"));
+  void appendSnapshotMaps(actions,after.commit);
   for(const [layer,title] of [["removed","Map removals"],["added","Map additions"],["moved","Map relocations"]])
     if(c[layer]) actions.append(link(title,mapLink({pair:key,layer}),"action"));
   s.append(actions);
