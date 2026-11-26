@@ -1,8 +1,8 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=15fbf058a40ca32f";
+import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=8fd85edb31d7794a";
 import { methodText } from "../previews/chapter-5992-6fa73d518b93/attribution.6be4e17d59387f6f.js";
 import { Catalog, json, fmt, scopePass, merc } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
-import { AtlasMap } from "./map.js?atlas=15fbf058a40ca32f";
+import { AtlasMap } from "./map.js?atlas=8fd85edb31d7794a";
 import { NativeLayer } from "../previews/chapter-5992-6fa73d518b93/native-layer.d5b735863936c162.js";
 import { nativeDetail, openNative } from "../previews/chapter-5992-6fa73d518b93/native.7d5caf1515c8b15d.js";
 import { mountScreen } from "../previews/chapter-5992-6fa73d518b93/screen.19df69767d639472.js";
@@ -1729,7 +1729,7 @@ async function initializeOriginalGeometry() {
 const initialCamera = [map.cx,map.cy,map.zoom];
 mountTime({
   viewport:map.view, camera:()=>[map.cx,map.cy,map.zoom], restoreCamera:([x,y,z])=>map.go(x,y,z),
-  legacyReady:()=>ready, geometryReady:loadOriginalGeometry,
+  legacyReady:()=>ready, geometryReady:loadOriginalGeometry, pointerActive:()=>map.pointers.size>0,
   clearSelection:()=>{map.selected=null;map.edges=[];map.setScene(false);},
   zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(),
   basePoint:(id,atlas)=>originalBasePoint(map,id,atlas), topicSearch:q=>topicMatches([...(map.labelById?.values() || [])],q,"label"),

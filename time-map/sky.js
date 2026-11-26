@@ -88,6 +88,7 @@ let popup,
   keep = null,
   readSearch = location.search;
 let originalScopeOptions = null;
+let cameraGesture = 0;
 const beforeGraph = new WeakMap();
 let focusGraph = false;
 const markerCache = new Map();
@@ -752,11 +753,14 @@ function inspectNearest(event) {
 function navigate(k, v, extra) {
   location.hash = new URL(route(k, v, extra)).hash;
 }
-function focusMarker(m) {
+function mayCenterOriginal(gesture) {
+  return (gesture === undefined || gesture === cameraGesture) && !bridge.pointerActive?.();
+}
+function focusMarker(m, gesture) {
   selected = m?.anchor.id || null;
   if (m) {
     const p = point(m.anchor);
-    if (p && !keepCamera()) bridge.go(...p);
+    if (p && !keepCamera() && mayCenterOriginal(gesture)) bridge.go(...p);
   }
   draw();
 }
@@ -887,6 +891,7 @@ async function missing(h, t) {
     );
 }
 async function written(id, t) {
+  const gesture = cameraGesture;
   const r = historical ? await (await rec()).snapshotRecord(pin, id) : await writtenRecord(id);
   if (!active(t)) return;
   if (!r || r.present === false) {
@@ -900,7 +905,7 @@ async function written(id, t) {
     id,
   );
   const m = markerFor(r.marker);
-  focusMarker(m);
+  focusMarker(m,gesture);
   if (r.path) panel.append(node("p", r.path + (r.line ? " · line " + r.line : ""), "time-path"));
   if (r.sourceUrl) panel.append(a("Read pinned Lean source", r.sourceUrl, "time-button"));
   else panel.append(node("p", "The source register supplies no pinned line range for this command."));
@@ -973,7 +978,7 @@ async function written(id, t) {
   if (!sky && (!historical || r.baseId != null)) {
     const note = node("p", "Loading the recorded Original position…", "time-meta");
     panel.append(note);
-    originalWrittenLocation(r, t, note);
+    originalWrittenLocation(r, t, note,gesture);
   }
   if (!historical) {
     const out = box("Owned graph constants");
@@ -1025,7 +1030,7 @@ async function written(id, t) {
     );
   }
 }
-async function originalWrittenLocation(record, t, note) {
+async function originalWrittenLocation(record, t, note,gesture) {
   const camera = bridge.camera(),
     visiblePopup = preview;
   try {
@@ -1047,7 +1052,8 @@ async function originalWrittenLocation(record, t, note) {
     selected = null;
     note.textContent =
       "Recorded submission position of the corresponding source command on the Original map.";
-    if (!keepCamera() && bridge.camera().every((n, i) => n === camera[i])) bridge.goWritten(point.x, point.y);
+    if (!keepCamera() && mayCenterOriginal(gesture) && bridge.camera().every((n, i) => n === camera[i]))
+      bridge.goWritten(point.x, point.y);
     if (visiblePopup && preview === visiblePopup && !preview.fixed) {
       preview.exact = point;
       const basis = popup.querySelector(":scope > small");
@@ -1907,6 +1913,17 @@ function startEdition() {
 }
 export function mountTime(api) {
   bridge = api;
+  if(!sky) {
+    const mapControls=bridge.viewport.parentElement;
+    for(const event of ["pointerdown","wheel","keydown"]) {
+      mapControls.addEventListener(event,e=>{
+        if(!e.target.closest("#viewport,#zoomIn,#zoomOut,#fit"))return;
+        if(event==="pointerdown" && e.button!==0)return;
+        if(event==="keydown" && !["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","+","=","-","Enter"," "].includes(e.key))return;
+        cameraGesture++;
+      }, {capture:true,passive:true});
+    }
+  }
   panel = node("div", null, "time-reader");
   panel.id = "time-content";
   panel.tabIndex = -1;
@@ -1981,7 +1998,7 @@ export async function originalPaperHit(hit, map) {
   if (hit?.type === "time-node") {
     const { kind, id, sx, sy, count } = hit.route;
     if (count > 1 && map.zoom < 1500 && Number.isFinite(sx) && Number.isFinite(sy)) {
-      const p = map.project(sx, sy);
+      const p = hit.route.world || map.project(sx, sy);
       map.go(p[0], p[1], Math.min(200000, map.zoom * 4));
       return;
     }

@@ -1,5 +1,5 @@
 /* versioned proof map */
-import {placementText, addPlacementLinks, actualPlacement, placementCounts} from "../time-map/sky.js?atlas=15fbf058a40ca32f";
+import {placementText, addPlacementLinks, actualPlacement, placementCounts} from "../time-map/sky.js?atlas=8fd85edb31d7794a";
 // The map holds paper coordinates. Bundle, command and constant links open records at
 // the supporting paper; only the paper itself is passed to the map projection.
 import {nodeIndex, writtenRecord, constantRecord, constantSummary, findNodes, listNodes, bundlesAt, proofBundle, writtenFromAtlas} from "./node-records.js";

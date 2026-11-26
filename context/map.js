@@ -1,6 +1,6 @@
 /* versioned proof map */
 import {setOriginalPointMap, drawOriginalSnapshot, hitOriginalSnapshot} from "../time-map/retained-points.js";
-import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=15fbf058a40ca32f";
+import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=8fd85edb31d7794a";
 import { PointTree } from "../previews/chapter-5992-6fa73d518b93/point-tree.3cc85be4105f3ffa.js";
 import { bytes, json, merc, fmt, scopePass } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
 const BASE = "data/base/";
@@ -729,7 +729,12 @@ export class AtlasMap {
     v.addEventListener("pointerdown", (e) => {
       if (e.button !== 0 || e.target.closest("[data-map-action]")) return;
       const p = pos(e);
-      this.pointers.set(e.pointerId, { p, start: p });
+      const snapshot = activeHistoricalPin();
+      const under = snapshot ? this.hit(...p) : null;
+      const mark = under?.type === "time-node" ? {
+        ...under, route:{...under.route, world:this.project(under.route.sx,under.route.sy)}
+      } : null;
+      this.pointers.set(e.pointerId, { p, start:p, mark, address:snapshot ? location.href : null });
       v.setPointerCapture(e.pointerId);
       this.dragged = this.pointers.size > 1;
       tip.hidden = true;
@@ -800,13 +805,16 @@ export class AtlasMap {
       cur.p = p;
     });
     const end = (e, cancel) => {
-      if (!this.pointers.has(e.pointerId)) return;
+      const press = this.pointers.get(e.pointerId);
+      if (!press) return;
       this.pointers.delete(e.pointerId);
       if (!this.pointers.size) {
         v.classList.remove("grabbing");
         if (!cancel && !this.dragged) {
-          const h = this.hit(...pos(e));
-          if (h) this.select(h, e);
+          if (!press.address || press.address === location.href) {
+            const h = press.mark || this.hit(...pos(e));
+            if (h) this.select(h, e);
+          }
         }
         this.dragged = false;
       }
