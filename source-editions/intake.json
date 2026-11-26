@@ -1,7 +1,7 @@
 {
   "repository": "leanprover-community/riemann-hypothesis",
   "since": "173225e844cb0911221468b1d51e61ec4d5f5e8f",
-  "tip": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "tip": "d85ea673400d21f60655ea34fc57f5d16068c74a",
   "changes": [
     {
       "id": "merge-65",
