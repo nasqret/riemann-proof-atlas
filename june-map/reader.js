@@ -1,9 +1,9 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js?atlas=8fd85edb31d7794a";
-import {JuneMap} from "./map.js?atlas=8fd85edb31d7794a";
+import {mountTime, handlesRoute, restoreTime, searchInput, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js?atlas=3c98e73747befb37";
+import {JuneMap} from "./map.js?atlas=3c98e73747befb37";
 import {dataURL, paperURL, PaperShards, readBytes, readJSON, readURL} from "./papers.js";
 import {renderPaletteLegend, indexPalette, paperPaletteTopic} from "./palette.js";
-import {createProofReader} from "./nodes.js?atlas=8fd85edb31d7794a";
+import {createProofReader} from "./nodes.js?atlas=3c98e73747befb37";
 
 const $ = id => document.getElementById(id);
 const pane = $("inspector-content"), search = $("search");

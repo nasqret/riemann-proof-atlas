@@ -1,8 +1,8 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=8fd85edb31d7794a";
+import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=3c98e73747befb37";
 import { methodText } from "../previews/chapter-5992-6fa73d518b93/attribution.6be4e17d59387f6f.js";
 import { Catalog, json, fmt, scopePass, merc } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
-import { AtlasMap } from "./map.js?atlas=8fd85edb31d7794a";
+import { AtlasMap } from "./map.js?atlas=3c98e73747befb37";
 import { NativeLayer } from "../previews/chapter-5992-6fa73d518b93/native-layer.d5b735863936c162.js";
 import { nativeDetail, openNative } from "../previews/chapter-5992-6fa73d518b93/native.7d5caf1515c8b15d.js";
 import { mountScreen } from "../previews/chapter-5992-6fa73d518b93/screen.19df69767d639472.js";
@@ -1680,7 +1680,9 @@ document.querySelector(".skip-reader")?.addEventListener("click", (event) => {
   pane.focus();
 });
 let geometryPromise;
+let documentActive = true;
 function loadOriginalGeometry() {
+  if (!documentActive) return Promise.resolve(false);
   return geometryPromise ??= initializeOriginalGeometry();
 }
 async function initializeOriginalGeometry() {
@@ -1716,6 +1718,10 @@ async function initializeOriginalGeometry() {
     document.body.dataset.geometryReady = "true";
     return true;
   } catch (e) {
+    if (!documentActive) {
+      geometryPromise = undefined;
+      return false;
+    }
     document.body.dataset.geometryReady = "failed";
     showError(e);
     pane.replaceChildren(
@@ -1740,11 +1746,32 @@ mountTime({
     const shard=await json("data/base/"+meta.template.replace("{part}",Math.floor(row/meta.rows_per_shard)));return shard[row%meta.rows_per_shard];},
   label:async id=>{if(!map.labelById){loadOriginalGeometry();await map.labelsReady;}return map.labelById?.get(id);}
 });
-function mapGeometryIfVisible() {
-  if (new URLSearchParams(location.hash.slice(1)).has("graph")) return;
-  if (!handlesRoute()) {loadOriginalGeometry();return;}
-  const whenSummarySettles=()=>{if(!new URLSearchParams(location.hash.slice(1)).has("graph"))loadOriginalGeometry();};
-  mapSummaryReady().then(whenSummarySettles,whenSummarySettles);
+function visibleMap() {
+  return documentActive && !document.hidden && !new URLSearchParams(location.hash.slice(1)).has("graph");
 }
-for(const event of ["hashchange","popstate","atlas-address-change"]) window.addEventListener(event,mapGeometryIfVisible);
+function mapGeometryIfVisible() {
+  if (geometryPromise || !visibleMap()) return;
+  if (!handlesRoute()) {
+    loadOriginalGeometry();
+    return;
+  }
+  const summary = mapSummaryReady();
+  const afterSummary = () => {
+    if (!visibleMap() || summary !== mapSummaryReady()) return;
+    // A departing document can reject outstanding fetches before its pagehide event.
+    // Only a document that still paints the active map may start the large downloads.
+    requestAnimationFrame(() => {
+      if (visibleMap() && summary === mapSummaryReady()) loadOriginalGeometry();
+    });
+  };
+  summary.then(afterSummary, afterSummary);
+}
+window.addEventListener("pagehide", () => { documentActive = false; });
+window.addEventListener("pageshow", () => {
+  documentActive = true;
+  mapGeometryIfVisible();
+});
+document.addEventListener("visibilitychange", mapGeometryIfVisible);
+for (const event of ["hashchange", "popstate", "atlas-address-change"])
+  window.addEventListener(event, mapGeometryIfVisible);
 mapGeometryIfVisible();
