@@ -308,18 +308,59 @@
     },
     {
       "day": "2026-11-26",
-      "pin": "d85ea673400d21f60655ea34fc57f5d16068c74a",
+      "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
       "before": "756a70250dcba9162b99d4ea35c186558434c17e",
-      "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a",
+      "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..0ca81d6329f57a9987329221c974350bdc370e4d",
       "closed": false,
       "captures": [
         {
           "pin": "d85ea673400d21f60655ea34fc57f5d16068c74a",
           "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a",
           "observedAt": "2026-11-26T03:34:25Z"
+        },
+        {
+          "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+          "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..0ca81d6329f57a9987329221c974350bdc370e4d",
+          "observedAt": "2026-11-26T08:38:15Z"
         }
       ],
-      "changes": []
+      "changes": [
+        {
+          "pin": "2ff9346b3aab641f94ca8c1241bc645bcbb03386",
+          "title": "chore(GroundTheory/PAdicHodge): remove unneeded heartbeat and pending-depth options",
+          "pr": 5741
+        },
+        {
+          "pin": "f8fd4c5ff5aed7a40927a0bdf21dc61b86d199c1",
+          "title": "chore(Development/WeilBound): remove unneeded heartbeat and pending-depth options",
+          "pr": 5742
+        },
+        {
+          "pin": "b55ec1f1d255dea838da97cf78a2f56364ed9132",
+          "title": "chore(GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets): remove unneeded heartbeat and pending-depth options (1/5)",
+          "pr": 5744
+        },
+        {
+          "pin": "7355d55626090adf9ca4380b0a2a72b956a2a31f",
+          "title": "chore(GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets): remove unneeded heartbeat and pending-depth options (2/5)",
+          "pr": 5745
+        },
+        {
+          "pin": "c435519b3964974785c5b0e06082c6b52901e577",
+          "title": "chore(GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets): remove unneeded pending-depth options (3/5)",
+          "pr": 5746
+        },
+        {
+          "pin": "26c980c54c0b481a05ca5a0cca7af992d2cb8fa0",
+          "title": "chore(GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets): remove unneeded pending-depth options (4/5)",
+          "pr": 5747
+        },
+        {
+          "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+          "title": "chore(GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets): remove unneeded pending-depth options (5/5)",
+          "pr": 5748
+        }
+      ]
     }
   ],
   "editions": {
@@ -1450,6 +1491,86 @@
       "committedAt": "2026-11-26T03:24:20Z",
       "checkedLinks": 96,
       "summarySha256": "f1e4c06f2eaa146f8cdbae3c87b32dbbae8e12d20feb8977be33e292a13d861b"
+    },
+    "0ca81d6329f57a9987329221c974350bdc370e4d": {
+      "sourceTree": "ddaf2140570cc3f9c6191602a6a94c3f188d611a",
+      "sourceFiles": 58946,
+      "lines": 13708385,
+      "written": 569585,
+      "states": [
+        0,
+        361700,
+        254697,
+        5527,
+        202358
+      ],
+      "assets": {
+        "states.bin.gz": "3a258e0ca2ea411a1e8de0d53e1a4e848e205b0adc74a67f642f41401cdfb343",
+        "locations.json.gz": "d2f8078f7856e71a7458b315f90384d497917cd33692fa99228c563b6bec7c02"
+      },
+      "examples": {
+        "1": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          18,
+          19,
+          20
+        ],
+        "4": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          21,
+          22,
+          27
+        ],
+        "2": [
+          23,
+          24,
+          25,
+          26,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "3": [
+          818755,
+          818756,
+          818757,
+          818758,
+          818759,
+          818760,
+          818761,
+          818762,
+          818763,
+          818764,
+          818765,
+          818766
+        ]
+      },
+      "commit": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "assetPin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "committedAt": "2026-11-26T03:56:00Z",
+      "checkedLinks": 96,
+      "summarySha256": "14cfc44c4dbc5b1eeecee31479c54ba42646d365d411be4579031245f0ed9562"
     }
   },
   "comparisons": {
@@ -1673,6 +1794,23 @@
       "deletedLines": 0,
       "sha256": "ae989c3fe95bc367671d1d60c9d25fe5147f46c02afc9b093609eca3ce4bcbc3",
       "asset": "pairs/756a70250dcba9162b99d4ea35c186558434c17e..d85ea673400d21f60655ea34fc57f5d16068c74a.json.gz"
+    },
+    "756a70250dcba9162b99d4ea35c186558434c17e..0ca81d6329f57a9987329221c974350bdc370e4d": {
+      "before": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "after": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "removed": 0,
+      "added": 0,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 569585,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesEdited": 750,
+      "insertedLines": 221,
+      "deletedLines": 1863,
+      "sha256": "f0f95a079706dcd23d265d389c3d081a11893f167954092015c0fb6cb589a8a6",
+      "asset": "pairs/756a70250dcba9162b99d4ea35c186558434c17e..0ca81d6329f57a9987329221c974350bdc370e4d.json.gz"
     }
   },
   "proposals": {
@@ -1719,6 +1857,6 @@
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-26T03:34:25Z",
-  "observedTip": "d85ea673400d21f60655ea34fc57f5d16068c74a"
+  "capturedAt": "2026-11-26T08:38:15Z",
+  "observedTip": "0ca81d6329f57a9987329221c974350bdc370e4d"
 }

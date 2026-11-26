@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-26T03:34:25Z",
+  "asOf": "2026-11-26T08:38:15Z",
   "days": [
     {
       "date": "2026-11-20",
@@ -114,11 +114,11 @@
         "sourceUrl": "https://github.com/Reen-Ai-H/riemann-hypothesis-lean-zh/tree/179fd6fe6f08a391c208fc93aab1328548499bf7/src"
       },
       "mirrorChange": null,
-      "observation": "evidence/observation-2523c4fb92a8ad09f05fade9aa60bfea7032b18f7eadea463f4d58f12f318e12.json",
+      "observation": "evidence/observation-29ba935d40e0779f97f8cffa70a9a00cd82ec17155d896d7d167182025341289.json",
       "opened": [],
       "siteMetricsChange": {
         "changeInReportedValues": {},
-        "evidence": "evidence/site-214457bda96d2c65bae4feec1ba3a60538e14eb897321892b1b75e72372a87d7.json",
+        "evidence": "evidence/site-16d08be4099594d30ba95d4779aaffaf7e42342ec84c174ffd2baf0dc9e992b5.json",
         "previousEvidence": "evidence/site-24c1ed3b9c8b63ea5ee0af636906ebff8c96ed3170a57b2a6669318b6e25a187.json"
       }
     }
@@ -131,6 +131,7 @@
   "observations": [
     "evidence/observation-1b6d281acbae0834b6db563d90ce625daaa77c8c758bce85cf70c96fb752266d.json",
     "evidence/observation-2523c4fb92a8ad09f05fade9aa60bfea7032b18f7eadea463f4d58f12f318e12.json",
+    "evidence/observation-29ba935d40e0779f97f8cffa70a9a00cd82ec17155d896d7d167182025341289.json",
     "evidence/observation-2d4d0691831468da609366ff8e09d4e05505144f195a44d87b9c24835b0a6704.json",
     "evidence/observation-892520e25cdf580e5afcf68cfc0e64993824c63987bee409b4ea4d5e8fd7a43b.json",
     "evidence/observation-a7f02427229a97cb73cbdf7f0d3b6afd57f135536a7bac13797c0115d47fbc76.json",
@@ -175,10 +176,10 @@
   "schema": 1,
   "site": {
     "contributorAccountLinked": false,
-    "evidence": "evidence/site-214457bda96d2c65bae4feec1ba3a60538e14eb897321892b1b75e72372a87d7.json",
+    "evidence": "evidence/site-16d08be4099594d30ba95d4779aaffaf7e42342ec84c174ffd2baf0dc9e992b5.json",
     "guide": "https://riemann.verifytask.cn/riemann/",
     "mirrorLinked": false,
-    "observedAt": "2026-11-26T03:36:07Z",
+    "observedAt": "2026-11-26T08:39:46Z",
     "reportedApproxLines": null,
     "reportedArchiveBytes": null,
     "reportedFiles": null,
