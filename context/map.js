@@ -1,6 +1,6 @@
 /* versioned proof map */
 import {setOriginalPointMap, drawOriginalSnapshot, hitOriginalSnapshot} from "../time-map/retained-points.js";
-import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js";
+import {exclusiveProofLayer, draw as drawTime, activeHistoricalPin, historicalPin} from "../time-map/sky.js?atlas=15fbf058a40ca32f";
 import { PointTree } from "../previews/chapter-5992-6fa73d518b93/point-tree.3cc85be4105f3ffa.js";
 import { bytes, json, merc, fmt, scopePass } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
 const BASE = "data/base/";
@@ -59,6 +59,10 @@ export class AtlasMap {
     this.resize.observe(this.view);
     window.addEventListener("resize", () => this.drawSoon());
     this.interaction();
+    this.bounds = [-29.330559685341235, -24.97026638496948, 19.782642973318517, 24.14293627369027];
+    this.initialViewport = [-14.378340859071207, -13.06545965943847, 15.023176858600337, 14.860372108099762];
+    this.size();
+    this.fit();
   }
   async baseLoad() {
     this.base = await json(BASE + "manifest.json");
@@ -70,7 +74,7 @@ export class AtlasMap {
       this.vectorIndex.get(key).push(shard);
     }
     this.size();
-    this.fit();
+    this.transform();
     this.drawSoon();
     const labels = await json(
       BASE + (this.base.labels_gzip || this.base.labels),
@@ -127,7 +131,7 @@ export class AtlasMap {
     const base = this.unplaced
       ? [-11, -11, 11, 11]
       : this.bounds || [-16, -16, 16, 16];
-    const orig = this.unplaced ? null : this.base?.original_viewport_native;
+    const orig = this.unplaced ? null : (this.base?.original_viewport_native || this.initialViewport);
     const b = orig ? [orig[0], merc(orig[1]), orig[2], merc(orig[3])] : base;
     this.cx = (b[0] + b[2]) / 2;
     this.cy = (b[1] + b[3]) / 2;

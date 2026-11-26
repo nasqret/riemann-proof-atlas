@@ -1,5 +1,5 @@
 /* versioned proof map */
-import {exclusiveProofLayer, draw as drawTime} from "../time-map/sky.js";
+import {exclusiveProofLayer, draw as drawTime} from "../time-map/sky.js?atlas=15fbf058a40ca32f";
 import {dataURL} from "./papers.js";
 import {drawPalettePapers} from "./palette.js";
 

@@ -1,8 +1,8 @@
 /* versioned proof map */
-import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera} from "../time-map/sky.js";
+import {mountTime, handlesRoute, searchInput, restoreTime, originalPaperHit, originalBasePoint, topicMatches, historicalPin, keepCamera, restoreCamera, controlsForRevision, mapSummaryReady} from "../time-map/sky.js?atlas=15fbf058a40ca32f";
 import { methodText } from "../previews/chapter-5992-6fa73d518b93/attribution.6be4e17d59387f6f.js";
 import { Catalog, json, fmt, scopePass, merc } from "../previews/chapter-5992-6fa73d518b93/data.d84f1970349759e8.js";
-import { AtlasMap } from "./map.js";
+import { AtlasMap } from "./map.js?atlas=15fbf058a40ca32f";
 import { NativeLayer } from "../previews/chapter-5992-6fa73d518b93/native-layer.d5b735863936c162.js";
 import { nativeDetail, openNative } from "../previews/chapter-5992-6fa73d518b93/native.7d5caf1515c8b15d.js";
 import { mountScreen } from "../previews/chapter-5992-6fa73d518b93/screen.19df69767d639472.js";
@@ -1190,8 +1190,8 @@ async function edgeWitness(i, j, k) {
   );
 }
 async function handleHit(h, e) {
-  if (!ready) return;
   if (historicalPin()) { await originalPaperHit(h, map); return; }
+  if (!ready) return;
   if (h.type === "context") return contextual.hit(h);
   if (h.type === "native") {
     if (h.ids.length === 1) {
@@ -1679,9 +1679,15 @@ document.querySelector(".skip-reader")?.addEventListener("click", (event) => {
   jumpPanel();
   pane.focus();
 });
-(async () => {
+let geometryPromise;
+function loadOriginalGeometry() {
+  return geometryPromise ??= initializeOriginalGeometry();
+}
+async function initializeOriginalGeometry() {
   try {
-    await Promise.all([map.baseLoad(), cat.load()]);
+    $("#mapMessage").textContent = "Loading detailed Original map positions…";
+    map.labelsReady = map.baseLoad();
+    await Promise.all([map.labelsReady, cat.load()]);
     for (const c of cat.index.categories.filter(
       (c) => cat.index.categoryCounts[c.id],
     )) {
@@ -1697,18 +1703,48 @@ document.querySelector(".skip-reader")?.addEventListener("click", (event) => {
     $("#subject").disabled = false;
     $("#nativeLayer").hidden = false;
     $("#mapMessage").hidden = true;
-    mountTime({viewport:map.view, camera:()=>[map.cx,map.cy,map.zoom],restoreCamera:([x,y,z])=>map.go(x,y,z),clearSelection:()=>{map.selected=null;map.edges=[];map.setScene(false);},zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(),basePoint:(id,atlas)=>originalBasePoint(map,id,atlas),topicSearch:q=>topicMatches([...map.labelById.values()],q,"label"), visible:()=>map.show.lean && !map.unplaced,
-      screen:(x,y)=>[map.px(x),map.py(y)],goWritten:(x,y)=>map.go(x,y,Math.max(100,Math.min(1500,map.zoom))),go:(x,y)=>{map.setScene(false);map.go(x,y,Math.max(5,Math.min(24,map.zoom)));}, paper:async row=>{const meta=map.base.paper_metadata;const shard=await json("data/base/"+meta.template.replace("{part}",Math.floor(row/meta.rows_per_shard)));return shard[row%meta.rows_per_shard];}, label:id=>map.labelById.get(id)});
-    await restore();
+    controlsForRevision();
+    if (!handlesRoute()) {
+      const before = [map.cx,map.cy,map.zoom];
+      const keepEarlyCamera = before.some((value,i)=>value!==initialCamera[i]);
+      await restore();
+      if (!location.hash && keepEarlyCamera) map.go(...before);
+    }
     map.size();
     map.draw();
     document.body.dataset.ready = "true";
+    document.body.dataset.geometryReady = "true";
+    return true;
   } catch (e) {
+    document.body.dataset.geometryReady = "failed";
     showError(e);
     pane.replaceChildren(
       heading("Atlas data unavailable"),
       para(e.message, "warn"),
       button("Reload atlas", () => location.reload(), "primary"),
     );
+    return false;
   }
-})();
+}
+const initialCamera = [map.cx,map.cy,map.zoom];
+mountTime({
+  viewport:map.view, camera:()=>[map.cx,map.cy,map.zoom], restoreCamera:([x,y,z])=>map.go(x,y,z),
+  legacyReady:()=>ready, geometryReady:loadOriginalGeometry,
+  clearSelection:()=>{map.selected=null;map.edges=[];map.setScene(false);},
+  zoom:()=>map.zoom, width:()=>map.width, height:()=>map.height, redraw:()=>map.drawSoon(),
+  basePoint:(id,atlas)=>originalBasePoint(map,id,atlas), topicSearch:q=>topicMatches([...(map.labelById?.values() || [])],q,"label"),
+  visible:()=>map.show.lean && !map.unplaced, screen:(x,y)=>[map.px(x),map.py(y)],
+  goWritten:(x,y)=>map.go(x,y,Math.max(100,Math.min(1500,map.zoom))),
+  go:(x,y)=>{map.setScene(false);map.go(x,y,Math.max(5,Math.min(24,map.zoom)));},
+  paper:async row=>{const meta=(map.base || await json("data/base/manifest.json")).paper_metadata;
+    const shard=await json("data/base/"+meta.template.replace("{part}",Math.floor(row/meta.rows_per_shard)));return shard[row%meta.rows_per_shard];},
+  label:async id=>{if(!map.labelById){loadOriginalGeometry();await map.labelsReady;}return map.labelById?.get(id);}
+});
+function mapGeometryIfVisible() {
+  if (new URLSearchParams(location.hash.slice(1)).has("graph")) return;
+  if (!handlesRoute()) {loadOriginalGeometry();return;}
+  const whenSummarySettles=()=>{if(!new URLSearchParams(location.hash.slice(1)).has("graph"))loadOriginalGeometry();};
+  mapSummaryReady().then(whenSummarySettles,whenSummarySettles);
+}
+for(const event of ["hashchange","popstate","atlas-address-change"]) window.addEventListener(event,mapGeometryIfVisible);
+mapGeometryIfVisible();

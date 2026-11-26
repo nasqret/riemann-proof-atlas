@@ -337,6 +337,7 @@ function prepareChrome(spec) {
   if (!rev) $("time-announce").textContent = "Unknown snapshot. Choose a recorded revision.";
   document.body.dataset.snapshot = pin;
   document.body.dataset.snapshotTrack = track;
+  document.body.dataset.timeReady = "true";
 }
 function currentRow(anchor) {
   return anchor?.[sky ? "june" : "original"];
@@ -426,11 +427,11 @@ function syncSwitch() {
 function visibleOriginalBase() {
   return !sky && !historical && !hash().size;
 }
-function controlsForRevision() {
+export function controlsForRevision() {
   document.body.classList.toggle("time-historical", historical);
   if (!sky)
     for (const id of ["scope", "subject", "generated", "relations", "evidence", "placement"])
-      if ($(id)) $(id).disabled = historical;
+      if ($(id)) $(id).disabled = historical || bridge?.legacyReady?.() === false;
   if (sky) {
     const s = $("node-scope");
     if (s) {
@@ -457,9 +458,12 @@ async function loadMarkers(wanted, token) {
     markerCache.set(
       wanted,
       (async () => {
-        const p = await atlas(),
-          records = wanted === BASE ? null : await (await rec()).snapshotStats(wanted);
-        const baseline = records ? null : await nodeIndex();
+        const [p, counts] = await Promise.all([
+          atlas(),
+          wanted === BASE ? nodeIndex() : rec().then((m) => m.snapshotStats(wanted)),
+        ]);
+        const records = wanted === BASE ? null : counts,
+          baseline = records ? null : counts;
         const groups = p.anchors.map((anchor, i) => {
           const row = records
             ? Array.isArray(records.markers)
@@ -896,31 +900,7 @@ async function written(id, t) {
     id,
   );
   const m = markerFor(r.marker);
-  if (!sky && historical && r.baseId != null) {
-    const retained = await import("./retained-points.js"),
-      base = await writtenRecord(r.baseId);
-    if (!active(t)) return;
-    const point = await retained.originalWrittenPosition(r.baseId, base?.atlas);
-    if (!active(t)) return;
-    if (point && Number.isFinite(point.x) && Number.isFinite(point.y)) exactSelection = point;
-  }
-  if (!sky && !historical && bridge.basePoint) {
-    const pos = await bridge.basePoint(r.id, r.atlas);
-    if (!active(t)) return;
-    if (pos) exactSelection = pos;
-  }
-  if (exactSelection) {
-    selected = null;
-    if (!keepCamera()) bridge.goWritten(exactSelection.x, exactSelection.y);
-    panel.append(
-      node(
-        "p",
-        "Recorded submission position of the corresponding source command on the Original map.",
-        "time-meta",
-      ),
-    );
-    draw();
-  } else focusMarker(m);
+  focusMarker(m);
   if (r.path) panel.append(node("p", r.path + (r.line ? " · line " + r.line : ""), "time-path"));
   if (r.sourceUrl) panel.append(a("Read pinned Lean source", r.sourceUrl, "time-button"));
   else panel.append(node("p", "The source register supplies no pinned line range for this command."));
@@ -937,7 +917,8 @@ async function written(id, t) {
       "imported-module-peer": "Paper assignment from a module imported by this file",
       "same-file-navigation-only": "Navigation from other commands in this file",
       "source-import-navigation-only": "Navigation from modules imported by this file",
-      "mathlib-import-topic-navigation": "Mathematical topic suggested by a named Mathlib import · navigation only",
+      "mathlib-import-topic-navigation":
+        "Mathematical topic suggested by a named Mathlib import · navigation only",
       "no-source-placement": "Source index",
     };
     const fields = [
@@ -989,6 +970,11 @@ async function written(id, t) {
       mapPage(null, "Written declaration", slice(info), t, true);
     }
   } else mapPage(m, "Written declaration", slice(actions), t);
+  if (!sky && (!historical || r.baseId != null)) {
+    const note = node("p", "Loading the recorded Original position…", "time-meta");
+    panel.append(note);
+    originalWrittenLocation(r, t, note);
+  }
   if (!historical) {
     const out = box("Owned graph constants");
     pages(out, t, async (offset, limit) => {
@@ -1037,6 +1023,39 @@ async function written(id, t) {
     panel.append(
       node("p", "The checked kernel dependency graph is available at the submission pin.", "time-note"),
     );
+  }
+}
+async function originalWrittenLocation(record, t, note) {
+  const camera = bridge.camera(),
+    visiblePopup = preview;
+  try {
+    const ready = await bridge.geometryReady();
+    if (!active(t)) return;
+    if (!ready) {
+      note.textContent = "Detailed Original geometry is unavailable.";
+      return;
+    }
+    const point = historical
+      ? await (await import("./retained-points.js")).originalWrittenPosition(record.baseId, record.atlas)
+      : await bridge.basePoint(record.id, record.atlas);
+    if (!active(t)) return;
+    if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) {
+      note.remove();
+      return;
+    }
+    exactSelection = point;
+    selected = null;
+    note.textContent =
+      "Recorded submission position of the corresponding source command on the Original map.";
+    if (!keepCamera() && bridge.camera().every((n, i) => n === camera[i])) bridge.goWritten(point.x, point.y);
+    if (visiblePopup && preview === visiblePopup && !preview.fixed) {
+      preview.exact = point;
+      const basis = popup.querySelector(":scope > small");
+      if (basis) basis.textContent = "Recorded Original map position";
+    }
+    draw();
+  } catch (error) {
+    if (active(t)) note.textContent = "Detailed Original position unavailable. " + error.message;
   }
 }
 async function constant(id, t) {
@@ -1312,14 +1331,15 @@ async function dependencyGraph(h, t) {
     }
   }
   if (!hasSelection) {
-    const joined = await api.resolveSnapshot(BASE, pin, root.written);
-    if (joined.status === "present") writtenID = joined.id;
+    historicSource = await api.snapshotRecord(pin, root.written);
+    if (historicSource?.present) writtenID = historicSource.id;
     else {
       const found = await api.findSnapshotNodes(pin, root.name, { match: "spelling", limit: 2 });
       if (found.total === 1) writtenID = found.rows[0].id;
     }
   }
-  if (writtenID != null) historicSource = await api.snapshotRecord(pin, writtenID);
+  if (writtenID != null && (!historicSource?.present || historicSource.id !== writtenID))
+    historicSource = await api.snapshotRecord(pin, writtenID);
   if (!active(t)) return;
   const compiled = new URLSearchParams({ graph: "1" });
   if (provided) compiled.set("constant", provided.id);
@@ -1705,6 +1725,7 @@ export async function restoreTime() {
     return;
   }
   showPanel(true);
+  if (!sky) document.body.dataset.ready = "true";
   panel.replaceChildren(node("p", "Loading snapshot…"));
   panel.dataset.state = "loading";
   try {
@@ -1719,6 +1740,21 @@ export async function restoreTime() {
     }
     const h = hash();
     if (h.has("graph")) return await dependencyGraph(h, t);
+    if (!h.size && historical && !stats) {
+      heading(rev.label || "Revision", "Proof in this snapshot", "overview");
+      const summary = node("p", "Reading source counts…", "time-meta");
+      panel.append(summary, node("p", "Loading paper anchors…", "time-note"));
+      rec()
+        .then((m) => m.snapshotIndex())
+        .then((c) => {
+          const n = c.snapshots.find((s) => s.pin === pin)?.counts?.written;
+          if (active(t) && summary.isConnected && Number.isFinite(n))
+            summary.textContent = fmt(n) + " written commands";
+        })
+        .catch(() => {});
+    }
+    await markersReady;
+    if (!active(t)) return;
     if (h.has("otherMap")) {
       const name = h.get("otherMap") === "sky" ? "Paper Sky" : "Original map",
         u = new URL(h.get("otherMap") === "sky" ? "june-map.html" : "index.html", location.href);
@@ -1776,7 +1812,8 @@ export async function restoreTime() {
         const m = markers.find((x) => x.anchor.original?.row === row);
         anchorLink(m);
       } else {
-        const l = bridge.label(id);
+        const l = await bridge.label(id);
+        if (!active(t)) return;
         heading("Original topic region", l?.label || l?.name || id, "label", id);
         if (l?.count != null) panel.append(node("p", fmt(l.count) + " paper rows."));
       }
@@ -1811,7 +1848,10 @@ export function searchInput(value) {
   else window.dispatchEvent(new PopStateEvent("popstate", { state: history.state }));
   return true;
 }
-let initialized;
+let initialized, markersReady;
+export function mapSummaryReady() {
+  return markersReady;
+}
 export function keepCamera() {
   refreshEdition();
   return keep?.href === location.href ? keep : null;
@@ -1856,9 +1896,9 @@ function startEdition() {
     if (token !== editionToken) return;
     prepareChrome(c);
     syncSwitch();
-    if (rev) await loadMarkers(wanted, token);
   })();
-  initialized.catch((e) => {
+  markersReady = initialized.then(() => (token === editionToken && rev ? loadMarkers(wanted, token) : null));
+  markersReady.catch((e) => {
     if (token === editionToken) {
       const status = $("time-announce");
       if (status) status.textContent = "Snapshot data unavailable. " + e.message;
