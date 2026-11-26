@@ -32,8 +32,8 @@ jobs:
           git -C "$upstream" remote add origin https://github.com/leanprover-community/riemann-hypothesis.git
           git -C "$upstream" config remote.origin.promisor true
           git -C "$upstream" config remote.origin.partialclonefilter tree:0
-          git -C "$upstream" fetch --no-tags --filter=tree:0 origin main
-          python3 -B source-editions/discover.py --git "$upstream" --registry "$registry" --output "$RUNNER_TEMP/intake.json"
+          git -C "$upstream" fetch --no-tags --filter=tree:0 origin '+refs/heads/alpoge:refs/remotes/origin/alpoge'
+          python3 -B source-editions/discover.py --git "$upstream" --registry "$registry" --tip refs/remotes/origin/alpoge --output "$RUNNER_TEMP/intake.json"
           branch=atlas-edition-intake
           if ! gh api "repos/$GH_REPO/git/ref/heads/$branch" --silent; then
             gh api --method POST "repos/$GH_REPO/git/refs" -f ref="refs/heads/$branch" -f sha="$GITHUB_SHA" --silent

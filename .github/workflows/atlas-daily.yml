@@ -46,13 +46,17 @@ jobs:
           git -C "$RUNNER_TEMP/source.git" remote add community "https://github.com/$repo.git"
           gh api "repos/$repo/pulls/55" > "$RUNNER_TEMP/pr55.json"
           head=$(jq -er '.head.sha' "$RUNNER_TEMP/pr55.json")
-          git -C "$RUNNER_TEMP/source.git" fetch --no-tags community '+refs/heads/main:refs/remotes/community/main' "$head"
+          git -C "$RUNNER_TEMP/source.git" fetch --no-tags community '+refs/heads/alpoge:refs/remotes/community/alpoge' '+refs/heads/main:refs/remotes/community/readable' "$head"
           date -u '+CAPTURE_TIME=%Y-%m-%dT%H:%M:%SZ' >> "$GITHUB_ENV"
       - name: Capture revisions and verify the two-sided daily ledger
         run: |
           python3 -Bu atlas/pipeline/editions/daily.py --git "$RUNNER_TEMP/source.git" \
             --lean atlas/data/lean --cache atlas/data/editions --output archive \
-            --pr "$RUNNER_TEMP/pr55.json" --as-of "$CAPTURE_TIME" --job "github-$GITHUB_RUN_ID"
+            --tip refs/remotes/community/alpoge --pr "$RUNNER_TEMP/pr55.json" --as-of "$CAPTURE_TIME" --job "github-$GITHUB_RUN_ID"
+      - name: Record the separately maintained readable edition
+        run: |
+          python3 -B atlas/pipeline/editions/readable_days.py --git "$RUNNER_TEMP/source.git" \
+            --tip refs/remotes/community/readable --as-of "$CAPTURE_TIME" --out archive/readable.json
       - name: Audit the published rows against pinned Git source lines
         run: |
           python3 -B atlas/pipeline/editions/verify_daily.py --recent --root archive --git "$RUNNER_TEMP/source.git" --lean atlas/data/lean
@@ -78,7 +82,7 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- index.json editions pairs verifytask
+          git add -- index.json readable.json editions pairs verifytask
           if ! git diff --quiet --cached; then
             git commit -m "Archive UTC source snapshots through $CAPTURE_TIME"
             git push origin HEAD:refs/heads/atlas-daily
