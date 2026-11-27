@@ -311,7 +311,7 @@
       "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
       "before": "756a70250dcba9162b99d4ea35c186558434c17e",
       "comparison": "756a70250dcba9162b99d4ea35c186558434c17e..0ca81d6329f57a9987329221c974350bdc370e4d",
-      "closed": false,
+      "closed": true,
       "captures": [
         {
           "pin": "d85ea673400d21f60655ea34fc57f5d16068c74a",
@@ -361,6 +361,21 @@
           "pr": 5748
         }
       ]
+    },
+    {
+      "day": "2026-11-27",
+      "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "before": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "comparison": "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+          "comparison": "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d",
+          "observedAt": "2026-11-27T08:49:33Z"
+        }
+      ],
+      "changes": []
     }
   ],
   "editions": {
@@ -1811,6 +1826,23 @@
       "deletedLines": 1863,
       "sha256": "f0f95a079706dcd23d265d389c3d081a11893f167954092015c0fb6cb589a8a6",
       "asset": "pairs/756a70250dcba9162b99d4ea35c186558434c17e..0ca81d6329f57a9987329221c974350bdc370e4d.json.gz"
+    },
+    "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d": {
+      "before": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "after": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "removed": 0,
+      "added": 0,
+      "moved": 0,
+      "ambiguousRemoved": 0,
+      "ambiguousAdded": 0,
+      "retained": 569585,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesEdited": 0,
+      "insertedLines": 0,
+      "deletedLines": 0,
+      "sha256": "8f90c8188e98694db77fb72432535e90fb97a18eb1f6c950db8e7eb3268a5e31",
+      "asset": "pairs/0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d.json.gz"
     }
   },
   "proposals": {
@@ -1857,6 +1889,6 @@
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-26T08:38:15Z",
+  "capturedAt": "2026-11-27T08:49:33Z",
   "observedTip": "0ca81d6329f57a9987329221c974350bdc370e4d"
 }
