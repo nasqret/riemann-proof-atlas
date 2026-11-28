@@ -367,12 +367,27 @@
       "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
       "before": "0ca81d6329f57a9987329221c974350bdc370e4d",
       "comparison": "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d",
-      "closed": false,
+      "closed": true,
       "captures": [
         {
           "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
           "comparison": "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d",
           "observedAt": "2026-11-27T08:49:33Z"
+        }
+      ],
+      "changes": []
+    },
+    {
+      "day": "2026-11-28",
+      "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "before": "0ca81d6329f57a9987329221c974350bdc370e4d",
+      "comparison": "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "0ca81d6329f57a9987329221c974350bdc370e4d",
+          "comparison": "0ca81d6329f57a9987329221c974350bdc370e4d..0ca81d6329f57a9987329221c974350bdc370e4d",
+          "observedAt": "2026-11-28T08:06:14Z"
         }
       ],
       "changes": []
@@ -1889,6 +1904,6 @@
     }
   },
   "external": "verifytask/index.json",
-  "capturedAt": "2026-11-27T08:49:33Z",
+  "capturedAt": "2026-11-28T08:06:14Z",
   "observedTip": "0ca81d6329f57a9987329221c974350bdc370e4d"
 }

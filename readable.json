@@ -3,8 +3,8 @@
   "repository": "leanprover-community/riemann-hypothesis",
   "branch": "main",
   "baseline": "47fcde57c49eedd5a6352f4c8745d30bebbe4b0b",
-  "capturedAt": "2026-11-27T08:49:33Z",
-  "observedTip": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc",
+  "capturedAt": "2026-11-28T08:06:14Z",
+  "observedTip": "38dc5337b9244e83d252781133df8c4871f7d0f4",
   "days": [
     {
       "day": "2026-11-25",
@@ -34,11 +34,24 @@
     },
     {
       "day": "2026-11-27",
-      "pin": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc",
-      "closed": false,
+      "pin": "8c828edadfd659acdec2107f13ecf010284f919a",
+      "closed": true,
       "captures": [
         {
           "pin": "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc"
+        },
+        {
+          "pin": "8c828edadfd659acdec2107f13ecf010284f919a"
+        }
+      ]
+    },
+    {
+      "day": "2026-11-28",
+      "pin": "38dc5337b9244e83d252781133df8c4871f7d0f4",
+      "closed": false,
+      "captures": [
+        {
+          "pin": "38dc5337b9244e83d252781133df8c4871f7d0f4"
         }
       ]
     }
@@ -67,6 +80,14 @@
     "7c4ccbd64d02774b0a5b40a5f923f5b7a18e8abc": {
       "sourceTree": "e77c7ab82a2052a53b0d13273250d496514c98cb",
       "committedAt": "2026-11-27T02:09:55Z"
+    },
+    "8c828edadfd659acdec2107f13ecf010284f919a": {
+      "sourceTree": "e77c7ab82a2052a53b0d13273250d496514c98cb",
+      "committedAt": "2026-11-27T14:03:42Z"
+    },
+    "38dc5337b9244e83d252781133df8c4871f7d0f4": {
+      "sourceTree": "acb10911a551e8b887a87501a3668171beb87410",
+      "committedAt": "2026-11-28T05:21:40Z"
     }
   }
 }
